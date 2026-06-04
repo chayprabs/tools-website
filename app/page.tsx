@@ -7,6 +7,21 @@ export default function HomePage() {
   const tools = toolsSorted;
   const tags = getAllTags();
 
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: site.name,
+    url: site.url,
+    description: site.description,
+    inLanguage: "en",
+    author: {
+      "@type": "Person",
+      name: site.author,
+      url: site.socials.personalSite,
+      sameAs: [site.socials.github, site.socials.x, site.socials.personalSite],
+    },
+  };
+
   const collectionJsonLd = {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
@@ -31,6 +46,10 @@ export default function HomePage() {
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+      />
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
