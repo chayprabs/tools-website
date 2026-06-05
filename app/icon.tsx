@@ -13,11 +13,12 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-        background: "#bd4b2c",
+        background: "#c84b2f",
         color: "white",
-        fontSize: 34,
+        fontSize: 36,
         fontWeight: 700,
-        borderRadius: 32,
+        borderRadius: 16,
+        fontFamily: "system-ui, sans-serif",
       }}
     >
       CP

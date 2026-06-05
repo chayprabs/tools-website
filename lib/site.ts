@@ -15,6 +15,7 @@ export const site = {
     githubProfile: "chayprabs",
     x: "https://x.com/chayprabs",
     xHandle: "@chayprabs",
+    linkedin: "https://linkedin.com/in/chaitanya-prabuddha-bits94",
     personalSite: "https://www.chaitanyaprabuddha.com",
   },
 } as const;

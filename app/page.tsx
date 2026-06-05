@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { Github, Twitter, Sparkles } from "lucide-react";
 import { tools, toolsSorted, getAllTags } from "@/lib/tools";
 import { getCategoryGroups } from "@/lib/categories";
 import { site } from "@/lib/site";
@@ -23,7 +22,12 @@ export default function HomePage() {
       "@type": "Person",
       name: site.author,
       url: site.socials.personalSite,
-      sameAs: [site.socials.github, site.socials.x, site.socials.personalSite],
+      sameAs: [
+        site.socials.github,
+        site.socials.x,
+        site.socials.linkedin,
+        site.socials.personalSite,
+      ],
     },
   };
 
@@ -55,85 +59,67 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
       />
 
-      {/* Hero */}
-      <section className="mx-auto w-full max-w-6xl px-5 pt-20 sm:px-8 sm:pt-28">
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="fade-up inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] bg-[var(--color-card)] px-3.5 py-1.5 shadow-[var(--shadow-card)]">
-            <Sparkles className="h-3.5 w-3.5 text-[var(--color-accent)]" />
-            <span className="eyebrow" style={{ color: "var(--color-muted)" }}>
-              {count} free tools · no signup · open source
-            </span>
-          </span>
-
-          <h1 className="font-display fade-up-2 mx-auto mt-7 max-w-3xl text-[48px] font-medium leading-[0.98] text-[var(--color-ink)] sm:text-[80px]">
-            Developer tools that
-            <br className="hidden sm:block" /> just{" "}
-            <span className="font-display-italic text-[var(--color-accent)]">
-              work.
-            </span>
+      <div className="mx-auto w-full max-w-[880px] px-5">
+        {/* Hero */}
+        <section className="fade-up pt-14 pb-2 sm:pt-20">
+          <h1 className="max-w-[640px] text-[36px] font-bold leading-[1.1] tracking-[-0.02em] text-[var(--color-ink)] sm:text-[60px]">
+            Tools I built,
+            <br />
+            free for everyone.
           </h1>
-
-          <p className="fade-up-2 mx-auto mt-7 max-w-xl text-[16.5px] leading-relaxed text-[var(--color-muted)]">
-            A curated directory of fast, focused utilities for data, documents,
-            APIs, and DevOps — right in your browser. No installs, no accounts,
-            no tracking.
+          <p className="mt-6 max-w-[540px] text-[15px] font-light leading-[1.8] text-[var(--color-foreground)]">
+            {count} small, fast developer tools for data, documents, APIs, and
+            DevOps — most run entirely in your browser. No installs, no
+            accounts, no tracking.
           </p>
 
-          <div className="fade-up-3 mx-auto mt-9 max-w-xl">
+          <div className="mt-7 max-w-[460px]">
             <CommandBar count={count} />
           </div>
 
-          <div className="fade-up-3 mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px] text-[var(--color-muted)]">
+          <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] font-light text-[var(--color-muted)]">
             <a
               href={site.socials.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 transition-colors hover:text-[var(--color-ink)]"
+              className="transition-colors hover:text-[var(--color-ink)]"
             >
-              <Github className="h-4 w-4" /> Open source on GitHub
+              Open source on GitHub
             </a>
+            <span className="text-[rgba(0,0,0,0.22)]">·</span>
             <a
               href={site.socials.x}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 transition-colors hover:text-[var(--color-ink)]"
+              className="transition-colors hover:text-[var(--color-ink)]"
             >
-              <Twitter className="h-4 w-4" /> {site.socials.xHandle}
+              {site.socials.xHandle}
             </a>
           </div>
-        </div>
+        </section>
 
-        <div className="mt-16">
+        {/* Category jump nav */}
+        <div className="mt-10 border-t border-b border-[var(--color-line)] py-3">
           <CategoryNav groups={groups} />
         </div>
-      </section>
 
-      {/* Category sections */}
-      <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
-        <div className="mt-16 space-y-20 sm:mt-20 sm:space-y-24">
-          {groups.map((group, i) => (
-            <CategorySection key={group.category.slug} group={group} index={i} />
+        {/* Category sections */}
+        <div className="mt-12 space-y-12">
+          {groups.map((group) => (
+            <CategorySection key={group.category.slug} group={group} />
           ))}
         </div>
 
         {/* Browse by tag */}
-        <section className="mt-20">
+        <section className="mt-16">
           <div className="hairline" />
-          <div className="mt-10 text-center">
-            <span className="section-label">Browse by tag</span>
-            <h2 className="font-display mt-3 text-[30px] leading-tight text-[var(--color-ink)] sm:text-[38px]">
-              Looking for something specific?
-            </h2>
-            <p className="mx-auto mt-3 max-w-md text-[14px] text-[var(--color-muted)]">
-              Every tool is tagged by what it does. Jump straight to a topic.
-            </p>
-          </div>
-          <div className="mt-8 flex flex-wrap justify-center gap-2">
+          <p className="section-label mt-8">Browse by tag</p>
+          <div className="mt-4 flex flex-wrap gap-2">
             {tags.map((tag) => (
               <Link
                 key={tag.slug}
                 href={`/tags/${tag.slug}`}
-                className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-line)] bg-[var(--color-card)] px-3 py-1.5 text-[12.5px] font-medium text-[var(--color-muted)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+                className="inline-flex items-center gap-1.5 rounded-[4px] border border-[var(--color-line)] bg-[var(--color-card)] px-2.5 py-1 text-[12px] font-light text-[var(--color-muted)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
               >
                 {tag.label}
                 <span className="text-[var(--color-hint)]">{tag.count}</span>

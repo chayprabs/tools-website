@@ -10,36 +10,31 @@ const navItems = [
 
 export function Header() {
   return (
-    <header className="sticky top-0 z-40 border-b border-[var(--color-line-soft)] bg-[var(--color-background)]/80 backdrop-blur-xl">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
+    <header className="sticky top-0 z-40 border-b border-[var(--color-line)] bg-[var(--color-background)]/85 backdrop-blur-md">
+      <div className="mx-auto flex w-full max-w-[880px] items-center justify-between px-5 py-3.5">
         <Link
           href="/"
-          className="group flex items-center gap-2.5"
-          aria-label={`${site.name} home`}
+          className="text-[14px] font-semibold tracking-[-0.01em] text-[var(--color-ink)] transition-colors hover:text-[var(--color-accent)]"
         >
-          <span className="hidden h-7 w-7 items-center justify-center rounded-full bg-[var(--color-accent)] text-white transition-transform group-hover:scale-105 sm:flex">
-            <span className="font-display text-[13px] font-medium leading-none">
-              {site.monogram}
-            </span>
-          </span>
-          <span className="font-display text-[17px] font-medium leading-none tracking-[-0.01em] text-[var(--color-ink)] sm:text-[20px]">
-            {site.wordmark}
-          </span>
+          {site.wordmark}
         </Link>
 
-        <div className="flex items-center gap-3 sm:gap-5">
-          <nav className="flex items-center gap-3.5 sm:gap-5">
-            {navItems.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="text-[12.5px] text-[var(--color-muted)] transition-colors hover:text-[var(--color-ink)] sm:text-[13.5px]"
-              >
-                {item.label}
-              </Link>
+        <div className="flex items-center gap-3.5 sm:gap-4">
+          <nav className="flex items-center gap-3.5 sm:gap-4">
+            {navItems.map((item, i) => (
+              <div key={item.href} className="flex items-center gap-3.5 sm:gap-4">
+                <Link href={item.href} className="nav-link">
+                  {item.label}
+                </Link>
+                {i < navItems.length - 1 && (
+                  <span className="text-[11px] leading-none text-[rgba(0,0,0,0.22)]">
+                    ·
+                  </span>
+                )}
+              </div>
             ))}
           </nav>
-          <span className="hidden h-4 w-px bg-[var(--color-line)] sm:block" />
+          <span className="h-3.5 w-px bg-[var(--color-line)]" />
           <CommandButtonCompact />
         </div>
       </div>

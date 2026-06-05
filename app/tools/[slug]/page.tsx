@@ -1,13 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, Check, Github, ArrowRight } from "lucide-react";
 import { tools, getTool, repoUrl, tagLabel } from "@/lib/tools";
 import { categoryOf, getCategory } from "@/lib/categories";
 import { site } from "@/lib/site";
-import { TagPill } from "@/components/TagPill";
 import { FeedbackButton } from "@/components/FeedbackButton";
-import { CategoryIcon } from "@/components/icons";
 
 export function generateStaticParams() {
   return tools.map((tool) => ({ slug: tool.slug }));
@@ -98,124 +95,115 @@ export default async function ToolPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }}
       />
-      <article className="mx-auto w-full max-w-3xl px-5 pt-10 sm:px-8 sm:pt-14">
-        <nav className="flex items-center gap-1.5 text-[13px] text-[var(--color-hint)]">
-          <Link
-            href="/"
-            className="inline-flex items-center gap-1.5 transition-colors hover:text-[var(--color-ink)]"
-          >
-            <ArrowLeft className="h-3.5 w-3.5" /> All tools
+      <article className="mx-auto w-full max-w-[760px] px-5 pt-10 sm:pt-14">
+        <nav className="flex items-center gap-2 text-[12px] font-light text-[var(--color-hint)]">
+          <Link href="/" className="transition-colors hover:text-[var(--color-ink)]">
+            Tools
           </Link>
+          <span className="text-[rgba(0,0,0,0.22)]">·</span>
           {category && (
-            <>
-              <span>/</span>
-              <Link
-                href={`/#${category.slug}`}
-                className="transition-colors hover:text-[var(--color-ink)]"
-              >
-                {category.label}
-              </Link>
-            </>
+            <Link
+              href={`/#${category.slug}`}
+              className="transition-colors hover:text-[var(--color-ink)]"
+            >
+              {category.label}
+            </Link>
           )}
         </nav>
 
-        <header className="fade-up mt-8">
-          <div className="flex items-center gap-4">
-            {category && (
-              <span className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border border-[var(--color-line)] bg-[var(--color-card)] text-[var(--color-accent)] shadow-[var(--shadow-card)]">
-                <CategoryIcon category={category.slug} className="h-6 w-6" />
-              </span>
-            )}
-            <div className="flex flex-wrap gap-2">
-              {tool.tags.map((tag) => (
-                <TagPill key={tag} tag={tag} />
-              ))}
-            </div>
-          </div>
-
-          <h1 className="font-display mt-6 text-[40px] leading-[1.05] text-[var(--color-ink)] sm:text-[54px]">
+        <header className="fade-up mt-6">
+          <h1 className="text-[32px] font-bold leading-[1.1] tracking-[-0.02em] text-[var(--color-ink)] sm:text-[44px]">
             {tool.name}
           </h1>
-          <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-[var(--color-muted)]">
+          <p className="mt-4 max-w-[560px] text-[16px] font-light leading-[1.6] text-[var(--color-muted)]">
             {tool.tagline}
           </p>
 
-          <div className="mt-7 flex flex-wrap items-center gap-3">
-            <FeedbackButton toolName={tool.name} toolSlug={tool.slug} />
+          <div className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1 text-[13px] font-light text-[var(--color-hint)]">
+            {tool.tags.map((tag, i) => (
+              <span key={tag} className="flex items-center gap-3">
+                <Link
+                  href={`/tags/${tag}`}
+                  className="transition-colors hover:text-[var(--color-accent)]"
+                >
+                  {tagLabel(tag)}
+                </Link>
+                {i < tool.tags.length - 1 && (
+                  <span className="text-[rgba(0,0,0,0.22)]">·</span>
+                )}
+              </span>
+            ))}
+          </div>
+
+          <div className="mt-6 flex flex-wrap items-center gap-2.5">
+            <FeedbackButton toolName={tool.name} toolSlug={tool.slug} variant="accent" />
             <a
               href={url}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] bg-[var(--color-card)] px-5 py-2.5 text-[13.5px] font-medium text-[var(--color-ink)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+              className="btn-ghost"
             >
-              <Github className="h-4 w-4" /> View source
+              View source &rarr;
             </a>
           </div>
         </header>
 
-        <div className="hairline mt-12" />
+        <div className="hairline mt-10" />
 
-        <section className="mt-10">
-          <span className="section-label">About this tool</span>
-          <p className="mt-4 text-[17px] leading-[1.8] text-[var(--color-ink)]">
+        <section className="mt-8">
+          <p className="section-label">About this tool</p>
+          <p className="mt-3 text-[15px] font-light leading-[1.85] text-[var(--color-foreground)]">
             {tool.description}
           </p>
         </section>
 
-        <section className="mt-12">
-          <span className="section-label">What it does</span>
-          <ul className="mt-5 grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+        <section className="mt-8">
+          <p className="section-label">What it does</p>
+          <ul className="mt-3 grid grid-cols-1 gap-x-6 gap-y-1.5 sm:grid-cols-2">
             {tool.features.map((feature) => (
               <li
                 key={feature}
-                className="flex items-start gap-3 rounded-xl border border-[var(--color-line-soft)] bg-[var(--color-card)] p-4"
+                className="flex items-start gap-2.5 text-[14px] font-light leading-[1.6] text-[var(--color-foreground)]"
               >
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-accent-soft)]">
-                  <Check className="h-3 w-3 text-[var(--color-accent)]" />
-                </span>
-                <span className="text-[13.5px] leading-relaxed text-[var(--color-foreground)]">
-                  {feature}
-                </span>
+                <span className="mt-[9px] h-[5px] w-[5px] shrink-0 rounded-full bg-[var(--color-accent)]" />
+                {feature}
               </li>
             ))}
           </ul>
         </section>
 
-        <section className="mt-12">
-          <span className="section-label">Repository</span>
+        <section className="mt-8">
+          <p className="section-label">Repository</p>
           <a
             href={url}
             target="_blank"
             rel="noopener noreferrer"
-            className="group mt-4 flex items-center justify-between gap-3 rounded-2xl border border-[var(--color-line)] bg-[var(--color-card)] p-5 shadow-[var(--shadow-card)] transition-all hover:-translate-y-0.5 hover:border-[var(--color-accent)]/40 hover:shadow-[var(--shadow-lift)]"
+            className="group mt-3 flex items-center justify-between gap-3 rounded-[6px] bg-[var(--color-card-2)] px-4 py-3.5 transition-colors hover:bg-[#e6e3dd]"
           >
-            <div className="flex items-center gap-4">
-              <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-[var(--color-line-soft)] bg-[var(--color-background)] text-[var(--color-muted)] transition-colors group-hover:text-[var(--color-accent)]">
-                <Github className="h-5 w-5" />
+            <span>
+              <span className="block text-[14px] font-medium text-[var(--color-ink)]">
+                {site.socials.githubProfile}/{tool.repo}
               </span>
-              <div>
-                <p className="text-[14.5px] font-medium text-[var(--color-ink)]">
-                  {site.socials.githubProfile}/{tool.repo}
-                </p>
-                <p className="text-[12.5px] text-[var(--color-hint)]">
-                  Full source code, issues, and releases
-                </p>
-              </div>
-            </div>
-            <ArrowRight className="h-4 w-4 shrink-0 text-[var(--color-hint)] transition-all group-hover:translate-x-0.5 group-hover:text-[var(--color-accent)]" />
+              <span className="block text-[12px] font-light text-[var(--color-hint)]">
+                Full source code, issues, and releases
+              </span>
+            </span>
+            <span className="shrink-0 text-[12px] text-[var(--color-hint)] transition-colors group-hover:text-[var(--color-accent)]">
+              Open &rarr;
+            </span>
           </a>
         </section>
 
-        <section className="mt-14 overflow-hidden rounded-3xl border border-[var(--color-line)] bg-[var(--color-card)] p-8 text-center shadow-[var(--shadow-card)] sm:p-10">
-          <h2 className="font-display text-[26px] leading-tight text-[var(--color-ink)] sm:text-[32px]">
+        <section className="mt-12 rounded-[6px] bg-[var(--color-card-2)] px-5 py-6 sm:px-7">
+          <h2 className="text-[18px] font-semibold leading-tight text-[var(--color-ink)]">
             Spotted a bug or have an idea?
           </h2>
-          <p className="mx-auto mt-3 max-w-md text-[14px] leading-relaxed text-[var(--color-muted)]">
+          <p className="mt-2 max-w-md text-[14px] font-light leading-[1.7] text-[var(--color-muted)]">
             This tool is built in the open and shaped by feedback. If something
             feels off — or you want a feature — I read every message.
           </p>
-          <div className="mt-6 flex justify-center">
-            <FeedbackButton toolName={tool.name} toolSlug={tool.slug} />
+          <div className="mt-4">
+            <FeedbackButton toolName={tool.name} toolSlug={tool.slug} variant="accent" />
           </div>
         </section>
 
@@ -241,24 +229,28 @@ function RelatedTools({
   if (related.length === 0) return null;
 
   return (
-    <section className="mt-16">
-      <span className="section-label">Related tools</span>
-      <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-3">
-        {related.map((t) => (
+    <section className="mt-12">
+      <p className="section-label">Related tools</p>
+      <div className="mt-3 flex flex-col">
+        {related.map((t, i) => (
           <Link
             key={t.slug}
             href={`/tools/${t.slug}`}
-            className="group flex flex-col rounded-2xl border border-[var(--color-line)] bg-[var(--color-card)] p-4 shadow-[var(--shadow-card)] transition-all hover:-translate-y-0.5 hover:border-[var(--color-accent)]/40 hover:shadow-[var(--shadow-lift)]"
+            className={`group flex items-center justify-between gap-3 py-3 transition-colors ${
+              i > 0 ? "border-t border-[var(--color-line-soft)]" : ""
+            }`}
           >
-            <span className="flex h-9 w-9 items-center justify-center rounded-lg border border-[var(--color-line-soft)] bg-[var(--color-background)] text-[var(--color-muted)] transition-colors group-hover:text-[var(--color-accent)]">
-              <CategoryIcon category={categoryOf(t.slug)} className="h-4 w-4" />
+            <span>
+              <span className="block text-[14px] font-medium text-[var(--color-ink)] transition-colors group-hover:text-[var(--color-accent)]">
+                {t.name}
+              </span>
+              <span className="block text-[12px] font-light text-[var(--color-hint)]">
+                {t.tags.map((tag) => tagLabel(tag)).join("  ·  ")}
+              </span>
             </span>
-            <p className="mt-3 text-[14px] font-medium leading-snug text-[var(--color-ink)]">
-              {t.name}
-            </p>
-            <p className="mt-1 text-[12px] text-[var(--color-hint)]">
-              {t.tags.map((tag) => tagLabel(tag)).join(" · ")}
-            </p>
+            <span className="shrink-0 text-[12px] text-[var(--color-hint)] transition-colors group-hover:text-[var(--color-accent)]">
+              &rarr;
+            </span>
           </Link>
         ))}
       </div>

@@ -15,31 +15,29 @@ export default function OpengraphImage() {
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#f3efe6",
-          backgroundImage:
-            "radial-gradient(900px circle at 88% -10%, rgba(189,75,44,0.14), transparent 55%)",
-          padding: "76px",
-          fontFamily: "Georgia, serif",
+          background: "#f1f0ee",
+          padding: "72px",
+          fontFamily: "system-ui, sans-serif",
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: 18 }}>
+        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
           <div
             style={{
-              width: 56,
-              height: 56,
+              width: 40,
+              height: 40,
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
-              background: "#bd4b2c",
+              background: "#c84b2f",
               color: "white",
-              fontSize: 26,
+              fontSize: 19,
               fontWeight: 700,
-              borderRadius: 56,
+              borderRadius: 9,
             }}
           >
             CP
           </div>
-          <div style={{ fontSize: 30, fontWeight: 600, color: "#201d18" }}>
+          <div style={{ fontSize: 26, fontWeight: 600, color: "#1a1a18" }}>
             {site.name}
           </div>
         </div>
@@ -47,49 +45,32 @@ export default function OpengraphImage() {
         <div style={{ display: "flex", flexDirection: "column" }}>
           <div
             style={{
-              fontSize: 92,
-              fontWeight: 600,
-              color: "#201d18",
-              lineHeight: 1.0,
-              letterSpacing: "-0.02em",
-            }}
-          >
-            Developer tools that
-          </div>
-          <div
-            style={{
-              display: "flex",
-              gap: 22,
-              fontSize: 92,
-              fontWeight: 600,
-              color: "#201d18",
+              fontSize: 76,
+              fontWeight: 800,
+              color: "#1a1a18",
               lineHeight: 1.05,
-              letterSpacing: "-0.02em",
+              letterSpacing: "-0.03em",
             }}
           >
-            <span>just</span>
-            <span style={{ fontStyle: "italic", color: "#bd4b2c" }}>work.</span>
+            Tools I built,
           </div>
           <div
             style={{
-              fontSize: 27,
-              color: "#756e62",
-              marginTop: 26,
-              fontFamily: "system-ui, sans-serif",
+              fontSize: 76,
+              fontWeight: 800,
+              color: "#1a1a18",
+              lineHeight: 1.05,
+              letterSpacing: "-0.03em",
             }}
           >
-            Free · open source · no signup · runs in your browser
+            free for everyone.
+          </div>
+          <div style={{ fontSize: 26, color: "#6b6860", marginTop: 26 }}>
+            43 free developer tools · no signup · runs in your browser
           </div>
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            fontSize: 22,
-            color: "#a79e8f",
-            fontFamily: "system-ui, sans-serif",
-          }}
-        >
+        <div style={{ display: "flex", fontSize: 21, color: "#9a9890" }}>
           {site.socials.xHandle} · github.com/{site.socials.githubProfile}
         </div>
       </div>

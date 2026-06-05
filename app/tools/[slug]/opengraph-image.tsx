@@ -25,31 +25,29 @@ export default async function Image({
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-        background: "#f3efe6",
-        backgroundImage:
-          "radial-gradient(900px circle at 90% -10%, rgba(189,75,44,0.13), transparent 55%)",
+        background: "#f1f0ee",
         padding: "72px",
-        fontFamily: "Georgia, serif",
+        fontFamily: "system-ui, sans-serif",
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
         <div
           style={{
-            width: 50,
-            height: 50,
+            width: 40,
+            height: 40,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            background: "#bd4b2c",
+            background: "#c84b2f",
             color: "white",
-            fontSize: 22,
+            fontSize: 19,
             fontWeight: 700,
-            borderRadius: 50,
+            borderRadius: 9,
           }}
         >
           CP
         </div>
-          <div style={{ fontSize: 26, fontWeight: 600, color: "#756e62" }}>
+          <div style={{ fontSize: 24, fontWeight: 600, color: "#6b6860" }}>
             {site.name}
           </div>
         </div>
@@ -61,12 +59,11 @@ export default async function Image({
                 key={t}
                 style={{
                   display: "flex",
-                  fontSize: 21,
-                  color: "#9a3a1f",
-                  border: "2px solid rgba(189,75,44,0.4)",
-                  borderRadius: 999,
-                  padding: "4px 18px",
-                  fontFamily: "system-ui, sans-serif",
+                  fontSize: 20,
+                  color: "#c84b2f",
+                  border: "1px solid rgba(200,75,47,0.4)",
+                  borderRadius: 4,
+                  padding: "3px 14px",
                 }}
               >
                 {t}
@@ -75,11 +72,11 @@ export default async function Image({
           </div>
           <div
             style={{
-              fontSize: 74,
-              fontWeight: 600,
-              color: "#201d18",
-              lineHeight: 1.02,
-              letterSpacing: "-0.02em",
+              fontSize: 72,
+              fontWeight: 800,
+              color: "#1a1a18",
+              lineHeight: 1.04,
+              letterSpacing: "-0.03em",
               maxWidth: 1040,
             }}
           >
@@ -87,26 +84,18 @@ export default async function Image({
           </div>
           <div
             style={{
-              fontSize: 29,
-              color: "#756e62",
+              fontSize: 28,
+              color: "#6b6860",
               marginTop: 24,
               maxWidth: 980,
               lineHeight: 1.3,
-              fontFamily: "system-ui, sans-serif",
             }}
           >
             {tagline}
           </div>
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            fontSize: 21,
-            color: "#a79e8f",
-            fontFamily: "system-ui, sans-serif",
-          }}
-        >
+        <div style={{ display: "flex", fontSize: 21, color: "#9a9890" }}>
           Free online tool · no signup · {site.socials.xHandle}
         </div>
       </div>

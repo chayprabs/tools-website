@@ -1,23 +1,16 @@
 import type { Metadata } from "next";
-import { Fraunces, Hanken_Grotesk } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CommandPalette } from "@/components/CommandPalette";
+import { SayHello } from "@/components/SayHello";
 
-const hanken = Hanken_Grotesk({
+const inter = Inter({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-sans",
-  display: "swap",
-});
-
-const fraunces = Fraunces({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "900"],
-  style: ["normal", "italic"],
-  variable: "--font-display",
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -78,7 +71,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${hanken.variable} ${fraunces.variable} min-h-screen overflow-x-hidden bg-[var(--color-background)] text-[var(--color-foreground)] antialiased`}
+        className={`${inter.variable} min-h-screen overflow-x-hidden bg-[var(--color-background)] text-[var(--color-foreground)] antialiased`}
       >
         <div className="flex min-h-screen flex-col">
           <Header />
@@ -86,6 +79,7 @@ export default function RootLayout({
           <Footer />
         </div>
         <CommandPalette />
+        <SayHello />
       </body>
     </html>
   );
