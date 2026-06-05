@@ -13,11 +13,11 @@ const updated = "June 2026";
 export default function PrivacyPage() {
   return (
     <div className="mx-auto w-full max-w-[680px] px-5 pt-12 pb-4 sm:pt-16">
-      <span className="section-label">Legal</span>
-      <h1 className="mt-3 text-[32px] font-bold leading-[1.1] tracking-[-0.02em] text-[var(--color-ink)] sm:text-[44px]">
+      <span className="mono-label">Legal</span>
+      <h1 className="mt-3 text-[32px] font-bold leading-[1.1] tracking-[-0.02em] text-[var(--fg)] sm:text-[44px]">
         Privacy Policy
       </h1>
-      <p className="mt-3 text-[13px] text-[var(--color-hint)]">
+      <p className="mt-3 text-[13px] text-[var(--faint)]">
         Last updated: {updated}
       </p>
 
@@ -91,8 +91,8 @@ export default function PrivacyPage() {
         </p>
       </div>
 
-      <p className="mt-10 text-[13px] text-[var(--color-hint)]">
-        <Link href="/" className="hover:text-[var(--color-accent)]">
+      <p className="mt-10 text-[13px] text-[var(--faint)]">
+        <Link href="/" className="hover:text-[var(--accent-2)]">
           ← Back to all tools
         </Link>
       </p>

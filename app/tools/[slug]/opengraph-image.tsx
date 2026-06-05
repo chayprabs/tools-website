@@ -25,7 +25,9 @@ export default async function Image({
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-        background: "#f1f0ee",
+        backgroundColor: "#070809",
+        backgroundImage:
+          "linear-gradient(135deg, rgba(108,92,255,0.22), transparent 42%), linear-gradient(315deg, rgba(52,211,238,0.12), transparent 42%)",
         padding: "72px",
         fontFamily: "system-ui, sans-serif",
       }}
@@ -33,21 +35,22 @@ export default async function Image({
       <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
         <div
           style={{
-            width: 40,
-            height: 40,
+            width: 44,
+            height: 44,
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            background: "#c84b2f",
+            background:
+              "linear-gradient(135deg, #9b8cff 0%, #6c5cff 55%, #5b3cff 100%)",
             color: "white",
-            fontSize: 19,
+            fontSize: 20,
             fontWeight: 700,
-            borderRadius: 9,
+            borderRadius: 11,
           }}
         >
           CP
         </div>
-          <div style={{ fontSize: 24, fontWeight: 600, color: "#6b6860" }}>
+          <div style={{ fontSize: 24, fontWeight: 600, color: "#9aa3b2" }}>
             {site.name}
           </div>
         </div>
@@ -60,9 +63,10 @@ export default async function Image({
                 style={{
                   display: "flex",
                   fontSize: 20,
-                  color: "#c84b2f",
-                  border: "1px solid rgba(200,75,47,0.4)",
-                  borderRadius: 4,
+                  color: "#9b8cff",
+                  border: "1px solid rgba(108,92,255,0.45)",
+                  background: "rgba(108,92,255,0.1)",
+                  borderRadius: 6,
                   padding: "3px 14px",
                 }}
               >
@@ -74,7 +78,7 @@ export default async function Image({
             style={{
               fontSize: 72,
               fontWeight: 800,
-              color: "#1a1a18",
+              color: "#f2f3f6",
               lineHeight: 1.04,
               letterSpacing: "-0.03em",
               maxWidth: 1040,
@@ -85,7 +89,7 @@ export default async function Image({
           <div
             style={{
               fontSize: 28,
-              color: "#6b6860",
+              color: "#9aa3b2",
               marginTop: 24,
               maxWidth: 980,
               lineHeight: 1.3,
@@ -95,7 +99,7 @@ export default async function Image({
           </div>
         </div>
 
-        <div style={{ display: "flex", fontSize: 21, color: "#9a9890" }}>
+        <div style={{ display: "flex", fontSize: 21, color: "#646b7a" }}>
           Free online tool · no signup · {site.socials.xHandle}
         </div>
       </div>

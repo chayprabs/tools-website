@@ -18,10 +18,11 @@ export function SayHello() {
 
   return (
     <section
-      className={`fixed bottom-6 left-1/2 z-[90] max-w-[calc(100vw-24px)] min-w-[120px] -translate-x-1/2 overflow-hidden rounded-[24px] border-[0.5px] border-[var(--color-line)] bg-[rgba(244,242,238,0.96)] shadow-[0_8px_32px_rgba(0,0,0,0.08)] backdrop-blur-[12px] ${
-        expanded ? "px-4 py-4 sm:px-6" : "px-4 py-2"
+      aria-label="Contact"
+      className={`fixed bottom-5 left-1/2 z-[90] max-w-[calc(100vw-24px)] min-w-[120px] -translate-x-1/2 overflow-hidden rounded-[20px] border border-[var(--border-strong)] bg-[var(--surface)]/95 shadow-[0_12px_40px_rgba(0,0,0,0.5)] backdrop-blur-xl ${
+        expanded ? "px-4 py-4 sm:px-6" : "px-4 py-2.5"
       }`}
-      style={{ transition: "all 0.2s cubic-bezier(0.16, 1, 0.3, 1)" }}
+      style={{ transition: "all 0.22s cubic-bezier(0.16, 1, 0.3, 1)" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onKeyDown={(e) => {
@@ -40,8 +41,8 @@ export function SayHello() {
               : "scale-100 opacity-100"
           } flex w-full items-center justify-center gap-2 border-0 bg-transparent p-0`}
         >
-          <span className="contact-pulse h-[5px] w-[5px] rounded-full bg-[#4a8a1e]" />
-          <span className="text-[11px] font-normal text-[var(--color-muted)]">
+          <span className="contact-pulse h-[6px] w-[6px] rounded-full bg-[var(--accent)]" />
+          <span className="text-[12px] font-medium text-[var(--muted)]">
             say hello
           </span>
         </button>
@@ -55,14 +56,12 @@ export function SayHello() {
           }`}
         >
           <div className="mb-3 flex items-center justify-between gap-3">
-            <p className="m-0 text-[10px] font-normal uppercase tracking-[0.15em] text-[var(--color-hint)]">
-              reach out
-            </p>
+            <p className="mono-label m-0">reach out</p>
             <button
               type="button"
               aria-label="Close"
               onClick={() => setPinned(false)}
-              className="rounded-full px-1 text-[14px] leading-none text-[var(--color-hint)] transition-colors hover:text-[var(--color-ink)] md:hidden"
+              className="rounded-full px-1 text-[14px] leading-none text-[var(--faint)] transition-colors hover:text-[var(--fg)] md:hidden"
             >
               ×
             </button>
@@ -81,10 +80,10 @@ export function SayHello() {
                   onClick={() => setPinned(false)}
                   className="flex min-w-[44px] flex-col items-center"
                 >
-                  <span className="flex h-10 w-10 items-center justify-center rounded-full border-[0.5px] border-[var(--color-line)] bg-[var(--color-card)] text-[var(--color-ink)] transition-transform duration-150 hover:-translate-y-[2px]">
-                    <Icon className="h-[18px] w-[18px]" />
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--bg-2)] text-[var(--fg)] transition-all duration-150 hover:-translate-y-[2px] hover:border-[var(--accent)]/50 hover:bg-[var(--accent-dim)] hover:text-[var(--accent-2)]">
+                    <Icon className="h-[17px] w-[17px]" />
                   </span>
-                  <span className="mt-1.5 text-[10px] text-[var(--color-muted)] sm:text-[11px]">
+                  <span className="mt-1.5 text-[10px] text-[var(--muted)] sm:text-[11px]">
                     {label}
                   </span>
                 </a>

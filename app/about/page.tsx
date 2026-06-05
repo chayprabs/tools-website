@@ -12,13 +12,13 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto w-full max-w-[680px] px-5 pt-12 sm:pt-16">
-      <span className="section-label">About</span>
-      <h1 className="mt-3 text-[32px] font-bold leading-[1.1] tracking-[-0.02em] text-[var(--color-ink)] sm:text-[44px]">
+    <div className="mx-auto w-full max-w-2xl px-5 pt-12 sm:px-6 sm:pt-16">
+      <p className="mono-label">About</p>
+      <h1 className="mt-3 text-[32px] font-bold leading-[1.08] tracking-[-0.02em] text-[var(--fg)] sm:text-[44px]">
         Small tools, done well.
       </h1>
 
-      <div className="mt-6 space-y-5 text-[15px] font-light leading-[1.85] text-[var(--color-foreground)]">
+      <div className="mt-6 space-y-5 text-[16px] leading-[1.75] text-[var(--muted)]">
         <p>
           This is a growing collection of {tools.length} free developer tools I
           build and maintain — each one focused on doing a single job well. SQL
@@ -38,58 +38,38 @@ export default function AboutPage() {
         </p>
       </div>
 
-      <div className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] font-light text-[var(--color-muted)]">
-        <a
-          href={site.socials.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="transition-colors hover:text-[var(--color-ink)]"
-        >
+      <div className="mt-7 flex flex-wrap items-center gap-x-4 gap-y-2 text-[13px] text-[var(--muted)]">
+        <a href={site.socials.github} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[var(--accent-2)]">
           GitHub
         </a>
-        <span className="text-[rgba(0,0,0,0.22)]">·</span>
-        <a
-          href={site.socials.x}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="transition-colors hover:text-[var(--color-ink)]"
-        >
+        <span className="text-[var(--faint)]">·</span>
+        <a href={site.socials.x} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[var(--accent-2)]">
           {site.socials.xHandle}
         </a>
-        <span className="text-[rgba(0,0,0,0.22)]">·</span>
-        <a
-          href={site.socials.linkedin}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="transition-colors hover:text-[var(--color-ink)]"
-        >
+        <span className="text-[var(--faint)]">·</span>
+        <a href={site.socials.linkedin} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[var(--accent-2)]">
           LinkedIn
         </a>
-        <span className="text-[rgba(0,0,0,0.22)]">·</span>
-        <a
-          href={site.socials.personalSite}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="transition-colors hover:text-[var(--color-ink)]"
-        >
+        <span className="text-[var(--faint)]">·</span>
+        <a href={site.socials.personalSite} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[var(--accent-2)]">
           Personal site
         </a>
       </div>
 
-      <div className="mt-12 rounded-[6px] bg-[var(--color-card-2)] px-5 py-6 sm:px-7">
-        <h2 className="text-[18px] font-semibold leading-tight text-[var(--color-ink)]">
+      <div className="mt-12 rounded-2xl border border-[var(--border)] bg-[var(--surface)] px-6 py-7 sm:px-8">
+        <h2 className="text-[19px] font-semibold tracking-[-0.01em] text-[var(--fg)]">
           Got feedback or a tool idea?
         </h2>
-        <p className="mt-2 max-w-md text-[14px] font-light leading-[1.7] text-[var(--color-muted)]">
+        <p className="mt-2 max-w-md text-[14px] leading-relaxed text-[var(--muted)]">
           I read every message. Tell me what would make these tools better.
         </p>
-        <div className="mt-4">
+        <div className="mt-5">
           <FeedbackButton variant="accent" />
         </div>
       </div>
 
-      <p className="mt-10 text-[13px] font-light text-[var(--color-hint)]">
-        <Link href="/" className="hover:text-[var(--color-accent)]">
+      <p className="mt-10 text-[13px] text-[var(--faint)]">
+        <Link href="/" className="hover:text-[var(--accent-2)]">
           ← Back to all tools
         </Link>
       </p>

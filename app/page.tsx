@@ -1,6 +1,7 @@
 import Link from "next/link";
+import { Github, Star } from "lucide-react";
 import { tools, toolsSorted, getAllTags } from "@/lib/tools";
-import { getCategoryGroups } from "@/lib/categories";
+import { getCategoryGroups, categories } from "@/lib/categories";
 import { site } from "@/lib/site";
 import { CommandBar } from "@/components/CommandTrigger";
 import { CategoryNav } from "@/components/CategoryNav";
@@ -48,6 +49,13 @@ export default function HomePage() {
     })),
   };
 
+  const stats = [
+    { value: count, label: "tools" },
+    { value: categories.length, label: "categories" },
+    { value: "100%", label: "open source" },
+    { value: "$0", label: "forever" },
+  ];
+
   return (
     <>
       <script
@@ -59,70 +67,90 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(collectionJsonLd) }}
       />
 
-      <div className="mx-auto w-full max-w-[880px] px-5">
-        {/* Hero */}
-        <section className="fade-up pt-14 pb-2 sm:pt-20">
-          <h1 className="max-w-[640px] text-[36px] font-bold leading-[1.1] tracking-[-0.02em] text-[var(--color-ink)] sm:text-[60px]">
-            Tools I built,
-            <br />
-            free for everyone.
-          </h1>
-          <p className="mt-6 max-w-[540px] text-[15px] font-light leading-[1.8] text-[var(--color-foreground)]">
-            {count} small, fast developer tools for data, documents, APIs, and
-            DevOps — most run entirely in your browser. No installs, no
-            accounts, no tracking.
-          </p>
+      {/* Hero */}
+      <section className="relative overflow-hidden">
+        <div className="grid-backdrop" />
+        <div className="hero-glow" />
+        <div className="mx-auto w-full max-w-6xl px-5 pt-20 pb-10 sm:px-6 sm:pt-28 sm:pb-14">
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="fade-up mono-label inline-flex items-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)]/80 px-3 py-1 backdrop-blur-sm">
+              <Star className="h-3 w-3 fill-[var(--accent-2)] text-[var(--accent-2)]" />
+              {count} free developer tools
+            </span>
 
-          <div className="mt-7 max-w-[460px]">
-            <CommandBar count={count} />
+            <h1 className="fade-up-2 mt-6 text-[40px] font-bold leading-[1.04] tracking-[-0.03em] text-[var(--fg)] sm:text-[64px]">
+              Every dev tool you need,
+              <br className="hidden sm:block" />{" "}
+              <span className="gradient-text">right in your browser.</span>
+            </h1>
+
+            <p className="fade-up-2 mx-auto mt-5 max-w-xl text-[16px] leading-relaxed text-[var(--muted)]">
+              A fast, open-source directory of {count} focused utilities for
+              data, documents, APIs, and DevOps. No installs, no accounts, no
+              tracking — most run entirely on your device.
+            </p>
+
+            <div className="fade-up-3 mx-auto mt-8 max-w-md">
+              <CommandBar count={count} />
+            </div>
+
+            <div className="fade-up-3 mt-4 flex flex-wrap items-center justify-center gap-3">
+              <a
+                href={site.socials.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-ghost"
+              >
+                <Github className="h-4 w-4" /> Star on GitHub
+              </a>
+            </div>
+
+            <dl className="fade-up-3 mx-auto mt-12 grid max-w-lg grid-cols-4 gap-2 sm:gap-3">
+              {stats.map((s) => (
+                <div
+                  key={s.label}
+                  className="rounded-2xl border border-[var(--border)] bg-[var(--surface)]/50 px-2 py-3.5 backdrop-blur-sm transition-colors hover:border-[var(--accent)]/30"
+                >
+                  <dt className="bg-gradient-to-b from-[var(--fg)] to-[var(--muted)] bg-clip-text text-[20px] font-bold tracking-[-0.02em] text-transparent sm:text-[26px]">
+                    {s.value}
+                  </dt>
+                  <dd className="mono-label mt-0.5 text-[10px]">{s.label}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
+        </div>
+      </section>
 
-          <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] font-light text-[var(--color-muted)]">
-            <a
-              href={site.socials.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-[var(--color-ink)]"
-            >
-              Open source on GitHub
-            </a>
-            <span className="text-[rgba(0,0,0,0.22)]">·</span>
-            <a
-              href={site.socials.x}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-colors hover:text-[var(--color-ink)]"
-            >
-              {site.socials.xHandle}
-            </a>
-          </div>
-        </section>
-
-        {/* Category jump nav */}
-        <div className="mt-10 border-t border-b border-[var(--color-line)] py-3">
+      <div className="mx-auto w-full max-w-6xl px-5 sm:px-6">
+        <div className="border-y border-[var(--border)] py-3">
           <CategoryNav groups={groups} />
         </div>
 
-        {/* Category sections */}
-        <div className="mt-12 space-y-12">
+        <div className="mt-12 space-y-14 sm:mt-14">
           {groups.map((group) => (
             <CategorySection key={group.category.slug} group={group} />
           ))}
         </div>
 
         {/* Browse by tag */}
-        <section className="mt-16">
+        <section className="mt-20">
           <div className="hairline" />
-          <p className="section-label mt-8">Browse by tag</p>
-          <div className="mt-4 flex flex-wrap gap-2">
+          <p className="mono-label mt-10">Browse by tag</p>
+          <h2 className="mt-2 text-[22px] font-semibold tracking-[-0.01em] text-[var(--fg)]">
+            Looking for something specific?
+          </h2>
+          <div className="mt-5 flex flex-wrap gap-2">
             {tags.map((tag) => (
               <Link
                 key={tag.slug}
                 href={`/tags/${tag.slug}`}
-                className="inline-flex items-center gap-1.5 rounded-[4px] border border-[var(--color-line)] bg-[var(--color-card)] px-2.5 py-1 text-[12px] font-light text-[var(--color-muted)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+                className="inline-flex items-center gap-1.5 rounded-full border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-[12.5px] font-medium text-[var(--muted)] transition-colors hover:border-[var(--accent)]/50 hover:bg-[var(--accent-dim)] hover:text-[var(--fg)]"
               >
                 {tag.label}
-                <span className="text-[var(--color-hint)]">{tag.count}</span>
+                <span className="font-mono text-[11px] text-[var(--faint)]">
+                  {tag.count}
+                </span>
               </Link>
             ))}
           </div>

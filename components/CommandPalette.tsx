@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Search, CornerDownLeft } from "lucide-react";
 import { toolsSorted } from "@/lib/tools";
 import { categoryOf, getCategory } from "@/lib/categories";
+import { categoryIcons } from "./icons";
 
 type Item = {
   slug: string;
@@ -107,18 +108,18 @@ export function CommandPalette() {
 
   return (
     <div
-      className="overlay-in fixed inset-0 z-[100] flex items-start justify-center bg-[rgba(26,26,24,0.28)] px-4 pt-[14vh] backdrop-blur-[2px]"
+      className="overlay-in fixed inset-0 z-[100] flex items-start justify-center bg-black/60 px-4 pt-[12vh] backdrop-blur-sm"
       onMouseDown={close}
       role="dialog"
       aria-modal="true"
       aria-label="Search tools"
     >
       <div
-        className="palette-in w-full max-w-lg overflow-hidden rounded-[10px] border border-[var(--color-line)] bg-[var(--color-card)] shadow-[0_24px_60px_-20px_rgba(0,0,0,0.32)]"
+        className="palette-in glass w-full max-w-lg overflow-hidden rounded-2xl shadow-[0_30px_90px_-20px_rgba(0,0,0,0.92)]"
         onMouseDown={(e) => e.stopPropagation()}
       >
-        <div className="flex items-center gap-2.5 border-b border-[var(--color-line-soft)] px-4">
-          <Search className="h-4 w-4 shrink-0 text-[var(--color-hint)]" />
+        <div className="flex items-center gap-3 border-b border-[var(--border)] px-4">
+          <Search className="h-4 w-4 shrink-0 text-[var(--accent-2)]" />
           <input
             ref={inputRef}
             value={query}
@@ -141,24 +142,19 @@ export function CommandPalette() {
             }}
             placeholder="Search tools…"
             aria-label="Search tools"
-            className="w-full bg-transparent py-3.5 text-[14px] font-light text-[var(--color-ink)] outline-none placeholder:text-[var(--color-hint)]"
+            className="w-full bg-transparent py-3.5 text-[14.5px] text-[var(--fg)] outline-none placeholder:text-[var(--faint)]"
           />
-          <button
-            onClick={close}
-            className="shrink-0 text-[10.5px] font-medium text-[var(--color-hint)] transition-colors hover:text-[var(--color-ink)]"
-            aria-label="Close"
-          >
-            ESC
-          </button>
+          <kbd>ESC</kbd>
         </div>
 
-        <div ref={listRef} className="no-scrollbar max-h-[50vh] overflow-y-auto p-1.5">
+        <div ref={listRef} className="no-scrollbar max-h-[52vh] overflow-y-auto p-2">
           {results.length === 0 ? (
-            <div className="px-3 py-10 text-center text-[13px] font-light text-[var(--color-muted)]">
+            <div className="px-3 py-10 text-center text-[13.5px] text-[var(--muted)]">
               No tools match “{query}”.
             </div>
           ) : (
             results.map((item, i) => {
+              const Icon = categoryIcons[categoryOf(item.slug)];
               const isActive = i === active;
               return (
                 <button
@@ -166,19 +162,28 @@ export function CommandPalette() {
                   data-index={i}
                   onMouseMove={() => setActive(i)}
                   onClick={() => go(item.slug)}
-                  className={`flex w-full items-center justify-between gap-3 rounded-[6px] px-3 py-2.5 text-left transition-colors ${
-                    isActive ? "bg-[rgba(0,0,0,0.05)]" : ""
+                  className={`flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-colors ${
+                    isActive ? "bg-[var(--accent-dim)]" : ""
                   }`}
                 >
+                  <span
+                    className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border ${
+                      isActive
+                        ? "border-[var(--accent)]/40 bg-[var(--accent-soft)] text-[var(--accent-2)]"
+                        : "border-[var(--border)] text-[var(--muted)]"
+                    }`}
+                  >
+                    <Icon className="h-4 w-4" />
+                  </span>
                   <span className="min-w-0 flex-1">
-                    <span className="block truncate text-[13.5px] font-medium text-[var(--color-ink)]">
+                    <span className="block truncate text-[13.5px] font-medium text-[var(--fg)]">
                       {item.name}
                     </span>
-                    <span className="block truncate text-[12px] font-light text-[var(--color-muted)]">
+                    <span className="block truncate text-[12px] text-[var(--muted)]">
                       {item.tagline}
                     </span>
                   </span>
-                  <span className="shrink-0 text-[11px] font-light text-[var(--color-hint)]">
+                  <span className="font-mono hidden shrink-0 text-[10.5px] uppercase tracking-wide text-[var(--faint)] sm:block">
                     {item.category}
                   </span>
                 </button>
@@ -187,11 +192,11 @@ export function CommandPalette() {
           )}
         </div>
 
-        <div className="flex items-center justify-between border-t border-[var(--color-line-soft)] px-4 py-2 text-[11px] font-light text-[var(--color-hint)]">
-          <span className="flex items-center gap-1">
-            <CornerDownLeft className="h-3 w-3" /> to open · ↑↓ to navigate
+        <div className="flex items-center justify-between border-t border-[var(--border)] px-4 py-2.5 text-[11px] text-[var(--faint)]">
+          <span className="flex items-center gap-1.5">
+            <CornerDownLeft className="h-3 w-3" /> open · ↑↓ navigate · esc close
           </span>
-          <span>{results.length} results</span>
+          <span className="font-mono">{results.length}</span>
         </div>
       </div>
     </div>
