@@ -1,20 +1,26 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #f1f0ee;
+  --color-background: #f3f1ec;
   --color-foreground: #3a3a38;
   --color-ink: #1a1a18;
   --color-muted: #6b6860;
   --color-hint: #9a9890;
-  --color-card: #f7f5f1;
+  --color-card: #faf8f4;
   --color-accent: #c84b2f;
+  --color-accent-ink: #a83a22;
   --color-accent-soft: rgba(200, 75, 47, 0.08);
-  --color-line: rgba(0, 0, 0, 0.1);
-  --color-line-soft: rgba(0, 0, 0, 0.06);
+  --color-line: rgba(26, 26, 24, 0.1);
+  --color-line-soft: rgba(26, 26, 24, 0.06);
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-serif), ui-serif, Georgia, "Times New Roman", serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     "Liberation Mono", "Courier New", monospace;
+
+  --shadow-card: 0 1px 2px rgba(26, 26, 24, 0.04);
+  --shadow-lift: 0 18px 40px -22px rgba(26, 26, 24, 0.28);
+  --shadow-pop: 0 24px 60px -20px rgba(26, 26, 24, 0.32);
 }
 
 :root {
@@ -39,7 +45,7 @@ body {
   color: var(--color-foreground);
   font-family: var(--font-sans);
   font-size: 15px;
-  line-height: 1.85;
+  line-height: 1.8;
   font-weight: 300;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -58,14 +64,52 @@ svg {
 }
 
 ::selection {
-  background: rgba(200, 75, 47, 0.18);
+  background: rgba(200, 75, 47, 0.16);
   color: var(--color-ink);
+}
+
+/* Subtle paper grain layered behind everything */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: var(--color-background);
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image: radial-gradient(
+      900px circle at 85% -5%,
+      rgba(200, 75, 47, 0.07),
+      transparent 55%
+    ),
+    radial-gradient(700px circle at 5% 0%, rgba(200, 75, 47, 0.04), transparent 50%);
+}
+
+/* Display serif */
+.font-display {
+  font-family: var(--font-serif);
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  line-height: 1.02;
+}
+
+.font-display-italic {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
 }
 
 .section-label {
   font-weight: 500;
-  font-size: 10px;
-  letter-spacing: 0.2em;
+  font-size: 11px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--color-hint);
 }
@@ -80,78 +124,109 @@ svg {
   color: var(--color-accent);
 }
 
-.legal {
-  font-size: 15.5px;
-  line-height: 1.8;
-  color: var(--color-foreground);
+.hairline {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-line),
+    transparent
+  );
 }
 
-.legal p {
-  margin: 0 0 18px;
-}
-
-.legal h2 {
-  margin: 32px 0 12px;
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--color-ink);
-}
-
-.legal ul {
-  margin: 0 0 18px;
-  padding-left: 20px;
-  list-style: disc;
-}
-
-.legal li {
-  margin-bottom: 8px;
-}
-
-.legal a {
-  color: var(--color-accent);
-  transition: text-decoration-color 0.15s ease-in-out;
-}
-
-.legal a:hover {
-  text-decoration: underline;
+kbd {
+  font-family: var(--font-sans);
+  font-size: 10.5px;
+  font-weight: 500;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 16px;
+  padding: 3px 5px;
+  border-radius: 5px;
+  border: 1px solid var(--color-line);
+  background: var(--color-background);
+  color: var(--color-muted);
 }
 
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
-
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
 
-@keyframes contactPulse {
-  0%,
-  100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.35);
-  }
+/* Legal / prose */
+.legal {
+  font-size: 15.5px;
+  line-height: 1.8;
+  color: var(--color-foreground);
+}
+.legal p {
+  margin: 0 0 18px;
+}
+.legal h2 {
+  margin: 34px 0 12px;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--color-ink);
+}
+.legal ul {
+  margin: 0 0 18px;
+  padding-left: 20px;
+  list-style: disc;
+}
+.legal li {
+  margin-bottom: 8px;
+}
+.legal a {
+  color: var(--color-accent);
+}
+.legal a:hover {
+  text-decoration: underline;
 }
 
-.contact-pulse {
-  animation: contactPulse 2s ease-in-out infinite;
-}
-
+/* Motion */
 @keyframes fadeUp {
   from {
     opacity: 0;
-    transform: translateY(8px);
+    transform: translateY(10px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
 .fade-up {
-  animation: fadeUp 0.5s ease-out both;
+  animation: fadeUp 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes overlayIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes paletteIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+.overlay-in {
+  animation: overlayIn 0.16s ease-out both;
+}
+.palette-in {
+  animation: paletteIn 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -159,7 +234,8 @@ svg {
     scroll-behavior: auto;
   }
   .fade-up,
-  .contact-pulse {
+  .overlay-in,
+  .palette-in {
     animation: none;
   }
 }

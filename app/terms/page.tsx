@@ -12,9 +12,9 @@ const updated = "June 2026";
 
 export default function TermsPage() {
   return (
-    <div className="mx-auto w-full max-w-2xl px-5 pt-12 pb-4 sm:px-6 sm:pt-16">
+    <div className="mx-auto w-full max-w-2xl px-5 pt-14 pb-4 sm:px-8 sm:pt-20">
       <span className="section-label">Legal</span>
-      <h1 className="mt-3 text-[30px] font-semibold leading-tight tracking-tight text-[var(--color-ink)] sm:text-[38px]">
+      <h1 className="font-display mt-4 text-[40px] leading-[1.05] text-[var(--color-ink)] sm:text-[52px]">
         Terms of Use
       </h1>
       <p className="mt-3 text-[13px] text-[var(--color-hint)]">

@@ -72,7 +72,7 @@ export default async function TagPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="mx-auto w-full max-w-5xl px-5 pt-10 sm:px-6 sm:pt-14">
+      <div className="mx-auto w-full max-w-6xl px-5 pt-10 sm:px-8 sm:pt-14">
         <Link
           href="/tags"
           className="inline-flex items-center gap-1.5 text-[13px] text-[var(--color-muted)] transition-colors hover:text-[var(--color-ink)]"
@@ -80,14 +80,14 @@ export default async function TagPage({
           <ArrowLeft className="h-3.5 w-3.5" /> All tags
         </Link>
 
-        <header className="mt-6">
+        <header className="fade-up mt-7">
           <span className="section-label">
             {toolsForTag.length} {toolsForTag.length === 1 ? "tool" : "tools"}
           </span>
-          <h1 className="mt-3 text-[30px] font-semibold leading-tight tracking-tight text-[var(--color-ink)] sm:text-[38px]">
+          <h1 className="font-display mt-4 text-[40px] leading-[1.05] text-[var(--color-ink)] sm:text-[54px]">
             {label} tools
           </h1>
-          <p className="mt-3 max-w-xl text-[15.5px] leading-relaxed text-[var(--color-muted)]">
+          <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-[var(--color-muted)]">
             Free, browser-based {label} utilities — pick one to get started.
           </p>
         </header>

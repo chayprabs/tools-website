@@ -13,10 +13,13 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <div className="mx-auto w-full max-w-2xl px-5 pt-12 sm:px-6 sm:pt-16">
+    <div className="mx-auto w-full max-w-2xl px-5 pt-14 sm:px-8 sm:pt-20">
       <span className="section-label">About</span>
-      <h1 className="mt-3 text-[30px] font-semibold leading-tight tracking-tight text-[var(--color-ink)] sm:text-[38px]">
-        Small tools, done well.
+      <h1 className="font-display mt-4 text-[42px] leading-[1.04] text-[var(--color-ink)] sm:text-[56px]">
+        Small tools,{" "}
+        <span className="font-display-italic text-[var(--color-accent)]">
+          done well.
+        </span>
       </h1>
 
       <div className="mt-6 space-y-5 text-[16px] leading-[1.8] text-[var(--color-foreground)]">
@@ -66,8 +69,8 @@ export default function AboutPage() {
         </a>
       </div>
 
-      <div className="mt-12 rounded-2xl border border-[var(--color-line)] bg-[var(--color-card)] p-6 text-center sm:p-8">
-        <h2 className="text-[18px] font-semibold tracking-tight text-[var(--color-ink)]">
+      <div className="mt-14 rounded-3xl border border-[var(--color-line)] bg-[var(--color-card)] p-8 text-center shadow-[var(--shadow-card)] sm:p-10">
+        <h2 className="font-display text-[26px] leading-tight text-[var(--color-ink)] sm:text-[32px]">
           Got feedback or a tool idea?
         </h2>
         <p className="mx-auto mt-2 max-w-md text-[13.5px] leading-relaxed text-[var(--color-muted)]">

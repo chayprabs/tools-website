@@ -20,22 +20,22 @@ export default function TagsPage() {
   const tags = getAllTags();
 
   return (
-    <div className="mx-auto w-full max-w-3xl px-5 pt-12 sm:px-6 sm:pt-16">
+    <div className="mx-auto w-full max-w-3xl px-5 pt-14 sm:px-8 sm:pt-20">
       <span className="section-label">Categories</span>
-      <h1 className="mt-3 text-[30px] font-semibold leading-tight tracking-tight text-[var(--color-ink)] sm:text-[38px]">
+      <h1 className="font-display mt-4 text-[40px] leading-[1.05] text-[var(--color-ink)] sm:text-[54px]">
         Browse by tag
       </h1>
-      <p className="mt-3 max-w-xl text-[15.5px] leading-relaxed text-[var(--color-muted)]">
-        Every tool is tagged by what it does. Pick a category to see the tools
-        that fit.
+      <p className="mt-4 max-w-xl text-[16px] leading-relaxed text-[var(--color-muted)]">
+        Every tool is tagged by what it does. Pick a topic to see the tools that
+        fit.
       </p>
 
-      <div className="mt-8 flex flex-wrap gap-2.5">
+      <div className="mt-10 flex flex-wrap gap-2.5">
         {tags.map((tag) => (
           <Link
             key={tag.slug}
             href={`/tags/${tag.slug}`}
-            className="group inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] bg-[var(--color-card)] px-4 py-2 text-[13.5px] font-medium text-[var(--color-foreground)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+            className="group inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] bg-[var(--color-card)] px-4 py-2 text-[13.5px] font-medium text-[var(--color-foreground)] shadow-[var(--shadow-card)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
           >
             {tag.label}
             <span className="rounded-full bg-[var(--color-background)] px-1.5 text-[11.5px] text-[var(--color-hint)] group-hover:text-[var(--color-accent)]">
