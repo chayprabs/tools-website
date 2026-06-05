@@ -1,6 +1,8 @@
 export const site = {
-  name: "Chai Tools",
-  shortName: "Chai Tools",
+  name: "Chaitanya Prabuddha",
+  shortName: "Chaitanya Prabuddha",
+  wordmark: "Chaitanya Prabuddha",
+  monogram: "CP",
   // Update NEXT_PUBLIC_SITE_URL in Vercel once the subdomain is attached.
   url: process.env.NEXT_PUBLIC_SITE_URL || "https://tools.chaitanyaprabuddha.com",
   description:

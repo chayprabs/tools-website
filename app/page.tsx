@@ -56,31 +56,34 @@ export default function HomePage() {
       />
 
       {/* Hero */}
-      <section className="mx-auto w-full max-w-6xl px-5 pt-16 sm:px-8 sm:pt-24">
-        <div className="fade-up mx-auto max-w-3xl text-center">
-          <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-line)] bg-[var(--color-card)] px-3 py-1 text-[11.5px] font-medium tracking-wide text-[var(--color-muted)]">
+      <section className="mx-auto w-full max-w-6xl px-5 pt-20 sm:px-8 sm:pt-28">
+        <div className="mx-auto max-w-3xl text-center">
+          <span className="fade-up inline-flex items-center gap-2 rounded-full border border-[var(--color-line)] bg-[var(--color-card)] px-3.5 py-1.5 shadow-[var(--shadow-card)]">
             <Sparkles className="h-3.5 w-3.5 text-[var(--color-accent)]" />
-            {count} free tools · no signup · open source
+            <span className="eyebrow" style={{ color: "var(--color-muted)" }}>
+              {count} free tools · no signup · open source
+            </span>
           </span>
 
-          <h1 className="font-display mx-auto mt-6 max-w-3xl text-[44px] leading-[1.04] text-[var(--color-ink)] sm:text-[68px]">
-            Developer tools that just work,{" "}
+          <h1 className="font-display fade-up-2 mx-auto mt-7 max-w-3xl text-[48px] font-medium leading-[0.98] text-[var(--color-ink)] sm:text-[80px]">
+            Developer tools that
+            <br className="hidden sm:block" /> just{" "}
             <span className="font-display-italic text-[var(--color-accent)]">
-              right in your browser.
+              work.
             </span>
           </h1>
 
-          <p className="mx-auto mt-6 max-w-xl text-[16px] leading-relaxed text-[var(--color-muted)]">
+          <p className="fade-up-2 mx-auto mt-7 max-w-xl text-[16.5px] leading-relaxed text-[var(--color-muted)]">
             A curated directory of fast, focused utilities for data, documents,
-            APIs, and DevOps. No installs, no accounts, no tracking — most run
-            entirely on your device.
+            APIs, and DevOps — right in your browser. No installs, no accounts,
+            no tracking.
           </p>
 
-          <div className="mx-auto mt-9 max-w-xl">
+          <div className="fade-up-3 mx-auto mt-9 max-w-xl">
             <CommandBar count={count} />
           </div>
 
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px] text-[var(--color-muted)]">
+          <div className="fade-up-3 mt-6 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-[13px] text-[var(--color-muted)]">
             <a
               href={site.socials.github}
               target="_blank"
@@ -100,16 +103,16 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className="mt-12">
+        <div className="mt-16">
           <CategoryNav groups={groups} />
         </div>
       </section>
 
       {/* Category sections */}
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
-        <div className="mt-14 space-y-16 sm:mt-16 sm:space-y-20">
-          {groups.map((group) => (
-            <CategorySection key={group.category.slug} group={group} />
+        <div className="mt-16 space-y-20 sm:mt-20 sm:space-y-24">
+          {groups.map((group, i) => (
+            <CategorySection key={group.category.slug} group={group} index={i} />
           ))}
         </div>
 

@@ -1,23 +1,23 @@
 import type { Metadata } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Fraunces, Hanken_Grotesk } from "next/font/google";
 import "./globals.css";
 import { site } from "@/lib/site";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { CommandPalette } from "@/components/CommandPalette";
 
-const inter = Inter({
+const hanken = Hanken_Grotesk({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-inter",
+  variable: "--font-sans",
   display: "swap",
 });
 
-const instrumentSerif = Instrument_Serif({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  weight: ["400"],
+  weight: ["400", "500", "600", "700", "900"],
   style: ["normal", "italic"],
-  variable: "--font-serif",
+  variable: "--font-display",
   display: "swap",
 });
 
@@ -78,7 +78,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${instrumentSerif.variable} min-h-screen overflow-x-hidden bg-[var(--color-background)] text-[var(--color-foreground)] antialiased`}
+        className={`${hanken.variable} ${fraunces.variable} min-h-screen overflow-x-hidden bg-[var(--color-background)] text-[var(--color-foreground)] antialiased`}
       >
         <div className="flex min-h-screen flex-col">
           <Header />

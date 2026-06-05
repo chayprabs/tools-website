@@ -11,17 +11,19 @@ const navItems = [
 export function Header() {
   return (
     <header className="sticky top-0 z-40 border-b border-[var(--color-line-soft)] bg-[var(--color-background)]/80 backdrop-blur-xl">
-      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-3.5 sm:px-8">
+      <div className="mx-auto flex w-full max-w-6xl items-center justify-between px-5 py-4 sm:px-8">
         <Link
           href="/"
           className="group flex items-center gap-2.5"
           aria-label={`${site.name} home`}
         >
-          <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-[var(--color-accent)] text-[15px] font-medium text-white shadow-[var(--shadow-card)] transition-transform group-hover:scale-105">
-            <span className="font-display leading-none">C</span>
+          <span className="hidden h-7 w-7 items-center justify-center rounded-full bg-[var(--color-accent)] text-white transition-transform group-hover:scale-105 sm:flex">
+            <span className="font-display text-[13px] font-medium leading-none">
+              {site.monogram}
+            </span>
           </span>
-          <span className="font-display text-[20px] leading-none text-[var(--color-ink)]">
-            {site.name}
+          <span className="font-display text-[17px] font-medium leading-none tracking-[-0.01em] text-[var(--color-ink)] sm:text-[20px]">
+            {site.wordmark}
           </span>
         </Link>
 
@@ -31,13 +33,13 @@ export function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-[13px] text-[var(--color-muted)] transition-colors hover:text-[var(--color-ink)] sm:text-[13.5px]"
+                className="text-[12.5px] text-[var(--color-muted)] transition-colors hover:text-[var(--color-ink)] sm:text-[13.5px]"
               >
                 {item.label}
               </Link>
             ))}
           </nav>
-          <span className="h-4 w-px bg-[var(--color-line)]" />
+          <span className="hidden h-4 w-px bg-[var(--color-line)] sm:block" />
           <CommandButtonCompact />
         </div>
       </div>

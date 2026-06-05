@@ -13,15 +13,15 @@ export default function Icon() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          background: "#c84b2f",
-          color: "white",
-          fontSize: 34,
-          fontWeight: 700,
-          borderRadius: 14,
-        }}
-      >
-        CT
-      </div>
+        background: "#bd4b2c",
+        color: "white",
+        fontSize: 34,
+        fontWeight: 700,
+        borderRadius: 32,
+      }}
+    >
+      CP
+    </div>
     ),
     { ...size }
   );

@@ -25,45 +25,48 @@ export default async function Image({
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
-          background: "#f1f0ee",
-          padding: "72px",
-          fontFamily: "sans-serif",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-          <div
-            style={{
-              width: 52,
-              height: 52,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              background: "#c84b2f",
-              color: "white",
-              fontSize: 24,
-              fontWeight: 700,
-              borderRadius: 13,
-            }}
-          >
-            CT
-          </div>
-          <div style={{ fontSize: 26, fontWeight: 600, color: "#6b6860" }}>
+        background: "#f3efe6",
+        backgroundImage:
+          "radial-gradient(900px circle at 90% -10%, rgba(189,75,44,0.13), transparent 55%)",
+        padding: "72px",
+        fontFamily: "Georgia, serif",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+        <div
+          style={{
+            width: 50,
+            height: 50,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            background: "#bd4b2c",
+            color: "white",
+            fontSize: 22,
+            fontWeight: 700,
+            borderRadius: 50,
+          }}
+        >
+          CP
+        </div>
+          <div style={{ fontSize: 26, fontWeight: 600, color: "#756e62" }}>
             {site.name}
           </div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", gap: 12, marginBottom: 20 }}>
+          <div style={{ display: "flex", gap: 12, marginBottom: 22 }}>
             {tags.map((t) => (
               <div
                 key={t}
                 style={{
                   display: "flex",
-                  fontSize: 22,
-                  color: "#c84b2f",
-                  border: "2px solid rgba(200,75,47,0.4)",
+                  fontSize: 21,
+                  color: "#9a3a1f",
+                  border: "2px solid rgba(189,75,44,0.4)",
                   borderRadius: 999,
                   padding: "4px 18px",
+                  fontFamily: "system-ui, sans-serif",
                 }}
               >
                 {t}
@@ -72,29 +75,38 @@ export default async function Image({
           </div>
           <div
             style={{
-              fontSize: 68,
-              fontWeight: 700,
-              color: "#1a1a18",
-              lineHeight: 1.05,
-              maxWidth: 1000,
+              fontSize: 74,
+              fontWeight: 600,
+              color: "#201d18",
+              lineHeight: 1.02,
+              letterSpacing: "-0.02em",
+              maxWidth: 1040,
             }}
           >
             {name}
           </div>
           <div
             style={{
-              fontSize: 30,
-              color: "#6b6860",
-              marginTop: 22,
+              fontSize: 29,
+              color: "#756e62",
+              marginTop: 24,
               maxWidth: 980,
               lineHeight: 1.3,
+              fontFamily: "system-ui, sans-serif",
             }}
           >
             {tagline}
           </div>
         </div>
 
-        <div style={{ display: "flex", fontSize: 22, color: "#9a9890" }}>
+        <div
+          style={{
+            display: "flex",
+            fontSize: 21,
+            color: "#a79e8f",
+            fontFamily: "system-ui, sans-serif",
+          }}
+        >
           Free online tool · no signup · {site.socials.xHandle}
         </div>
       </div>
