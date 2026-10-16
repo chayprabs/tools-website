@@ -1,0 +1,1662 @@
+{
+  "$schema": "./kit/tools.schema.json",
+  "brand": "localtools",
+  "public_repo": "chayprabs/localtools",
+  "marketplace": "https://tools.chaitanyaprabuddha.com",
+  "tools": [
+    {
+      "slug": "file-type-detector",
+      "name": "File Type Detector",
+      "command": "localtools-file-type-detector",
+      "category": "dev",
+      "description": "Detect real file types from magic bytes and flag extension/MIME mismatches, macros and polyglot files across folders.",
+      "port": 47101,
+      "kind": "bin",
+      "engine": "Go + gabriel-vasile/mimetype + own checks (extension mismatch, macros, polyglots)",
+      "engine_reason": "Pure-Go magic-byte detection for 170+ formats in one static binary; no libmagic to bundle.",
+      "private_repo": "chayprabs/file-type-detector",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 25,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/detect",
+        "fields": {},
+        "files": {
+          "file": "sample.pdf"
+        },
+        "expect": "application/pdf"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "pdf-toolkit",
+      "name": "PDF Toolkit",
+      "command": "localtools-pdf-toolkit",
+      "category": "pdf",
+      "description": "Merge, split, rotate, compress and watermark PDFs, and fill or flatten PDF forms, offline.",
+      "port": 47102,
+      "kind": "bin",
+      "engine": "Go + pdfcpu",
+      "engine_reason": "pdfcpu covers merge, split, rotate, optimize, watermark and form fill/flatten in one pure-Go binary.",
+      "private_repo": "chayprabs/pdf-toolkit",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 30,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/merge",
+        "fields": {},
+        "files": {
+          "files": "a.pdf"
+        },
+        "expect": "%PDF"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "pdf-diff",
+      "name": "PDF Diff",
+      "command": "localtools-pdf-diff",
+      "category": "pdf",
+      "description": "Compare two PDFs page by page with visual pixel-diff overlays and a text diff.",
+      "port": 47103,
+      "kind": "py",
+      "engine": "Python + pypdfium2 render + numpy/Pillow pixel diff + text diff",
+      "engine_reason": "PDFium renders pages exactly like Chrome; numpy pixel diff is exact and fast.",
+      "private_repo": "chayprabs/pdf-diff",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": false,
+        "scoop": false,
+        "winget": false,
+        "npm": null,
+        "pypi": "localtools-pdf-diff",
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 150,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/diff",
+        "fields": {},
+        "files": {
+          "a": "a.pdf",
+          "b": "b.pdf"
+        },
+        "expect": "pages"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "pdf-to-markdown",
+      "name": "PDF to Markdown",
+      "command": "localtools-pdf-to-markdown",
+      "category": "pdf",
+      "description": "Convert PDFs to clean Markdown and JSONL chunks for RAG, keeping tables and reading order.",
+      "port": 47104,
+      "kind": "py",
+      "engine": "Python + docling",
+      "engine_reason": "docling (MIT) recovers layout, tables and reading order far better than plain text extraction.",
+      "private_repo": "chayprabs/pdf-to-markdown",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": false,
+        "scoop": false,
+        "winget": false,
+        "npm": null,
+        "pypi": "localtools-pdf-to-markdown",
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 1500,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/convert",
+        "fields": {
+          "format": "markdown"
+        },
+        "files": {
+          "file": "sample.pdf"
+        },
+        "expect": "#"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "csv-sql-query",
+      "name": "CSV SQL Query",
+      "command": "localtools-csv-sql-query",
+      "category": "data",
+      "description": "Run SQL on CSV, TSV, JSON, Parquet and log files (nginx, Apache, syslog) with DuckDB.",
+      "port": 47105,
+      "kind": "bin",
+      "engine": "DuckDB + log-format parsers (nginx, apache, syslog, JSON)",
+      "engine_reason": "DuckDB queries CSV/Parquet/JSON in place, fast on multi-GB files, no import step.",
+      "private_repo": "chayprabs/csv-sql-query",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 80,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/query",
+        "fields": {
+          "sql": "select count(*) as n from data"
+        },
+        "files": {
+          "file": "sample.csv"
+        },
+        "expect": "\"n\""
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "csv-json-transform",
+      "name": "CSV JSON Transform",
+      "command": "localtools-csv-json-transform",
+      "category": "data",
+      "description": "Convert and transform CSV, TSV, JSON and JSONL with Miller verbs: filter, sort, join, reshape.",
+      "port": 47106,
+      "kind": "bin",
+      "engine": "Go + Miller 6 verbs",
+      "engine_reason": "Miller 6 is pure Go, embeddable, and its verbs (filter, sort, join, reshape) are already well known.",
+      "private_repo": "chayprabs/csv-json-transform",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 30,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/transform",
+        "fields": {
+          "from": "csv",
+          "to": "json",
+          "verbs": "sort -f name"
+        },
+        "files": {
+          "file": "sample.csv"
+        },
+        "expect": "\"name\""
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "dataset-profiler",
+      "name": "Dataset Profiler",
+      "command": "localtools-dataset-profiler",
+      "category": "data",
+      "description": "Profile CSV, Parquet and JSON datasets (types, nulls, distributions) and detect schema and value drift between two files.",
+      "port": 47107,
+      "kind": "bin",
+      "engine": "DuckDB SUMMARIZE + schema inference + drift between two files",
+      "engine_reason": "DuckDB SUMMARIZE gives exact column statistics over large files in seconds.",
+      "private_repo": "chayprabs/dataset-profiler",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 80,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/profile",
+        "fields": {},
+        "files": {
+          "file": "sample.csv"
+        },
+        "expect": "null"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "json-to-excel",
+      "name": "JSON to Excel",
+      "command": "localtools-json-to-excel",
+      "category": "data",
+      "description": "Convert JSON or JSONL into formatted .xlsx workbooks with typed columns and multiple sheets.",
+      "port": 47108,
+      "kind": "bin",
+      "engine": "Go + excelize",
+      "engine_reason": "excelize writes native .xlsx with styles and multiple sheets in pure Go.",
+      "private_repo": "chayprabs/json-to-excel",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 25,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/convert",
+        "fields": {},
+        "files": {
+          "file": "sample.json"
+        },
+        "expect": "PK"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "excel-diff",
+      "name": "Excel Diff",
+      "command": "localtools-excel-diff",
+      "category": "data",
+      "description": "Compare two Excel workbooks cell by cell, including formulas, sheets and named ranges.",
+      "port": 47109,
+      "kind": "bin",
+      "engine": "Go + excelize (cell, formula, sheet, named-range diff)",
+      "engine_reason": "excelize reads formulas, sheets and defined names directly, so the diff sees what Excel sees.",
+      "private_repo": "chayprabs/excel-diff",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 25,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/diff",
+        "fields": {},
+        "files": {
+          "a": "a.xlsx",
+          "b": "b.xlsx"
+        },
+        "expect": "changed"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "yaml-json-query",
+      "name": "YAML JSON Query",
+      "command": "localtools-yaml-json-query",
+      "category": "data",
+      "description": "Query and edit YAML, JSON, XML, TOML and INI with yq expressions and apply RFC 6902 JSON Patch, keeping comments.",
+      "port": 47110,
+      "kind": "bin",
+      "engine": "Go + yq (mikefarah) + RFC 6902 JSON Patch",
+      "engine_reason": "yq is the de-facto YAML query tool, preserves comments, and handles JSON/XML/TOML/INI as a Go library.",
+      "private_repo": "chayprabs/yaml-json-query",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 30,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/query",
+        "fields": {
+          "expr": ".name",
+          "input": "name: localtools\n",
+          "format": "yaml"
+        },
+        "files": {},
+        "expect": "localtools"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "openapi-diff",
+      "name": "OpenAPI Diff",
+      "command": "localtools-openapi-diff",
+      "category": "dev",
+      "description": "Diff two OpenAPI 3 or Swagger specs and list breaking changes with severity.",
+      "port": 47111,
+      "kind": "bin",
+      "engine": "Go + oasdiff",
+      "engine_reason": "oasdiff has the most complete OpenAPI breaking-change rule set and is a Go library.",
+      "private_repo": "chayprabs/openapi-diff",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 30,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/diff",
+        "fields": {},
+        "files": {
+          "base": "base.yaml",
+          "revision": "revision.yaml"
+        },
+        "expect": "breaking"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "graphql-diff",
+      "name": "GraphQL Diff",
+      "command": "localtools-graphql-diff",
+      "category": "dev",
+      "description": "Compare two GraphQL schemas and classify breaking, dangerous and safe changes.",
+      "port": 47112,
+      "kind": "js",
+      "engine": "@graphql-inspector/core",
+      "engine_reason": "GraphQL Inspector is the reference implementation for breaking/dangerous/safe schema change detection.",
+      "private_repo": "chayprabs/graphql-diff",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": "localtools-graphql-diff",
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 100,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/diff",
+        "fields": {
+          "old": "type Query { a: String b: Int }",
+          "new": "type Query { a: String }"
+        },
+        "files": {},
+        "expect": "BREAKING"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "github-actions-linter",
+      "name": "GitHub Actions Linter",
+      "command": "localtools-github-actions-linter",
+      "category": "dev",
+      "description": "Lint GitHub Actions workflows for errors and security issues (script injection, permissions, unpinned actions) with fixes.",
+      "port": 47113,
+      "kind": "bin",
+      "engine": "Go + actionlint (+ zizmor sidecar if feasible)",
+      "engine_reason": "actionlint is the standard workflow checker and embeds as a Go library; zizmor adds security audits.",
+      "private_repo": "chayprabs/github-actions-linter",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 40,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/lint",
+        "fields": {},
+        "files": {
+          "file": "workflow.yml"
+        },
+        "expect": "line"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "k8s-manifest-checker",
+      "name": "Kubernetes Manifest Checker",
+      "command": "localtools-k8s-manifest-checker",
+      "category": "dev",
+      "description": "Score Kubernetes YAML and Helm-rendered manifests for production readiness and security, with a fix snippet per finding.",
+      "port": 47114,
+      "kind": "bin",
+      "engine": "Go + kube-score / kube-linter checks",
+      "engine_reason": "kube-score and kube-linter checks are Go libraries with well-understood production-readiness rules.",
+      "private_repo": "chayprabs/k8s-manifest-checker",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 40,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/check",
+        "fields": {},
+        "files": {
+          "file": "deployment.yaml"
+        },
+        "expect": "score"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "terraform-plan-viewer",
+      "name": "Terraform Plan Viewer",
+      "command": "localtools-terraform-plan-viewer",
+      "category": "dev",
+      "description": "Visualize Terraform plan JSON: creates, updates, replacements, deletions and the blast-radius graph.",
+      "port": 47115,
+      "kind": "bin",
+      "engine": "Go + hashicorp/terraform-json",
+      "engine_reason": "terraform-json is HashiCorp's own typed model of terraform show -json output.",
+      "private_repo": "chayprabs/terraform-plan-viewer",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 25,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/plan",
+        "fields": {},
+        "files": {
+          "file": "plan.json"
+        },
+        "expect": "resource_changes"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "postgres-migration-checker",
+      "name": "Postgres Migration Checker",
+      "command": "localtools-postgres-migration-checker",
+      "category": "dev",
+      "description": "Check PostgreSQL migrations for the lock each statement takes, what it blocks, and a safe rewrite.",
+      "port": 47116,
+      "kind": "py",
+      "engine": "pglast (libpg_query) + lock-level rules",
+      "engine_reason": "pglast uses the real PostgreSQL parser, so every statement is understood exactly as Postgres would.",
+      "private_repo": "chayprabs/postgres-migration-checker",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": false,
+        "scoop": false,
+        "winget": false,
+        "npm": null,
+        "pypi": "localtools-postgres-migration-checker",
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 120,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/check",
+        "fields": {
+          "sql": "ALTER TABLE users ADD COLUMN age int NOT NULL DEFAULT 0;"
+        },
+        "files": {},
+        "expect": "ACCESS EXCLUSIVE"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "sql-formatter",
+      "name": "SQL Formatter",
+      "command": "localtools-sql-formatter",
+      "category": "dev",
+      "description": "Format and lint SQL in any major dialect with sqlfluff, including auto-fix.",
+      "port": 47117,
+      "kind": "py",
+      "engine": "sqlfluff",
+      "engine_reason": "sqlfluff lints and fixes SQL across all major dialects with configurable rules.",
+      "private_repo": "chayprabs/sql-formatter",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": false,
+        "scoop": false,
+        "winget": false,
+        "npm": null,
+        "pypi": "localtools-sql-formatter",
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 120,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/format",
+        "fields": {
+          "sql": "select a,b from t",
+          "dialect": "ansi"
+        },
+        "files": {},
+        "expect": "SELECT"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "grok-debugger",
+      "name": "Grok Debugger",
+      "command": "localtools-grok-debugger",
+      "category": "dev",
+      "description": "Test grok patterns against log lines with the full Logstash pattern library and highlighted matches.",
+      "port": 47118,
+      "kind": "bin",
+      "engine": "Go grok engine + Logstash pattern set",
+      "engine_reason": "A Go grok engine with the Logstash pattern library matches what Logstash/Elastic will do.",
+      "private_repo": "chayprabs/grok-debugger",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 20,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/match",
+        "fields": {
+          "pattern": "%{IP:client} %{WORD:method}",
+          "input": "10.0.0.1 GET"
+        },
+        "files": {},
+        "expect": "10.0.0.1"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "cli-output-to-json",
+      "name": "CLI Output to JSON",
+      "command": "localtools-cli-output-to-json",
+      "category": "dev",
+      "description": "Convert command output (ls, ps, netstat, dig, network device show commands) into JSON with jc and TextFSM.",
+      "port": 47119,
+      "kind": "py",
+      "engine": "jc + TextFSM / ntc-templates",
+      "engine_reason": "jc has 100+ command parsers; ntc-templates adds 1000+ network-device templates.",
+      "private_repo": "chayprabs/cli-output-to-json",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": false,
+        "scoop": false,
+        "winget": false,
+        "npm": null,
+        "pypi": "localtools-cli-output-to-json",
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 100,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/parse",
+        "fields": {
+          "parser": "df",
+          "input": "Filesystem 1K-blocks Used Available Use% Mounted on\n/dev/sda1 100 50 50 50% /\n"
+        },
+        "files": {},
+        "expect": "filesystem"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "html-extractor",
+      "name": "HTML Extractor",
+      "command": "localtools-html-extractor",
+      "category": "dev",
+      "description": "Extract data from HTML pages with CSS selectors into JSON or CSV.",
+      "port": 47120,
+      "kind": "bin",
+      "engine": "Go + goquery / cascadia",
+      "engine_reason": "goquery/cascadia give jQuery-style CSS selectors over a real HTML5 parser in pure Go.",
+      "private_repo": "chayprabs/html-extractor",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 20,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/extract",
+        "fields": {
+          "html": "<ul><li>a</li><li>b</li></ul>",
+          "selectors": "{\"items\":\"li\"}"
+        },
+        "files": {},
+        "expect": "items"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "ssl-checker",
+      "name": "SSL Checker",
+      "command": "localtools-ssl-checker",
+      "category": "dev",
+      "description": "Check a domain's TLS certificate chain, expiry, supported protocols, DNSSEC and CAA records.",
+      "port": 47121,
+      "kind": "bin",
+      "engine": "Go crypto/tls + miekg/dns",
+      "engine_reason": "Go's TLS stack and miekg/dns expose the full chain, protocols, DNSSEC and CAA without OpenSSL.",
+      "private_repo": "chayprabs/ssl-checker",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 20,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/check",
+        "fields": {
+          "host": "example.com"
+        },
+        "files": {},
+        "expect": "expires"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "archive-inspector",
+      "name": "Archive Inspector",
+      "command": "localtools-archive-inspector",
+      "category": "dev",
+      "description": "List and inspect nested zip, tar, 7z, rar, gz, xz and zst archives and flag zip bombs and path traversal.",
+      "port": 47122,
+      "kind": "bin",
+      "engine": "Go + mholt/archives",
+      "engine_reason": "mholt/archives reads zip/tar/7z/rar/gz/xz/zst uniformly in pure Go, including nested archives.",
+      "private_repo": "chayprabs/archive-inspector",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 25,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/inspect",
+        "fields": {},
+        "files": {
+          "file": "sample.zip"
+        },
+        "expect": "entries"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "video-thumbnail-generator",
+      "name": "Video Thumbnail Generator",
+      "command": "localtools-video-thumbnail-generator",
+      "category": "media",
+      "description": "Generate thumbnails, frame grids and contact sheets from video files with ffmpeg.",
+      "port": 47123,
+      "kind": "bin",
+      "engine": "ffmpeg / ffprobe (bundled static builds)",
+      "engine_reason": "ffmpeg decodes every common codec and seeks precisely; static builds need no system install.",
+      "private_repo": "chayprabs/video-thumbnail-generator",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 180,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/thumbnails",
+        "fields": {
+          "count": "4"
+        },
+        "files": {
+          "file": "sample.mp4"
+        },
+        "expect": "PNG"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "loudness-normalizer",
+      "name": "Loudness Normalizer",
+      "command": "localtools-loudness-normalizer",
+      "category": "media",
+      "description": "Normalize audio loudness to EBU R128 / LUFS targets with two-pass ffmpeg loudnorm.",
+      "port": 47124,
+      "kind": "bin",
+      "engine": "ffmpeg loudnorm two-pass EBU R128 (bundled)",
+      "engine_reason": "ffmpeg's two-pass loudnorm is the standard, accurate EBU R128 implementation.",
+      "private_repo": "chayprabs/loudness-normalizer",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 180,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/measure",
+        "fields": {},
+        "files": {
+          "file": "sample.wav"
+        },
+        "expect": "input_i"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "subtitle-converter",
+      "name": "Subtitle Converter",
+      "command": "localtools-subtitle-converter",
+      "category": "media",
+      "description": "Convert subtitles between SRT, VTT, ASS and TTML, shift timing, and mux or burn them into video.",
+      "port": 47125,
+      "kind": "bin",
+      "engine": "Go subtitle library (SRT/VTT/ASS/TTML) + ffmpeg for mux/burn",
+      "engine_reason": "A Go subtitle library handles format conversion natively; ffmpeg only for muxing and burning in.",
+      "private_repo": "chayprabs/subtitle-converter",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 180,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/convert",
+        "fields": {
+          "to": "vtt"
+        },
+        "files": {
+          "file": "sample.srt"
+        },
+        "expect": "WEBVTT"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "exif-remover",
+      "name": "EXIF Remover",
+      "command": "localtools-exif-remover",
+      "category": "media",
+      "description": "Strip EXIF, GPS, XMP and other metadata from photos and files with ExifTool.",
+      "port": 47126,
+      "kind": "bin",
+      "engine": "ExifTool (bundled)",
+      "engine_reason": "ExifTool reads and removes metadata from more formats than any other tool.",
+      "private_repo": "chayprabs/exif-remover",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 40,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/strip",
+        "fields": {},
+        "files": {
+          "file": "sample.jpg"
+        },
+        "expect": "JFIF"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "svg-optimizer",
+      "name": "SVG Optimizer",
+      "command": "localtools-svg-optimizer",
+      "category": "media",
+      "description": "Optimize and minify SVG files with SVGO and export them to PNG.",
+      "port": 47127,
+      "kind": "js",
+      "engine": "SVGO + resvg (wasm)",
+      "engine_reason": "SVGO is the standard SVG optimizer; resvg renders PNG accurately without a browser.",
+      "private_repo": "chayprabs/svg-optimizer",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": "localtools-svg-optimizer",
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 100,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/optimize",
+        "fields": {},
+        "files": {
+          "file": "sample.svg"
+        },
+        "expect": "<svg"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "og-image-generator",
+      "name": "OG Image Generator",
+      "command": "localtools-og-image-generator",
+      "category": "media",
+      "description": "Create Open Graph social preview images (1200x630 PNG) from templates, with code highlighting.",
+      "port": 47128,
+      "kind": "js",
+      "engine": "satori + resvg + shiki",
+      "engine_reason": "satori turns HTML/CSS into SVG without a browser; resvg rasterizes; shiki highlights code.",
+      "private_repo": "chayprabs/og-image-generator",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": "localtools-og-image-generator",
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 120,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/render",
+        "fields": {
+          "title": "Hello"
+        },
+        "files": {},
+        "expect": "PNG"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "font-subsetter",
+      "name": "Font Subsetter",
+      "command": "localtools-font-subsetter",
+      "category": "media",
+      "description": "Subset fonts to the characters you use, instance variable fonts, and convert to WOFF2.",
+      "port": 47129,
+      "kind": "py",
+      "engine": "fontTools (pyftsubset, varLib.instancer, WOFF2)",
+      "engine_reason": "fontTools is the reference font library; pyftsubset and instancer are what font engineers use.",
+      "private_repo": "chayprabs/font-subsetter",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": false,
+        "scoop": false,
+        "winget": false,
+        "npm": null,
+        "pypi": "localtools-font-subsetter",
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 80,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/subset",
+        "fields": {
+          "text": "Hello",
+          "format": "woff2"
+        },
+        "files": {
+          "file": "sample.ttf"
+        },
+        "expect": "wOF2"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "pandoc-gui",
+      "name": "Pandoc GUI",
+      "command": "localtools-pandoc-gui",
+      "category": "docs",
+      "description": "Convert documents between Markdown, DOCX, HTML, EPUB, LaTeX and PDF with pandoc.",
+      "port": 47130,
+      "kind": "bin",
+      "engine": "pandoc (bundled) + typst as PDF engine",
+      "engine_reason": "pandoc is the universal document converter; typst makes PDFs without a LaTeX install.",
+      "private_repo": "chayprabs/pandoc-gui",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 250,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/convert",
+        "fields": {
+          "from": "markdown",
+          "to": "html"
+        },
+        "files": {
+          "file": "sample.md"
+        },
+        "expect": "<h1"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "typst-editor",
+      "name": "Typst Editor",
+      "command": "localtools-typst-editor",
+      "category": "docs",
+      "description": "Write Typst documents with live preview and export them to PDF, PNG or SVG.",
+      "port": 47131,
+      "kind": "bin",
+      "engine": "typst (bundled official binary)",
+      "engine_reason": "The official typst binary compiles in milliseconds and needs nothing else.",
+      "private_repo": "chayprabs/typst-editor",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 60,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/compile",
+        "fields": {
+          "source": "= Hello",
+          "format": "pdf"
+        },
+        "files": {},
+        "expect": "%PDF"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "asciidoc-converter",
+      "name": "AsciiDoc Converter",
+      "command": "localtools-asciidoc-converter",
+      "category": "docs",
+      "description": "Convert AsciiDoc documents to HTML5 or DocBook with Asciidoctor.",
+      "port": 47132,
+      "kind": "js",
+      "engine": "asciidoctor.js",
+      "engine_reason": "asciidoctor.js is the official Asciidoctor transpiled to JS, same output as the Ruby original.",
+      "private_repo": "chayprabs/asciidoc-converter",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": "localtools-asciidoc-converter",
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 100,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/convert",
+        "fields": {
+          "to": "html5",
+          "source": "= Title\n\nHello"
+        },
+        "files": {},
+        "expect": "Hello"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "latex-to-svg",
+      "name": "LaTeX to SVG",
+      "command": "localtools-latex-to-svg",
+      "category": "docs",
+      "description": "Render LaTeX math to SVG, PNG or MathML with MathJax.",
+      "port": 47133,
+      "kind": "js",
+      "engine": "MathJax (SVG/MathML/speech) + PNG raster",
+      "engine_reason": "MathJax renders LaTeX math to self-contained SVG and MathML with speech text, no TeX install.",
+      "private_repo": "chayprabs/latex-to-svg",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": "localtools-latex-to-svg",
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 100,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/render",
+        "fields": {
+          "latex": "E=mc^2",
+          "format": "svg"
+        },
+        "files": {},
+        "expect": "<svg"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "docx-compare",
+      "name": "DOCX Compare",
+      "command": "localtools-docx-compare",
+      "category": "docs",
+      "description": "Compare two Word documents and produce a tracked-changes redline .docx.",
+      "port": 47134,
+      "kind": "bin",
+      "engine": ".NET self-contained + Open-XML-PowerTools WmlComparer",
+      "engine_reason": "WmlComparer produces genuine Word tracked changes, not a text diff.",
+      "private_repo": "chayprabs/docx-compare",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 120,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/compare",
+        "fields": {},
+        "files": {
+          "original": "a.docx",
+          "revised": "b.docx"
+        },
+        "expect": "PK"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "office-converter",
+      "name": "Office Converter",
+      "command": "localtools-office-converter",
+      "category": "docs",
+      "description": "Convert PPTX, DOCX, XLSX and ODF documents to PDF or PNG with LibreOffice, including speaker notes.",
+      "port": 47135,
+      "kind": "docker",
+      "engine": "LibreOffice headless",
+      "engine_reason": "LibreOffice is the only free engine with faithful PPTX/DOCX/XLSX rendering; too large to bundle per OS, so it ships as a container.",
+      "private_repo": "chayprabs/office-converter",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": false,
+        "scoop": false,
+        "winget": false,
+        "npm": null,
+        "pypi": null,
+        "ghcr": "ghcr.io/chayprabs/localtools-office-converter"
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 1200,
+        "docker": true
+      },
+      "smoke": {
+        "path": "/api/convert",
+        "fields": {
+          "to": "pdf"
+        },
+        "files": {
+          "file": "sample.pptx"
+        },
+        "expect": "%PDF"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    },
+    {
+      "slug": "epub-validator",
+      "name": "EPUB Validator",
+      "command": "localtools-epub-validator",
+      "category": "docs",
+      "description": "Validate EPUB files with EPUBCheck and repair common errors.",
+      "port": 47136,
+      "kind": "bin",
+      "engine": "EPUBCheck (bundled portable JRE) + own repair pass",
+      "engine_reason": "EPUBCheck is the W3C's official EPUB conformance checker.",
+      "private_repo": "chayprabs/epub-validator",
+      "version": null,
+      "status": "planned",
+      "assets": {},
+      "release_notes": "",
+      "registries": {
+        "brew": true,
+        "scoop": true,
+        "winget": true,
+        "npm": null,
+        "pypi": null,
+        "ghcr": null
+      },
+      "requirements": {
+        "os": [
+          "windows",
+          "macos",
+          "linux"
+        ],
+        "disk_mb": 150,
+        "docker": false
+      },
+      "smoke": {
+        "path": "/api/validate",
+        "fields": {},
+        "files": {
+          "file": "sample.epub"
+        },
+        "expect": "messages"
+      },
+      "page": {
+        "howto": [],
+        "faqs": []
+      }
+    }
+  ]
+}
