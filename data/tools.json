@@ -15,36 +15,36 @@
       "engine": "Go + gabriel-vasile/mimetype + own ZIP/OLE2 container, polyglot and file-name checks",
       "engine_reason": "Pure-Go magic-byte detection for ~200 formats in one static binary: no libmagic, no ONNX runtime (Magika was evaluated and rejected for that reason).",
       "private_repo": "chayprabs/file-type-detector",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.1/file-type-detector-1.0.1-windows-x64.zip",
-          "sha256": "fded0c42dc1ba7221e2716aa07b8f1ae569c7a4abdf391eaa71eb44506cee2af",
-          "size_bytes": 3276814
+          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.2/file-type-detector-1.0.2-windows-x64.zip",
+          "sha256": "8c2a2f892b9746809560c613aa78520da5b7c00cdb324613d1064c64ce8453ae",
+          "size_bytes": 3280043
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.1/file-type-detector-1.0.1-macos-arm64.zip",
-          "sha256": "5e12e8caa0b7c219d7db607036323eef1587c3ea6d01af1461941b96f54e64aa",
-          "size_bytes": 2990813
+          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.2/file-type-detector-1.0.2-macos-arm64.zip",
+          "sha256": "713f369de2f155d80a16768503fb9155a8c44aca03a143f01c42c46b37aca11e",
+          "size_bytes": 2996636
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.1/file-type-detector-1.0.1-macos-x64.zip",
-          "sha256": "8693956c258a81d2283d03f383da5e715104bac35618f5fba5fce4e98e3c4dd2",
-          "size_bytes": 3233221
+          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.2/file-type-detector-1.0.2-macos-x64.zip",
+          "sha256": "9afa1e3cb73e2ae18c55da80acf56843956f4a7906b450f61ac038d4e8590efc",
+          "size_bytes": 3236438
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.1/file-type-detector-1.0.1-linux-x64.zip",
-          "sha256": "137ebfa75f6b5b2906fecf76bc3e87af88236cd4ae39eeef5145689d1b9d67e3",
-          "size_bytes": 3199982
+          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.2/file-type-detector-1.0.2-linux-x64.zip",
+          "sha256": "e699414b5a10ea82afe17d6ca882ab31677e3d591aa49eb66667a1c6a75605bb",
+          "size_bytes": 3204196
         },
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.1/file-type-detector-1.0.1-linux-arm64.zip",
-          "sha256": "020b9393a2db4d7d787543c057ddae76303a0ac91cdec503b756918eae5f8065",
-          "size_bytes": 2904669
+          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.2/file-type-detector-1.0.2-linux-arm64.zip",
+          "sha256": "1e75076b645be2e3d034775d2797aa88cd9772af58cf8654b2a6689717d40f27",
+          "size_bytes": 2907991
         }
       },
-      "release_notes": "Risk only for formats the OS runs on double-click (archived .py/.sh/.bin/.o are info); padded double extensions flagged; MZ files need a real PE header; corrupt or truncated ZIP/OLE containers warned; uploads batched 500 per request; tables scroll on narrow screens; failed updates keep the old install; package-manager installs print the brew/scoop/winget command for update/uninstall.",
+      "release_notes": "Detects ISO 9660/UDF, DMG, VHD/VHDX, VMDK and QCOW images; archive entries that run on double-click are warn, risk only when disguised or inside an archive posing as another type; text starting with MZ is text; Unicode whitespace padding caught in double extensions; .winmd accepted; EPUB without a mimetype entry detected.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -107,16 +107,42 @@
       "name": "PDF Toolkit",
       "command": "localtools-pdf-toolkit",
       "category": "pdf",
-      "description": "Merge, split, rotate, compress and watermark PDFs, and fill or flatten PDF forms, offline.",
+      "description": "Merge, split, reorder, rotate, compress, stamp, number, encrypt and fill PDF forms, offline.",
       "port": 47102,
       "kind": "bin",
-      "engine": "Go + pdfcpu",
-      "engine_reason": "pdfcpu covers merge, split, rotate, optimize, watermark and form fill/flatten in one pure-Go binary.",
+      "engine": "Go + pdfcpu, plus own image recompression, form flattening and XFDF/FDF import",
+      "engine_reason": "pdfcpu is a pure-Go PDF library covering merge, split, pages, rotate, optimize, stamps, AES-256 and AcroForm fill in one static binary; no Ghostscript, qpdf or Java.",
       "private_repo": "chayprabs/pdf-toolkit",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.2",
+      "status": "released",
+      "assets": {
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.2/pdf-toolkit-1.0.2-windows-x64.zip",
+          "sha256": "b4998a14869806f80b7ac0b4c5f81cc596e49ee528e85e512461b8a231d7dc43",
+          "size_bytes": 5718101
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.2/pdf-toolkit-1.0.2-macos-arm64.zip",
+          "sha256": "2c160482e8ab0129e1999940ef4570b49ac5bb0185ccc6fe57a483e0c7700a69",
+          "size_bytes": 5161339
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.2/pdf-toolkit-1.0.2-macos-x64.zip",
+          "sha256": "ceddedfd5b15b5893a0da9f2e49173ae2b6f205d88665f338bee5263c12b6c19",
+          "size_bytes": 5645319
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.2/pdf-toolkit-1.0.2-linux-x64.zip",
+          "sha256": "e0e7c4e9abb23f84d6b7f87647d4a9178c4e9a6a9bc37d584c0fe3d7e7c8f084",
+          "size_bytes": 5584783
+        },
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.2/pdf-toolkit-1.0.2-linux-arm64.zip",
+          "sha256": "5037a3b410ad22dbdfe6925e532fd71cc58a81575a4de66d179b352df0bc08fe",
+          "size_bytes": 5004648
+        }
+      },
+      "release_notes": "Fixes clipped Latin form appearances in short LibreOffice widgets; rich-text plain-value fallback and per-cell comb appearances; exact numeric JSON values; ordinary indirect uncompressed FDF; immediate stale UI result/field clearing, async response cancellation/guards, and encrypted-form password retry. Adds independent rendered-ink and comb-geometry regressions. Existing worker isolation and documented non-WinAnsi flattening limits remain.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -135,16 +161,43 @@
         "docker": false
       },
       "smoke": {
-        "path": "/api/merge",
+        "path": "/api/info",
         "fields": {},
         "files": {
-          "files": "a.pdf"
+          "file": "a.pdf"
         },
-        "expect": "%PDF"
+        "expect": "\"pages\":3"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Open PDF Toolkit (it starts at http://127.0.0.1:47102).",
+          "Pick the operation: Merge, Split, Pages, Rotate, Compress, Stamp, Numbers, Encrypt, Decrypt, Metadata or Forms.",
+          "Drop your PDF (several for Merge, then order them and set page ranges per file).",
+          "Set the options shown for that operation and press the button.",
+          "Check the page count and size, then download the result. From a terminal: localtools-pdf-toolkit merge a.pdf b.pdf -o out.pdf."
+        ],
+        "faqs": [
+          {
+            "q": "Does compress really make files smaller?",
+            "a": "Lossless mode removes duplicate and unused objects, which helps on bloated files but not on tight ones (the original is returned if nothing smaller is found). Medium and strong also downsample large photos and re-encode them as JPEG, which is where most of the size goes: a photo PDF went from 1.7 MB to 246 KB in testing. Line art, screenshots, CMYK and 1-bit images are left untouched."
+          },
+          {
+            "q": "How do I fill a PDF form automatically?",
+            "a": "Run localtools-pdf-toolkit export form.pdf > data.json to get every field with its current value, edit the values, then localtools-pdf-toolkit fill form.pdf data.json -o filled.pdf. XFDF and FDF files exported from Acrobat work too, and --flatten bakes the values into the page."
+          },
+          {
+            "q": "Which encryption does it use?",
+            "a": "AES-256. Where the file can be written as PDF 2.0 it uses the PDF 2.0 standard handler (revision 6); otherwise the older AES-256 scheme (revision 5), and the result tells you which. You can set a password to open the file, an owner password, and whether printing, copying, commenting and editing are allowed."
+          },
+          {
+            "q": "Can it handle large files?",
+            "a": "Yes, up to about 400 MB in the app. A 1200-page PDF rotates in under a second and a 200 MB file in about 1.5 s. The whole document is held in memory (about 5x the file size at peak), each job may use up to 2 GiB, and at most two jobs run at once."
+          },
+          {
+            "q": "Are my PDFs uploaded?",
+            "a": "No. The page only talks to the local server on 127.0.0.1, the tool makes no network requests, and uploaded files are deleted as soon as each request finishes."
+          }
+        ]
       }
     },
     {
@@ -248,13 +301,39 @@
       "description": "Run SQL on CSV, TSV, JSON, Parquet and log files (nginx, Apache, syslog) with DuckDB.",
       "port": 47105,
       "kind": "bin",
-      "engine": "DuckDB + log-format parsers (nginx, apache, syslog, JSON)",
-      "engine_reason": "DuckDB queries CSV/Parquet/JSON in place, fast on multi-GB files, no import step.",
+      "engine": "DuckDB 1.5.6 (official CLI, bundled) + log parsers (nginx/Apache, syslog RFC 3164/5424)",
+      "engine_reason": "DuckDB queries CSV/Parquet/JSON in place, in parallel and out of core: a 1 GB CSV aggregates in about 1-2 s. The official CLI is bundled with the excel and sqlite extensions, so it works offline on every OS without cgo.",
       "private_repo": "chayprabs/csv-sql-query",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.3",
+      "status": "released",
+      "assets": {
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-sql-query-v1.0.3/csv-sql-query-1.0.3-windows-x64.zip",
+          "sha256": "a55d10bf39b779a02df06ae624309c3397e71d3aee8ae26919584701dd08aa9e",
+          "size_bytes": 33885739
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-sql-query-v1.0.3/csv-sql-query-1.0.3-macos-arm64.zip",
+          "sha256": "04d0c4408ff7feaf4b9bbe48c30db0f1c9822334869ec8c8b09f63282108e3d2",
+          "size_bytes": 31632792
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-sql-query-v1.0.3/csv-sql-query-1.0.3-macos-x64.zip",
+          "sha256": "7121bf7d786b7e568338e37c2c134b50d3295ebf4563a3290d5b619359fb8b6e",
+          "size_bytes": 34906247
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-sql-query-v1.0.3/csv-sql-query-1.0.3-linux-x64.zip",
+          "sha256": "089f484378c91063121722e4a600291870434bdcc6ec291d07ea2ae6e72cd180",
+          "size_bytes": 41723118
+        },
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-sql-query-v1.0.3/csv-sql-query-1.0.3-linux-arm64.zip",
+          "sha256": "cf69fe633e627b58215c3cc98b112b39d60f9b279408726ebdf1ee2ec0cb891d",
+          "size_bytes": 37708821
+        }
+      },
+      "release_notes": "Fix: after a one-page result, paging a larger result could stop at rows 201-400.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -269,22 +348,50 @@
           "macos",
           "linux"
         ],
-        "disk_mb": 80,
+        "disk_mb": 200,
         "docker": false
       },
       "smoke": {
         "path": "/api/query",
         "fields": {
-          "sql": "select count(*) as n from data"
+          "sql": "SELECT c.name, count(*) AS n FROM orders o JOIN customers c USING (customer_id) GROUP BY ALL ORDER BY n DESC, c.name LIMIT 1"
         },
         "files": {
-          "file": "sample.csv"
+          "file": "orders.csv",
+          "file2": "customers.tsv"
         },
-        "expect": "\"n\""
+        "expect": "\"rows\":[[\"Ada Lovelace\",2]]"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Run localtools-csv-sql-query (or open CSV SQL Query from your app menu); it opens in your browser.",
+          "Drop one or more files: CSV, TSV, JSON/JSONL, Parquet, XLSX, SQLite, or nginx/Apache/syslog logs. Each becomes a table named after the file, with its columns and types listed.",
+          "Write SQL (DuckDB dialect) or click one of the example queries built from your columns, then press Run or Ctrl+Enter.",
+          "Page through the result, check the plan with Explain or Explain analyze, and download the result as CSV, JSON, Parquet or XLSX.",
+          "From a terminal: localtools-csv-sql-query query \"SELECT ...\" data.csv logs/access.log -o out.parquet, or localtools-csv-sql-query shell data.csv for an interactive DuckDB shell."
+        ],
+        "faqs": [
+          {
+            "q": "How big can the files be?",
+            "a": "Multi-gigabyte files work: DuckDB streams them and spills to disk. On a Windows laptop a 1 GB, 12-million-row CSV counts in 1.9 s and a GROUP BY with COUNT DISTINCT takes 1.2 s using under 1 GB of memory. In the browser, results of any size are paged 200 rows at a time."
+          },
+          {
+            "q": "Which log formats are understood?",
+            "a": "nginx and Apache access logs (combined and common), syslog in RFC 3164 (with or without <PRI>, classic or RFC 3339 timestamps) and RFC 5424, and JSON-lines logs. They become typed tables (status INTEGER, time TIMESTAMPTZ, ...) with a line_no column; lines that do not match are counted and reported. Any other text file becomes a table of lines."
+          },
+          {
+            "q": "Can I join files of different formats?",
+            "a": "Yes. Every file is a table in the same DuckDB database, so you can join a CSV with a Parquet file, a sheet of an .xlsx and an access log in one query. SQLite and DuckDB files are attached read-only as name.table."
+          },
+          {
+            "q": "Does my data leave my computer?",
+            "a": "No. Everything runs locally with no network access: extension autoloading is off, and in the web UI DuckDB is locked to the uploaded files (it cannot read other paths, fetch URLs or change that setting). Session files are deleted when you close the page."
+          },
+          {
+            "q": "Why does my query fail with a line and column?",
+            "a": "Errors come straight from DuckDB and are mapped to the position in your SQL; the UI selects the offending spot in the editor. For CSV data errors DuckDB reports the line number in the file."
+          }
+        ]
       }
     },
     {
@@ -295,13 +402,39 @@
       "description": "Convert and transform CSV, TSV, JSON and JSONL with Miller verbs: filter, sort, join, reshape.",
       "port": 47106,
       "kind": "bin",
-      "engine": "Go + Miller 6 verbs",
+      "engine": "Go + Miller 6.22 (embedded library)",
       "engine_reason": "Miller 6 is pure Go, embeddable, and its verbs (filter, sort, join, reshape) are already well known.",
       "private_repo": "chayprabs/csv-json-transform",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.2",
+      "status": "released",
+      "assets": {
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.2/csv-json-transform-1.0.2-linux-arm64.zip",
+          "sha256": "bf51715e58dd94e13379aa203c05fab95ccb4d57a9b190660babf7acba2a71b6",
+          "size_bytes": 5620394
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.2/csv-json-transform-1.0.2-linux-x64.zip",
+          "sha256": "1e46f27252fe6d7863d14d4db1fdef16fd8b026cb39603da9d62f2295afa3a80",
+          "size_bytes": 6332440
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.2/csv-json-transform-1.0.2-macos-arm64.zip",
+          "sha256": "f483c80bf0212af32cf9a8fa2ed02d9c7e08e1e6180cdef5044b2f7fba9b7037",
+          "size_bytes": 5851844
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.2/csv-json-transform-1.0.2-macos-x64.zip",
+          "sha256": "00ae91f05f2d2ec127b47adcb5fe4142262561655c0c383a0459b4787f949e61",
+          "size_bytes": 6435479
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.2/csv-json-transform-1.0.2-windows-x64.zip",
+          "sha256": "888b8747043991cd56ea704a8c25f548be64a811de95d443f7c408cb49bed47e",
+          "size_bytes": 6498622
+        }
+      },
+      "release_notes": "Security fix: verb chain validated with Miller's own parser; all DSL redirects, main flags in put/filter and --prepipe refused in the web UI/API.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -322,18 +455,44 @@
       "smoke": {
         "path": "/api/transform",
         "fields": {
-          "from": "csv",
+          "from": "auto",
           "to": "json",
-          "verbs": "sort -f name"
+          "verbs": "sort -f name then head -n 1"
         },
         "files": {
-          "file": "sample.csv"
+          "file": "sales.csv"
         },
-        "expect": "\"name\""
+        "expect": "\"name\": \"Ana Souza\""
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Drop a CSV, TSV, JSON or JSON Lines file, or paste data. Format, delimiter, header row and encoding are detected; override them if needed.",
+          "Type a Miller verb chain such as filter '$amount > 100' then sort -nr amount then head -n 10, or click a recipe (Convert, Filter, Sort, Stats, Distinct, Pivot, Join) and edit the field names.",
+          "Pick the output format (JSON, JSONL, CSV, TSV, Markdown, PPRINT, XTAB) and press Transform. Check the table preview, then Download or Copy the full result.",
+          "On the command line: localtools-csv-json-transform run --icsv --ojson 'sort -f name' file.csv, or the full Miller CLI with localtools-csv-json-transform mlr."
+        ],
+        "faqs": [
+          {
+            "q": "Is this real Miller?",
+            "a": "Yes. Miller 6.22 is compiled into the executable as a Go library and runs through the same entry points as the mlr binary, so every verb, flag and DSL function works the same. Errors are Miller's own messages."
+          },
+          {
+            "q": "How big can my files be?",
+            "a": "Streaming verbs (convert, filter, cut, put, head) handle files larger than memory: a 200 MB, 7-million-row CSV converted to JSONL in about 10 seconds using about 150 MB. Verbs that need all records at once, such as sort, reshape long-to-wide or percentiles, keep the data in memory (sort on that file used about 4.5 GB)."
+          },
+          {
+            "q": "How do I join two files?",
+            "a": "Add the second file in the join box and write FILE2 where its path goes, for example join -j id -f FILE2. The second file can be in a different format (a TSV joined to a CSV works); unpaired records can be kept with --ul / --ur."
+          },
+          {
+            "q": "My CSV uses semicolons, has a BOM, or came from Excel in Latin-1. Will it work?",
+            "a": "Yes. Comma, semicolon, pipe and tab delimiters are detected, a UTF-8 BOM is skipped, UTF-16 files (by BOM) and non-UTF-8 files (read as Windows-1252) are converted to UTF-8. Rows with too few or too many cells are accepted unless you untick Allow ragged rows."
+          },
+          {
+            "q": "Does my data leave my computer?",
+            "a": "No. The tool listens on 127.0.0.1 only, uploads go to a temp folder that is deleted after each request, the page loads nothing from the internet, and shell commands from the Miller DSL are disabled in the web UI."
+          }
+        ]
       }
     },
     {
@@ -390,12 +549,38 @@
       "port": 47108,
       "kind": "bin",
       "engine": "Go + excelize",
-      "engine_reason": "excelize writes native .xlsx with styles and multiple sheets in pure Go.",
+      "engine_reason": "excelize is the most complete pure-Go .xlsx writer (styles, tables, conditional formats, charts, streaming): one static binary, no Office or runtime needed.",
       "private_repo": "chayprabs/json-to-excel",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.2",
+      "status": "released",
+      "assets": {
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.2/json-to-excel-1.0.2-linux-arm64.zip",
+          "sha256": "bc91692e839afa52c335a90f41a2b02ff905591f6ec749fb34f3eb75d22049d3",
+          "size_bytes": 4625379
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.2/json-to-excel-1.0.2-linux-x64.zip",
+          "sha256": "65a21a62820c034d3fbeeec85ad9abb44089d0d2ae71bcfef2a9508b52c96bd0",
+          "size_bytes": 5073811
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.2/json-to-excel-1.0.2-macos-arm64.zip",
+          "sha256": "270e2c014cd7c16729739a642b249d8fc5341d7f535039dff926511aa07bb119",
+          "size_bytes": 4796737
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.2/json-to-excel-1.0.2-macos-x64.zip",
+          "sha256": "6fb0ad4d59e3cfe78800fb814eed2ffbd1f299014de11229f7cd0a854444ffb2",
+          "size_bytes": 5155578
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.2/json-to-excel-1.0.2-windows-x64.zip",
+          "sha256": "f3e3d74eba310bc37818be0c51735602c7dff12efab376d39170dbbcb5555af4",
+          "size_bytes": 5200684
+        }
+      },
+      "release_notes": "- Table names must be unique across the workbook (ignoring case); duplicates are rejected, and unnamed tables get generated names that avoid yours. - A table with \"header\": false is an error (Excel tables need a header row) instead of being dropped silently. - Row counts for spec sheets without a header are correct. - In an object of arrays, empty arrays are skipped with a warning instead of failing the whole input.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -415,32 +600,94 @@
       },
       "smoke": {
         "path": "/api/convert",
-        "fields": {},
-        "files": {
-          "file": "sample.json"
+        "fields": {
+          "preview": "1",
+          "sheet": "Orders"
         },
-        "expect": "PK"
+        "files": {
+          "file": "orders.json"
+        },
+        "expect": "\"name\":\"Orders\",\"rows\":3,\"cols\":12"
       },
       "page": {
-        "howto": [],
-        "faqs": []
-      }
+        "howto": [
+          "Run localtools-json-to-excel (or open JSON to Excel from your app menu); it opens in your browser.",
+          "Paste JSON or drop a .json / .jsonl file. Arrays, JSON Lines and objects of arrays (one sheet per key) are detected automatically.",
+          "Optionally set the sheet name or switch off the frozen header, then press Convert.",
+          "Check the preview of the first rows and press Download .xlsx.",
+          "For scripts: localtools-json-to-excel convert in.json -o out.xlsx, or pipe JSON through stdin."
+        ],
+        "faqs": [
+          {
+            "q": "Are dates and numbers real Excel values or text?",
+            "a": "Real values. JSON numbers and booleans become Excel numbers and booleans, and ISO dates (2024-03-01) and datetimes (2024-03-01T14:30:00Z) become Excel dates with a date format, so sorting, filters and formulas work. Integers longer than 15 digits stay text so Excel does not round them."
+          },
+          {
+            "q": "What happens to nested objects and arrays?",
+            "a": "Nested objects are flattened into dotted columns such as customer.address.city. Arrays of plain values go into one cell as a comma-separated list; arrays of objects are kept as compact JSON in one cell."
+          },
+          {
+            "q": "How big a file can it handle?",
+            "a": "Up to Excel's limit of 1,048,575 data rows per sheet. 100,000 rows convert in a few seconds, and nothing is uploaded: the conversion runs on your machine."
+          },
+          {
+            "q": "Can I control formats, formulas and charts?",
+            "a": "Yes, with spec mode: send {\"sheets\": [...]} with typed columns, number formats, styles, merged cells, formulas, conditional formatting, Excel tables, charts and images. The format is documented in SPEC.md, linked from the README and the UI."
+          },
+          {
+            "q": "Can a value like =SUM(A1:A9) in my data run as a formula?",
+            "a": "No. In data mode every string is written as text, so values starting with = cannot become formulas. Formulas only come from spec mode, where you declare them explicitly."
+          }
+        ]
+      },
+      "docs": [
+        {
+          "title": "Workbook spec format",
+          "path": "SPEC.md"
+        }
+      ]
     },
     {
       "slug": "excel-diff",
       "name": "Excel Diff",
       "command": "localtools-excel-diff",
       "category": "data",
-      "description": "Compare two Excel workbooks cell by cell, including formulas, sheets and named ranges.",
+      "description": "Compare two Excel or CSV files cell by cell: values, formulas, formats, inserted rows and columns, sheets and named ranges.",
       "port": 47109,
       "kind": "bin",
-      "engine": "Go + excelize (cell, formula, sheet, named-range diff)",
-      "engine_reason": "excelize reads formulas, sheets and defined names directly, so the diff sees what Excel sees.",
+      "engine": "Go: streaming xlsx reader + Myers row/column alignment; excelize for the annotated workbook",
+      "engine_reason": "A streaming reader keeps every stored value exact (no float rounding) and handles a million cells in seconds; Myers O(ND) alignment finds inserted and deleted rows and columns; excelize writes B back with the changes highlighted.",
       "private_repo": "chayprabs/excel-diff",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.0",
+      "status": "released",
+      "assets": {
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.0/excel-diff-1.0.0-linux-arm64.zip",
+          "sha256": "ab09f904edad156737d4831468d251fa403370d0de9a5128a828a5c012d60ee8",
+          "size_bytes": 4470940
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.0/excel-diff-1.0.0-linux-x64.zip",
+          "sha256": "5976f53e05395b8b64d3d89e7e24f0d8c6bb53ea983912a94adaf85a2554b3ef",
+          "size_bytes": 4895968
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.0/excel-diff-1.0.0-macos-arm64.zip",
+          "sha256": "3831c7394fbddbafb4715c8fa9fc50ee4e4ac9f9dc39dbb1d46cc90ab45c65c1",
+          "size_bytes": 4637530
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.0/excel-diff-1.0.0-macos-x64.zip",
+          "sha256": "3a368e39103fe8babc41a1a1179ed46f6d7840a2014fa0c32ab10d6d5e7dc535",
+          "size_bytes": 4975073
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.0/excel-diff-1.0.0-windows-x64.zip",
+          "sha256": "dfd60cbd20465f42624712a87ff7172c432f06d302d5cc2a9d327c95d532268d",
+          "size_bytes": 5025917
+        }
+      },
+      "release_notes": "- First release: .xlsx/.xlsm/.csv diff with row/column alignment, key columns, sheet rename detection, defined names, merges, validations and comments.\n- Side-by-side grid with change navigation; JSON, CSV and annotated .xlsx exports; CLI exit codes like diff.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -465,11 +712,38 @@
           "a": "a.xlsx",
           "b": "b.xlsx"
         },
-        "expect": "changed"
+        "expect": "\"status\":\"changed\""
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Run localtools-excel-diff (or open Excel Diff from your app menu); it opens in your browser.",
+          "Drop the original workbook as A and the changed one as B (.xlsx, .xlsm or .csv).",
+          "Optionally ignore whitespace, case, number formats or formulas, or give key columns (e.g. A) to match rows by ID, then press Compare.",
+          "Pick a sheet and step through the highlighted changes with Previous/Next change; click a cell to see old and new value, formula and format.",
+          "Download the report as JSON or CSV, or an annotated copy of B with changed cells highlighted. From scripts: localtools-excel-diff old.xlsx new.xlsx --json (exit code 1 when different)."
+        ],
+        "faqs": [
+          {
+            "q": "Does inserting a row make every cell below it look changed?",
+            "a": "No. Rows and columns are aligned first (Myers diff over row hashes, like git diff), so an inserted or deleted row or column is reported once and the cells below are compared with their real counterparts."
+          },
+          {
+            "q": "Are numbers rounded?",
+            "a": "No. Values are shown exactly as stored in the file, so 12345678901234567890 stays intact. Numbers are compared by their stored value, so 0.1 and 0.10000000000000001 (the same double) count as equal."
+          },
+          {
+            "q": "My rows were re-sorted. Can it still match them?",
+            "a": "Yes: enter one or more key columns (for example A or A,C). Rows are then matched by those values, like a database diff, and only real changes are reported."
+          },
+          {
+            "q": "What else is compared besides cell values?",
+            "a": "Formula text, number formats, optionally cell styles, sheets added/removed/renamed (renames are detected by content), defined names, merged ranges, data validations and comments."
+          },
+          {
+            "q": "Can it compare a CSV with a workbook, or .ods files?",
+            "a": "CSV against CSV or against a workbook works (numbers compare by value). OpenDocument .ods and legacy .xls are not supported; save them as .xlsx first."
+          }
+        ]
       }
     },
     {
@@ -483,10 +757,36 @@
       "engine": "Go + yq (mikefarah) + RFC 6902 JSON Patch",
       "engine_reason": "yq is the de-facto YAML query tool, preserves comments, and handles JSON/XML/TOML/INI as a Go library.",
       "private_repo": "chayprabs/yaml-json-query",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.2",
+      "status": "released",
+      "assets": {
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.2/yaml-json-query-1.0.2-windows-x64.zip",
+          "sha256": "8af2e6d5ed19c67dc8f5adabba16f6dac9038f877113803efb7b48d28a988da0",
+          "size_bytes": 6956790
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.2/yaml-json-query-1.0.2-macos-arm64.zip",
+          "sha256": "e08bec8f5155add24f73c5dd33fd517ad8fca0bd26dcb87a5735e168dc742278",
+          "size_bytes": 6330717
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.2/yaml-json-query-1.0.2-macos-x64.zip",
+          "sha256": "0c5e934a2f5e314d4e5cb3c2fc676617ba1a8c50f851dc4561dbb95bfebe7f89",
+          "size_bytes": 6854499
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.2/yaml-json-query-1.0.2-linux-x64.zip",
+          "sha256": "0321689ae948d74e63b65a5a9a532d7a25aa56f96f17d255aecf63a40f4283fb",
+          "size_bytes": 6772478
+        },
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.2/yaml-json-query-1.0.2-linux-arm64.zip",
+          "sha256": "8fc1244f2c295075247e84e0d6a6c47c5df14394237bfbd7239f0f6af4b3f505",
+          "size_bytes": 6126498
+        }
+      },
+      "release_notes": "Large-input and robustness fixes: the UI/API upload limit is now 16 MB, which reliably fits the 2 GB worker (measured peak heap: 1.0 GB for 16 MB of dense JSON, 1.1 GB for 16 MB of Kubernetes YAML); bigger inputs get a clear \"input too large\" message. Workers stop when the request is cancelled, when the tool exits, or at their own deadline, and at most two run at once. JSON: nesting deeper than 10000 levels is a clean error, duplicate keys keep the last value, a UTF-8 BOM is accepted. YAML numbers like 0b101, 017, .inf and integers beyond 64 bits convert to JSON/TOML correctly or fail with a clear message. UI: Ctrl+Enter no longer starts a second run while one is in progress.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -507,16 +807,42 @@
       "smoke": {
         "path": "/api/query",
         "fields": {
-          "expr": ".name",
-          "input": "name: localtools\n",
-          "format": "yaml"
+          "expr": "(select(.kind == \"Deployment\") | .spec.replicas) = 4"
         },
-        "files": {},
-        "expect": "localtools"
+        "files": {
+          "file": "k8s-app.yaml"
+        },
+        "expect": "replicas: 4 # scaled by HPA in prod"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Paste YAML, JSON, TOML, XML, INI, CSV or .properties, or drop the file.",
+          "Query mode: write a yq expression such as .spec.template.spec.containers[].image, or .version = \"2.0\" to edit. Use . with another output format to convert.",
+          "Patch mode: paste an RFC 6902 JSON Patch (array) or an RFC 7386 merge patch (object).",
+          "Press Run (Ctrl+Enter); copy or download the result. From a terminal: localtools-yaml-json-query eval|convert|patch."
+        ],
+        "faqs": [
+          {
+            "q": "Are YAML comments kept when I edit or patch a file?",
+            "a": "Yes. Expressions and patches work on yq's node tree, so comments, anchors, aliases, quoting and key order survive. Blank lines are not preserved (a yq limitation)."
+          },
+          {
+            "q": "Which query syntax does it use?",
+            "a": "yq's jq-style syntax by default (select, map, del, with_entries, multi-document selection and more). JMESPath is also available for read-only queries."
+          },
+          {
+            "q": "Why does a patch refuse to change a path under an alias?",
+            "a": "The value is shared through a YAML anchor; changing it there would silently change every other place that uses the anchor. Patch the anchor itself instead."
+          },
+          {
+            "q": "How do I patch the second document of a multi-document YAML file?",
+            "a": "Set the YAML document number to 1 in the UI, or pass --doc 1 on the command line. The other documents are written back unchanged."
+          },
+          {
+            "q": "Does my data leave my computer?",
+            "a": "No. Everything runs in the local executable on 127.0.0.1; the page loads nothing from the network."
+          }
+        ]
       }
     },
     {
@@ -530,10 +856,36 @@
       "engine": "Go + oasdiff",
       "engine_reason": "oasdiff has the most complete OpenAPI breaking-change rule set and is a Go library.",
       "private_repo": "chayprabs/openapi-diff",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.2",
+      "status": "released",
+      "assets": {
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.2/openapi-diff-1.0.2-linux-arm64.zip",
+          "sha256": "1751114e5d82e83dddda205b7bb34da2ab48a1f8ed243bc0af1e7ae42e5091d5",
+          "size_bytes": 5006508
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.2/openapi-diff-1.0.2-linux-x64.zip",
+          "sha256": "8a32f930ea23c19f4971285c4ab090d66f1f7428960977a480d4915ae230806c",
+          "size_bytes": 5539309
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.2/openapi-diff-1.0.2-macos-arm64.zip",
+          "sha256": "42997626c423e791d4c018dbc0f35e563d9e00fc254cfb31721e21f095b2ad08",
+          "size_bytes": 5211548
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.2/openapi-diff-1.0.2-macos-x64.zip",
+          "sha256": "2930c4cb7eab9087be1775eef0396c5ee9692b4577c7a2f12a6736d965d65e4d",
+          "size_bytes": 5632695
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.2/openapi-diff-1.0.2-windows-x64.zip",
+          "sha256": "ce2f9bc17a58cfa1b038f31a2cf36137a97e9dc9a568da5b7084309820261c6d",
+          "size_bytes": 5681071
+        }
+      },
+      "release_notes": "Large diffs stay responsive: capped summary in the page, full Markdown/JSON downloaded from the local server; at most 2 comparisons at once (503 when busy); the worker exits with the server.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -555,14 +907,40 @@
         "path": "/api/diff",
         "fields": {},
         "files": {
-          "base": "base.yaml",
-          "revision": "revision.yaml"
+          "base": "petstore-v1.yaml",
+          "revision": "petstore-v2.yaml"
         },
-        "expect": "breaking"
+        "expect": "api-removed-without-deprecation"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Drop or paste the old spec under Base and the new spec under Revision (YAML or JSON; OpenAPI 3.0, 3.1 or Swagger 2.0). For multi-file specs, drop a zip of the folder.",
+          "Press Compare. Breaking changes and warnings are listed per operation, each with its oasdiff check ID, what clients must do, and the source line.",
+          "Tick Show non-breaking for the full changelog, copy the Markdown summary into your PR, or download the JSON.",
+          "In CI: localtools-openapi-diff check base.yaml revision.yaml --fail-on breaking --format markdown exits 1 when breaking changes are found."
+        ],
+        "faqs": [
+          {
+            "q": "Which changes count as breaking?",
+            "a": "The tool uses oasdiff's rule set (300+ checks). Examples: removed operations, new required parameters, removed enum values in requests, removed or retyped response properties. Every change carries its check ID, so you can look up the exact rule."
+          },
+          {
+            "q": "Can it diff specs split across several files?",
+            "a": "Yes. Local $refs are followed. In the UI, zip each spec folder and drop the zips. On the command line, pass the root files and the referenced files are read from disk. Remote http $refs are refused because the tool stays offline."
+          },
+          {
+            "q": "Does it support Swagger 2.0?",
+            "a": "Yes. Swagger 2.0 documents are converted to OpenAPI 3 with kin-openapi before the diff, so both sides can even use different versions. Swagger 2.0 files that reference other files are not supported."
+          },
+          {
+            "q": "What exit codes does the check command use?",
+            "a": "0 when nothing reaches the --fail-on level (default breaking), 1 when something does, 2 on errors such as an unreadable or invalid spec."
+          },
+          {
+            "q": "Are my specs uploaded anywhere?",
+            "a": "No. The tool runs on 127.0.0.1, uploads go to a temporary folder that is deleted after each request, and the page makes no network requests."
+          }
+        ]
       }
     },
     {
@@ -706,16 +1084,42 @@
       "name": "Terraform Plan Viewer",
       "command": "localtools-terraform-plan-viewer",
       "category": "dev",
-      "description": "Visualize Terraform plan JSON: creates, updates, replacements, deletions and the blast-radius graph.",
+      "description": "Review terraform or OpenTofu plan JSON offline: destructive changes first, attribute diffs, blast radius, drift and risk flags.",
       "port": 47115,
       "kind": "bin",
       "engine": "Go + hashicorp/terraform-json",
-      "engine_reason": "terraform-json is HashiCorp's own typed model of terraform show -json output.",
+      "engine_reason": "terraform-json is HashiCorp's typed Go model of terraform show -json output; decoded with json.Number so values stay exact. OpenTofu emits the same format.",
       "private_repo": "chayprabs/terraform-plan-viewer",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.0",
+      "status": "released",
+      "assets": {
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.0/terraform-plan-viewer-1.0.0-linux-arm64.zip",
+          "sha256": "6ab7dd8f228a4c2a70ce6fb62d057e02aa8166817e8dfca6e21817d261ef360a",
+          "size_bytes": 2972676
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.0/terraform-plan-viewer-1.0.0-linux-x64.zip",
+          "sha256": "38d01bb50a44e665deac7d11d8541cc6e4a97707b6d3654087ae9c79b545960f",
+          "size_bytes": 3274111
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.0/terraform-plan-viewer-1.0.0-macos-arm64.zip",
+          "sha256": "01b04dcbe50295557437d3257745272bbcbce9a8b94ea44907ce40f3ebf8f1a8",
+          "size_bytes": 3058251
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.0/terraform-plan-viewer-1.0.0-macos-x64.zip",
+          "sha256": "4df29a07df3f49031c860e2d6d979a2e5337c2f752915bb8e7d4051536fdb85b",
+          "size_bytes": 3300121
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.0/terraform-plan-viewer-1.0.0-windows-x64.zip",
+          "sha256": "358329a8a3dd77fe5cdaad0778e881228fdac874dc7c9dccc26a1ab77781291c",
+          "size_bytes": 3343830
+        }
+      },
+      "release_notes": "First release: summary counts matching the CLI plan line, destructive changes first with replacement reasons, attribute diffs with sensitive values masked, blast radius from configuration references, drift, outputs, checks, risk flags, Markdown/JSON export, CLI summary and check --fail-on.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -739,11 +1143,39 @@
         "files": {
           "file": "plan.json"
         },
-        "expect": "resource_changes"
+        "expect": "Plan: 1 to import, 7 to add, 1 to change, 7 to destroy."
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Open Terraform Plan Viewer (it starts at http://127.0.0.1:47115).",
+          "Save your plan as JSON: terraform plan -out plan.out, then terraform show -json plan.out > plan.json (tofu works the same).",
+          "Drop plan.json or paste it, then press Analyze plan.",
+          "Review destructive changes first, open a resource for its attribute diff and blast radius, and check the Drift, Outputs and Checks tabs.",
+          "Copy the Markdown summary into your pull request, or download the JSON review.",
+          "In CI: localtools-terraform-plan-viewer check plan.json --fail-on delete,replace exits 2 when the plan deletes or replaces anything."
+        ],
+        "faqs": [
+          {
+            "q": "Can it read plan.out or the text output of terraform plan?",
+            "a": "No. It reads the JSON from terraform show -json plan.out (or tofu show -json). Binary plan files need Terraform and provider schemas, and plan text is meant for people and hides values, so it is rejected with a hint instead of guessed at."
+          },
+          {
+            "q": "Are sensitive values safe?",
+            "a": "Every attribute or output marked sensitive in the plan is shown only as (sensitive value), in the page, the Markdown, the JSON export and the CLI. Plan variables are never echoed. Nothing leaves your machine."
+          },
+          {
+            "q": "How is the blast radius computed?",
+            "a": "From the configuration block in the plan JSON: expression references, depends_on, count/for_each and module inputs and outputs. Each change lists the resources and root outputs downstream of it. References through local values cannot be traced because Terraform omits locals from plan JSON."
+          },
+          {
+            "q": "Does it work with OpenTofu?",
+            "a": "Yes. OpenTofu writes the same plan JSON format; the summary line follows OpenTofu wording, including forget counts."
+          },
+          {
+            "q": "How large a plan can it handle?",
+            "a": "Up to 64 MiB of JSON. A 59 MiB plan with 100,000 resources takes about 3 seconds; the page shows 200 resources at a time."
+          }
+        ]
       }
     },
     {
@@ -845,13 +1277,39 @@
       "description": "Test grok patterns against log lines with the full Logstash pattern library and highlighted matches.",
       "port": 47118,
       "kind": "bin",
-      "engine": "Go grok engine + Logstash pattern set",
-      "engine_reason": "A Go grok engine with the Logstash pattern library matches what Logstash/Elastic will do.",
+      "engine": "Own grok compiler on Go RE2 + official Logstash pattern sets (ECS v1 and legacy)",
+      "engine_reason": "Embeds the unmodified logstash-patterns-core files, so field names match Logstash 8; RE2 is linear-time, so no pattern can hang. Existing Go grok libraries ship their own rewritten legacy-only pattern copies.",
       "private_repo": "chayprabs/grok-debugger",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.2",
+      "status": "released",
+      "assets": {
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/grok-debugger-v1.0.2/grok-debugger-1.0.2-linux-arm64.zip",
+          "sha256": "144ce071cfe7f7ea2bace51c57aa60ce9a5ed44077f38145b6bdfd840fda8793",
+          "size_bytes": 2967248
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/grok-debugger-v1.0.2/grok-debugger-1.0.2-linux-x64.zip",
+          "sha256": "ae38d8e69ea65044c2cbb95bf8843ebcb3fa76de04271f67b96f95c463f8387f",
+          "size_bytes": 3267159
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/grok-debugger-v1.0.2/grok-debugger-1.0.2-macos-arm64.zip",
+          "sha256": "57ee6cbfb00281adb1d39771138fe04a1964336aa8e7e55a974d7fa3e89185a2",
+          "size_bytes": 3056859
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/grok-debugger-v1.0.2/grok-debugger-1.0.2-macos-x64.zip",
+          "sha256": "edf1b47a0de1256f15dc48d0a8a99549e4ab0165dff5d06b76960fe33cd68dd5",
+          "size_bytes": 3297309
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/grok-debugger-v1.0.2/grok-debugger-1.0.2-windows-x64.zip",
+          "sha256": "99b672d8e980019d2a6f7d3790af6cee67e782bad5ce9974c6c7bc60a96a44b6",
+          "size_bytes": 3346556
+        }
+      },
+      "release_notes": "Match, Suggest and Export share isolated workers, compilation limits, deadlines and cancellation. Uploads are removable and newer pasted input wins; table columns include every row and repeated capture values. Dark legends and API errors are corrected; zips include upstream pattern licenses.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -872,15 +1330,42 @@
       "smoke": {
         "path": "/api/match",
         "fields": {
-          "pattern": "%{IP:client} %{WORD:method}",
-          "input": "10.0.0.1 GET"
+          "pattern": "%{COMBINEDAPACHELOG}"
         },
-        "files": {},
-        "expect": "10.0.0.1"
+        "files": {
+          "file": "apache-combined.log"
+        },
+        "expect": "\"frank\""
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Paste log lines or drop a log file (up to 8 MB in the UI; the CLI has no limit).",
+          "Enter one or more grok patterns, one per line; they are tried in order and the first match wins. Browse the Logstash pattern library to insert %{NAME} references, or press \"Suggest from first line\".",
+          "Press Match (Ctrl+Enter): every captured field is color-highlighted in its line; the Table and JSON tabs show the extracted fields and the nested event.",
+          "Open Export to get a Logstash filter, Elasticsearch ingest pipeline, Vector VRL or Fluent Bit parser. From a terminal: localtools-grok-debugger match --pattern ... file.log --json."
+        ],
+        "faqs": [
+          {
+            "q": "Does it behave exactly like Logstash?",
+            "a": "It uses the same official pattern files (ECS v1 by default, legacy optional) and Logstash rules for named captures, empty captures and int/float hints. The regex engine is Go RE2 instead of Oniguruma: atomic groups and possessive quantifiers are relaxed, and lookarounds or backreferences in your own patterns give an error with the column."
+          },
+          {
+            "q": "How does pattern suggestion work?",
+            "a": "A deterministic tokenizer recognizes timestamps, IPs, HTTP request lines, log levels, paths, numbers, key=value pairs and prog[pid], then names the fields. The suggestion is matched against the line before it is shown. No AI or network is involved."
+          },
+          {
+            "q": "Can a slow pattern freeze it?",
+            "a": "The UI/API allow 50 patterns of 16 KB each, expanding to 1 MB of regex in total. Match, Suggest and Export share two isolated worker slots, each killed after 15 seconds or on disconnect. Matching returns partial results after 10 seconds, with timing and slow-pattern warnings."
+          },
+          {
+            "q": "Are the Vector and Fluent Bit exports tested?",
+            "a": "Yes. CI runs the generated configs through the real vector and fluent-bit binaries and checks they extract the same fields as the tool."
+          },
+          {
+            "q": "Can I add my own patterns?",
+            "a": "Yes, under Custom patterns (or --custom FILE): one NAME regex per line, like a Logstash patterns_dir file. They override library patterns with the same name."
+          }
+        ]
       }
     },
     {
@@ -940,10 +1425,36 @@
       "engine": "Go + goquery / cascadia",
       "engine_reason": "goquery/cascadia give jQuery-style CSS selectors over a real HTML5 parser in pure Go.",
       "private_repo": "chayprabs/html-extractor",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.2",
+      "status": "released",
+      "assets": {
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/html-extractor-v1.0.2/html-extractor-1.0.2-windows-x64.zip",
+          "sha256": "6b17f7c4ce5a4c8ff8ecd97ab595fa94a921c16d069546e2089e78faf61fc989",
+          "size_bytes": 3773020
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/html-extractor-v1.0.2/html-extractor-1.0.2-macos-arm64.zip",
+          "sha256": "892213a0a5054a50138fabe81095209c92b224a58d5286ce1ce340fa87cc56d6",
+          "size_bytes": 3484971
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/html-extractor-v1.0.2/html-extractor-1.0.2-macos-x64.zip",
+          "sha256": "037211ef638a8e0d6f8f0e71a41f95101940b827217c3d8d674e0ee94f42b1c9",
+          "size_bytes": 3729206
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/html-extractor-v1.0.2/html-extractor-1.0.2-linux-x64.zip",
+          "sha256": "ef7bef3a7a841f66c54869363559abe65a560bee2103420c98ac874dd383693e",
+          "size_bytes": 3697340
+        },
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/html-extractor-v1.0.2/html-extractor-1.0.2-linux-arm64.zip",
+          "sha256": "bd2673ab765796aef4cba27d1cdf8479c07843adef44e1ecf12c8c24feb9435a",
+          "size_bytes": 3388997
+        }
+      },
+      "release_notes": "Blank meta charset values are ignored instead of failing the page; internal failures report as internal errors; attribute flags without a space parse; case-insensitive enumerated attribute values apply only to HTML elements, as in Chromium.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -964,16 +1475,53 @@
       "smoke": {
         "path": "/api/extract",
         "fields": {
-          "html": "<ul><li>a</li><li>b</li></ul>",
-          "selectors": "{\"items\":\"li\"}"
+          "rows": "article",
+          "fields": "[{\"name\":\"title\",\"selector\":\"h2\"},{\"name\":\"id\",\"selector\":\"\",\"attribute\":\"data-id\"}]",
+          "format": "json"
         },
-        "files": {},
-        "expect": "items"
+        "files": {
+          "file": "catalog.html"
+        },
+        "expect": "9007199254740993"
       },
       "page": {
-        "howto": [],
-        "faqs": []
-      }
+        "howto": [
+          "Open HTML Extractor (it starts at http://127.0.0.1:47120).",
+          "Paste HTML or choose a saved .html file.",
+          "Enter a row selector, e.g. article or tr: one result row per match.",
+          "Edit the field map: a name, a CSS selector inside the row, and optionally an attribute such as href.",
+          "Press Extract, then copy or download the JSON or CSV.",
+          "From a terminal: localtools-html-extractor extract --rows article --fields fields.json --format csv page.html > out.csv"
+        ],
+        "faqs": [
+          {
+            "q": "Can it fetch a live URL or run the page's JavaScript?",
+            "a": "No. It works on HTML you paste or save, entirely offline. Save the page from your browser (or with curl) first; content built by JavaScript must be saved after it has rendered."
+          },
+          {
+            "q": "Which CSS selectors are supported?",
+            "a": "The Cascadia selector set used by goquery: type, class, id, attribute, combinators, :nth-child, :not, :has, :contains and more. An unsupported selector is reported as an error instead of silently matching nothing."
+          },
+          {
+            "q": "What happens with broken HTML?",
+            "a": "It is repaired the way browsers do, using Go's HTML5 parser, so unclosed tags and missing tbody elements behave as in a browser. Declared legacy encodings such as windows-1252 or Shift_JIS are decoded."
+          },
+          {
+            "q": "Will large numeric IDs be rounded?",
+            "a": "No. Every value is returned as a string, so an ID like 9007199254740993 stays exact in both JSON and CSV."
+          },
+          {
+            "q": "How big can the input be?",
+            "a": "Up to 4 MiB of HTML, 5,000 rows and 20 fields per run, with a 10-second limit. Larger inputs are rejected with a clear message instead of hanging."
+          }
+        ]
+      },
+      "docs": [
+        {
+          "title": "Field map format",
+          "path": "FIELD_MAP.md"
+        }
+      ]
     },
     {
       "slug": "ssl-checker",
@@ -983,13 +1531,39 @@
       "description": "Check a domain's TLS certificate chain, expiry, supported protocols, DNSSEC and CAA records.",
       "port": 47121,
       "kind": "bin",
-      "engine": "Go crypto/tls + miekg/dns",
-      "engine_reason": "Go's TLS stack and miekg/dns expose the full chain, protocols, DNSSEC and CAA without OpenSSL.",
+      "engine": "Go crypto/tls + crypto/x509 + miekg/dns, Mozilla roots from golang.org/x/crypto/x509roots",
+      "engine_reason": "Go's TLS stack and verifier give real handshakes and chain checks without OpenSSL; miekg/dns sets DO/AD/CD bits for DNSSEC; the Go team's CCADB-generated Mozilla bundle keeps distrust-after constraints.",
       "private_repo": "chayprabs/ssl-checker",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.1",
+      "status": "released",
+      "assets": {
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/ssl-checker-v1.0.1/ssl-checker-1.0.1-linux-arm64.zip",
+          "sha256": "268ed5e3044bef0de70f7b13a6a7205f052e56350801cfaec896e40d8c5fd231",
+          "size_bytes": 3151314
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/ssl-checker-v1.0.1/ssl-checker-1.0.1-linux-x64.zip",
+          "sha256": "0a6ce4b6612763f716c740f1bc02744aad320e122b062c7dc33f8549905eb9cb",
+          "size_bytes": 3464815
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/ssl-checker-v1.0.1/ssl-checker-1.0.1-macos-arm64.zip",
+          "sha256": "04456aa6d66a9a8fda77ee8a401f080a3505ffad17ff56035fd68c9ad0b44db5",
+          "size_bytes": 3244679
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/ssl-checker-v1.0.1/ssl-checker-1.0.1-macos-x64.zip",
+          "sha256": "3e48cb69b142992721d67541133eae471ce11439c509dd525aeab51323ccec89",
+          "size_bytes": 3495695
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/ssl-checker-v1.0.1/ssl-checker-1.0.1-windows-x64.zip",
+          "sha256": "edceec6bcc3165d40581908efc8297e508382fe3ee94b31ec75709d386cf0c43",
+          "size_bytes": 3555744
+        }
+      },
+      "release_notes": "Weak ciphers are probed with raw ClientHellos per class (NULL/export, RC4, 3DES, RSA key exchange, CBC), matching what servers really accept; CBC and RSA key exchange are informational. DNS lookup failures and NXDOMAIN are reported as such, errors are one human line, oversized/JSON API bodies get 413/415, inspect accepts flags after the file, UI spacing fixed.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -1010,14 +1584,42 @@
       "smoke": {
         "path": "/api/check",
         "fields": {
-          "host": "example.com"
+          "host": "example.com",
+          "dns": "0"
         },
         "files": {},
         "expect": "expires"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Enter one or more hosts, one per line: example.com, host:port or an https:// URL (up to 20 per check; internal and loopback hosts work).",
+          "Pick a DNS resolver (system, Cloudflare, Google or Quad9) and press Check. Each host gets a card with pass, warn, fail and info lines.",
+          "Open the chain, protocol and DNS folds for every certificate field, fingerprints, per-version support and records; Download JSON saves the full report.",
+          "Offline: switch to Inspect certificate and drop a PEM, DER or .p7b file (or paste PEM) to inspect and verify it without network.",
+          "In CI: localtools-ssl-checker check example.com --json exits 2 when any check fails."
+        ],
+        "faqs": [
+          {
+            "q": "Why do the system and Mozilla results differ?",
+            "a": "They are two root stores. On Windows and macOS the system verifier can download a missing intermediate, so a server with an incomplete chain passes there but fails the Mozilla check, like Firefox. The Mozilla roots are the Go team's CCADB-generated bundle embedded in the binary, including distrust-after dates."
+          },
+          {
+            "q": "Which hosts does it connect to?",
+            "a": "Only the hosts you type and the DNS resolver you pick. Private and loopback addresses are allowed on purpose, so you can check internal certificates. The local API only accepts requests from its own page."
+          },
+          {
+            "q": "How is DNSSEC decided?",
+            "a": "It asks the resolver with the DNSSEC OK and AD bits. AD set means secure. SERVFAIL that goes away with checking disabled means bogus. Signatures without AD mean the resolver does not validate, so choose Cloudflare, Google or Quad9."
+          },
+          {
+            "q": "Does it list every cipher suite the server accepts?",
+            "a": "No. It sends one raw ClientHello per weak class (NULL/export, RC4, 3DES, RSA key exchange, CBC) and reports the suite the server picks in each, so it sees suites Go itself cannot negotiate. RC4 and NULL fail, 3DES warns, RSA key exchange and CBC are info. STARTTLS is not included."
+          },
+          {
+            "q": "What are the limits?",
+            "a": "10 seconds per connection and handshake, 25 seconds per host, 20 hosts per UI check (500 in the CLI), two checks at a time. Offline input is up to 4 MiB and 500 certificates."
+          }
+        ]
       }
     },
     {
@@ -1028,13 +1630,39 @@
       "description": "List and inspect nested zip, tar, 7z, rar, gz, xz and zst archives and flag zip bombs and path traversal.",
       "port": 47122,
       "kind": "bin",
-      "engine": "Go + mholt/archives",
-      "engine_reason": "mholt/archives reads zip/tar/7z/rar/gz/xz/zst uniformly in pure Go, including nested archives.",
+      "engine": "Go + mholt/archives (bodgit/sevenzip, nwaples/rardecode)",
+      "engine_reason": "Pure Go: one static binary reads zip/tar/7z/rar and every compression layer through one streaming API, with direct zip offsets for overlap-bomb detection; no cgo libarchive or bundled 7-Zip.",
       "private_repo": "chayprabs/archive-inspector",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.1",
+      "status": "released",
+      "assets": {
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/archive-inspector-v1.0.1/archive-inspector-1.0.1-windows-x64.zip",
+          "sha256": "1b7eec4cca9c7ed92e85948dd946f186a6c4cac2b004c4db16f97948f21e828b",
+          "size_bytes": 4387925
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/archive-inspector-v1.0.1/archive-inspector-1.0.1-macos-arm64.zip",
+          "sha256": "51114d8b7dd53df918f729f1081b897a0afde6709fb450005f1847283a69c821",
+          "size_bytes": 4032097
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/archive-inspector-v1.0.1/archive-inspector-1.0.1-macos-x64.zip",
+          "sha256": "0ec244964d58ff6e5661bd5ea10d52dab6437b38f06e1b510b8f8fe5ba4ed535",
+          "size_bytes": 4345430
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/archive-inspector-v1.0.1/archive-inspector-1.0.1-linux-x64.zip",
+          "sha256": "abb2d05a0d00a677e60b1faa67b60ed837900f96450258dd35490362b8624963",
+          "size_bytes": 4293141
+        },
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/archive-inspector-v1.0.1/archive-inspector-1.0.1-linux-arm64.zip",
+          "sha256": "64d52876764ef66c2a04795560d16e5c60a6bca626924bad33831dd14006f1ae",
+          "size_bytes": 3904110
+        }
+      },
+      "release_notes": "Review fixes: linear name checks on very deep paths, CP437 zip names and index-based entry addressing, stricter Windows-safe extraction (invalid characters, NUL .txt, CONIN$, COM¹), mixed-script-only homoglyph warnings, self-extracting zips, nameless/empty 7z, empty files rejected, DOS zip times without a zone.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -1054,15 +1682,44 @@
       },
       "smoke": {
         "path": "/api/inspect",
-        "fields": {},
-        "files": {
-          "file": "sample.zip"
+        "fields": {
+          "depth": "8"
         },
-        "expect": "entries"
+        "files": {
+          "file": "nested-demo.zip"
+        },
+        "expect": "config/settings.json"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Open Archive Inspector (it starts at http://127.0.0.1:47122).",
+          "Choose an archive: zip, jar, apk, docx, whl, tar, tgz, tar.xz, gz, zst, 7z or rar (up to 512 MiB).",
+          "Press Inspect: read the safety verdict and findings, then browse every entry, including archives nested inside it.",
+          "Use Preview, SHA-256 or Download on any file without extracting the archive; add a second archive to see what changed.",
+          "From a terminal: localtools-archive-inspector check upload.zip (exit code 2 when unsafe), or extract upload.zip -o out for a safe extraction."
+        ],
+        "faqs": [
+          {
+            "q": "Does it extract the archive to disk?",
+            "a": "No. Listing, previews and hashes read entries straight from the archive. Nested archives are copied to a temporary file only to be opened, and that file is deleted afterwards. Extraction happens only when you run the extract command."
+          },
+          {
+            "q": "Which zip bombs does it detect?",
+            "a": "Extreme compression ratios, archives that declare far more data than their size (like the passwordless 42.zip, whose nested layers expand to petabytes), overlapping entries that reuse the same compressed data (David Fifield's zbsm.zip), and archives that contain themselves (r.zip). Reading stops after 1 GiB of decompressed data in any case. Password-protected archives, such as the original 42.zip, are listed and flagged as encrypted, but their contents cannot be checked."
+          },
+          {
+            "q": "What makes an entry unsafe?",
+            "a": "Paths with .., absolute paths or drive letters (zip slip), symlinks or hard links pointing outside the archive, entries written through a symlink, Unicode direction-override characters, executables disguised as documents or with double extensions, plus warnings for duplicates, case collisions, setuid bits and encrypted entries."
+          },
+          {
+            "q": "Can it open password-protected archives?",
+            "a": "No. Encrypted entries and archives are listed where the format allows and flagged as encrypted, but never decrypted."
+          },
+          {
+            "q": "Is the extract command safe to use on untrusted archives?",
+            "a": "It writes only regular files and directories into a new or empty folder, refuses traversal paths, links, device files and Windows device names, never overwrites files and stops at 1 GiB or 20,000 entries (adjustable). Every refused entry is listed."
+          }
+        ]
       }
     },
     {
@@ -1257,18 +1914,44 @@
       "description": "Optimize and minify SVG files with SVGO and export them to PNG.",
       "port": 47127,
       "kind": "js",
-      "engine": "SVGO + resvg (wasm)",
-      "engine_reason": "SVGO is the standard SVG optimizer; resvg renders PNG accurately without a browser.",
+      "engine": "SVGO 4.1 + allowlist sanitizer (SVGO plugin) + resvg (wasm) for PNG",
+      "engine_reason": "SVGO is the standard SVG optimizer; resvg-wasm renders PNG accurately without a browser on every OS/arch from one artifact; the sanitizer is a strict allowlist tested against 30 XSS payloads in a live browser.",
       "private_repo": "chayprabs/svg-optimizer",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.3",
+      "status": "released",
+      "assets": {
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/svg-optimizer-v1.0.3/svg-optimizer-1.0.3-windows-x64.zip",
+          "sha256": "254f5dd6b5e436e598ad364eaff0765e5653202f494f3f86edc4648d32481c93",
+          "size_bytes": 41148668
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/svg-optimizer-v1.0.3/svg-optimizer-1.0.3-macos-arm64.zip",
+          "sha256": "83249d359aefdf9a8841ddb3954bb7b45a134335cfbb35c7958d4b10565f9bbe",
+          "size_bytes": 26330217
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/svg-optimizer-v1.0.3/svg-optimizer-1.0.3-macos-x64.zip",
+          "sha256": "5c082a0e8db79c3441311c285bffbc770dee85e3cd4eeab33a127cecfe6e5e7d",
+          "size_bytes": 28574190
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/svg-optimizer-v1.0.3/svg-optimizer-1.0.3-linux-x64.zip",
+          "sha256": "4fa8cf3aa4afcf41a339c6bd51f53db61e3a30f88b595c02967d29a835669c9e",
+          "size_bytes": 38444278
+        },
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/svg-optimizer-v1.0.3/svg-optimizer-1.0.3-linux-arm64.zip",
+          "sha256": "cbb6a549b431d0049e25d685ba1fe19869bc02ab1bbb403b73dbfc7f86d7614b",
+          "size_bytes": 38572960
+        }
+      },
+      "release_notes": "Security: a <style> sheet that fails the check is dropped whole and the final output is sanitized again; only xlink:/xml: prefixes; SMIL may not animate href/style/on*/base. Safe keeps empty elements with ids. Results table fits phone screens.",
       "registries": {
         "brew": true,
         "scoop": true,
         "winget": true,
-        "npm": "localtools-svg-optimizer",
+        "npm": null,
         "pypi": null,
         "ghcr": null
       },
@@ -1278,20 +1961,50 @@
           "macos",
           "linux"
         ],
-        "disk_mb": 100,
+        "disk_mb": 150,
         "docker": false
       },
       "smoke": {
         "path": "/api/optimize",
-        "fields": {},
-        "files": {
-          "file": "sample.svg"
+        "fields": {
+          "preset": "safe",
+          "sanitize": "1"
         },
-        "expect": "<svg"
+        "files": {
+          "file": "inkscape-badge.svg"
+        },
+        "expect": "\"after\":1119"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Run localtools-svg-optimizer; the page opens at http://127.0.0.1:47127.",
+          "Drop one or more .svg files (or paste SVG markup).",
+          "Pick Safe or Aggressive, plus any toggles: keep viewBox, remove width/height, prefix IDs, multipass, sanitize, PNG width.",
+          "Press Optimize to see before/after sizes and side-by-side previews; download one file, its PNG, or all as a zip.",
+          "From a terminal: localtools-svg-optimizer optimize icons/ -o out/ --sanitize --png 512"
+        ],
+        "faqs": [
+          {
+            "q": "Will the optimized SVG look different, or break my sprite sheet?",
+            "a": "Not with the Safe preset: it runs SVGO's preset-default but keeps every id, <symbol> and <defs> entry, so file.svg#icon links and outside CSS keep working, and tests render every sample before and after with resvg (at most 0.5% of pixels may differ). Aggressive also drops unreferenced ids, symbols and defs, <title>/<desc>, and rounds to 2 decimals."
+          },
+          {
+            "q": "Is it safe to accept SVG uploads after sanitizing?",
+            "a": "Sanitize keeps only drawing elements and removes scripts, event handlers, foreignObject, external links, and any CSS that loads something from outside (url(), @import, @font-face, image-set and similar), after decoding CSS escapes the way a browser does. It is tested against 30 SVG XSS payloads and 59 CSS, namespace and SMIL payloads by inlining the result into a live browser page. Still serve user SVGs with a Content-Security-Policy as defence in depth."
+          },
+          {
+            "q": "Why did removing the viewBox not happen?",
+            "a": "SVGO only removes viewBox when width/height make it redundant (same origin and size). With mm units or a different size it keeps it, because removing it would change scaling. Turning on Remove width/height always keeps the viewBox."
+          },
+          {
+            "q": "Does anything get uploaded?",
+            "a": "No. Everything runs in the local program on 127.0.0.1; it makes no network requests."
+          },
+          {
+            "q": "Why does text in the PNG use a different font?",
+            "a": "PNG export uses resvg with your system's common fonts (Arial, Helvetica, DejaVu, Liberation). Fonts not found there fall back to a default. The optimized SVG itself keeps your font settings."
+          }
+        ]
       }
     },
     {
@@ -1350,10 +2063,31 @@
       "engine": "fontTools (pyftsubset, varLib.instancer, WOFF2)",
       "engine_reason": "fontTools is the reference font library; pyftsubset and instancer are what font engineers use.",
       "private_repo": "chayprabs/font-subsetter",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.1",
+      "status": "released",
+      "assets": {
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/font-subsetter-v1.0.1/font-subsetter-1.0.1-windows-x64.zip",
+          "sha256": "aa09faae774a7870df3c4a928b3864a89711b59a4c6d63e2a97c49ceeca1ae66",
+          "size_bytes": 16735887
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/font-subsetter-v1.0.1/font-subsetter-1.0.1-macos-arm64.zip",
+          "sha256": "16bf1a1e3fc5d1bdfb391665345c07aa68c6ff380f79d05c0fddf1b3a1f42676",
+          "size_bytes": 25018551
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/font-subsetter-v1.0.1/font-subsetter-1.0.1-macos-x64.zip",
+          "sha256": "c84d69d865f497491e705ba1a95040d67fbd8fa5d019411f127459af6fc9f7f8",
+          "size_bytes": 23795906
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/font-subsetter-v1.0.1/font-subsetter-1.0.1-linux-x64.zip",
+          "sha256": "baaee090883fcab741fbb2b91776d5fc6c24cd6b0a5f1a6fc58a33788b2ddbd3",
+          "size_bytes": 38781114
+        }
+      },
+      "release_notes": "Fixes the macOS/Linux launcher when started through the ~/.localtools/bin shim, and update on macOS/Linux.",
       "registries": {
         "brew": false,
         "scoop": false,
@@ -1378,13 +2112,40 @@
           "format": "woff2"
         },
         "files": {
-          "file": "sample.ttf"
+          "file": "Inter-Regular.ttf"
         },
         "expect": "wOF2"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Drop one or more TTF, OTF, WOFF or WOFF2 fonts.",
+          "Tick Unicode presets (Latin, Cyrillic, Greek, Vietnamese...) and/or type the exact text you need.",
+          "Optionally keep or drop OpenType features, keep hinting, and pin or limit variable axes such as wght=400:700.",
+          "Pick WOFF2, WOFF or TTF/OTF and press Subset.",
+          "Check the size, glyph count, missing characters and license bits, preview the subset font, then Download and Copy CSS for the @font-face rule."
+        ],
+        "faqs": [
+          {
+            "q": "How much smaller do fonts get?",
+            "a": "It depends on how many characters you keep. A Latin-only WOFF2 of a large multi-script font is often 70-95% smaller; keeping only the glyphs of a short headline can shrink a 100 KB font to a few KB."
+          },
+          {
+            "q": "Will kerning and ligatures still work?",
+            "a": "Yes. By default fontTools keeps the standard layout features (kern, liga, calt, mark, locl and more). Choose all to keep every feature, none to drop them, or edit the list, e.g. +ss01,-liga."
+          },
+          {
+            "q": "Can it make a static font from a variable font?",
+            "a": "Yes. Pin every axis (for example wght=700 wdth=100 opsz=drop) to get a static instance, or limit an axis (wght=400:700) to keep a smaller variable font."
+          },
+          {
+            "q": "Is it legal to subset my font?",
+            "a": "That depends on the font license. The tool shows the license fields and warns when the font's fsType bits forbid embedding or subsetting. Open-licensed fonts (SIL OFL, Apache) allow it."
+          },
+          {
+            "q": "Does it upload my fonts?",
+            "a": "No. Everything runs locally with fontTools on 127.0.0.1; there is no network access."
+          }
+        ]
       }
     },
     {
