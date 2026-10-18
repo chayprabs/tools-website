@@ -503,13 +503,39 @@
       "description": "Profile CSV, Parquet and JSON datasets (types, nulls, distributions) and detect schema and value drift between two files.",
       "port": 47107,
       "kind": "bin",
-      "engine": "DuckDB SUMMARIZE + schema inference + drift between two files",
-      "engine_reason": "DuckDB SUMMARIZE gives exact column statistics over large files in seconds.",
+      "engine": "DuckDB 1.5.6 (official CLI, bundled): SUMMARIZE plus exact SQL counts, histograms, patterns and drift",
+      "engine_reason": "DuckDB reads CSV, JSON and Parquet natively with full-file type inference and profiles millions of rows in seconds. The official CLI runs as a sandboxed sidecar, so the tool works offline on every OS without cgo.",
       "private_repo": "chayprabs/dataset-profiler",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.2",
+      "status": "released",
+      "assets": {
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/dataset-profiler-v1.0.2/dataset-profiler-1.0.2-windows-x64.zip",
+          "sha256": "8da232df484a628292a3e911e9d9e9073fff33812d5e3a8d624bbf0e70ecbb59",
+          "size_bytes": 17495623
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/dataset-profiler-v1.0.2/dataset-profiler-1.0.2-macos-arm64.zip",
+          "sha256": "f17d01745beb376f19c4bab25309c9bfc51f55ad9224a9ef35a92964426b3aaf",
+          "size_bytes": 21344260
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/dataset-profiler-v1.0.2/dataset-profiler-1.0.2-macos-x64.zip",
+          "sha256": "38b2aff53b9acdfda2cab01ea84559ee73d3da9da0cfe063ccb92af82842262f",
+          "size_bytes": 23374386
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/dataset-profiler-v1.0.2/dataset-profiler-1.0.2-linux-x64.zip",
+          "sha256": "3d07176af72b666845f80043b2a39d413fd196659c2fe85897c12d2770bc21a8",
+          "size_bytes": 25861361
+        },
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/dataset-profiler-v1.0.2/dataset-profiler-1.0.2-linux-arm64.zip",
+          "sha256": "152df16de32a6e1056724e32e14cb074497dce75d00af8c5f482b1dfc9bc2c3a",
+          "size_bytes": 23562751
+        }
+      },
+      "release_notes": "Fixes: big-integer CSV columns use DuckDB header names (BOM, padded, duplicate and case-colliding headers work); approximate quantiles stay within min/max; Markdown/HTML exports include NaN/Inf counts; faster on wide files.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -524,20 +550,48 @@
           "macos",
           "linux"
         ],
-        "disk_mb": 80,
+        "disk_mb": 120,
         "docker": false
       },
       "smoke": {
         "path": "/api/profile",
         "fields": {},
         "files": {
-          "file": "sample.csv"
+          "file": "sample.csv",
+          "compare": "changed.csv"
         },
-        "expect": "null"
+        "expect": "\"column\":\"amount\",\"schema\":\"unchanged\",\"before_type\":\"BIGINT\",\"after_type\":\"BIGINT\",\"total_variation\":\"1.0\""
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Run localtools-dataset-profiler (or open Dataset Profiler from your app menu); it opens in your browser.",
+          "Drop a CSV, TSV, JSON/JSONL or Parquet file. Optionally drop a second file to compare against.",
+          "Press Profile datasets. Each column shows its inferred type, exact null and distinct counts, min/max/mean/stddev, approximate quartiles, top values, a histogram (numbers) or patterns and formats (text), plus sample rows.",
+          "With two files, the drift table lists added, removed and type-changed columns, a total-variation score per column and the change in null share.",
+          "Download the report as JSON, Markdown, HTML or a CSV table. From a terminal: localtools-dataset-profiler profile data.csv --json, or localtools-dataset-profiler drift before.csv after.parquet --html > drift.html."
+        ],
+        "faqs": [
+          {
+            "q": "Which numbers are exact?",
+            "a": "Row, null and distinct counts, top-value counts, min/max and format matches are exact over the whole file. Quartiles come from DuckDB SUMMARIZE and are approximate; mean, standard deviation and drift scores use floating point. Large integers are sent as strings, so 9007199254740993 stays exact."
+          },
+          {
+            "q": "How big can a file be?",
+            "a": "Up to 64 MiB, 2 million rows and 256 columns per file, with a 120-second deadline per profile. Larger or deeper inputs are refused with a clear message instead of hanging."
+          },
+          {
+            "q": "What does the drift score mean?",
+            "a": "Total variation distance between the two value-frequency distributions of a column, including nulls: 0 means identical frequencies, 1 means no value in common. It measures how much the distribution moved, not statistical significance, and does not match rows by key."
+          },
+          {
+            "q": "Does my data leave my computer?",
+            "a": "No. Files are profiled by a bundled DuckDB that is locked to a per-request temporary folder with network access and extension loading disabled; the folder is deleted after each profile."
+          },
+          {
+            "q": "How are patterns and formats detected?",
+            "a": "Text values are reduced to shapes (A for upper case, a for lower case, 9 for digits) and the five most common shapes are listed. Values that fully match email, URL, UUID, ISO date, IPv4, integer or decimal patterns are counted exactly."
+          }
+        ]
       }
     },
     {
@@ -994,16 +1048,42 @@
       "name": "GitHub Actions Linter",
       "command": "localtools-github-actions-linter",
       "category": "dev",
-      "description": "Lint GitHub Actions workflows for errors and security issues (script injection, permissions, unpinned actions) with fixes.",
+      "description": "Lint GitHub Actions workflows and composite actions for errors and security issues (script injection, permissions, unpinned actions) with a fix per finding.",
       "port": 47113,
       "kind": "bin",
-      "engine": "Go + actionlint (+ zizmor sidecar if feasible)",
-      "engine_reason": "actionlint is the standard workflow checker and embeds as a Go library; zizmor adds security audits.",
+      "engine": "Go + actionlint 1.7.12 + zizmor 1.31.1",
+      "engine_reason": "actionlint validates workflow syntax and expression types with bundled action metadata; the checksum-pinned zizmor sidecar adds dedicated offline security audits. Both engines feed one local report without remote fetching.",
       "private_repo": "chayprabs/github-actions-linter",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.3",
+      "status": "released",
+      "assets": {
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/github-actions-linter-v1.0.3/github-actions-linter-1.0.3-linux-arm64.zip",
+          "sha256": "f248d7c8421b1806b4f5e6f8eb9c9e594f23b9d3eb9cb1e075197dab04e28ef7",
+          "size_bytes": 13273884
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/github-actions-linter-v1.0.3/github-actions-linter-1.0.3-linux-x64.zip",
+          "sha256": "9c0e1e8ae02bc96678a4d5d43a660cd12aacb900026b1b6a549c199b96b27712",
+          "size_bytes": 14028030
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/github-actions-linter-v1.0.3/github-actions-linter-1.0.3-macos-arm64.zip",
+          "sha256": "4bd6c500f3fa1153e88537157c326e9529c7ae2e16424574b680089edb828554",
+          "size_bytes": 13029024
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/github-actions-linter-v1.0.3/github-actions-linter-1.0.3-macos-x64.zip",
+          "sha256": "12ca3f7c76761fbc382965a000193b23e5ad461bb799b5d49ad5fe292aaa7eea",
+          "size_bytes": 13813720
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/github-actions-linter-v1.0.3/github-actions-linter-1.0.3-windows-x64.zip",
+          "sha256": "a7611c864460aa6ac8044dbd304c39cab5525fb1ff0dfeab00b0a8d8bebcc9b5",
+          "size_bytes": 13677674
+        }
+      },
+      "release_notes": "No temp-file leaks on cancelled jobs, discovery before limits (1,000 files / 16 MiB), one-run zizmor batches, real-world action.yml inputs accepted, engine failure fails --fail-on, review minors.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -1018,7 +1098,7 @@
           "macos",
           "linux"
         ],
-        "disk_mb": 40,
+        "disk_mb": 60,
         "docker": false
       },
       "smoke": {
@@ -1027,11 +1107,38 @@
         "files": {
           "file": "workflow.yml"
         },
-        "expect": "line"
+        "expect": "excessive-permissions"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Open GitHub Actions Linter (it starts at http://127.0.0.1:47113).",
+          "Paste a workflow or action.yml, drop files or a .zip, or choose a repository folder: .github/workflows/* and action.yml files are picked up.",
+          "Press Lint workflows: actionlint correctness checks and offline zizmor security audits give one list with file:line:column, severity, explanation and a fix snippet.",
+          "Ignore rules you accept (field or per-finding button), then download JSON, SARIF or Markdown.",
+          "In CI: localtools-github-actions-linter check . --format sarif --fail-on warn > actions.sarif (exit 2 when warnings or errors remain)."
+        ],
+        "faqs": [
+          {
+            "q": "Does it contact GitHub or upload my workflow?",
+            "a": "No. Both engines run locally. zizmor always runs with --offline --no-config and without your GitHub credentials, so online audits (known-vulnerable-actions, impostor-commit, ref-confusion, stale-action-refs) are not included."
+          },
+          {
+            "q": "What checks are included?",
+            "a": "actionlint 1.7.12 checks syntax, expressions and contexts, needs, matrix, runner labels and popular-action inputs; zizmor 1.31.1 adds template injection, unpinned actions, excessive permissions, dangerous triggers, credential persistence, cache poisoning and more. Composite action.yml files are audited by zizmor and checked against actionlint's action schema."
+          },
+          {
+            "q": "How do I silence a finding?",
+            "a": "Use --ignore rule-id (or the UI field and per-finding button), --ignore-regex for actionlint messages, or a # zizmor: ignore[rule] comment on the reported line."
+          },
+          {
+            "q": "Can it fail CI or feed GitHub code scanning?",
+            "a": "Yes. --fail-on error|warn|info exits with code 2 when such findings exist, and --format sarif writes SARIF 2.1.0."
+          },
+          {
+            "q": "Does it fix or pin actions for me?",
+            "a": "No. Every finding has a fix snippet to apply by hand. Offline it cannot look up commit SHAs, so it tells you where to find the SHA and never invents one."
+          }
+        ]
       }
     },
     {
@@ -1042,39 +1149,39 @@
       "description": "Score Kubernetes YAML and Helm-rendered manifests for production readiness and security, with a fix snippet per finding.",
       "port": 47114,
       "kind": "bin",
-      "engine": "Go + kube-score library + PSS-aligned checks",
-      "engine_reason": "kube-score (Go, MIT) checks single objects and cross-object relationships with mature messages; localtools adds line-exact Pod Security Standards checks, API removals per Kubernetes version and duplicate detection.",
+      "engine": "Go + kube-score library + pod security checks",
+      "engine_reason": "kube-score (Go, MIT) checks single objects and cross-object relationships; localtools adds a documented subset of versioned Pod Security Standards checks, API removals and duplicate detection.",
       "private_repo": "chayprabs/k8s-manifest-checker",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.0/k8s-manifest-checker-1.0.0-windows-x64.zip",
-          "sha256": "16742a485f8a8bffadce20cfeac84e5c9ab2d5921f6bdca67c10b0f745225b3c",
-          "size_bytes": 8187415
+          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.1/k8s-manifest-checker-1.0.1-windows-x64.zip",
+          "sha256": "135ef4edeb3ba747680922009045f0cc004c3404c7ea9b4d013bc4af41447994",
+          "size_bytes": 8212053
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.0/k8s-manifest-checker-1.0.0-macos-arm64.zip",
-          "sha256": "a7fea03c9cd278c9e5cc0bfe7f75c36061a92dc777f1747beca64a206cae7c70",
-          "size_bytes": 7357715
+          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.1/k8s-manifest-checker-1.0.1-macos-arm64.zip",
+          "sha256": "f9c0ebeae2b632ab90bc38e9b7c96dac9a6aa1d5d1bdebb5980ff29446afbbd2",
+          "size_bytes": 7382218
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.0/k8s-manifest-checker-1.0.0-macos-x64.zip",
-          "sha256": "57921885b8e56429d15b503bacf38d79a83c8799b2d901a8398daf0f4c91dae6",
-          "size_bytes": 8081182
+          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.1/k8s-manifest-checker-1.0.1-macos-x64.zip",
+          "sha256": "bf137f7a23649be927849515068d6b119f78024cac1656ebf7d76abdce8a7545",
+          "size_bytes": 8105078
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.0/k8s-manifest-checker-1.0.0-linux-x64.zip",
-          "sha256": "5c09f0e52bb36effde665190085b15e5efb35c3c16adb51f2f8c392db0ad52c2",
-          "size_bytes": 7975138
+          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.1/k8s-manifest-checker-1.0.1-linux-x64.zip",
+          "sha256": "52ed5e48afa89d8f607984ed8d34fb794fac325f3c53b06df975d73b0cd7d3ec",
+          "size_bytes": 8004767
         },
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.0/k8s-manifest-checker-1.0.0-linux-arm64.zip",
-          "sha256": "1945b83ee4c48322a8f968a9deb6de0e1b612e5263691bef684c318de7a9e121",
-          "size_bytes": 7081375
+          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.1/k8s-manifest-checker-1.0.1-linux-arm64.zip",
+          "sha256": "76b443f7675393a834e4cccad99a5cdec2664dff6492c71391421549ef93ad97",
+          "size_bytes": 7104806
         }
       },
-      "release_notes": "First release: kube-score 1.20.0 plus host namespace/hostPath/capability/privilege-escalation/seccomp checks, API removals per target Kubernetes 1.25-1.34, duplicates; per-object grades; fix snippet per finding; files, folders and zips; JSON, SARIF and Markdown; CLI --fail-on.",
+      "release_notes": "Fix nested-zip memory growth and enforce 16 MiB report limits for every format; add a 2,000-container limit, baseline/restricted capability allowlists, host ports, sysctls, SELinux, procMount and AppArmor checks; decode UTF-16, normalize pod boolean spellings, improve field/archive errors and remove duplicate API findings and kit demo pages.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -1105,7 +1212,7 @@
       "page": {
         "howto": [
           "Open Kubernetes Manifest Checker (it starts at http://127.0.0.1:47114).",
-          "Paste multi-document YAML (for example helm template or kustomize build output), or drop several files or a .zip.",
+          "Paste rendered multi-document YAML, or drop files/a zip. Limits: 8 MiB, 500 resources, 2,000 containers; expand YAML aliases and nested archives first.",
           "Pick the Kubernetes version you deploy to, so removed and deprecated apiVersions are flagged correctly.",
           "Press Check manifests: every object gets a score and grade, every finding a severity, file and line, explanation and YAML fix snippet.",
           "Ignore checks you accept with the field or the per-finding button, then download JSON, SARIF or Markdown.",
@@ -1118,7 +1225,7 @@
           },
           {
             "q": "Which checks run?",
-            "a": "kube-score 1.20.0 (resources, probes, image tags, security context, Service/NetworkPolicy/PDB/HPA targets and more) plus localtools checks aligned with Pod Security Standards (host namespaces, hostPath, capabilities, privilege escalation, seccomp), API removals for your Kubernetes version, duplicate objects, missing namespaces and recommended labels."
+            "a": "kube-score 1.20.0 plus localtools checks for host namespaces/paths/ports, capabilities, privilege escalation, seccomp, sysctls, SELinux, procMount and AppArmor, plus target-version API removals and duplicates. These are a documented subset of Pod Security Standards, not full admission/schema validation. Inputs allow 8 MiB, 500 resources and 2,000 total containers; each report format is capped at 16 MiB."
           },
           {
             "q": "Can I use it with Helm or Kustomize?",
@@ -1287,13 +1394,34 @@
       "description": "Format and lint SQL in any major dialect with sqlfluff, including auto-fix.",
       "port": 47117,
       "kind": "py",
-      "engine": "sqlfluff",
-      "engine_reason": "sqlfluff lints and fixes SQL across all major dialects with configurable rules.",
+      "engine": "sqlfluff 4 (+ sqlfluffrs) and sqlglot",
+      "engine_reason": "sqlfluff is the most complete open-source SQL linter with real auto-fix across dialects; sqlglot adds dialect-to-dialect transpiling, which sqlfluff cannot do.",
       "private_repo": "chayprabs/sql-formatter",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.0",
+      "status": "released",
+      "assets": {
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.0/sql-formatter-1.0.0-windows-x64.zip",
+          "sha256": "4d333f7aaf26435095024804568de0fbc48f27c660b6ade5ddb74b32c19459f2",
+          "size_bytes": 24061542
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.0/sql-formatter-1.0.0-macos-arm64.zip",
+          "sha256": "35af80b27b3fbf4bfb1555d2e03b80f383b8db17d5ac83ac91f68c5cf22d6235",
+          "size_bytes": 31696751
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.0/sql-formatter-1.0.0-macos-x64.zip",
+          "sha256": "d00186036ab96f83efc6dd840f646d1a1e92bb892bfa47c8ab7a418451da068a",
+          "size_bytes": 30770171
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.0/sql-formatter-1.0.0-linux-x64.zip",
+          "sha256": "21fbaf078a90895058f64d4f2f97abe76a439e1759e82f5abb4f2d1f13728466",
+          "size_bytes": 43862912
+        }
+      },
+      "release_notes": "First release: lint, fix and transpile SQL in 28 dialects with sqlfluff 4.4 and sqlglot; local web UI and CLI with JSON/SARIF output.",
       "registries": {
         "brew": false,
         "scoop": false,
@@ -1312,17 +1440,44 @@
         "docker": false
       },
       "smoke": {
-        "path": "/api/format",
+        "path": "/api/lint",
         "fields": {
-          "sql": "select a,b from t",
+          "sql": "select a,b from t\n",
           "dialect": "ansi"
         },
         "files": {},
-        "expect": "SELECT"
+        "expect": "LT09"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Paste SQL or drop one or more .sql files.",
+          "Pick the dialect (Postgres, MySQL, BigQuery, Snowflake, T-SQL, DuckDB and 22 more); optionally choose rules, a templater (Jinja or placeholders) or upload your .sqlfluff / pyproject.toml.",
+          "Press Lint to see every violation with line, column, rule code and a link to the rule docs.",
+          "Switch to Fix (or press Fix all) to get the fixed SQL with a diff; copy or download it.",
+          "Use Transpile to convert a query between dialects, e.g. T-SQL to Postgres."
+        ],
+        "faqs": [
+          {
+            "q": "Are the results the same as the sqlfluff CLI?",
+            "a": "Yes. It runs sqlfluff 4 with your dialect and config, and the tests check that lint and fix output equal the sqlfluff CLI on TPC-H, dbt and GitLab SQL."
+          },
+          {
+            "q": "Can I use my existing .sqlfluff config?",
+            "a": "Yes, upload .sqlfluff, setup.cfg, tox.ini or pyproject.toml. It is parsed, never executed: library paths, macro paths and the python/dbt templaters are ignored and listed."
+          },
+          {
+            "q": "Does it support dbt models?",
+            "a": "Use the Jinja templater: it provides dbt's ref, source and config builtins, and fixes are applied to your template source. The full dbt templater (which needs a database connection) is not included."
+          },
+          {
+            "q": "How big can the SQL be?",
+            "a": "The web UI takes up to 512 KB and about 2,000 statements per run, with a 120 second deadline because sqlfluff is thorough but slow. The command line has no limits."
+          },
+          {
+            "q": "Does my SQL leave my computer?",
+            "a": "No. Everything runs locally on 127.0.0.1; there is no network access or telemetry."
+          }
+        ]
       }
     },
     {
@@ -1478,8 +1633,8 @@
       "description": "Extract data from HTML pages with CSS selectors into JSON or CSV.",
       "port": 47120,
       "kind": "bin",
-      "engine": "Go + goquery / cascadia",
-      "engine_reason": "goquery/cascadia give jQuery-style CSS selectors over a real HTML5 parser in pure Go.",
+      "engine": "Go + cascadia + x/net/html",
+      "engine_reason": "Cascadia selectors over the x/net/html HTML5 parser provide CSS matching, entity decoding and browser-style HTML repair in one pure-Go executable; no browser runtime or goquery dependency is needed.",
       "private_repo": "chayprabs/html-extractor",
       "version": "1.0.2",
       "status": "released",
