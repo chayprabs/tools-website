@@ -656,38 +656,38 @@
       "port": 47109,
       "kind": "bin",
       "engine": "Go: streaming xlsx reader + Myers row/column alignment; excelize for the annotated workbook",
-      "engine_reason": "A streaming reader keeps every stored value exact (no float rounding) and handles a million cells in seconds; Myers O(ND) alignment finds inserted and deleted rows and columns; excelize writes B back with the changes highlighted.",
+      "engine_reason": "A streaming reader shows every value exactly as stored (comparison uses the stored double, like Excel) and handles a million cells in seconds; Myers O(ND) alignment, with per-column alignment when a column changed in every row, finds inserted and deleted rows and columns; excelize writes B back with the changes highlighted.",
       "private_repo": "chayprabs/excel-diff",
-      "version": "1.0.0",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.0/excel-diff-1.0.0-linux-arm64.zip",
-          "sha256": "ab09f904edad156737d4831468d251fa403370d0de9a5128a828a5c012d60ee8",
-          "size_bytes": 4470940
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.2/excel-diff-1.0.2-linux-arm64.zip",
+          "sha256": "5671bbbcc430978ba6d2d8bc43274ca722bd1a439f74b7b8fb2510420425e33e",
+          "size_bytes": 4483477
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.0/excel-diff-1.0.0-linux-x64.zip",
-          "sha256": "5976f53e05395b8b64d3d89e7e24f0d8c6bb53ea983912a94adaf85a2554b3ef",
-          "size_bytes": 4895968
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.2/excel-diff-1.0.2-linux-x64.zip",
+          "sha256": "f4ad67b70a7a12fa731b5f4b3ab9a3c79f07c36bde93e629e7bde00138379730",
+          "size_bytes": 4911767
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.0/excel-diff-1.0.0-macos-arm64.zip",
-          "sha256": "3831c7394fbddbafb4715c8fa9fc50ee4e4ac9f9dc39dbb1d46cc90ab45c65c1",
-          "size_bytes": 4637530
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.2/excel-diff-1.0.2-macos-arm64.zip",
+          "sha256": "a4efaff3a925d092a7ad56a886f06c01be4389246b0efcb0890afe04a3a3f992",
+          "size_bytes": 4649196
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.0/excel-diff-1.0.0-macos-x64.zip",
-          "sha256": "3a368e39103fe8babc41a1a1179ed46f6d7840a2014fa0c32ab10d6d5e7dc535",
-          "size_bytes": 4975073
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.2/excel-diff-1.0.2-macos-x64.zip",
+          "sha256": "8f13a62756cfe32a55a4bfe23612311a3962e2e18db5e34c8f2cb2cccf7beee3",
+          "size_bytes": 4988654
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.0/excel-diff-1.0.0-windows-x64.zip",
-          "sha256": "dfd60cbd20465f42624712a87ff7172c432f06d302d5cc2a9d327c95d532268d",
-          "size_bytes": 5025917
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.2/excel-diff-1.0.2-windows-x64.zip",
+          "sha256": "992909ba181c8661f923967e6459ada1ed2daf2565c699020bac9c55395857ce",
+          "size_bytes": 5037676
         }
       },
-      "release_notes": "- First release: .xlsx/.xlsm/.csv diff with row/column alignment, key columns, sheet rename detection, defined names, merges, validations and comments.\n- Side-by-side grid with change navigation; JSON, CSV and annotated .xlsx exports; CLI exit codes like diff.",
+      "release_notes": "- Rows align when one column changed in every row plus inserted rows (correct, under a second); large blocks are paired by position.\n- Annotated workbook works without a stylesheet and with openpyxl/pandas colours; a failed -o leaves no partial file.\n- Less re-save noise (default validation attributes, empty inline strings, built-in formats, quoted sheet names in names).\n- Date-system changes have their own label; one file argument exits 2.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -729,7 +729,7 @@
           },
           {
             "q": "Are numbers rounded?",
-            "a": "No. Values are shown exactly as stored in the file, so 12345678901234567890 stays intact. Numbers are compared by their stored value, so 0.1 and 0.10000000000000001 (the same double) count as equal."
+            "a": "Values are shown and exported exactly as stored in the file, so 12345678901234567890 stays intact. Equality uses the stored double, like Excel, so 0.1 and 0.10000000000000001 count as equal."
           },
           {
             "q": "My rows were re-sorted. Can it still match them?",
@@ -1042,13 +1042,39 @@
       "description": "Score Kubernetes YAML and Helm-rendered manifests for production readiness and security, with a fix snippet per finding.",
       "port": 47114,
       "kind": "bin",
-      "engine": "Go + kube-score / kube-linter checks",
-      "engine_reason": "kube-score and kube-linter checks are Go libraries with well-understood production-readiness rules.",
+      "engine": "Go + kube-score library + PSS-aligned checks",
+      "engine_reason": "kube-score (Go, MIT) checks single objects and cross-object relationships with mature messages; localtools adds line-exact Pod Security Standards checks, API removals per Kubernetes version and duplicate detection.",
       "private_repo": "chayprabs/k8s-manifest-checker",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.0",
+      "status": "released",
+      "assets": {
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.0/k8s-manifest-checker-1.0.0-windows-x64.zip",
+          "sha256": "16742a485f8a8bffadce20cfeac84e5c9ab2d5921f6bdca67c10b0f745225b3c",
+          "size_bytes": 8187415
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.0/k8s-manifest-checker-1.0.0-macos-arm64.zip",
+          "sha256": "a7fea03c9cd278c9e5cc0bfe7f75c36061a92dc777f1747beca64a206cae7c70",
+          "size_bytes": 7357715
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.0/k8s-manifest-checker-1.0.0-macos-x64.zip",
+          "sha256": "57921885b8e56429d15b503bacf38d79a83c8799b2d901a8398daf0f4c91dae6",
+          "size_bytes": 8081182
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.0/k8s-manifest-checker-1.0.0-linux-x64.zip",
+          "sha256": "5c09f0e52bb36effde665190085b15e5efb35c3c16adb51f2f8c392db0ad52c2",
+          "size_bytes": 7975138
+        },
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.0/k8s-manifest-checker-1.0.0-linux-arm64.zip",
+          "sha256": "1945b83ee4c48322a8f968a9deb6de0e1b612e5263691bef684c318de7a9e121",
+          "size_bytes": 7081375
+        }
+      },
+      "release_notes": "First release: kube-score 1.20.0 plus host namespace/hostPath/capability/privilege-escalation/seccomp checks, API removals per target Kubernetes 1.25-1.34, duplicates; per-object grades; fix snippet per finding; files, folders and zips; JSON, SARIF and Markdown; CLI --fail-on.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -1068,15 +1094,45 @@
       },
       "smoke": {
         "path": "/api/check",
-        "fields": {},
+        "fields": {
+          "k8s": "1.31"
+        },
         "files": {
           "file": "deployment.yaml"
         },
-        "expect": "score"
+        "expect": "container-image-tag"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Open Kubernetes Manifest Checker (it starts at http://127.0.0.1:47114).",
+          "Paste multi-document YAML (for example helm template or kustomize build output), or drop several files or a .zip.",
+          "Pick the Kubernetes version you deploy to, so removed and deprecated apiVersions are flagged correctly.",
+          "Press Check manifests: every object gets a score and grade, every finding a severity, file and line, explanation and YAML fix snippet.",
+          "Ignore checks you accept with the field or the per-finding button, then download JSON, SARIF or Markdown.",
+          "In CI: localtools-k8s-manifest-checker check ./manifests --k8s-version 1.31 --format sarif --fail-on error > report.sarif"
+        ],
+        "faqs": [
+          {
+            "q": "Does it need access to my cluster?",
+            "a": "No. It checks manifest files offline and never contacts an API server, so it works on rendered charts before anything is deployed."
+          },
+          {
+            "q": "Which checks run?",
+            "a": "kube-score 1.20.0 (resources, probes, image tags, security context, Service/NetworkPolicy/PDB/HPA targets and more) plus localtools checks aligned with Pod Security Standards (host namespaces, hostPath, capabilities, privilege escalation, seccomp), API removals for your Kubernetes version, duplicate objects, missing namespaces and recommended labels."
+          },
+          {
+            "q": "Can I use it with Helm or Kustomize?",
+            "a": "Yes. Render first and pipe the output: helm template my ./chart | localtools-k8s-manifest-checker check -. It does not run Helm or Kustomize itself."
+          },
+          {
+            "q": "How do I silence a check?",
+            "a": "Use --ignore id1,id2 (or the Ignore field in the UI) for everything, or annotate one object with kube-score/ignore: id1,id2. Ignored checks do not count towards the score."
+          },
+          {
+            "q": "Can it fail a CI build or show results in GitHub?",
+            "a": "Yes. --fail-on error (or warn/info) exits with code 2 when such findings exist, and --format sarif produces SARIF 2.1.0 for GitHub code scanning."
+          }
+        ]
       }
     },
     {
@@ -1090,36 +1146,36 @@
       "engine": "Go + hashicorp/terraform-json",
       "engine_reason": "terraform-json is HashiCorp's typed Go model of terraform show -json output; decoded with json.Number so values stay exact. OpenTofu emits the same format.",
       "private_repo": "chayprabs/terraform-plan-viewer",
-      "version": "1.0.0",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.0/terraform-plan-viewer-1.0.0-linux-arm64.zip",
-          "sha256": "6ab7dd8f228a4c2a70ce6fb62d057e02aa8166817e8dfca6e21817d261ef360a",
-          "size_bytes": 2972676
+          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.2/terraform-plan-viewer-1.0.2-linux-arm64.zip",
+          "sha256": "40a5e233485d20b9a08f5b18cb3d11aa47f985339a2f8b3a2789aee89eaec64f",
+          "size_bytes": 2976584
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.0/terraform-plan-viewer-1.0.0-linux-x64.zip",
-          "sha256": "38d01bb50a44e665deac7d11d8541cc6e4a97707b6d3654087ae9c79b545960f",
-          "size_bytes": 3274111
+          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.2/terraform-plan-viewer-1.0.2-linux-x64.zip",
+          "sha256": "a74f17a0a1a7246f26851d76b7eb65218a4ae4029f54c0260b0e4393f7a2af08",
+          "size_bytes": 3279035
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.0/terraform-plan-viewer-1.0.0-macos-arm64.zip",
-          "sha256": "01b04dcbe50295557437d3257745272bbcbce9a8b94ea44907ce40f3ebf8f1a8",
-          "size_bytes": 3058251
+          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.2/terraform-plan-viewer-1.0.2-macos-arm64.zip",
+          "sha256": "1acee41c20a129274c44953790aa5b5fc9af15bea4a748a50d8b105b4d47783b",
+          "size_bytes": 3065785
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.0/terraform-plan-viewer-1.0.0-macos-x64.zip",
-          "sha256": "4df29a07df3f49031c860e2d6d979a2e5337c2f752915bb8e7d4051536fdb85b",
-          "size_bytes": 3300121
+          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.2/terraform-plan-viewer-1.0.2-macos-x64.zip",
+          "sha256": "a5d0c75b8cc64c630e86cc58747b5d2c9fe08ec9c4f4fcd2283b60ee4b22e754",
+          "size_bytes": 3307885
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.0/terraform-plan-viewer-1.0.0-windows-x64.zip",
-          "sha256": "358329a8a3dd77fe5cdaad0778e881228fdac874dc7c9dccc26a1ab77781291c",
-          "size_bytes": 3343830
+          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.2/terraform-plan-viewer-1.0.2-windows-x64.zip",
+          "sha256": "5c0c888266dcf13d66ec722081e75f363a5b4a16ed1fe7565f9066c71cbc2351",
+          "size_bytes": 3351644
         }
       },
-      "release_notes": "First release: summary counts matching the CLI plan line, destructive changes first with replacement reasons, attribute diffs with sensitive values masked, blast radius from configuration references, drift, outputs, checks, risk flags, Markdown/JSON export, CLI summary and check --fail-on.",
+      "release_notes": "The sensitive-equality guard no longer hides ordinary values: only marked strings of 8+ bytes (any length within the same resource), never bools, numbers or short strings; hidden values are labelled (matches a sensitive value). Import IDs and check messages pass through the guard. Untraced blast radii past the graph limit say unknown.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -1161,7 +1217,7 @@
           },
           {
             "q": "Are sensitive values safe?",
-            "a": "Every attribute or output marked sensitive in the plan is shown only as (sensitive value), in the page, the Markdown, the JSON export and the CLI. Plan variables are never echoed. Nothing leaves your machine."
+            "a": "Anything marked sensitive, and any structure containing a marked part, is shown only as (sensitive value) in the page, the Markdown, the JSON export and the CLI. As a precaution, an unmarked string equal to a marked one (8+ characters elsewhere in the plan, any length in the same resource) is shown as (matches a sensitive value); this also applies to import IDs and check messages. Plan variables are never echoed. Nothing leaves your machine."
           },
           {
             "q": "How is the blast radius computed?",
@@ -1169,7 +1225,7 @@
           },
           {
             "q": "Does it work with OpenTofu?",
-            "a": "Yes. OpenTofu writes the same plan JSON format; the summary line follows OpenTofu wording, including forget counts."
+            "a": "Yes. OpenTofu writes the same plan JSON format. The engine is recognised from provider registry addresses; plans that use only built-in providers are labelled Terraform or OpenTofu, and the plan line then includes forget counts as OpenTofu prints them."
           },
           {
             "q": "How large a plan can it handle?",
