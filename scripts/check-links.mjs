@@ -6,6 +6,7 @@ const SITE = "https://tools.chaitanyaprabuddha.com";
 const skip = /^https:\/\/schema\.org|^http:\/\/www\.sitemaps\.org/;
 const pages = readdirSync("dist").filter((f) => f.endsWith(".html"));
 const ext = new Set(), bad = [];
+const decode = (s) => s.replace(/&(amp|lt|gt|quot|#39);/g, (_, e) => ({ amp: "&", lt: "<", gt: ">", quot: '"', "#39": "'" })[e]);
 
 for (const f of pages) {
   const html = readFileSync(`dist/${f}`, "utf8");
@@ -14,11 +15,11 @@ for (const f of pages) {
     if (u.startsWith("/") || u.startsWith(SITE)) {
       const p = u.replace(SITE, "").split(/[?#]/)[0].replace(/\/$/, "") || "/index";
       if (![`dist${p}`, `dist${p}.html`].some(existsSync)) bad.push(`${f}: missing internal ${u}`);
-    } else if (/^https?:/.test(u)) ext.add(u.replaceAll("&amp;", "&"));
+    } else if (/^https?:/.test(u)) ext.add(decode(u));
   }
   // install commands are text, not hrefs
-  for (const [u] of html.matchAll(/https:\/\/[^\s"'<>]+/g)) {
-    if (!u.startsWith(SITE) && !skip.test(u)) ext.add(u.replaceAll("&amp;", "&").replace(/[.,;)]+$/, ""));
+  for (const [u] of decode(html).matchAll(/https:\/\/[^\s"'<>]+/g)) {
+    if (!u.startsWith(SITE) && !skip.test(u)) ext.add(u.replace(/[.,;)]+$/, ""));
   }
 }
 
