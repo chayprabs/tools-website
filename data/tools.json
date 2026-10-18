@@ -208,13 +208,34 @@
       "description": "Compare two PDFs page by page with visual pixel-diff overlays and a text diff.",
       "port": 47103,
       "kind": "py",
-      "engine": "Python + pypdfium2 render + numpy/Pillow pixel diff + text diff",
-      "engine_reason": "PDFium renders pages exactly like Chrome; numpy pixel diff is exact and fast.",
+      "engine": "Python + PDFium (pypdfium2 5.14) render/text/structure + Pillow pixel diff + difflib word diff",
+      "engine_reason": "PDFium renders pages exactly like Chrome and gives text with character boxes; Pillow compares pixels in C and difflib diffs words, so no numpy is needed.",
       "private_repo": "chayprabs/pdf-diff",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.1",
+      "status": "released",
+      "assets": {
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-diff-v1.0.1/pdf-diff-1.0.1-linux-x64.zip",
+          "sha256": "8a0aebca7e09544bb15bbcdd8ade1430fb5e248a97d1a717a2ab70c266c31886",
+          "size_bytes": 43216504
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-diff-v1.0.1/pdf-diff-1.0.1-macos-arm64.zip",
+          "sha256": "d9831ca812bad2f39cad847923b67c53affb31e7f406269ec7a64be61ab1e469",
+          "size_bytes": 29790066
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-diff-v1.0.1/pdf-diff-1.0.1-macos-x64.zip",
+          "sha256": "cc01bab375ada0f54f2e07ae917528282be69055db6166daafe06f331ed6f95e",
+          "size_bytes": 30325687
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-diff-v1.0.1/pdf-diff-1.0.1-windows-x64.zip",
+          "sha256": "6903dc60fe50764089b73f435afb6fd28a39e13be0fd0c4941a59948cbbf665d",
+          "size_bytes": 25189184
+        }
+      },
+      "release_notes": "PDFium 8076 (pypdfium2 5.14.0) replaces PDFium 6462, which had later memory-safety CVEs. Scanned PDFs with inserted or removed pages now pair quickly: each thumbnail is rendered once and unchanged pages anchor the pairing. Visual diff is faster. The render budget is now the measured 100 megapixels per PDF. Damaged pages and unusable page sizes get clear errors, out-of-memory is reported as the memory budget, and the word-change list shows operators without ligatures.",
       "registries": {
         "brew": false,
         "scoop": false,
@@ -234,7 +255,9 @@
       },
       "smoke": {
         "path": "/api/diff",
-        "fields": {},
+        "fields": {
+          "mode": "text"
+        },
         "files": {
           "a": "a.pdf",
           "b": "b.pdf"
@@ -242,8 +265,35 @@
         "expect": "pages"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Choose PDF A (the original) and PDF B (the revised version). Enter a password only if a PDF is encrypted.",
+          "Pick a mode: Visual compares rendered pixels, Text compares words in reading order, Structure compares metadata, fonts, annotations, form fields, bookmarks and attachments.",
+          "For Visual, set the resolution and how much colour difference to ignore; keep Ignore anti-aliasing on to skip edge noise and 1-pixel shifts.",
+          "Press Compare, then open any page pair from the list. Switch between Side by side, Diff and Slider, and jump with Prev/Next change.",
+          "Download the highlighted report PDF, a ZIP of PNGs of the changed pages, or the JSON summary."
+        ],
+        "faqs": [
+          {
+            "q": "What if pages were inserted or removed?",
+            "a": "When the page counts differ, pages are paired by content (word overlap, or thumbnails for scanned pages), so the extra pages show up as inserted or deleted and the rest still line up."
+          },
+          {
+            "q": "Does it work on scanned PDFs?",
+            "a": "Visual mode does: it compares the page images. Text mode needs a text layer, and there is no OCR."
+          },
+          {
+            "q": "Can I use it in scripts or CI?",
+            "a": "Yes. localtools-pdf-diff a.pdf b.pdf --mode text --json prints a JSON summary; the exit code is 0 when the PDFs match, 1 when they differ and 2 on error. --report and --png-zip write the exports."
+          },
+          {
+            "q": "What are the limits?",
+            "a": "64 MiB and 2,000 pages per PDF, 100 megapixels rendered per PDF per comparison (about 105 Letter pages at 100 DPI), 120 seconds per comparison and two comparisons at a time. Each comparison runs in a worker process that is killed when it runs too long."
+          },
+          {
+            "q": "Are my files uploaded anywhere?",
+            "a": "No. The tool runs on your computer and only talks to your own browser on 127.0.0.1; nothing is sent over the network."
+          }
+        ]
       }
     },
     {
@@ -1005,18 +1055,44 @@
       "description": "Compare two GraphQL schemas and classify breaking, dangerous and safe changes.",
       "port": 47112,
       "kind": "js",
-      "engine": "@graphql-inspector/core",
-      "engine_reason": "GraphQL Inspector is the reference implementation for breaking/dangerous/safe schema change detection.",
+      "engine": "@graphql-inspector/core 8 + graphql-js 16 (+ @graphql-tools/schema merge)",
+      "engine_reason": "GraphQL Inspector is the reference breaking/dangerous/safe detector; schemas are loaded and merged exactly like its CLI, so change lists are identical (tested on GitHub, GitLab, Shopify, SWAPI schemas).",
       "private_repo": "chayprabs/graphql-diff",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.1",
+      "status": "released",
+      "assets": {
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/graphql-diff-v1.0.1/graphql-diff-1.0.1-windows-x64.zip",
+          "sha256": "ea1d54388759498da4cddd1d8a6af1c4d006971eea88272cfb07209b9726c49f",
+          "size_bytes": 39761754
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/graphql-diff-v1.0.1/graphql-diff-1.0.1-macos-arm64.zip",
+          "sha256": "fc2ddb00ac14709ec77144557380baeb3a0452ceb61e96a4cbcf92741ab9a415",
+          "size_bytes": 24917436
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/graphql-diff-v1.0.1/graphql-diff-1.0.1-macos-x64.zip",
+          "sha256": "bb1215e001bed813f3945fe31772181be4d80ac65f08a830a2c9f87e3eafe707",
+          "size_bytes": 27186938
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/graphql-diff-v1.0.1/graphql-diff-1.0.1-linux-x64.zip",
+          "sha256": "43f579e930223d736d0dcdc49876c47f308f96e60bad34623484b0cf6515ae66",
+          "size_bytes": 37058545
+        },
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/graphql-diff-v1.0.1/graphql-diff-1.0.1-linux-arm64.zip",
+          "sha256": "5a2a8789a7ae55a9d1994a9306f390c395ecdf5a9cbf1805056c95ae2f78c8be",
+          "size_bytes": 37186284
+        }
+      },
+      "release_notes": "Option rules run before simplifyChanges like the CLI (ignore descriptions no longer hides breaking changes); executables keep file:line:col on SDL errors; workers stop with the server or at their deadline; closing the page stops its job; unknown fragments mark only that file invalid; 150k types / 50k changes in ~15 s; per-file remove.",
       "registries": {
         "brew": true,
         "scoop": true,
         "winget": true,
-        "npm": "localtools-graphql-diff",
+        "npm": null,
         "pypi": null,
         "ghcr": null
       },
@@ -1031,16 +1107,43 @@
       },
       "smoke": {
         "path": "/api/diff",
-        "fields": {
-          "old": "type Query { a: String b: Int }",
-          "new": "type Query { a: String }"
+        "fields": {},
+        "files": {
+          "oldFile": "shop-v1.graphql",
+          "newFile": "shop-v2.graphql"
         },
-        "files": {},
-        "expect": "BREAKING"
+        "expect": "\"breaking\":5"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Run localtools-graphql-diff; the page opens at http://127.0.0.1:47112.",
+          "Paste or drop the old and new schema (SDL .graphql files or introspection JSON; several files per side are merged).",
+          "Optionally drop your client operation files to see which queries the change breaks.",
+          "Press Compare, filter by breaking / dangerous / safe, copy the Markdown for your PR or download JSON.",
+          "In CI: localtools-graphql-diff old.graphql new.graphql --fail-on breaking (exit 2 on breaking changes)."
+        ],
+        "faqs": [
+          {
+            "q": "Are the results the same as graphql-inspector?",
+            "a": "Yes. It runs @graphql-inspector/core 8 and loads schemas and applies rules in the same order as the graphql-inspector CLI. On GitHub, GitLab, Saleor, Shopify and SWAPI schema histories, with every option combination, the lists are identical."
+          },
+          {
+            "q": "What is the difference between breaking and dangerous?",
+            "a": "Breaking changes make existing valid operations fail (removed fields, changed types, new required arguments). Dangerous changes keep operations valid but can change behaviour (new enum values, changed default values, new union members)."
+          },
+          {
+            "q": "Can it use an introspection result instead of SDL?",
+            "a": "Yes: a JSON file with __schema or data.__schema works on either side, and can be compared with an SDL file."
+          },
+          {
+            "q": "How big can schemas be?",
+            "a": "Up to 32 MB per side and 200,000 types; 150,000 types with 50,000 breaking changes compare in about 15 seconds. Each comparison runs in its own worker with a 60 s limit."
+          },
+          {
+            "q": "Does anything get uploaded?",
+            "a": "No. Everything runs in the local program on 127.0.0.1 with no network requests."
+          }
+        ]
       }
     },
     {
@@ -1349,13 +1452,34 @@
       "description": "Check PostgreSQL migrations for the lock each statement takes, what it blocks, and a safe rewrite.",
       "port": 47116,
       "kind": "py",
-      "engine": "pglast (libpg_query) + lock-level rules",
-      "engine_reason": "pglast uses the real PostgreSQL parser, so every statement is understood exactly as Postgres would.",
+      "engine": "BSD-2 postgast 0.2.0 / libpg_query PostgreSQL 18.4",
+      "engine_reason": "postgast calls the real libpg_query parser, so lock and rewrite rules follow a typed PostgreSQL AST instead of regex splits. The abandoned GPL pglast scaffold is not bundled. PyPI has postgast wheels for Windows x64, Linux x64 and macOS ARM64. A plain Intel macOS PyPI install is unavailable: upstream has no Intel wheel, and its published source archive lacks build headers. Use the self-contained Intel Mac ZIP, or the bundled MacIntel postgast wheel with Python 3.13: `pipx install localtools-postgres-migration-checker --python python3.13 --pip-args=\"--find-links https://github.com/chayprabs/localtools/releases/download/postgres-migration-checker-v1.0.0/postgast-0.2.0-cp313-cp313-macosx_10_13_x86_64.whl\"`. That wheel is built unmodified from the upstream v0.2.0 Git tag.",
       "private_repo": "chayprabs/postgres-migration-checker",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.3",
+      "status": "released",
+      "assets": {
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/postgres-migration-checker-v1.0.3/postgres-migration-checker-1.0.3-windows-x64.zip",
+          "sha256": "e9ee839ef08bc25124e6bee232dace1f7dcc234da28769e3714141da29a806da",
+          "size_bytes": 15376173
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/postgres-migration-checker-v1.0.3/postgres-migration-checker-1.0.3-macos-arm64.zip",
+          "sha256": "d832f761c5935022c7ab6a7315b7aa4881c1f8286b68a2f27219175eed7ce047",
+          "size_bytes": 22455962
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/postgres-migration-checker-v1.0.3/postgres-migration-checker-1.0.3-macos-x64.zip",
+          "sha256": "72269ee9eb1a6c949ca0bec0f3aea05a3435f4646d18523ca8505944a1ac3c24",
+          "size_bytes": 22208220
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/postgres-migration-checker-v1.0.3/postgres-migration-checker-1.0.3-linux-x64.zip",
+          "sha256": "f9ff4e24748807e554656f5327bc7fa07a562154294ae7db7b233fa9c25f281e",
+          "size_bytes": 36360603
+        }
+      },
+      "release_notes": "CREATE TABLE IF NOT EXISTS no longer hides later heavy DDL on a table that may already exist. ALTER TYPE follows the full binary-coercible cast set (text to varchar, xml to text, int4/oid, wider precision); timestamp to timestamptz is flagged as UTC-only. SET (user_catalog_table) takes ACCESS EXCLUSIVE. Flyway files with only non-transactional statements run without a transaction. Placeholder snippets are commented out. UI: unclipped transaction select, padded results.",
       "registries": {
         "brew": false,
         "scoop": false,
@@ -1382,8 +1506,35 @@
         "expect": "ACCESS EXCLUSIVE"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Install with the one-line script, or pipx install localtools-postgres-migration-checker, then run localtools-postgres-migration-checker.",
+          "Paste UTF-8 SQL or choose .sql files in the order they run. A new paste or upload replaces the previous input, and each chosen file can be removed.",
+          "Set the target PostgreSQL version (11–18, default 18) and the runner transaction: detect framework markers and explicit BEGIN, wrap each file, or never wrap.",
+          "Click Check migration. Each statement shows its lock, what that lock blocks, whether it scans or rewrites the table, and a safer rewrite when the rule has one.",
+          "Copy JSON or download JSON, Markdown or SARIF. The page shows 50 statements at a time; the download is the full report."
+        ],
+        "faqs": [
+          {
+            "q": "Does it run the SQL against a database?",
+            "a": "No. It parses the text with libpg_query and never opens a connection. The report stays on your machine."
+          },
+          {
+            "q": "Why does ADD COLUMN age int NOT NULL DEFAULT 0 still take ACCESS EXCLUSIVE?",
+            "a": "On PostgreSQL 11 and later a constant default does not rewrite the table. ADD COLUMN still takes ACCESS EXCLUSIVE until the catalog change commits. That statement is flagged for a missing lock_timeout, not for a rewrite."
+          },
+          {
+            "q": "Can pipx install it on an Intel Mac?",
+            "a": "Not from PyPI alone. Upstream publishes no Intel wheel, and its source archive lacks build headers. Use the Intel Mac ZIP, or Python 3.13 with pipx install localtools-postgres-migration-checker --python python3.13 --pip-args=\"--find-links https://github.com/chayprabs/localtools/releases/download/postgres-migration-checker-v1.0.0/postgast-0.2.0-cp313-cp313-macosx_10_13_x86_64.whl\". That is the bundled MacIntel postgast 0.2.0 wheel, built unmodified from the upstream v0.2.0 Git tag."
+          },
+          {
+            "q": "Which migration runners does it understand?",
+            "a": "goose Up/Down/NO TRANSACTION, dbmate up/down and transaction:false, Liquibase formatted SQL changesets and runInTransaction:false, and Flyway V…__…sql or R__…sql filenames. Down sections are omitted. Rails and Django need exported SQL plus the transaction mode you choose."
+          },
+          {
+            "q": "How large a migration can it check, and what does it skip?",
+            "a": "100 files, 4 MiB of UTF-8 SQL, 5,000 statements, a 16 MiB report, 30 seconds, and two checks at a time. Larger input is rejected. Function bodies, DO blocks, dynamic SQL, views, triggers and the live schema are not modelled. Locks are static estimates, not measurements from a running database."
+          }
+        ]
       }
     },
     {
@@ -1397,31 +1548,31 @@
       "engine": "sqlfluff 4 (+ sqlfluffrs) and sqlglot",
       "engine_reason": "sqlfluff is the most complete open-source SQL linter with real auto-fix across dialects; sqlglot adds dialect-to-dialect transpiling, which sqlfluff cannot do.",
       "private_repo": "chayprabs/sql-formatter",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.0/sql-formatter-1.0.0-windows-x64.zip",
-          "sha256": "4d333f7aaf26435095024804568de0fbc48f27c660b6ade5ddb74b32c19459f2",
-          "size_bytes": 24061542
+          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.1/sql-formatter-1.0.1-windows-x64.zip",
+          "sha256": "ff2f711a9a99fd9269d7fcf47ed5c797778c026f9b9b19d5e7fdb7cb1cd05714",
+          "size_bytes": 24063501
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.0/sql-formatter-1.0.0-macos-arm64.zip",
-          "sha256": "35af80b27b3fbf4bfb1555d2e03b80f383b8db17d5ac83ac91f68c5cf22d6235",
-          "size_bytes": 31696751
+          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.1/sql-formatter-1.0.1-macos-arm64.zip",
+          "sha256": "19e47c0917ec8cc030f864c66ab464ea844ded08bacda954d798c401304ac2f1",
+          "size_bytes": 31698704
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.0/sql-formatter-1.0.0-macos-x64.zip",
-          "sha256": "d00186036ab96f83efc6dd840f646d1a1e92bb892bfa47c8ab7a418451da068a",
-          "size_bytes": 30770171
+          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.1/sql-formatter-1.0.1-macos-x64.zip",
+          "sha256": "29ed158d5f8782cad270aebb2b775b1438669f8a0bef76406f56794f105a85ae",
+          "size_bytes": 30772133
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.0/sql-formatter-1.0.0-linux-x64.zip",
-          "sha256": "21fbaf078a90895058f64d4f2f97abe76a439e1759e82f5abb4f2d1f13728466",
-          "size_bytes": 43862912
+          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.1/sql-formatter-1.0.1-linux-x64.zip",
+          "sha256": "ff67a7ae4615517106e64cf3fcbf2c74569778ea6ea6d2060924b57b9aeb8c93",
+          "size_bytes": 43864874
         }
       },
-      "release_notes": "First release: lint, fix and transpile SQL in 28 dialects with sqlfluff 4.4 and sqlglot; local web UI and CLI with JSON/SARIF output.",
+      "release_notes": "1.0.1: a cancelled run no longer blocks the next one, so the latest SQL is what gets linted, fixed or transpiled. Unsupported placeholders and unknown rules error clearly, in-place writes stay atomic, diffs apply without a final newline, and the Raw templater plus non-ligature code font are in the release.",
       "registries": {
         "brew": false,
         "scoop": false,
@@ -1587,13 +1738,34 @@
       "description": "Convert command output (ls, ps, netstat, dig, network device show commands) into JSON with jc and TextFSM.",
       "port": 47119,
       "kind": "py",
-      "engine": "jc + TextFSM / ntc-templates",
-      "engine_reason": "jc has 100+ command parsers; ntc-templates adds 1000+ network-device templates.",
+      "engine": "jc + TextFSM/ntc-templates",
+      "engine_reason": "jc 1.26.0 parses 243 OS commands; TextFSM 2.1.0 with ntc-templates 9.3.0 adds 969 indexed network-device templates. Both are pinned in the portable CPython zip and run offline, with no command execution.",
       "private_repo": "chayprabs/cli-output-to-json",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.1",
+      "status": "released",
+      "assets": {
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/cli-output-to-json-v1.0.1/cli-output-to-json-1.0.1-windows-x64.zip",
+          "sha256": "a1bf9d432f71e3d8147914dcf7b801c56fcfa3504d44597e32b42684a538e415",
+          "size_bytes": 16758681
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/cli-output-to-json-v1.0.1/cli-output-to-json-1.0.1-macos-arm64.zip",
+          "sha256": "d471961e22f7c728b5b592abc47cd5966bd4f7c5d8e9dd47dd1de26bd3d6a0d0",
+          "size_bytes": 23944856
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/cli-output-to-json-v1.0.1/cli-output-to-json-1.0.1-macos-x64.zip",
+          "sha256": "a677d299755a135c6de1464148589655e3a91ebc3f3555c0e07d320a70f77a24",
+          "size_bytes": 23674459
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/cli-output-to-json-v1.0.1/cli-output-to-json-1.0.1-linux-x64.zip",
+          "sha256": "d0029614e9fa7fa8135a227387f552f7708d2446d14601c559b6d4350ccb658e",
+          "size_bytes": 34846755
+        }
+      },
+      "release_notes": "macOS parses again. Setting the 768 MiB address-space cap raised on macOS and the worker exited before writing a result, so POST /api/parse returned 422. That call is ignored when the OS refuses it. Linux still applies the cap.",
       "registries": {
         "brew": false,
         "scoop": false,
@@ -1615,14 +1787,41 @@
         "path": "/api/parse",
         "fields": {
           "parser": "df",
-          "input": "Filesystem 1K-blocks Used Available Use% Mounted on\n/dev/sda1 100 50 50 50% /\n"
+          "input": "Filesystem     1K-blocks     Used Available Use% Mounted on\n/dev/sda1        1000000    50000    950000   5% /\n"
         },
         "files": {},
         "expect": "filesystem"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Paste UTF-8 command output, or choose one text file. The newest input replaces the other.",
+          "Search the catalog and select a parser. jc ids are command names such as df; network templates start with ntc/.",
+          "Optional: type a command hint and a network platform, then press Suggest parsers. Choose a candidate yourself; nothing is selected for you.",
+          "Choose JSON, compact JSON, JSON Lines, or CSV, then press Convert.",
+          "Read the records and notes. Copy and Download keep the full result; the on-screen preview stops at 128 KiB of characters."
+        ],
+        "faqs": [
+          {
+            "q": "Does this run the command or connect to the device?",
+            "a": "No. It only parses text you paste or upload. The command hint is a lookup string, never executed, and the tool makes no network connections."
+          },
+          {
+            "q": "Will Suggest parsers pick the right one?",
+            "a": "No. Suggestions come from jc's command index, the ntc-templates command index, or a few familiar headers. You have to select a parser. Extracting zero records does not prove the text matched."
+          },
+          {
+            "q": "Which network-device templates are included?",
+            "a": "The 969 indexed ntc-templates 9.3.0 entries (TextFSM 2.1.0). Custom templates, unindexed templates, and remote device execution are not included."
+          },
+          {
+            "q": "What are the size limits?",
+            "a": "4 MiB of UTF-8, 100,000 lines, and 65,536 characters on a line. Results stop at 16 MiB. Each parse has a 15-second deadline, and only two parser jobs run at once."
+          },
+          {
+            "q": "Why can fields be missing or typed differently from the text?",
+            "a": "jc and TextFSM follow their own rules: unmatched lines can be ignored, duplicate keys can collapse, and values can be inferred. Dates use the machine's timezone, the same way jc does. Compare the JSON with the original output."
+          }
+        ]
       }
     },
     {
@@ -1941,13 +2140,39 @@
       "description": "Generate thumbnails, frame grids and contact sheets from video files with ffmpeg.",
       "port": 47123,
       "kind": "bin",
-      "engine": "ffmpeg / ffprobe (bundled static builds)",
-      "engine_reason": "ffmpeg decodes every common codec and seeks precisely; static builds need no system install.",
+      "engine": "ffmpeg + ffprobe 9.0.2 (bundled: BtbN gpl-shared on Windows/Linux, Martin Riedl static builds on macOS)",
+      "engine_reason": "ffmpeg decodes practically every codec and container, seeks frame-accurately and tone-maps HDR with zscale; it runs as a killable child process, so the tool works offline on every OS with no system install.",
       "private_repo": "chayprabs/video-thumbnail-generator",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.0",
+      "status": "released",
+      "assets": {
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/video-thumbnail-generator-v1.0.0/video-thumbnail-generator-1.0.0-linux-arm64.zip",
+          "sha256": "a89620e8b4c69dfaa23a638fe5246b64d3a9cfca4728d752fd365653f9597c8c",
+          "size_bytes": 78328111
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/video-thumbnail-generator-v1.0.0/video-thumbnail-generator-1.0.0-linux-x64.zip",
+          "sha256": "6c78ede0412da6dc3081915d1bc337586f30417412b812d673c7d74ef975ff12",
+          "size_bytes": 87170253
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/video-thumbnail-generator-v1.0.0/video-thumbnail-generator-1.0.0-macos-arm64.zip",
+          "sha256": "ec9583c84e223315bbde762a4b8e3da19039e710154a1cba0562c624b4b335d8",
+          "size_bytes": 62750996
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/video-thumbnail-generator-v1.0.0/video-thumbnail-generator-1.0.0-macos-x64.zip",
+          "sha256": "35fb9e099a5938a9f8c9fdc9c8489a8d5926b8b7fb9f3c89de2f1f289b64de8f",
+          "size_bytes": 72816973
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/video-thumbnail-generator-v1.0.0/video-thumbnail-generator-1.0.0-windows-x64.zip",
+          "sha256": "ecfda1194dc19feb8e892026c10c55dd0e7cfd62d453d339c5bfb381e7e973e1",
+          "size_bytes": 81082098
+        }
+      },
+      "release_notes": "First release: frames at a timestamp with a scrubbing preview, evenly spaced frames, scene-change picks, contact sheets and animated GIF/WebP previews, with an ffprobe info panel. HDR tone mapping, rotation and deinterlacing applied. Bundles unmodified ffmpeg 9.0.2 (GPL); its sources are attached to the release.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -1962,22 +2187,50 @@
           "macos",
           "linux"
         ],
-        "disk_mb": 180,
+        "disk_mb": 200,
         "docker": false
       },
       "smoke": {
         "path": "/api/thumbnails",
         "fields": {
+          "mode": "frames",
           "count": "4"
         },
         "files": {
-          "file": "sample.mp4"
+          "file": "Big_Buck_Bunny_360_10s_1MB.mp4"
         },
-        "expect": "PNG"
+        "expect": "\"name\":\"Big_Buck_Bunny_360_10s_1MB_00h00m01.250s.png\",\"time\":1.25,\"width\":640,\"height\":360,\"mime\":\"image/png\""
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Run localtools-video-thumbnail-generator (or open Video Thumbnail Generator from your app menu); it opens in your browser.",
+          "Drop a video (up to 4 GiB, any format ffmpeg reads). The info panel lists duration, codecs, resolution, frame rate, rotation, colour/HDR details and every stream.",
+          "Drag the scrubber to preview any moment, or pick a mode: single frame, evenly spaced frames, scene changes, contact sheet or animated GIF/WebP.",
+          "Choose PNG, JPEG or WebP, a width and quality, then press Generate. Download each image or all of them as a zip.",
+          "From a terminal: localtools-video-thumbnail-generator grid video.mp4 --cols 4 --rows 4 -o sheet.jpg, frame video.mp4 --at 00:01:23, or info video.mp4 --json."
+        ],
+        "faqs": [
+          {
+            "q": "Does my video leave my computer?",
+            "a": "No. The browser sends it to the tool on 127.0.0.1, which keeps it in a temporary folder for this session, runs the bundled ffmpeg on it with network protocols disabled, and deletes the folder when you remove the video, after 30 idle minutes, or when the tool exits."
+          },
+          {
+            "q": "Which formats work?",
+            "a": "Anything the bundled ffmpeg 9.0.2 can decode: MP4, MOV, MKV, WebM, AVI, MPEG-TS, raw H.264/HEVC streams and more, with H.264, HEVC, AV1, VP9, ProRes and other codecs. Playlists that point at other files or URLs (HLS, concat, DASH) are refused."
+          },
+          {
+            "q": "Are HDR and phone videos handled?",
+            "a": "Yes. HDR10 and HLG are tone-mapped to SDR (zscale + hable) unless you turn it off, rotation metadata and non-square pixels are applied, and interlaced video is deinterlaced with bwdif."
+          },
+          {
+            "q": "How exact are the timestamps?",
+            "a": "Frames are taken with an accurate seek: the tests compare them with ffmpeg's own frame at the same time (PSNR above 38 dB). Evenly spaced frames sit at the middle of equal slices of the video; scene picks come from ffmpeg's scene score."
+          },
+          {
+            "q": "What are the limits?",
+            "a": "4 GiB per upload (the CLI has none), 100 frames per job, 8K per image, 50 megapixels per contact sheet, 15 seconds per animation and 180 seconds per job. Bigger requests are refused with a clear message instead of hanging."
+          }
+        ]
       }
     },
     {
