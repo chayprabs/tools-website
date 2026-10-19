@@ -2637,36 +2637,36 @@
       "engine": "satori 0.62 + resvg-wasm 2.6 + shiki 4 (Oniguruma)",
       "engine_reason": "satori lays out HTML/CSS (flex, grid, stylesheets, HarfBuzz shaping) as SVG without a browser; resvg rasterizes it identically on every OS; shiki gives editor-grade code highlighting. All wasm, fonts and emoji are embedded, so nothing is fetched.",
       "private_repo": "chayprabs/og-image-generator",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
-        "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.1/og-image-generator-1.0.1-windows-x64.zip",
-          "sha256": "92b4c750d7f147d8aa29d075e9dcabed8499f9bd89bc4ce1d30cb64e01663fd2",
-          "size_bytes": 61205729
-        },
-        "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.1/og-image-generator-1.0.1-macos-arm64.zip",
-          "sha256": "1d103dfbba3cec4ce4e85aac433d37b4423ec72da27ea7a09c836a68ed076cb4",
-          "size_bytes": 47856350
-        },
-        "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.1/og-image-generator-1.0.1-macos-x64.zip",
-          "sha256": "28cd3e7c7fcda406d701e16a69926c336b2c41c8532198f5e60216004762044e",
-          "size_bytes": 49377199
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.2/og-image-generator-1.0.2-linux-arm64.zip",
+          "sha256": "93f5b24a507befe4e283a4175e5ebb99abaa0a5f06aa807f2267755ccb66194c",
+          "size_bytes": 58666627
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.1/og-image-generator-1.0.1-linux-x64.zip",
-          "sha256": "676885fbe4d8325241673d43ffe69291eb9066dbcf760611bda48cbbb68eb74c",
-          "size_bytes": 58348905
+          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.2/og-image-generator-1.0.2-linux-x64.zip",
+          "sha256": "e6a89762215e57fec2fb37478d48e91b9b761976eaa04e9ed89827ea299ebeab",
+          "size_bytes": 58349729
         },
-        "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.1/og-image-generator-1.0.1-linux-arm64.zip",
-          "sha256": "690546c5f37103f796100af68d43074068d007839c431b8fe33b7ec309013930",
-          "size_bytes": 58665705
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.2/og-image-generator-1.0.2-macos-arm64.zip",
+          "sha256": "15791f3a0209f20de04341fe511ed6d7cd8403bd66c3194678f5c1503a69302a",
+          "size_bytes": 47857388
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.2/og-image-generator-1.0.2-macos-x64.zip",
+          "sha256": "df1ee3651ecbc3b186d0537367ff8e27238d55e3513a72a6d75cbb8b8b556457",
+          "size_bytes": 49378015
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.2/og-image-generator-1.0.2-windows-x64.zip",
+          "sha256": "195f01a30ee324f312cc0a8323efea88d3701f51370f5c1dbd71f6c8da644c5c",
+          "size_bytes": 61206797
         }
       },
-      "release_notes": "WebP images decoded (were blank); Connection: close clients get JSON 413/503; nested sections capped; worker replies framed; code card truncation inside the window; human errors for variable fonts and corrupt images; Excel Windows-1252 and semicolon CSV; template picker locks while edited markup is used; stricter URL checks; accurate notices; pinned Bun 1.4.3 builds.",
+      "release_notes": "Drain rejected uploads before replying so Connection: close clients receive complete JSON 413/503. Resolve image bytes after template expansion, retaining real 10 MiB/25 MP limits. Validate inline WebP dimensions before decoding, including hidden VP8X bitstreams; cache conversion and compress PNG faster. Include libwebp's BSD-3-Clause copyright/license and clarify server-only deadlines.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -2722,7 +2722,7 @@
           },
           {
             "q": "What are the limits?",
-            "a": "200 to 4096 px per side, images up to 10 MB / 25 megapixels, up to four fonts of 20 MB, templates up to 512 KB / 5,000 elements, and 20 s per card. Two renders run at once; more wait or get a busy reply."
+            "a": "200-4096 px per side; images up to 10 MiB / 25 MP; four fonts up to 20 MiB each; raw markup up to 512 KiB / 5,000 elements. Expanded text is limited to 2 MiB, with uploaded image data resolved separately (128 MiB encoded references per card). The server allows 20 s per card / 15 minutes per batch and two active workers. The CLI runs until finished or interrupted."
           }
         ]
       }
@@ -2934,36 +2934,36 @@
       "engine": "typst (bundled official binary)",
       "engine_reason": "The official typst binary compiles in milliseconds and needs nothing else.",
       "private_repo": "chayprabs/typst-editor",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.0/typst-editor-1.0.0-windows-x64.zip",
-          "sha256": "040665e224e8f1991e5d1fe1620778abe7b122500a1d0d4994860d529512b323",
-          "size_bytes": 27012818
+          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.1/typst-editor-1.0.1-windows-x64.zip",
+          "sha256": "7a7c457fee6d342876b092b95f0d83a4ca3eb0be43217963bfb2ae3c88d94618",
+          "size_bytes": 27036098
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.0/typst-editor-1.0.0-macos-arm64.zip",
-          "sha256": "5f61522a52a4686c5cf5813e081238841eb077325f2ffae641e2534df0cf5afc",
-          "size_bytes": 25393490
+          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.1/typst-editor-1.0.1-macos-arm64.zip",
+          "sha256": "db7269dc4fbbfae54379d632ac6cc4cacd237aec905a04e6c350ee6c1608e239",
+          "size_bytes": 25417600
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.0/typst-editor-1.0.0-macos-x64.zip",
-          "sha256": "0de2416e639cf9cff204691431e3b75852acde8c5692e8dd92562d16ee2a2088",
-          "size_bytes": 26406833
+          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.1/typst-editor-1.0.1-macos-x64.zip",
+          "sha256": "768a8519dafc07594540fed7c7a2175850a4a241ee1678ffd94a8a47d865cc5a",
+          "size_bytes": 26431434
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.0/typst-editor-1.0.0-linux-x64.zip",
-          "sha256": "b5067c1b50279a2c5ffde80fea9cd11a77d2503a3dff8abbefdcfb695bd599ab",
-          "size_bytes": 28974885
+          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.1/typst-editor-1.0.1-linux-x64.zip",
+          "sha256": "500fc620df5bbd2c5166aa38f51cc5fec7073041184bd3acb7ae4d5520e98e31",
+          "size_bytes": 28998924
         },
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.0/typst-editor-1.0.0-linux-arm64.zip",
-          "sha256": "09fb2c503aca5efb20973a1dfa1555ccdca05423999afec9a1e10cabd40d20a5",
-          "size_bytes": 27608221
+          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.1/typst-editor-1.0.1-linux-arm64.zip",
+          "sha256": "e666ea19226b268c12697ee8f1daa11844f710c072b76e1db6797e16bf87f02f",
+          "size_bytes": 27632305
         }
       },
-      "release_notes": "First release: live preview, clickable diagnostics, PDF/PDF-A/PNG/SVG export, zip projects; bundles typst 0.15.1; never downloads packages.",
+      "release_notes": "Preserve exact binary, Latin-1 and BOM bytes through preview and project ZIPs; keep binary files across reloads, migrate saved projects, confirm template replacement with Undo, and ship embedded font licenses.",
       "registries": {
         "brew": true,
         "scoop": true,
