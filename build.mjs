@@ -57,7 +57,7 @@ ${head}</head>
 ${body}
 </main>
 <footer><div class="wrap">
-<span>MIT licensed. Tools run on your machine and send nothing.</span>
+<span>MIT licensed. Tools run on your machine; files stay local.</span>
 <nav aria-label="Footer"><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="${REPO}">Source of builds</a><a href="${REPO}/issues">Issues</a></nav>
 </div></footer>
 </body>
@@ -177,7 +177,7 @@ ${faqs.length ? `<section aria-labelledby="faq"><h2 class="label" id="faq">FAQ</
 <dt>OS</dt><dd>${req.os.map((o) => OS[o]).join("<br>")}</dd>
 <dt>Disk</dt><dd>${req.disk_mb} MB</dd>
 <dt>Docker</dt><dd>${req.docker ? "Required (Linux containers)" : "Not needed"}</dd>
-<dt>Network</dt><dd>Only to install</dd>
+<dt>Network</dt><dd>${t.slug === "ssl-checker" ? "TLS and DNS checks; install and update" : "Install and update only"}</dd>
 <dt>Engine</dt><dd>${esc(t.engine)}</dd>
 </dl></section>
 <section aria-labelledby="lnk"><h2 class="label" id="lnk">Links</h2><ul class="links">
@@ -201,7 +201,7 @@ ${faqs.length ? `<section aria-labelledby="faq"><h2 class="label" id="faq">FAQ</
 // ---------- static pages ----------
 const prose = (path, title, desc, h1, html) => page({ path, title, desc, body: `<div class="head"><h1>${h1}</h1></div><div class="prose">${html}</div>` });
 
-const privacy = prose("/privacy", "Privacy | localtools", "localtools has no analytics and no cookies. The tools run on your machine and send nothing.", "Privacy", `
+const privacy = prose("/privacy", "Privacy | localtools", "localtools has no analytics and no cookies. Tools run on your machine; files stay local.", "Privacy", `
 <p>Short version: we don't collect anything.</p>
 <h2>This website</h2>
 <p>No analytics, no cookies, no trackers, no third-party scripts or fonts. The site is hosted on Vercel, which keeps standard request logs (IP address, user agent, requested URL, time) for operating and securing the service. We don't use them for anything else.</p>
