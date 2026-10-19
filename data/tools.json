@@ -2244,31 +2244,31 @@
       "engine": "ffmpeg + ffprobe 9.0.2, EBU R128 ebur128 + two-pass loudnorm (bundled)",
       "engine_reason": "ffmpeg supplies real EBU R128 measurement and two-pass loudnorm with a true-peak limiter; SHA256-pinned sidecars run offline as killable children on every supported OS.",
       "private_repo": "chayprabs/loudness-normalizer",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "status": "released",
       "assets": {
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.0/loudness-normalizer-1.0.0-linux-x64.zip",
-          "sha256": "c34d419a9a3bd8b3caa4ac13aea938164d766f3eaeebd5b3d00ab4051d4a582e",
-          "size_bytes": 86900424
+          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.1/loudness-normalizer-1.0.1-linux-x64.zip",
+          "sha256": "9d729f9463a6fdf0656d8104f0c6a82a6a13dc6b472c5e9275151041da438eb4",
+          "size_bytes": 86905039
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.0/loudness-normalizer-1.0.0-macos-arm64.zip",
-          "sha256": "e8f446b77dee82f60ae07d53acbc67493dad61944492617bd6c8888f3ce96538",
-          "size_bytes": 62496160
+          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.1/loudness-normalizer-1.0.1-macos-arm64.zip",
+          "sha256": "b017c358d26d7ebbec205ea35673123935137b572e780567799669216c8581e4",
+          "size_bytes": 62499395
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.0/loudness-normalizer-1.0.0-macos-x64.zip",
-          "sha256": "41392419e6c51920bcac0da5ba3ed2267bc35d7165ac79e32f0aa66fc9e095eb",
-          "size_bytes": 72544795
+          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.1/loudness-normalizer-1.0.1-macos-x64.zip",
+          "sha256": "1273563e4c8732a2983e97055baf2bd9c22cf27c774eed6a6540806cf3947029",
+          "size_bytes": 72549594
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.0/loudness-normalizer-1.0.0-windows-x64.zip",
-          "sha256": "e8f4505f6dfbf011718ad50597da102ee56cf669a5fc4c86dd55e4250f281e52",
-          "size_bytes": 80804354
+          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.1/loudness-normalizer-1.0.1-windows-x64.zip",
+          "sha256": "b82f788799231ea28594b64d5c47f2f17113f46025d5d58fe8f80e935683e62c",
+          "size_bytes": 80808168
         }
       },
-      "release_notes": "First release: EBU R128 LUFS/LRA/true-peak measurement, loudness graphs, two-pass normalization, platform/custom targets, peak and gain modes, before/after reports, individual and batch downloads. Bundles ffmpeg 9.0.2 with source tarballs attached.",
+      "release_notes": "Fix quiet-audio true/sample-peak precision and cap peak-mode gain at +60 dB. Remeasure up to three encodes, use a final oversampled limiter for transient overshoot, and retain the best attempt. Web deadlines scale with duration; CLI has no time limit. Keep narrow-screen file values/actions visible. Document the conservative EBU case 16 engine limit and only shipped architectures.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -2317,11 +2317,11 @@
           },
           {
             "q": "Why can the result differ from the target?",
-            "a": "Very short or very dynamic audio and lossy encoding can shift loudness or true peak. Every output is re-measured, peak overshoot triggers one headroom-adjusted re-encode, and remaining deviations are reported in notes. Presets are working targets, not promises about platform playback."
+            "a": "Very short or dynamic audio and lossy encoding can shift loudness or true peak. Each output is re-measured; peak overshoot triggers up to three attempts with less gain or an oversampled limiter, and the best attempt is kept. Remaining deviations are reported. Peak mode refuses more than +60 dB gain. FFmpeg conservatively over-reads the EBU Tech 3341 case 16 true peak (-5.4 instead of -6.0 dBTP)."
           },
           {
             "q": "What are the limits?",
-            "a": "2 GiB and 6 hours per upload, 20 retained files, two jobs at a time, 600 seconds per job, up to 8 channels at 384 kHz. The CLI has no upload size/duration cap. Silence and audio shorter than 0.4 seconds cannot be LUFS normalized; fixed gain remains available."
+            "a": "2 GiB and 6 hours per upload, 20 retained files, two jobs at a time, 600 seconds plus 30 seconds per minute of audio per job, up to 8 channels at 384 kHz. The CLI has no upload size, duration or time cap. Silence and audio shorter than 0.4 seconds cannot be LUFS normalized; fixed gain remains available."
           }
         ]
       }
@@ -2631,21 +2631,47 @@
       "name": "OG Image Generator",
       "command": "localtools-og-image-generator",
       "category": "media",
-      "description": "Create Open Graph social preview images (1200x630 PNG) from templates, with code highlighting.",
+      "description": "Design and render Open Graph / social card images offline: templates, live preview, code highlighting, batch.",
       "port": 47128,
       "kind": "js",
-      "engine": "satori + resvg + shiki",
-      "engine_reason": "satori turns HTML/CSS into SVG without a browser; resvg rasterizes; shiki highlights code.",
+      "engine": "satori 0.62 + resvg-wasm 2.6 + shiki 4 (Oniguruma)",
+      "engine_reason": "satori lays out HTML/CSS (flex, grid, stylesheets, HarfBuzz shaping) as SVG without a browser; resvg rasterizes it identically on every OS; shiki gives editor-grade code highlighting. All wasm, fonts and emoji are embedded, so nothing is fetched.",
       "private_repo": "chayprabs/og-image-generator",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.1",
+      "status": "released",
+      "assets": {
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.1/og-image-generator-1.0.1-windows-x64.zip",
+          "sha256": "92b4c750d7f147d8aa29d075e9dcabed8499f9bd89bc4ce1d30cb64e01663fd2",
+          "size_bytes": 61205729
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.1/og-image-generator-1.0.1-macos-arm64.zip",
+          "sha256": "1d103dfbba3cec4ce4e85aac433d37b4423ec72da27ea7a09c836a68ed076cb4",
+          "size_bytes": 47856350
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.1/og-image-generator-1.0.1-macos-x64.zip",
+          "sha256": "28cd3e7c7fcda406d701e16a69926c336b2c41c8532198f5e60216004762044e",
+          "size_bytes": 49377199
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.1/og-image-generator-1.0.1-linux-x64.zip",
+          "sha256": "676885fbe4d8325241673d43ffe69291eb9066dbcf760611bda48cbbb68eb74c",
+          "size_bytes": 58348905
+        },
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.1/og-image-generator-1.0.1-linux-arm64.zip",
+          "sha256": "690546c5f37103f796100af68d43074068d007839c431b8fe33b7ec309013930",
+          "size_bytes": 58665705
+        }
+      },
+      "release_notes": "WebP images decoded (were blank); Connection: close clients get JSON 413/503; nested sections capped; worker replies framed; code card truncation inside the window; human errors for variable fonts and corrupt images; Excel Windows-1252 and semicolon CSV; template picker locks while edited markup is used; stricter URL checks; accurate notices; pinned Bun 1.4.3 builds.",
       "registries": {
         "brew": true,
         "scoop": true,
         "winget": true,
-        "npm": "localtools-og-image-generator",
+        "npm": null,
         "pypi": null,
         "ghcr": null
       },
@@ -2661,14 +2687,44 @@
       "smoke": {
         "path": "/api/render",
         "fields": {
-          "title": "Hello"
+          "title": "Hello",
+          "template": "docs"
         },
-        "files": {},
+        "files": {
+          "logo": "logo.svg"
+        },
         "expect": "PNG"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Run localtools-og-image-generator; the page opens at http://127.0.0.1:47128.",
+          "Pick a template (blog, docs, launch, repository, quote, code, event, minimal) and a size: OG 1200x630, X 1200x675, square, story or custom.",
+          "Edit the fields, upload a logo, avatar, background image or your own font; the preview updates as you type.",
+          "Download PNG, JPEG or SVG, or edit the HTML/CSS template in the Markup tab.",
+          "For many cards: drop a CSV/JSON in the Batch tab, or run localtools-og-image-generator batch rows.csv --template blog -o cards/."
+        ],
+        "faqs": [
+          {
+            "q": "Does it need a browser or the internet?",
+            "a": "No. satori lays out the card and resvg rasterizes it inside the program; fonts, emoji and the code highlighter are embedded. Remote image URLs in templates are rejected and network access is switched off while rendering."
+          },
+          {
+            "q": "Can I use my own design?",
+            "a": "Yes. The Markup tab (or --markup FILE) takes HTML with a <style> sheet and {{field}} placeholders, using satori's CSS subset: flex, grid, gradients, line-clamp, @media on the image size. Errors point to the line and column. The guide is MARKUP.md in this folder."
+          },
+          {
+            "q": "Which languages and emoji render?",
+            "a": "Latin, Greek and Cyrillic with Geist, Inter or JetBrains Mono; Chinese, Japanese, Korean, Arabic, Hebrew and Devanagari fall back to bundled Noto fonts, and emoji use Twemoji. You can also upload .ttf, .otf, .woff or .woff2 fonts. Variable fonts are not supported; upload a static instance."
+          },
+          {
+            "q": "How many cards can a batch make?",
+            "a": "Up to 1,000 rows per batch (500 cards take about 25 s). Columns are field names, a filename column names the files, and image columns refer to uploaded images (or files beside the CSV in the CLI)."
+          },
+          {
+            "q": "What are the limits?",
+            "a": "200 to 4096 px per side, images up to 10 MB / 25 megapixels, up to four fonts of 20 MB, templates up to 512 KB / 5,000 elements, and 20 s per card. Two renders run at once; more wait or get a busy reply."
+          }
+        ]
       }
     },
     {
@@ -2775,13 +2831,39 @@
       "description": "Convert documents between Markdown, DOCX, HTML, EPUB, LaTeX and PDF with pandoc.",
       "port": 47130,
       "kind": "bin",
-      "engine": "pandoc (bundled) + typst as PDF engine",
-      "engine_reason": "pandoc is the universal document converter; typst makes PDFs without a LaTeX install.",
+      "engine": "Pandoc 3.12.1 + Typst 0.15.1 (bundled)",
+      "engine_reason": "Official Pandoc binaries preserve document structure across formats; Typst creates offline PDFs without a TeX distribution.",
       "private_repo": "chayprabs/pandoc-gui",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.2",
+      "status": "released",
+      "assets": {
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/pandoc-gui-v1.0.2/pandoc-gui-1.0.2-linux-arm64.zip",
+          "sha256": "2301ebdcab522899b34beeb406b0417780e51c5af098270c78895f90c0264a8d",
+          "size_bytes": 66345340
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/pandoc-gui-v1.0.2/pandoc-gui-1.0.2-linux-x64.zip",
+          "sha256": "54404ad51991cda6e68073d7e33ebc16e04e4074a00da71e5e5c782f43009187",
+          "size_bytes": 64831770
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/pandoc-gui-v1.0.2/pandoc-gui-1.0.2-macos-arm64.zip",
+          "sha256": "932f6e45a67ccd95b0a588d7be3f981a838573e51e6a3d249f52cd4b334be52f",
+          "size_bytes": 68612117
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/pandoc-gui-v1.0.2/pandoc-gui-1.0.2-macos-x64.zip",
+          "sha256": "931a02e8866b92563a24c13a7ce2b202d6a194e1982703f7e866bf3f20f264d9",
+          "size_bytes": 53376101
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/pandoc-gui-v1.0.2/pandoc-gui-1.0.2-windows-x64.zip",
+          "sha256": "44126491f7f1ab1f7f3282191ed59d72146e74751ed29fc589a1f78f00f17316",
+          "size_bytes": 69561155
+        }
+      },
+      "release_notes": "Round-2 fixes: citations always use an explicit job-folder style (uploaded CSL or bundled Chicago author-date); document csl/citation-style/citation-abbreviations/bibliography metadata ignored; dependent CSL parents matched by id among uploaded/bundled styles only, never fetched; text writers keep RST titles/docinfo (output matches pandoc defaults); --csl repeatable.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -2796,23 +2878,49 @@
           "macos",
           "linux"
         ],
-        "disk_mb": 250,
+        "disk_mb": 400,
         "docker": false
       },
       "smoke": {
         "path": "/api/convert",
         "fields": {
           "from": "markdown",
-          "to": "html"
+          "to": "pdf"
         },
         "files": {
           "file": "sample.md"
         },
-        "expect": "<h1"
+        "expect": "%PDF-"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Install Pandoc GUI and run localtools-pandoc-gui to open its local page.",
+          "Paste text, or add documents with their images. A folder or ZIP preserves relative resource paths; checked documents are converted in order.",
+          "Choose an output format. Add contents, citations or a reference document when needed, then Convert and Download.",
+          "For scripts, use localtools-pandoc-gui convert input.md -o output.docx; PDFs work without a separate LaTeX install."
+        ],
+        "faqs": [
+          {
+            "q": "Do PDFs need a LaTeX installation?",
+            "a": "No. The ZIP includes Typst 0.15.1 and its built-in fonts. Pandoc converts document structure to Typst, then Typst makes the PDF."
+          },
+          {
+            "q": "Will a DOCX or LaTeX document keep exactly the same layout?",
+            "a": "Pandoc preserves structure rather than page layout. Complex tables and styling can change; PDFs use Typst layout. DOCX, ODT and PPTX outputs can take a reference document for styles."
+          },
+          {
+            "q": "Does conversion use the network?",
+            "a": "No engines or fonts are fetched after install. Upload images and included files with the document. Remote images and Typst packages are unavailable; the HTML preview blocks external resources and scripts."
+          },
+          {
+            "q": "What are the web limits?",
+            "a": "256 MiB for the entire multipart request, 2,000 files, 512 MiB extracted ZIP content, 120 seconds and two simultaneous conversions. Large HTML results download normally but preview only below 20 MiB."
+          },
+          {
+            "q": "Can it read PDFs, scanned pages or legacy .doc files?",
+            "a": "No. PDF is an output format; OCR and legacy binary Word input are cut. Use DOCX, ODT, HTML, EPUB, text markup, spreadsheets or presentations supported by Pandoc."
+          }
+        ]
       }
     },
     {
@@ -2826,10 +2934,36 @@
       "engine": "typst (bundled official binary)",
       "engine_reason": "The official typst binary compiles in milliseconds and needs nothing else.",
       "private_repo": "chayprabs/typst-editor",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.0",
+      "status": "released",
+      "assets": {
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.0/typst-editor-1.0.0-windows-x64.zip",
+          "sha256": "040665e224e8f1991e5d1fe1620778abe7b122500a1d0d4994860d529512b323",
+          "size_bytes": 27012818
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.0/typst-editor-1.0.0-macos-arm64.zip",
+          "sha256": "5f61522a52a4686c5cf5813e081238841eb077325f2ffae641e2534df0cf5afc",
+          "size_bytes": 25393490
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.0/typst-editor-1.0.0-macos-x64.zip",
+          "sha256": "0de2416e639cf9cff204691431e3b75852acde8c5692e8dd92562d16ee2a2088",
+          "size_bytes": 26406833
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.0/typst-editor-1.0.0-linux-x64.zip",
+          "sha256": "b5067c1b50279a2c5ffde80fea9cd11a77d2503a3dff8abbefdcfb695bd599ab",
+          "size_bytes": 28974885
+        },
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.0/typst-editor-1.0.0-linux-arm64.zip",
+          "sha256": "09fb2c503aca5efb20973a1dfa1555ccdca05423999afec9a1e10cabd40d20a5",
+          "size_bytes": 27608221
+        }
+      },
+      "release_notes": "First release: live preview, clickable diagnostics, PDF/PDF-A/PNG/SVG export, zip projects; bundles typst 0.15.1; never downloads packages.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -2844,21 +2978,48 @@
           "macos",
           "linux"
         ],
-        "disk_mb": 60,
+        "disk_mb": 70,
         "docker": false
       },
       "smoke": {
         "path": "/api/compile",
         "fields": {
-          "source": "= Hello",
+          "source": "= Hello\n$ x^2 $",
           "format": "pdf"
         },
         "files": {},
         "expect": "%PDF"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Start it: the editor opens with an article template and its live preview.",
+          "Type: the preview recompiles 250 ms after you stop and only reloads pages that changed.",
+          "Open a folder, a zip or single files; double-click a .typ tab to make it the main file.",
+          "Click a diagnostic to jump to its file, line and column.",
+          "Export PDF (or PDF/A, PDF/UA), PNG or SVG pages, or download the whole project as a zip."
+        ],
+        "faqs": [
+          {
+            "q": "Does it need the internet?",
+            "a": "No. The official typst 0.15.1 binary is bundled and every compile runs on your machine. The tool blocks typst package downloads."
+          },
+          {
+            "q": "Can I use @preview packages?",
+            "a": "Packages already in your Typst package cache work. Others are never downloaded: copy the package files into your project and import them by path."
+          },
+          {
+            "q": "Are my files safe from the document?",
+            "a": "Each compile runs in a fresh temporary folder set as the typst root, so a document cannot read files outside the project. Endless loops are killed after 60 seconds and memory is capped."
+          },
+          {
+            "q": "Is the PDF the same as running typst myself?",
+            "a": "Yes. With the same flags and creation timestamp, the PDF is byte-identical to the typst CLI output (tested)."
+          },
+          {
+            "q": "Can I use my own fonts?",
+            "a": "Add .ttf or .otf files to the project; typst finds them. System fonts are used too unless you untick that option."
+          }
+        ]
       }
     },
     {
