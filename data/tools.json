@@ -2241,13 +2241,34 @@
       "description": "Normalize audio loudness to EBU R128 / LUFS targets with two-pass ffmpeg loudnorm.",
       "port": 47124,
       "kind": "bin",
-      "engine": "ffmpeg loudnorm two-pass EBU R128 (bundled)",
-      "engine_reason": "ffmpeg's two-pass loudnorm is the standard, accurate EBU R128 implementation.",
+      "engine": "ffmpeg + ffprobe 9.0.2, EBU R128 ebur128 + two-pass loudnorm (bundled)",
+      "engine_reason": "ffmpeg supplies real EBU R128 measurement and two-pass loudnorm with a true-peak limiter; SHA256-pinned sidecars run offline as killable children on every supported OS.",
       "private_repo": "chayprabs/loudness-normalizer",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.0",
+      "status": "released",
+      "assets": {
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.0/loudness-normalizer-1.0.0-linux-x64.zip",
+          "sha256": "c34d419a9a3bd8b3caa4ac13aea938164d766f3eaeebd5b3d00ab4051d4a582e",
+          "size_bytes": 86900424
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.0/loudness-normalizer-1.0.0-macos-arm64.zip",
+          "sha256": "e8f446b77dee82f60ae07d53acbc67493dad61944492617bd6c8888f3ce96538",
+          "size_bytes": 62496160
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.0/loudness-normalizer-1.0.0-macos-x64.zip",
+          "sha256": "41392419e6c51920bcac0da5ba3ed2267bc35d7165ac79e32f0aa66fc9e095eb",
+          "size_bytes": 72544795
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.0/loudness-normalizer-1.0.0-windows-x64.zip",
+          "sha256": "e8f4505f6dfbf011718ad50597da102ee56cf669a5fc4c86dd55e4250f281e52",
+          "size_bytes": 80804354
+        }
+      },
+      "release_notes": "First release: EBU R128 LUFS/LRA/true-peak measurement, loudness graphs, two-pass normalization, platform/custom targets, peak and gain modes, before/after reports, individual and batch downloads. Bundles ffmpeg 9.0.2 with source tarballs attached.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -2262,7 +2283,7 @@
           "macos",
           "linux"
         ],
-        "disk_mb": 180,
+        "disk_mb": 210,
         "docker": false
       },
       "smoke": {
@@ -2271,11 +2292,38 @@
         "files": {
           "file": "sample.wav"
         },
-        "expect": "input_i"
+        "expect": "\"integrated\":-26.63"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Run localtools-loudness-normalizer or open Loudness Normalizer from your app menu.",
+          "Drop audio or video files to measure LUFS, loudness range and true peak, and select a row for its loudness graph.",
+          "Choose a platform preset or custom target, or use peak normalization or a fixed gain. Choose the output format and bitrate when needed.",
+          "Press Normalize all, inspect before/after values and processing notes, then download audio individually or as one ZIP. Copy or download the selected report.",
+          "CLI: localtools-loudness-normalizer measure song.flac --json; localtools-loudness-normalizer normalize song.flac --preset ebu -o normalized.flac."
+        ],
+        "faqs": [
+          {
+            "q": "Does audio leave my computer?",
+            "a": "No. The browser uploads to the tool on 127.0.0.1 and the bundled ffmpeg works offline. Uploads are removed when released, after 30 idle minutes, or at shutdown; stale crash folders are swept on restart."
+          },
+          {
+            "q": "Does normalization change the dynamics?",
+            "a": "A linear gain preserves dynamics whenever the true-peak ceiling allows. Otherwise loudnorm compresses and limits the audio, and the report identifies dynamic mode. Choose a loudness range target only when compression is wanted."
+          },
+          {
+            "q": "Which formats and video files work?",
+            "a": "ffmpeg reads WAV, FLAC, MP3, AAC, Opus, Ogg and audio tracks in MP4, MOV, MKV and other local media. Same-as-source keeps compatible video, other audio tracks, subtitles, cover art and tags; only the first audio track is normalized. Explicit output formats extract audio."
+          },
+          {
+            "q": "Why can the result differ from the target?",
+            "a": "Very short or very dynamic audio and lossy encoding can shift loudness or true peak. Every output is re-measured, peak overshoot triggers one headroom-adjusted re-encode, and remaining deviations are reported in notes. Presets are working targets, not promises about platform playback."
+          },
+          {
+            "q": "What are the limits?",
+            "a": "2 GiB and 6 hours per upload, 20 retained files, two jobs at a time, 600 seconds per job, up to 8 channels at 384 kHz. The CLI has no upload size/duration cap. Silence and audio shorter than 0.4 seconds cannot be LUFS normalized; fixed gain remains available."
+          }
+        ]
       }
     },
     {
@@ -2283,16 +2331,42 @@
       "name": "Subtitle Converter",
       "command": "localtools-subtitle-converter",
       "category": "media",
-      "description": "Convert subtitles between SRT, VTT, ASS and TTML, shift timing, and mux or burn them into video.",
+      "description": "Convert, inspect and re-time subtitles; extract, add or burn captions into video.",
       "port": 47125,
       "kind": "bin",
-      "engine": "Go subtitle library (SRT/VTT/ASS/TTML) + ffmpeg for mux/burn",
-      "engine_reason": "A Go subtitle library handles format conversion natively; ffmpeg only for muxing and burning in.",
+      "engine": "Native Go subtitle readers + ffmpeg/ffprobe 9.0.2",
+      "engine_reason": "Go preserves millisecond timings and raw ASS/WebVTT payloads for timing edits; pinned ffmpeg handles container tracks and libass burn-in as a separate process.",
       "private_repo": "chayprabs/subtitle-converter",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.2",
+      "status": "released",
+      "assets": {
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.2/subtitle-converter-1.0.2-linux-arm64.zip",
+          "sha256": "a9b7cb2d25d364e2c2480600512fd8161728a6904ebff3955be47e5eb909c481",
+          "size_bytes": 78744546
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.2/subtitle-converter-1.0.2-linux-x64.zip",
+          "sha256": "ae6edbc44bcc0e80ce407b706c6d6ecfaa989fec4f1af0f5d7e57dd552ecbd7b",
+          "size_bytes": 87583866
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.2/subtitle-converter-1.0.2-macos-arm64.zip",
+          "sha256": "8abe26949b4ef70453247e3316d0ad0ab0d35e4123ae9c0d9cc4d91958d251e6",
+          "size_bytes": 63175124
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.2/subtitle-converter-1.0.2-macos-x64.zip",
+          "sha256": "912ad0913d43b19798d32939df27b0c4c67573a355fa50899ef83b4c2990f2a7",
+          "size_bytes": 73231744
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.2/subtitle-converter-1.0.2-windows-x64.zip",
+          "sha256": "7550dfdc08a849116fe9eb0e26e2ce915d947fd397091fd8bc6cac7c887e8652",
+          "size_bytes": 81488062
+        }
+      },
+      "release_notes": "Fixes: burn --override-style on ASS files positions top/middle/bottom and sizes text in video pixels; numeric arrow dialogue kept as text; TMPlayer named as unsupported; Baltic windows-1257 detected, more UI encodings, short Western text stays windows-1252; web output limit measures the text.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -2307,7 +2381,7 @@
           "macos",
           "linux"
         ],
-        "disk_mb": 180,
+        "disk_mb": 220,
         "docker": false
       },
       "smoke": {
@@ -2321,8 +2395,35 @@
         "expect": "WEBVTT"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Choose a subtitle file or paste SRT, WebVTT, ASS/SSA, TTML/DFXP, SBV or MicroDVD text.",
+          "Select an output format. Inspect ambiguous encodings before converting.",
+          "Optionally shift timing, change frame rates, sync two points or apply cleanup; review the findings.",
+          "Run Convert and copy or download the complete UTF-8 result. Merge and split are also available.",
+          "For video, select Extract, Add track or Burn, choose a local video, wait for inspection, then run. MKV retains ASS; MP4 soft subtitles lose ASS styling."
+        ],
+        "faqs": [
+          {
+            "q": "Which subtitle formats are supported?",
+            "a": "Read SRT, WebVTT, ASS/SSA, TTML/DFXP, SBV/SubViewer and MicroDVD. Write those formats or a plain transcript. MicroDVD needs the video frame rate. TTML sequential containers and timed spans are refused."
+          },
+          {
+            "q": "Will every style and layout survive conversion?",
+            "a": "Basic text styling translates where supported. Fonts, exact layout, animation, karaoke, ruby and metadata can be lost; ASS rounds to centiseconds. Staying in ASS/WebVTT preserves raw cue payloads. MP4 soft subtitles use mov_text."
+          },
+          {
+            "q": "Can it extract image subtitles or transcribe speech?",
+            "a": "It extracts text subtitle tracks. PGS/VobSub image tracks require OCR, which is not included. Speech transcription, translation and online subtitle search are not included."
+          },
+          {
+            "q": "What are the limits?",
+            "a": "16 MiB per subtitle, 32 MiB per web request, 100,000 cues, 256 KiB per line and 1 MiB per decoded cue. Web subtitles have a 30-second processing deadline. Video uploads are limited to 4 GiB and jobs to three hours; two jobs per category run at once."
+          },
+          {
+            "q": "How do video burn-in and privacy work?",
+            "a": "All work stays on this computer without network access. Burn-in re-encodes to 8-bit H.264; HDR/interlaced inputs are refused. Go Latin fonts are bundled; other scripts/custom fonts depend on installed fonts. Cancellation or server death kills native jobs. Uploads/results expire after 30 minutes idle."
+          }
+        ]
       }
     },
     {
@@ -2330,16 +2431,42 @@
       "name": "EXIF Remover",
       "command": "localtools-exif-remover",
       "category": "media",
-      "description": "Strip EXIF, GPS, XMP and other metadata from photos and files with ExifTool.",
+      "description": "Inspect and remove metadata from JPEG, PNG, TIFF and WebP images; download clean copies and a remaining-tags report.",
       "port": 47126,
       "kind": "bin",
-      "engine": "ExifTool (bundled)",
-      "engine_reason": "ExifTool reads and removes metadata from more formats than any other tool.",
+      "engine": "Go + bundled ExifTool 13.59 (Unix requires Perl 5)",
+      "engine_reason": "Mature EXIF/GPS/IPTC/XMP/ICC parsers; tested raster formats, verified cleaned outputs, unmodified portable Windows bundle. macOS/Linux require Perl 5 on PATH.",
       "private_repo": "chayprabs/exif-remover",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.3",
+      "status": "released",
+      "assets": {
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/exif-remover-v1.0.3/exif-remover-1.0.3-linux-arm64.zip",
+          "sha256": "a7fbb37b1b2ec24b525e19643ded3e2461900c53e3740569e73d7de83cf1be59",
+          "size_bytes": 8795167
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/exif-remover-v1.0.3/exif-remover-1.0.3-linux-x64.zip",
+          "sha256": "1bde92ec7cff11e00b2d713cd61e8167966a20dfb04b9e53b4831b37ca6219e5",
+          "size_bytes": 9091554
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/exif-remover-v1.0.3/exif-remover-1.0.3-macos-arm64.zip",
+          "sha256": "b2984779f612f2ab757b9c647d1cf44b7c5d3d68b2a5b3016e709c431ba08dec",
+          "size_bytes": 8883664
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/exif-remover-v1.0.3/exif-remover-1.0.3-macos-x64.zip",
+          "sha256": "eb8a28f3945e3a2792b4e5712e3844dcdc7672768048e7ce3621dd9fc9860171",
+          "size_bytes": 9126428
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/exif-remover-v1.0.3/exif-remover-1.0.3-windows-x64.zip",
+          "sha256": "7ee17260a71af495be59252619b7eb61506645e78c128b59105bb045a6afff41",
+          "size_bytes": 14569691
+        }
+      },
+      "release_notes": "Multi-page TIFF: private and unknown tags removed on every page; warnings deduplicated and capped; per-file report read from the ZIP (no oversized headers); mismatched extensions cleaned as the detected type. Batch image metadata inspection/removal, originals untouched, orientation/color preservation option. JPEG, PNG, TIFF and WebP. 16 files; 32 MiB each; 64 MiB total. Unix requires Perl 5 on PATH. Not a forensic anonymization guarantee.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -2354,20 +2481,48 @@
           "macos",
           "linux"
         ],
-        "disk_mb": 40,
+        "disk_mb": 55,
         "docker": false
       },
       "smoke": {
         "path": "/api/strip",
-        "fields": {},
+        "fields": {
+          "preset": "keep"
+        },
         "files": {
           "file": "sample.jpg"
         },
-        "expect": "JFIF"
+        "expect": "01-clean-sample.jpg"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Install and run localtools-exif-remover. macOS/Linux require Perl 5 on PATH; Windows includes Perl.",
+          "Choose up to 16 JPEG, PNG, TIFF or WebP images (32 MiB each, 64 MiB total). Inspect metadata and expand a file to read its tags.",
+          "Choose to preserve orientation and color, or remove all deletable metadata. Kept ICC profiles can include author and private values.",
+          "Clean the batch, download the ZIP, and review report.json for removed and remaining tags before sharing. Originals are unchanged."
+        ],
+        "faqs": [
+          {
+            "q": "Does this change image quality or my originals?",
+            "a": "Originals are untouched. ExifTool copies image pixels without recompression. Removing orientation or color tags can change how viewers display an image; the default preserves those tags."
+          },
+          {
+            "q": "Which formats can I clean?",
+            "a": "JPEG, PNG, TIFF and WebP. RAW, HEIC/AVIF, GIF, PDF, video/audio and Office documents are rejected because their deletion and verification risks differ. TIFF retains required structural tags."
+          },
+          {
+            "q": "Is every private detail guaranteed gone?",
+            "a": "No. The report covers ExifTool-visible tags with capped values. Kept ICC profiles can include author/private values. Unknown or structural data, filenames, visible faces/text and steganography are not anonymized. Inspect remaining tags."
+          },
+          {
+            "q": "Do I need Perl or an internet connection?",
+            "a": "Windows bundles Perl. macOS and Linux require a Perl 5 runtime on PATH; minimal Linux installations may not have one. After installation and that prerequisite, inspection and cleaning run offline."
+          },
+          {
+            "q": "What are the limits and API output?",
+            "a": "Up to 16 files, 32 MiB each and 64 MiB total. Two simultaneous jobs; 60-second deadline. POST multipart file fields to /api/inspect for JSON, or /api/strip with preset=keep or all for a ZIP of cleaned copies and report.json."
+          }
+        ]
       }
     },
     {
