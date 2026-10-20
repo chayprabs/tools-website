@@ -3078,38 +3078,38 @@
       "port": 47132,
       "kind": "js",
       "engine": "Asciidoctor.js 4.1.1 + downdoc 1.1 + highlight.js 11.12 + MathJax 3.2",
-      "engine_reason": "Asciidoctor.js is the official JavaScript Asciidoctor; output is byte-identical to using it directly. It runs in SAFE mode jailed to the project, with highlighting, icons and math embedded so nothing is fetched. downdoc (by Asciidoctor's lead) produces Markdown after Asciidoctor resolves includes.",
+      "engine_reason": "Asciidoctor.js is the official JavaScript Asciidoctor; reference comparisons match after removing the default Google Fonts import. SAFE mode confines conversion to the project. Local images, highlighting, icons and math are embedded; remote media URLs are retained with an export warning. downdoc (by Asciidoctor's lead) produces Markdown after Asciidoctor resolves includes.",
       "private_repo": "chayprabs/asciidoc-converter",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.0/asciidoc-converter-1.0.0-linux-arm64.zip",
-          "sha256": "7d91e6d9eed0985fad8b20ec407cae38963e09414f99d1aa10bd913def82271b",
-          "size_bytes": 44458659
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.1/asciidoc-converter-1.0.1-linux-arm64.zip",
+          "sha256": "b50b4a8ea424958cb8a577b50854838756a185ce6db5a1f161014639dd92382f",
+          "size_bytes": 44459538
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.0/asciidoc-converter-1.0.0-linux-x64.zip",
-          "sha256": "19d1291476d3eec0aae95ae17080144707953bf7f098e91300f30f64c1a6d83b",
-          "size_bytes": 44143544
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.1/asciidoc-converter-1.0.1-linux-x64.zip",
+          "sha256": "9687668d6885a418f277892b2e98c91a4e1a9eb6f9c9acf63814aad244a379c1",
+          "size_bytes": 44144401
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.0/asciidoc-converter-1.0.0-macos-arm64.zip",
-          "sha256": "65a98f32e6c8ea74eb30d69975758eff6fed7589c4b65ed1a9d5934d2648f2cf",
-          "size_bytes": 33345733
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.1/asciidoc-converter-1.0.1-macos-arm64.zip",
+          "sha256": "2202d21774fb767d71a7550d8ae88c86ad34aab9f2b834c1dd72fea8bd39e4d3",
+          "size_bytes": 33346648
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.0/asciidoc-converter-1.0.0-macos-x64.zip",
-          "sha256": "582f544ce760680bf45e75538a653afd754bf70460f987fda278ebda8cbfe1da",
-          "size_bytes": 35173374
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.1/asciidoc-converter-1.0.1-macos-x64.zip",
+          "sha256": "c9180c0100ca0b58b9482be43c355db5fd020f780e80ed609cd9c26cda190ccb",
+          "size_bytes": 35174139
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.0/asciidoc-converter-1.0.0-windows-x64.zip",
-          "sha256": "0258197a5a729f37b8dffd08102f9a0f056279f3f04f654f64b1c12b96668b20",
-          "size_bytes": 46998755
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.1/asciidoc-converter-1.0.1-windows-x64.zip",
+          "sha256": "9162dc2cb59104f15bb9b3e54acffb9b0615de62807688675b8a87aa097b4e1f",
+          "size_bytes": 46999666
         }
       },
-      "release_notes": "First release: AsciiDoc to self-contained HTML5, HTML body, DocBook 5 or Markdown with Asciidoctor.js 4.1.1 in SAFE mode; folder/zip projects with includes and images, live preview, attributes panel, highlight.js, embedded Font Awesome and MathJax SVG math, diagnostics with file:line. No network access.",
+      "release_notes": "Fix STEM literal delimiters in code/configuration; remove Google Fonts import; never truncate pasted text; redact project temp paths; warn about remote media in exports; open archive diagnostic sources in the editor. Upload limit is 64 MiB including multipart framing.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -3141,13 +3141,13 @@
           "Run localtools-asciidoc-converter; the page opens at http://127.0.0.1:47132.",
           "Paste AsciiDoc, or drop .adoc files and images, open a whole folder, or drop a zip; include:: and image:: paths keep working.",
           "Pick the output (HTML page, HTML body, DocBook 5, Markdown) and options such as table of contents, section numbers, icons, code theme and STEM; the preview updates as you type.",
-          "Click a warning to jump to its line, then Download, Copy, or Print / PDF from the browser.",
+          "Click a warning to open its file and select the line (including archive sources up to 2 MiB), then Download, Copy, or Print / PDF. Remote media warnings mean opening the export may load those URLs.",
           "From a terminal: localtools-asciidoc-converter convert doc.adoc -o doc.html --attribute toc"
         ],
         "faqs": [
           {
             "q": "Is the HTML the same as Asciidoctor's?",
-            "a": "Yes. It is Asciidoctor.js 4.1.1 (equivalent to Asciidoctor 2.0.26); tests compare the HTML5 and DocBook output of 265 real documents byte for byte with Asciidoctor.js used directly. Images, the default stylesheet, highlight.js colours, Font Awesome icons and math are embedded, so the page is one self-contained file."
+            "a": "Yes. It is Asciidoctor.js 4.1.1 (equivalent to Asciidoctor 2.0.26); 527 HTML5 and DocBook comparisons across 265 real documents match after removing the default Google Fonts import. Local images, the default stylesheet, highlight.js colours, Font Awesome icons and math are embedded. Remote media and favicon URLs remain with a warning: opening the export may load them; the preview blocks them."
           },
           {
             "q": "Can a document read files outside my project or reach the network?",
@@ -3163,7 +3163,7 @@
           },
           {
             "q": "What are the limits?",
-            "a": "Uploads up to 64 MB with 5,000 files, zips expanding to 256 MB, and 64 MB of output. The server gives each conversion 60 s in its own process (two at a time), so pathological documents are stopped with an error; the CLI has no time limit."
+            "a": "Uploads up to 64 MiB total including multipart framing, 5,000 files, zips expanding to 256 MiB, and 64 MiB of output. An exact 64 MiB pasted document exceeds the framed upload limit and returns 413. The server gives each conversion 60 s in its own process (two at a time); the CLI has no deadline. Archive diagnostic sources up to 2 MiB of encoded text can open in the editor."
           }
         ]
       }
@@ -3177,38 +3177,38 @@
       "port": 47133,
       "kind": "js",
       "engine": "MathJax 4.1.3 (TeX/MathML/AsciiMath -> SVG/MathML) + Speech Rule Engine 5 + resvg-wasm 2.6",
-      "engine_reason": "MathJax is the reference renderer of TeX math on the web; run directly with its lite DOM and every font range bundled, it renders offline and byte-identical to stock MathJax. SRE gives accessible speech text, resvg rasterizes PNGs identically on every OS.",
+      "engine_reason": "MathJax is the reference renderer of TeX math on the web; its lite DOM, font ranges and named entities are bundled offline. Supported equations match stock MathJax with documented standalone post-processing and Safe filtering. SRE provides optional speech; resvg rasterizes PNGs across OSes.",
       "private_repo": "chayprabs/latex-to-svg",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.0/latex-to-svg-1.0.0-windows-x64.zip",
-          "sha256": "0b261c2bbc1a68017723bf3e7b877f84e342fdb0d8895c3b63349e2e8b5ef182",
-          "size_bytes": 51056648
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.1/latex-to-svg-1.0.1-windows-x64.zip",
+          "sha256": "09ab2aea8c7d8204fdc23971d1938dd7db997273f52d4f14519e00f12c63bbf4",
+          "size_bytes": 51070462
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.0/latex-to-svg-1.0.0-macos-arm64.zip",
-          "sha256": "6b316b42fe67857e6a990587415ec976c1fbc466444d23ce262cc877ef7ab0df",
-          "size_bytes": 37498335
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.1/latex-to-svg-1.0.1-macos-arm64.zip",
+          "sha256": "23aeed0155f166b4d94dcb617042ca3db9cf7ccfe31477002f8f2f8d191455ca",
+          "size_bytes": 37512114
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.0/latex-to-svg-1.0.0-macos-x64.zip",
-          "sha256": "35492b039286182d8d0add409d0c24a226ff11b7e0a9b6772cc4ed04f91a1f55",
-          "size_bytes": 39227312
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.1/latex-to-svg-1.0.1-macos-x64.zip",
+          "sha256": "ac1df04c7bad9475a32c6bdb7219ed5e852db9307c55a37e26afd40c242d617f",
+          "size_bytes": 39241644
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.0/latex-to-svg-1.0.0-linux-x64.zip",
-          "sha256": "c47c80bb9a841705823a207b8bc288ec0e615ece10d4da111f6e00a5c2f6806c",
-          "size_bytes": 48198343
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.1/latex-to-svg-1.0.1-linux-x64.zip",
+          "sha256": "5802e63bc1097309106bf15b291951b7b3120d5c34937499e98303ee433724a4",
+          "size_bytes": 48213449
         },
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.0/latex-to-svg-1.0.0-linux-arm64.zip",
-          "sha256": "57263c085c4ed0ee2ecbf96e5ccd3054d50463fa843505ed29422566bcc4d38b",
-          "size_bytes": 48515736
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.1/latex-to-svg-1.0.1-linux-arm64.zip",
+          "sha256": "ca9ae9ad0daf96b41b7a66106a33416afa8ab3a1e83c6613c396c23bce61fe28",
+          "size_bytes": 48529804
         }
       },
-      "release_notes": "First release: LaTeX, MathML or AsciiMath to standalone SVG, PNG and MathML with speech text, offline with MathJax 4.1.3. Live preview, copy as SVG/MathML/data URI/<img>, batch of .tex/.md files to a zip with a manifest, CLI and HTTP API; killable workers with per-formula deadlines and macro-bomb/nesting limits.",
+      "release_notes": "Sanitize SVG/MathML/batch exports, bundle named MathML entities, parse multiline macros, skip Markdown code, report macro positions, and compact multline geometry. Tagged equations are explicitly refused. Speech has a separate budget with notices; actual 256 KB formulas use automatic glyph reuse and a bounded longer deadline.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -3238,10 +3238,11 @@
       "page": {
         "howto": [
           "Run localtools-latex-to-svg; the page opens at http://127.0.0.1:47133.",
-          "Type a formula in TeX (or switch to MathML or AsciiMath); the preview, speech text, SVG and MathML update as you type.",
-          "Pick display or inline style, a colour, and a PNG scale; download SVG or PNG, or copy SVG, MathML, a data URI or an <img> tag with alt text.",
-          "For many formulas: drop a .tex, .md or .txt file in the Batch tab, or run localtools-latex-to-svg batch paper.tex -o out/ for eq-001.svg... plus manifest.json.",
-          "From scripts: localtools-latex-to-svg render \"\\frac{a}{b}\" -o eq.svg --png --scale 3."
+          "Type TeX, MathML or AsciiMath; preview and copy SVG/MathML/data URI/an <img> tag, or download SVG and PNG.",
+          "Choose display or inline style, colour and PNG scale. Tagged equations are refused: remove \\tag or use align*/equation*.",
+          "Drop a .tex/.md/.txt file in Batch, or run localtools-latex-to-svg batch paper.tex -o out/ for images and manifest.json; balanced multiline document macros are supported.",
+          "Long formulas display notices when speech is omitted or glyph reuse is enabled. Downloads/copies remain complete; code preview is limited to 1 MB.",
+          "CLI/API options and limits: https://github.com/chayprabs/localtools/blob/main/latex-to-svg/USAGE.md"
         ],
         "faqs": [
           {
@@ -3250,11 +3251,11 @@
           },
           {
             "q": "Which LaTeX packages work?",
-            "a": "amsmath/amssymb, mathtools, physics, mhchem (\\ce, \\pu), braket, cancel, color, boldsymbol, amscd, bussproofs, cases, empheq, enclose, extpfeil, gensymb, units, upgreek, textmacros, unicode, verb, plus \\newcommand, \\def and \\DeclareMathOperator. A .tex file's single-line macro definitions are applied in batch."
+            "a": "amsmath/amssymb, mathtools, physics, mhchem, braket, cancel, color, boldsymbol, amscd, bussproofs, cases, empheq, enclose, extpfeil, gensymb, units, upgreek, textmacros, unicode and verb, plus newcommand/def/DeclareMathOperator. Balanced multiline .tex definitions are applied in batch; incomplete definitions are skipped with a notice. Tagged/numbered standalone exports are refused."
           },
           {
             "q": "Is the SVG the same as MathJax in a browser?",
-            "a": "Yes: a test compares 162 formulas byte for byte with stock MathJax 4.1.3. The files are made standalone: MathJax's data attributes are removed, table rules get their own stroke, and aria-label holds the speech text."
+            "a": "The original 162-formula corpus verifies 161 supported SVGs byte for byte against stock MathJax and one explicit tagged-equation refusal; nine named MathML entities also match the stock promise API. Exports remove event handlers, external URLs and unsafe styles. Multline uses intrinsic width."
           },
           {
             "q": "How are PNG sizes chosen?",
@@ -3262,7 +3263,7 @@
           },
           {
             "q": "What happens with bad input?",
-            "a": "Errors name the problem and its line and column. Recursive macros (\\def\\a{\\a\\a}), more than 400 nesting levels or formulas over 256 KB are refused at once; the server gives each formula 10 s in a separate process."
+            "a": "Recursive macros, over 400 nesting levels and over 256 KB are refused. Each formula has a killable 10 s worker budget (30 s above 64 KB). Speech is optional: above 2048 source characters, 16384 MathML characters or 256 tree nodes it is omitted with a notice; provide alt text. Above 16384 source characters, embedded glyph reuse is enabled and reported."
           }
         ]
       }
