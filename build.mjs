@@ -10,7 +10,7 @@ const RAW = "https://raw.githubusercontent.com/chayprabs/localtools/main";
 const OUT = "dist";
 const CATS = ["pdf", "data", "dev", "media", "docs"];
 const KIND = { bin: "Native app", py: "Python, bundled", js: "Single executable", docker: "Docker image" };
-const OS = { windows: "Windows 10/11", macos: "macOS 12+", linux: "Linux (glibc)" };
+const OS = { windows: "Windows 10/11", macos: "macOS", linux: "Linux (glibc)" };
 const ASSET = { "windows-x64": "Windows x64", "windows-arm64": "Windows ARM64", "macos-arm64": "macOS Apple Silicon",
   "macos-x64": "macOS Intel", "linux-x64": "Linux x64", "linux-arm64": "Linux ARM64" };
 
@@ -122,6 +122,7 @@ async function exists(url) {
 async function toolPage(t) {
   const m = methods(t);
   const req = t.requirements;
+  const oses = req.os.map((o) => o === "macos" ? `macOS ${req.macos_min || "12"}+` : OS[o]);
   const assets = Object.entries(t.assets);
   const base = `${RAW}/${t.slug}/media`;
   const [shot, webm, gif] = await Promise.all(["screenshot.png", "demo.webm", "demo.gif"].map((f) => exists(`${base}/${f}`)));
@@ -132,7 +133,7 @@ async function toolPage(t) {
   const schema = [{
     "@context": "https://schema.org", "@type": "SoftwareApplication", name: `localtools ${t.name}`, description: t.description,
     url: `${SITE}/${t.slug}`, applicationCategory: t.category === "dev" ? "DeveloperApplication" : "UtilitiesApplication",
-    operatingSystem: req.os.map((o) => OS[o]).join(", "), softwareVersion: t.version, downloadUrl: download,
+    operatingSystem: oses.join(", "), softwareVersion: t.version, downloadUrl: download,
     fileSize: assets.length ? mb(assets[0][1].size_bytes) : undefined, license: "https://opensource.org/licenses/MIT",
     offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
     ...(shot ? { screenshot: `${base}/screenshot.png` } : {}),
@@ -174,7 +175,7 @@ ${faqs.length ? `<section aria-labelledby="faq"><h2 class="label" id="faq">FAQ</
 </div>
 <aside>
 <section aria-labelledby="req"><h2 class="label" id="req">Requirements</h2><dl class="kv">
-<dt>OS</dt><dd>${req.os.map((o) => OS[o]).join("<br>")}</dd>
+<dt>OS</dt><dd>${oses.join("<br>")}</dd>
 <dt>Disk</dt><dd>${req.disk_mb} MB</dd>
 <dt>Docker</dt><dd>${req.docker ? "Required (Linux containers)" : "Not needed"}</dd>
 <dt>Network</dt><dd>${t.slug === "ssl-checker" ? "TLS and DNS checks; install and update" : "Install and update only"}</dd>
@@ -191,7 +192,7 @@ ${faqs.length ? `<section aria-labelledby="faq"><h2 class="label" id="faq">FAQ</
   return page({
     path: `/${t.slug}`,
     title: `${t.name}: free offline ${t.category === "dev" ? "developer" : t.category} tool | localtools`,
-    desc: `${t.description} Free, runs locally on ${req.os.map((o) => OS[o].split(" ")[0]).join(", ")}.`,
+    desc: `${t.description} Free, runs locally on ${oses.map((o) => o.split(" ")[0]).join(", ")}.`,
     og: `og/${t.slug}.png`,
     head: schema.map(ld).join("\n") + "\n",
     body,
