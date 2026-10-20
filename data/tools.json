@@ -307,31 +307,31 @@
       "engine": "Python + PDFium (pypdfium2 5.14) text/fonts/links/paths/images + own layout analysis and pdfplumber-derived ruled-table finder",
       "engine_reason": "PDFium parses 10-40x faster than pdfminer and repairs broken PDFs; docling needs PyTorch and model weights (gigabytes), too heavy for an offline portable tool.",
       "private_repo": "chayprabs/pdf-to-markdown",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "status": "released",
       "assets": {
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.0/pdf-to-markdown-1.0.0-linux-x64.zip",
-          "sha256": "86bafdf250ad7678261ffe509f1e64b3141acab5057e23c8a66c4568e86aa685",
-          "size_bytes": 43227423
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.1/pdf-to-markdown-1.0.1-linux-x64.zip",
+          "sha256": "517e67baa30d13af3dfb6037d8c34385d6c88d4c2e2dde06a2110a2f81ef8227",
+          "size_bytes": 43228636
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.0/pdf-to-markdown-1.0.0-macos-arm64.zip",
-          "sha256": "6c4684860a11d2796d43bef91303a773f612e06febf17ad63dcd9c89e063aa67",
-          "size_bytes": 29800986
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.1/pdf-to-markdown-1.0.1-macos-arm64.zip",
+          "sha256": "f92148cc95e619acebef86e271e0fbf4de92689d33d3b3fa652b92729313ded8",
+          "size_bytes": 29802199
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.0/pdf-to-markdown-1.0.0-macos-x64.zip",
-          "sha256": "c954105ec36563cc2ed8eb018519dc8e16c97dfab890a7b3dbd1dc07726761de",
-          "size_bytes": 30336608
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.1/pdf-to-markdown-1.0.1-macos-x64.zip",
+          "sha256": "4eb5e2cd21471dc497d258175cf3a03fa8363946ecad4e815c97e9364d5e08b1",
+          "size_bytes": 30337819
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.0/pdf-to-markdown-1.0.0-windows-x64.zip",
-          "sha256": "6cec3426872b8623f7663aac8a4a397458837004a19e3769c3a8547245fe67d4",
-          "size_bytes": 25200018
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.1/pdf-to-markdown-1.0.1-windows-x64.zip",
+          "sha256": "cd726db55b40bb78623beb34e45dea48eee60cb4d3dba9c52da3d437b4ce3b83",
+          "size_bytes": 25201229
         }
       },
-      "release_notes": "First release: PDF to clean Markdown and JSONL chunks offline. Column-aware reading order, headings, lists, code blocks, links, footnotes, ruled and rule-bounded tables, header/footer removal, hyphenation and ligature repair, page ranges, optional images. No OCR.",
+      "release_notes": "Fixes from review: paragraphs continued across pages now cite every page in their chunks; downloads work for non-ASCII file names (RFC 5987 filename*); sideways text on a normal page (margin stamps, rotated labels) is kept as its own paragraph instead of dropped; right-to-left lines (Arabic, Hebrew) read in logical order; heading-sized lines at page tops (e.g. 'Exercise 1'...'Exercise 4') are no longer removed as running heads; an early rejected form field drains the upload so the JSON error reaches the client; the UI keeps Convert disabled after the file is removed during a conversion and ignores errors from a replaced file. macOS 13+ is required (pypdfium2 wheels).",
       "registries": {
         "brew": false,
         "scoop": false,
@@ -3080,36 +3080,36 @@
       "engine": "Asciidoctor.js 4.1.1 + downdoc 1.1 + highlight.js 11.12 + MathJax 3.2",
       "engine_reason": "Asciidoctor.js is the official JavaScript Asciidoctor; reference comparisons match after removing the default Google Fonts import. SAFE mode confines conversion to the project. Local images, highlighting, icons and math are embedded; remote media URLs are retained with an export warning. downdoc (by Asciidoctor's lead) produces Markdown after Asciidoctor resolves includes.",
       "private_repo": "chayprabs/asciidoc-converter",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.1/asciidoc-converter-1.0.1-linux-arm64.zip",
-          "sha256": "b50b4a8ea424958cb8a577b50854838756a185ce6db5a1f161014639dd92382f",
-          "size_bytes": 44459538
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.2/asciidoc-converter-1.0.2-linux-arm64.zip",
+          "sha256": "c3bb7fcaf1ce47eac95e1afb95f12646e866718c61c23c3c8758af02e9c09da6",
+          "size_bytes": 44459793
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.1/asciidoc-converter-1.0.1-linux-x64.zip",
-          "sha256": "9687668d6885a418f277892b2e98c91a4e1a9eb6f9c9acf63814aad244a379c1",
-          "size_bytes": 44144401
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.2/asciidoc-converter-1.0.2-linux-x64.zip",
+          "sha256": "a48bc74bcd231aa4b6c1efc2d5af7437ffe931da0a4a8bd67b0aee8f8bf12573",
+          "size_bytes": 44144668
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.1/asciidoc-converter-1.0.1-macos-arm64.zip",
-          "sha256": "2202d21774fb767d71a7550d8ae88c86ad34aab9f2b834c1dd72fea8bd39e4d3",
-          "size_bytes": 33346648
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.2/asciidoc-converter-1.0.2-macos-arm64.zip",
+          "sha256": "28f972b16305672670bf4177daf1964686c703ac557dd9ee2b2fc526ad0d7a91",
+          "size_bytes": 33346896
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.1/asciidoc-converter-1.0.1-macos-x64.zip",
-          "sha256": "c9180c0100ca0b58b9482be43c355db5fd020f780e80ed609cd9c26cda190ccb",
-          "size_bytes": 35174139
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.2/asciidoc-converter-1.0.2-macos-x64.zip",
+          "sha256": "b15785091437e42387d11009f9e61ad29198dcac19e565961018909cb9a01942",
+          "size_bytes": 35174386
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.1/asciidoc-converter-1.0.1-windows-x64.zip",
-          "sha256": "9162dc2cb59104f15bb9b3e54acffb9b0615de62807688675b8a87aa097b4e1f",
-          "size_bytes": 46999666
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.2/asciidoc-converter-1.0.2-windows-x64.zip",
+          "sha256": "7afeac203900604449c0d085ef1b027f54ad844eb28b06276ba97611326ae742",
+          "size_bytes": 46999911
         }
       },
-      "release_notes": "Fix STEM literal delimiters in code/configuration; remove Google Fonts import; never truncate pasted text; redact project temp paths; warn about remote media in exports; open archive diagnostic sources in the editor. Upload limit is 64 MiB including multipart framing.",
+      "release_notes": "The CLI no longer rewrites document text when the document folder path is short (Q:\\docs, /work): {docdir} and {docfile} are relative before conversion and only diagnostics have absolute project paths removed. Opening an included file from a diagnostic keeps the preview on the main document.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -3179,36 +3179,36 @@
       "engine": "MathJax 4.1.3 (TeX/MathML/AsciiMath -> SVG/MathML) + Speech Rule Engine 5 + resvg-wasm 2.6",
       "engine_reason": "MathJax is the reference renderer of TeX math on the web; its lite DOM, font ranges and named entities are bundled offline. Supported equations match stock MathJax with documented standalone post-processing and Safe filtering. SRE provides optional speech; resvg rasterizes PNGs across OSes.",
       "private_repo": "chayprabs/latex-to-svg",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.1/latex-to-svg-1.0.1-windows-x64.zip",
-          "sha256": "09ab2aea8c7d8204fdc23971d1938dd7db997273f52d4f14519e00f12c63bbf4",
-          "size_bytes": 51070462
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.2/latex-to-svg-1.0.2-windows-x64.zip",
+          "sha256": "6e10a3d6ae02dde59146ccbe9a067e2481504138aa59aec950a8fa7c92962b21",
+          "size_bytes": 51070621
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.1/latex-to-svg-1.0.1-macos-arm64.zip",
-          "sha256": "23aeed0155f166b4d94dcb617042ca3db9cf7ccfe31477002f8f2f8d191455ca",
-          "size_bytes": 37512114
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.2/latex-to-svg-1.0.2-macos-arm64.zip",
+          "sha256": "81e729e22377bd04993c5c0b382be3e15fa475424cade0ff8583041d5478e8cc",
+          "size_bytes": 37512346
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.1/latex-to-svg-1.0.1-macos-x64.zip",
-          "sha256": "ac1df04c7bad9475a32c6bdb7219ed5e852db9307c55a37e26afd40c242d617f",
-          "size_bytes": 39241644
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.2/latex-to-svg-1.0.2-macos-x64.zip",
+          "sha256": "8383d8750d21e1ec9c71feb236c29e42ba63c618cee47aa40713be3fe0dfd697",
+          "size_bytes": 39241958
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.1/latex-to-svg-1.0.1-linux-x64.zip",
-          "sha256": "5802e63bc1097309106bf15b291951b7b3120d5c34937499e98303ee433724a4",
-          "size_bytes": 48213449
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.2/latex-to-svg-1.0.2-linux-x64.zip",
+          "sha256": "f1dee7d9ef13c6ead70838a3c28f9bd20eca47c542056d43cbe0103472e91c6c",
+          "size_bytes": 48213723
         },
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.1/latex-to-svg-1.0.1-linux-arm64.zip",
-          "sha256": "ca9ae9ad0daf96b41b7a66106a33416afa8ab3a1e83c6613c396c23bce61fe28",
-          "size_bytes": 48529804
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.2/latex-to-svg-1.0.2-linux-arm64.zip",
+          "sha256": "77b87fdb47657f0c718bbabc505dd443b3d6b1a1bf316b61ad9f439eda689fa8",
+          "size_bytes": 48530076
         }
       },
-      "release_notes": "Sanitize SVG/MathML/batch exports, bundle named MathML entities, parse multiline macros, skip Markdown code, report macro positions, and compact multline geometry. Tagged equations are explicitly refused. Speech has a separate budget with notices; actual 256 KB formulas use automatic glyph reuse and a bounded longer deadline.",
+      "release_notes": "Warm workers no longer hang after switching input type or glyph mode (every font range is set up for every MathJax document). .tex batches follow LaTeX rules by extension, Markdown by .md or markers. Colour attributes accept colour tokens only; MathJax internal errors become human messages; \\newcommand* accepted.",
       "registries": {
         "brew": true,
         "scoop": true,
