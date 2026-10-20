@@ -307,31 +307,31 @@
       "engine": "Python + PDFium (pypdfium2 5.14) text/fonts/links/paths/images + own layout analysis and pdfplumber-derived ruled-table finder",
       "engine_reason": "PDFium parses 10-40x faster than pdfminer and repairs broken PDFs; docling needs PyTorch and model weights (gigabytes), too heavy for an offline portable tool.",
       "private_repo": "chayprabs/pdf-to-markdown",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.1/pdf-to-markdown-1.0.1-linux-x64.zip",
-          "sha256": "517e67baa30d13af3dfb6037d8c34385d6c88d4c2e2dde06a2110a2f81ef8227",
-          "size_bytes": 43228636
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.2/pdf-to-markdown-1.0.2-linux-x64.zip",
+          "sha256": "591589133604227a73f5176ec04ed7452673dc4ca6e2c25b8c4ec351177eb233",
+          "size_bytes": 43230192
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.1/pdf-to-markdown-1.0.1-macos-arm64.zip",
-          "sha256": "f92148cc95e619acebef86e271e0fbf4de92689d33d3b3fa652b92729313ded8",
-          "size_bytes": 29802199
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.2/pdf-to-markdown-1.0.2-macos-arm64.zip",
+          "sha256": "0d0105a34706e14ba44c98b2ece00874cf6773ebe8d0fe718d15758ff1e5e762",
+          "size_bytes": 29803753
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.1/pdf-to-markdown-1.0.1-macos-x64.zip",
-          "sha256": "4eb5e2cd21471dc497d258175cf3a03fa8363946ecad4e815c97e9364d5e08b1",
-          "size_bytes": 30337819
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.2/pdf-to-markdown-1.0.2-macos-x64.zip",
+          "sha256": "d974830bbc49f48b76b22222b4288c8ebeb75045a21d244224176ee4a0f6fe0c",
+          "size_bytes": 30339375
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.1/pdf-to-markdown-1.0.1-windows-x64.zip",
-          "sha256": "cd726db55b40bb78623beb34e45dea48eee60cb4d3dba9c52da3d437b4ce3b83",
-          "size_bytes": 25201229
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.2/pdf-to-markdown-1.0.2-windows-x64.zip",
+          "sha256": "0020d536fb8167098ff03c7abd2ea131bb0729a9b92c540bdb662059ffec9568",
+          "size_bytes": 25202787
         }
       },
-      "release_notes": "Fixes from review: paragraphs continued across pages now cite every page in their chunks; downloads work for non-ASCII file names (RFC 5987 filename*); sideways text on a normal page (margin stamps, rotated labels) is kept as its own paragraph instead of dropped; right-to-left lines (Arabic, Hebrew) read in logical order; heading-sized lines at page tops (e.g. 'Exercise 1'...'Exercise 4') are no longer removed as running heads; an early rejected form field drains the upload so the JSON error reaches the client; the UI keeps Convert disabled after the file is removed during a conversion and ignores errors from a replaced file. macOS 13+ is required (pypdfium2 wheels).",
+      "release_notes": "Repeated headers and footers are removed again whatever their font size (1.0.1 kept large ones and turned them into headings), while headings at page tops that differ by number (\"Exercise 1\"..\"Exercise 4\") and body sentences that repeat with different numbers are kept; the summary now lists examples of removed lines. The token estimate is conservative for Chinese, Japanese, Korean and other non-ASCII text and for name lists (never below OpenAI cl100k on the tested corpus). Markdown characters in PDF text are escaped, URLs wrapped across lines are joined, adjacent footnotes stay separate, tall table row-label cells are split per row, and sideways margin text no longer interrupts a paragraph continued on the next page. Requires macOS 13+.",
       "registries": {
         "brew": false,
         "scoop": false,
@@ -347,7 +347,8 @@
           "linux"
         ],
         "disk_mb": 150,
-        "docker": false
+        "docker": false,
+        "macos_min": "13"
       },
       "smoke": {
         "path": "/api/convert",
@@ -3276,13 +3277,39 @@
       "description": "Compare two Word documents and produce a tracked-changes redline .docx.",
       "port": 47134,
       "kind": "bin",
-      "engine": ".NET self-contained + Open-XML-PowerTools WmlComparer",
-      "engine_reason": "WmlComparer produces genuine Word tracked changes, not a text diff.",
+      "engine": ".NET 10 self-contained + Clippit (Open-XML-PowerTools) WmlComparer",
+      "engine_reason": "WmlComparer writes genuine Word tracked changes (w:ins/w:del) at word level, including tables, footnotes and text boxes; accepting the redline gives the revised text and rejecting it gives the original (127/127 test pairs).",
       "private_repo": "chayprabs/docx-compare",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.0",
+      "status": "released",
+      "assets": {
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.0/docx-compare-1.0.0-linux-arm64.zip",
+          "sha256": "16090290f6c7a533a7096781a471bcdf06ca31b251c931d95eca693a7ca835a0",
+          "size_bytes": 14960118
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.0/docx-compare-1.0.0-linux-x64.zip",
+          "sha256": "f98b746d4a95343a80a2731b077e9964892ff0a17a5c6077b0c14b862cda0983",
+          "size_bytes": 15305857
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.0/docx-compare-1.0.0-macos-arm64.zip",
+          "sha256": "4bd20787860b040fd6c85dc78ab09b5a5d421a11efd7356e76282c6256504924",
+          "size_bytes": 14631757
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.0/docx-compare-1.0.0-macos-x64.zip",
+          "sha256": "db430b3eab1b7fb182d24845742cacdd9afb8d1deab1149a7baba3d26e2a54db",
+          "size_bytes": 15171399
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.0/docx-compare-1.0.0-windows-x64.zip",
+          "sha256": "749744d17d45d3ef501bdc308eb676d97f1e96ec3c5d0b6352b932e5dc2e077c",
+          "size_bytes": 15027779
+        }
+      },
+      "release_notes": "First release: redline .docx with tracked changes (author/date), inline preview, change list, ignore case, accept/reject all tracked changes, CLI and HTTP API.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -3310,8 +3337,35 @@
         "expect": "PK"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Run localtools-docx-compare (or open DOCX Compare from your app menu); it opens in your browser.",
+          "Drop the original .docx and the revised .docx.",
+          "Set the author and date the tracked changes should carry, and tick Ignore case if letter case does not matter, then press Compare.",
+          "Read the inline preview (insertions underlined, deletions struck through) or the Changes tab, then download the redline .docx and open it in Word or LibreOffice.",
+          "To finish a reviewed document, drop it in \"Accept or reject all tracked changes\". From scripts: localtools-docx-compare a.docx b.docx -o redline.docx --author \"Reviewer\", and localtools-docx-compare accept redline.docx -o clean.docx."
+        ],
+        "faqs": [
+          {
+            "q": "Are these real Word tracked changes?",
+            "a": "Yes. The redline contains w:ins and w:del revisions with the author and date you set, so Word and LibreOffice show them in Review and can accept or reject each one. Accepting all of them gives the revised document text; rejecting all gives the original."
+          },
+          {
+            "q": "What if a document already has tracked changes?",
+            "a": "They are accepted first, so the redline shows the difference between the two documents as they currently read. The number of revisions that were accepted is shown with the result."
+          },
+          {
+            "q": "Are comments, formatting changes and moves shown?",
+            "a": "No. The comparison engine (WmlComparer) compares text: formatting-only changes are not marked, moved text appears as a deletion plus an insertion, and comments are not carried into the redline. Accept/reject all keeps comments."
+          },
+          {
+            "q": "How big can the documents be?",
+            "a": "Up to 50 MB per file. Each comparison runs in its own process with a 3-minute deadline; about 2,000 paragraphs compare in roughly 11 seconds. Zip bombs and XML entity bombs are refused."
+          },
+          {
+            "q": "Is anything uploaded?",
+            "a": "No. The tool runs on 127.0.0.1 on your computer and works offline."
+          }
+        ]
       }
     },
     {
@@ -3369,13 +3423,39 @@
       "description": "Validate EPUB files with EPUBCheck and repair common errors.",
       "port": 47136,
       "kind": "bin",
-      "engine": "EPUBCheck (bundled portable JRE) + own repair pass",
-      "engine_reason": "EPUBCheck is the W3C's official EPUB conformance checker.",
+      "engine": "EPUBCheck 5.4.0 + jlink'd Temurin 21 runtime + own repair pass",
+      "engine_reason": "EPUBCheck is the W3C's official EPUB conformance checker; a trimmed bundled Java runtime means no Java install.",
       "private_repo": "chayprabs/epub-validator",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.0",
+      "status": "released",
+      "assets": {
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.0/epub-validator-1.0.0-linux-arm64.zip",
+          "sha256": "c8619f7787b7e123291771354097e94f54c6c4f0f126ee23ce330b172f782eee",
+          "size_bytes": 84715504
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.0/epub-validator-1.0.0-linux-x64.zip",
+          "sha256": "6d397298cbc681c8a58c61e4993b369841632fa167721ea89867569abba27af8",
+          "size_bytes": 85574808
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.0/epub-validator-1.0.0-macos-arm64.zip",
+          "sha256": "d1a6886abaf8c7231469f2f189163c7479610764623775e242a44a0bb6ef084f",
+          "size_bytes": 81595024
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.0/epub-validator-1.0.0-macos-x64.zip",
+          "sha256": "16e75490e7724ad1ff34357f28595a3460bf59cdea75cc815c4172f9a629b4ac",
+          "size_bytes": 82967789
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.0/epub-validator-1.0.0-windows-x64.zip",
+          "sha256": "d68b3b29790d7f00b2f2569ac1dad75c3f4ef142afc1e9685e515d6def1a7dc1",
+          "size_bytes": 82234334
+        }
+      },
+      "release_notes": "First release: EPUBCheck 5.4.0 validation (profiles, 11 message languages, accessibility metadata summary) and a conservative, fully listed repair pass with before/after re-validation; batch checks, JSON/HTML reports, CLI.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -3390,7 +3470,7 @@
           "macos",
           "linux"
         ],
-        "disk_mb": 150,
+        "disk_mb": 200,
         "docker": false
       },
       "smoke": {
@@ -3399,11 +3479,38 @@
         "files": {
           "file": "sample.epub"
         },
-        "expect": "messages"
+        "expect": "\"valid\":true"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Start it and drop one or more .epub files onto the page.",
+          "Pick a profile (default, dictionaries, EDUPUB, indexes, previews) and the language for EPUBCheck's messages.",
+          "Press Check: messages are grouped by severity with file, line and column and a link to the EPUBCheck reference.",
+          "Press Repair to get a fixed copy: every change is listed, and the original and repaired books are both re-checked.",
+          "Download the repaired EPUB and the report as JSON or HTML."
+        ],
+        "faqs": [
+          {
+            "q": "Is this the real EPUBCheck?",
+            "a": "Yes, the official W3C EPUBCheck 5.4.0 runs on your machine. Its messages are identical to running epubcheck.jar yourself with the same options (tested)."
+          },
+          {
+            "q": "Do I need Java?",
+            "a": "No. A trimmed Eclipse Temurin 21 runtime with only the modules EPUBCheck uses is bundled."
+          },
+          {
+            "q": "What does Repair change?",
+            "a": "Only packaging problems that cannot change your book's content: mimetype order and compression, manifest media types and unlisted files, missing identifiers and modification dates, a missing navigation document or NCX, and stray & or HTML entities in XHTML. Everything else is flagged for a manual fix, and the original is never modified."
+          },
+          {
+            "q": "Does anything leave my computer?",
+            "a": "No. EPUBCheck runs offline under a Java security policy with no network access, so even remote DTDs or resources referenced by a book are never fetched."
+          },
+          {
+            "q": "How large can a book be?",
+            "a": "Up to 256 MiB and 10,000 files per EPUB; each check is limited to 180 seconds and 1 GiB of Java heap."
+          }
+        ]
       }
     }
   ]
