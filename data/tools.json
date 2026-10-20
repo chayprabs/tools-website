@@ -304,13 +304,34 @@
       "description": "Convert PDFs to clean Markdown and JSONL chunks for RAG, keeping tables and reading order.",
       "port": 47104,
       "kind": "py",
-      "engine": "Python + docling",
-      "engine_reason": "docling (MIT) recovers layout, tables and reading order far better than plain text extraction.",
+      "engine": "Python + PDFium (pypdfium2 5.14) text/fonts/links/paths/images + own layout analysis and pdfplumber-derived ruled-table finder",
+      "engine_reason": "PDFium parses 10-40x faster than pdfminer and repairs broken PDFs; docling needs PyTorch and model weights (gigabytes), too heavy for an offline portable tool.",
       "private_repo": "chayprabs/pdf-to-markdown",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.0",
+      "status": "released",
+      "assets": {
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.0/pdf-to-markdown-1.0.0-linux-x64.zip",
+          "sha256": "86bafdf250ad7678261ffe509f1e64b3141acab5057e23c8a66c4568e86aa685",
+          "size_bytes": 43227423
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.0/pdf-to-markdown-1.0.0-macos-arm64.zip",
+          "sha256": "6c4684860a11d2796d43bef91303a773f612e06febf17ad63dcd9c89e063aa67",
+          "size_bytes": 29800986
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.0/pdf-to-markdown-1.0.0-macos-x64.zip",
+          "sha256": "c954105ec36563cc2ed8eb018519dc8e16c97dfab890a7b3dbd1dc07726761de",
+          "size_bytes": 30336608
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.0/pdf-to-markdown-1.0.0-windows-x64.zip",
+          "sha256": "6cec3426872b8623f7663aac8a4a397458837004a19e3769c3a8547245fe67d4",
+          "size_bytes": 25200018
+        }
+      },
+      "release_notes": "First release: PDF to clean Markdown and JSONL chunks offline. Column-aware reading order, headings, lists, code blocks, links, footnotes, ruled and rule-bounded tables, header/footer removal, hyphenation and ligature repair, page ranges, optional images. No OCR.",
       "registries": {
         "brew": false,
         "scoop": false,
@@ -325,7 +346,7 @@
           "macos",
           "linux"
         ],
-        "disk_mb": 1500,
+        "disk_mb": 150,
         "docker": false
       },
       "smoke": {
@@ -334,13 +355,39 @@
           "format": "markdown"
         },
         "files": {
-          "file": "sample.pdf"
+          "file": "report.pdf"
         },
-        "expect": "#"
+        "expect": "| Upstream | 4.12 | 1.20 |"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Choose or drop a PDF (up to 64 MiB). It needs a text layer; scanned pages are reported, not OCR'd.",
+          "Optionally enter a page range like 1-5,9, a chunk size in tokens and an overlap, and tick Extract images.",
+          "Press Convert. Read the result as rendered Markdown, as raw Markdown, or as the chunks table with pages and heading paths.",
+          "Download the Markdown, the ZIP with images, or the chunks as JSONL for your RAG pipeline."
+        ],
+        "faqs": [
+          {
+            "q": "Does it handle two-column papers and tables?",
+            "a": "Yes. Columns are detected from the gaps between them and read one after the other. Ruled tables, tables ruled only between columns, and tables bounded by horizontal rules (booktabs) become Markdown tables, or HTML tables when cells are merged. Tables aligned only by spaces stay as text."
+          },
+          {
+            "q": "What is in the JSONL chunks?",
+            "a": "One object per line with the chunk text, estimated tokens, page numbers, heading path and start/end character offsets. Each chunk is an exact slice of the Markdown, chunks start at headings and repeat about the overlap you set when a section is split."
+          },
+          {
+            "q": "Can it read scanned PDFs?",
+            "a": "No. There is no OCR, so pages without a text layer are reported by number and left empty, and a fully scanned PDF gets a clear 'no text layer' error."
+          },
+          {
+            "q": "Can I use it from the command line?",
+            "a": "Yes: localtools-pdf-to-markdown convert in.pdf -o out.md (or -o out.zip with images), and localtools-pdf-to-markdown chunks in.pdf --max-tokens 512 --overlap 64 -o chunks.jsonl."
+          },
+          {
+            "q": "What are the limits?",
+            "a": "64 MiB and 1,000 converted pages per PDF (use a page range for longer ones), 120 seconds per conversion and two at a time. Each conversion runs in a worker process that is killed if it runs too long. Nothing leaves your computer."
+          }
+        ]
       }
     },
     {
@@ -3027,21 +3074,47 @@
       "name": "AsciiDoc Converter",
       "command": "localtools-asciidoc-converter",
       "category": "docs",
-      "description": "Convert AsciiDoc documents to HTML5 or DocBook with Asciidoctor.",
+      "description": "Convert AsciiDoc documents and projects to self-contained HTML5, DocBook 5 or Markdown with Asciidoctor, offline.",
       "port": 47132,
       "kind": "js",
-      "engine": "asciidoctor.js",
-      "engine_reason": "asciidoctor.js is the official Asciidoctor transpiled to JS, same output as the Ruby original.",
+      "engine": "Asciidoctor.js 4.1.1 + downdoc 1.1 + highlight.js 11.12 + MathJax 3.2",
+      "engine_reason": "Asciidoctor.js is the official JavaScript Asciidoctor; output is byte-identical to using it directly. It runs in SAFE mode jailed to the project, with highlighting, icons and math embedded so nothing is fetched. downdoc (by Asciidoctor's lead) produces Markdown after Asciidoctor resolves includes.",
       "private_repo": "chayprabs/asciidoc-converter",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.0",
+      "status": "released",
+      "assets": {
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.0/asciidoc-converter-1.0.0-linux-arm64.zip",
+          "sha256": "7d91e6d9eed0985fad8b20ec407cae38963e09414f99d1aa10bd913def82271b",
+          "size_bytes": 44458659
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.0/asciidoc-converter-1.0.0-linux-x64.zip",
+          "sha256": "19d1291476d3eec0aae95ae17080144707953bf7f098e91300f30f64c1a6d83b",
+          "size_bytes": 44143544
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.0/asciidoc-converter-1.0.0-macos-arm64.zip",
+          "sha256": "65a98f32e6c8ea74eb30d69975758eff6fed7589c4b65ed1a9d5934d2648f2cf",
+          "size_bytes": 33345733
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.0/asciidoc-converter-1.0.0-macos-x64.zip",
+          "sha256": "582f544ce760680bf45e75538a653afd754bf70460f987fda278ebda8cbfe1da",
+          "size_bytes": 35173374
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.0/asciidoc-converter-1.0.0-windows-x64.zip",
+          "sha256": "0258197a5a729f37b8dffd08102f9a0f056279f3f04f654f64b1c12b96668b20",
+          "size_bytes": 46998755
+        }
+      },
+      "release_notes": "First release: AsciiDoc to self-contained HTML5, HTML body, DocBook 5 or Markdown with Asciidoctor.js 4.1.1 in SAFE mode; folder/zip projects with includes and images, live preview, attributes panel, highlight.js, embedded Font Awesome and MathJax SVG math, diagnostics with file:line. No network access.",
       "registries": {
         "brew": true,
         "scoop": true,
         "winget": true,
-        "npm": "localtools-asciidoc-converter",
+        "npm": null,
         "pypi": null,
         "ghcr": null
       },
@@ -3064,8 +3137,35 @@
         "expect": "Hello"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Run localtools-asciidoc-converter; the page opens at http://127.0.0.1:47132.",
+          "Paste AsciiDoc, or drop .adoc files and images, open a whole folder, or drop a zip; include:: and image:: paths keep working.",
+          "Pick the output (HTML page, HTML body, DocBook 5, Markdown) and options such as table of contents, section numbers, icons, code theme and STEM; the preview updates as you type.",
+          "Click a warning to jump to its line, then Download, Copy, or Print / PDF from the browser.",
+          "From a terminal: localtools-asciidoc-converter convert doc.adoc -o doc.html --attribute toc"
+        ],
+        "faqs": [
+          {
+            "q": "Is the HTML the same as Asciidoctor's?",
+            "a": "Yes. It is Asciidoctor.js 4.1.1 (equivalent to Asciidoctor 2.0.26); tests compare the HTML5 and DocBook output of 265 real documents byte for byte with Asciidoctor.js used directly. Images, the default stylesheet, highlight.js colours, Font Awesome icons and math are embedded, so the page is one self-contained file."
+          },
+          {
+            "q": "Can a document read files outside my project or reach the network?",
+            "a": "No. Conversion runs in Asciidoctor's SAFE mode: includes, images, stylesheets and docinfo come only from the main document's folder and below, absolute and .. paths are confined to it, URI includes and remote images are never fetched, and the preview blocks all network loads."
+          },
+          {
+            "q": "How do I get a PDF?",
+            "a": "asciidoctor-pdf is a Ruby tool, so it is not bundled. Use Print / PDF on the page, which prints the preview with your browser's Save as PDF."
+          },
+          {
+            "q": "What does Markdown support?",
+            "a": "Markdown is produced by downdoc after Asciidoctor resolves include:: and ifdef::. It covers headings, lists, tables, admonitions, code blocks with callouts, images and links; layout-only features such as complex table spans have no Markdown equivalent."
+          },
+          {
+            "q": "What are the limits?",
+            "a": "Uploads up to 64 MB with 5,000 files, zips expanding to 256 MB, and 64 MB of output. The server gives each conversion 60 s in its own process (two at a time), so pathological documents are stopped with an error; the CLI has no time limit."
+          }
+        ]
       }
     },
     {
@@ -3073,21 +3173,47 @@
       "name": "LaTeX to SVG",
       "command": "localtools-latex-to-svg",
       "category": "docs",
-      "description": "Render LaTeX math to SVG, PNG or MathML with MathJax.",
+      "description": "Render LaTeX, MathML or AsciiMath to SVG, PNG and MathML with speech alt text, offline with MathJax.",
       "port": 47133,
       "kind": "js",
-      "engine": "MathJax (SVG/MathML/speech) + PNG raster",
-      "engine_reason": "MathJax renders LaTeX math to self-contained SVG and MathML with speech text, no TeX install.",
+      "engine": "MathJax 4.1.3 (TeX/MathML/AsciiMath -> SVG/MathML) + Speech Rule Engine 5 + resvg-wasm 2.6",
+      "engine_reason": "MathJax is the reference renderer of TeX math on the web; run directly with its lite DOM and every font range bundled, it renders offline and byte-identical to stock MathJax. SRE gives accessible speech text, resvg rasterizes PNGs identically on every OS.",
       "private_repo": "chayprabs/latex-to-svg",
-      "version": null,
-      "status": "planned",
-      "assets": {},
-      "release_notes": "",
+      "version": "1.0.0",
+      "status": "released",
+      "assets": {
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.0/latex-to-svg-1.0.0-windows-x64.zip",
+          "sha256": "0b261c2bbc1a68017723bf3e7b877f84e342fdb0d8895c3b63349e2e8b5ef182",
+          "size_bytes": 51056648
+        },
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.0/latex-to-svg-1.0.0-macos-arm64.zip",
+          "sha256": "6b316b42fe67857e6a990587415ec976c1fbc466444d23ce262cc877ef7ab0df",
+          "size_bytes": 37498335
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.0/latex-to-svg-1.0.0-macos-x64.zip",
+          "sha256": "35492b039286182d8d0add409d0c24a226ff11b7e0a9b6772cc4ed04f91a1f55",
+          "size_bytes": 39227312
+        },
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.0/latex-to-svg-1.0.0-linux-x64.zip",
+          "sha256": "c47c80bb9a841705823a207b8bc288ec0e615ece10d4da111f6e00a5c2f6806c",
+          "size_bytes": 48198343
+        },
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.0/latex-to-svg-1.0.0-linux-arm64.zip",
+          "sha256": "57263c085c4ed0ee2ecbf96e5ccd3054d50463fa843505ed29422566bcc4d38b",
+          "size_bytes": 48515736
+        }
+      },
+      "release_notes": "First release: LaTeX, MathML or AsciiMath to standalone SVG, PNG and MathML with speech text, offline with MathJax 4.1.3. Live preview, copy as SVG/MathML/data URI/<img>, batch of .tex/.md files to a zip with a manifest, CLI and HTTP API; killable workers with per-formula deadlines and macro-bomb/nesting limits.",
       "registries": {
         "brew": true,
         "scoop": true,
         "winget": true,
-        "npm": "localtools-latex-to-svg",
+        "npm": null,
         "pypi": null,
         "ghcr": null
       },
@@ -3103,15 +3229,42 @@
       "smoke": {
         "path": "/api/render",
         "fields": {
-          "latex": "E=mc^2",
+          "math": "E=mc^2",
           "format": "svg"
         },
         "files": {},
         "expect": "<svg"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Run localtools-latex-to-svg; the page opens at http://127.0.0.1:47133.",
+          "Type a formula in TeX (or switch to MathML or AsciiMath); the preview, speech text, SVG and MathML update as you type.",
+          "Pick display or inline style, a colour, and a PNG scale; download SVG or PNG, or copy SVG, MathML, a data URI or an <img> tag with alt text.",
+          "For many formulas: drop a .tex, .md or .txt file in the Batch tab, or run localtools-latex-to-svg batch paper.tex -o out/ for eq-001.svg... plus manifest.json.",
+          "From scripts: localtools-latex-to-svg render \"\\frac{a}{b}\" -o eq.svg --png --scale 3."
+        ],
+        "faqs": [
+          {
+            "q": "Does it need TeX or the internet?",
+            "a": "No. MathJax 4 with its New Computer Modern font, the Speech Rule Engine and the resvg rasterizer are built into the program; nothing is downloaded. \\require of a package that is not built in is refused."
+          },
+          {
+            "q": "Which LaTeX packages work?",
+            "a": "amsmath/amssymb, mathtools, physics, mhchem (\\ce, \\pu), braket, cancel, color, boldsymbol, amscd, bussproofs, cases, empheq, enclose, extpfeil, gensymb, units, upgreek, textmacros, unicode, verb, plus \\newcommand, \\def and \\DeclareMathOperator. A .tex file's single-line macro definitions are applied in batch."
+          },
+          {
+            "q": "Is the SVG the same as MathJax in a browser?",
+            "a": "Yes: a test compares 162 formulas byte for byte with stock MathJax 4.1.3. The files are made standalone: MathJax's data attributes are removed, table rules get their own stroke, and aria-label holds the speech text."
+          },
+          {
+            "q": "How are PNG sizes chosen?",
+            "a": "Scale 1 is a 16 px font size; the default 4 gives 64 px, and --dpi N equals scale N/96. PNGs are limited to 64 megapixels; the background is transparent unless you pick a colour."
+          },
+          {
+            "q": "What happens with bad input?",
+            "a": "Errors name the problem and its line and column. Recursive macros (\\def\\a{\\a\\a}), more than 400 nesting levels or formulas over 256 KB are refused at once; the server gives each formula 10 s in a separate process."
+          }
+        ]
       }
     },
     {
