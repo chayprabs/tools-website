@@ -1205,36 +1205,36 @@
       "engine": "Go + actionlint 1.7.12 + zizmor 1.31.1",
       "engine_reason": "actionlint validates workflow syntax and expression types with bundled action metadata; the checksum-pinned zizmor sidecar adds dedicated offline security audits. Both engines feed one local report without remote fetching.",
       "private_repo": "chayprabs/github-actions-linter",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/github-actions-linter-v1.0.3/github-actions-linter-1.0.3-linux-arm64.zip",
-          "sha256": "f248d7c8421b1806b4f5e6f8eb9c9e594f23b9d3eb9cb1e075197dab04e28ef7",
-          "size_bytes": 13273884
+          "url": "https://github.com/chayprabs/localtools/releases/download/github-actions-linter-v1.0.4/github-actions-linter-1.0.4-linux-arm64.zip",
+          "sha256": "c6e1f8275551d87f656e67b08ebe350f6b3cb4464107348680ab5bf6fbb2493b",
+          "size_bytes": 13275619
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/github-actions-linter-v1.0.3/github-actions-linter-1.0.3-linux-x64.zip",
-          "sha256": "9c0e1e8ae02bc96678a4d5d43a660cd12aacb900026b1b6a549c199b96b27712",
-          "size_bytes": 14028030
+          "url": "https://github.com/chayprabs/localtools/releases/download/github-actions-linter-v1.0.4/github-actions-linter-1.0.4-linux-x64.zip",
+          "sha256": "487de24f8fa7bbdfb9e6195f6d23619825f50d84ecfc50fa4caa651213b1c340",
+          "size_bytes": 14031022
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/github-actions-linter-v1.0.3/github-actions-linter-1.0.3-macos-arm64.zip",
-          "sha256": "4bd6c500f3fa1153e88537157c326e9529c7ae2e16424574b680089edb828554",
-          "size_bytes": 13029024
+          "url": "https://github.com/chayprabs/localtools/releases/download/github-actions-linter-v1.0.4/github-actions-linter-1.0.4-macos-arm64.zip",
+          "sha256": "3807c8af5399408134e23fcf14cdc06b022dfa52abed73173390572ce1463856",
+          "size_bytes": 13031427
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/github-actions-linter-v1.0.3/github-actions-linter-1.0.3-macos-x64.zip",
-          "sha256": "12ca3f7c76761fbc382965a000193b23e5ad461bb799b5d49ad5fe292aaa7eea",
-          "size_bytes": 13813720
+          "url": "https://github.com/chayprabs/localtools/releases/download/github-actions-linter-v1.0.4/github-actions-linter-1.0.4-macos-x64.zip",
+          "sha256": "19c4edc54e231280c19aa0cfcf5490fd5b00de42175d540b8f02453409efbd38",
+          "size_bytes": 13815674
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/github-actions-linter-v1.0.3/github-actions-linter-1.0.3-windows-x64.zip",
-          "sha256": "a7611c864460aa6ac8044dbd304c39cab5525fb1ff0dfeab00b0a8d8bebcc9b5",
-          "size_bytes": 13677674
+          "url": "https://github.com/chayprabs/localtools/releases/download/github-actions-linter-v1.0.4/github-actions-linter-1.0.4-windows-x64.zip",
+          "sha256": "0f787e18737198e51756755de09d64b07b50611201e18aa5967782407a454bfe",
+          "size_bytes": 13679670
         }
       },
-      "release_notes": "No temp-file leaks on cancelled jobs, discovery before limits (1,000 files / 16 MiB), one-run zizmor batches, real-world action.yml inputs accepted, engine failure fails --fail-on, review minors.",
+      "release_notes": "Uploads of up to 1,000 files work (specific 413 above), chunked zizmor so one slow file only affects its own audit, drained 413s, kit refresh.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -3280,36 +3280,36 @@
       "engine": ".NET 10 self-contained + Clippit (Open-XML-PowerTools) WmlComparer",
       "engine_reason": "WmlComparer writes genuine Word tracked changes (w:ins/w:del) at word level, including tables, footnotes and text boxes; accepting the redline gives the revised text and rejecting it gives the original (127/127 test pairs).",
       "private_repo": "chayprabs/docx-compare",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.0/docx-compare-1.0.0-linux-arm64.zip",
-          "sha256": "16090290f6c7a533a7096781a471bcdf06ca31b251c931d95eca693a7ca835a0",
-          "size_bytes": 14960118
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.1/docx-compare-1.0.1-linux-arm64.zip",
+          "sha256": "30a7bf227fb85a2736adbb316f28fa073ab74a2405603c648cf4ff84ea57933d",
+          "size_bytes": 14971639
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.0/docx-compare-1.0.0-linux-x64.zip",
-          "sha256": "f98b746d4a95343a80a2731b077e9964892ff0a17a5c6077b0c14b862cda0983",
-          "size_bytes": 15305857
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.1/docx-compare-1.0.1-linux-x64.zip",
+          "sha256": "2dddc62b7b1282c7e541e26418049329f48bc20c6693ccd92ba1e1ec57d42386",
+          "size_bytes": 15317573
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.0/docx-compare-1.0.0-macos-arm64.zip",
-          "sha256": "4bd20787860b040fd6c85dc78ab09b5a5d421a11efd7356e76282c6256504924",
-          "size_bytes": 14631757
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.1/docx-compare-1.0.1-macos-arm64.zip",
+          "sha256": "d759f090ac45585dc71ec41d1ae46bf63b21ac5545de5dd2690ebb9d92708cba",
+          "size_bytes": 14642940
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.0/docx-compare-1.0.0-macos-x64.zip",
-          "sha256": "db430b3eab1b7fb182d24845742cacdd9afb8d1deab1149a7baba3d26e2a54db",
-          "size_bytes": 15171399
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.1/docx-compare-1.0.1-macos-x64.zip",
+          "sha256": "bb3ee748f8158dc30ea882cd2a571dabf11e3c0c3a3d56899e56d04ce5ee09de",
+          "size_bytes": 15182461
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.0/docx-compare-1.0.0-windows-x64.zip",
-          "sha256": "749744d17d45d3ef501bdc308eb676d97f1e96ec3c5d0b6352b932e5dc2e077c",
-          "size_bytes": 15027779
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.1/docx-compare-1.0.1-windows-x64.zip",
+          "sha256": "1191d2c119031a3d17833c99fcb4b4d2b347534e779473057722af48e50afb70",
+          "size_bytes": 15039497
         }
       },
-      "release_notes": "First release: redline .docx with tracked changes (author/date), inline preview, change list, ignore case, accept/reject all tracked changes, CLI and HTTP API.",
+      "release_notes": "Headers and footers are compared and redlined (or reported); hyperlinks, bookmarks and page setup are kept in the redline; bodies ending in a table compare; malformed uploads get 400; the accept/reject file can be removed.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -3325,7 +3325,8 @@
           "linux"
         ],
         "disk_mb": 120,
-        "docker": false
+        "docker": false,
+        "macos_min": "14"
       },
       "smoke": {
         "path": "/api/compare",
@@ -3354,8 +3355,8 @@
             "a": "They are accepted first, so the redline shows the difference between the two documents as they currently read. The number of revisions that were accepted is shown with the result."
           },
           {
-            "q": "Are comments, formatting changes and moves shown?",
-            "a": "No. The comparison engine (WmlComparer) compares text: formatting-only changes are not marked, moved text appears as a deletion plus an insertion, and comments are not carried into the redline. Accept/reject all keeps comments."
+            "q": "Are headers, footers, comments, formatting changes and moves shown?",
+            "a": "Headers and footers are compared and their changes tracked; one that holds images, links or fields is listed as a warning instead. Hyperlinks and bookmarks are kept. Formatting-only changes are not marked, moved text appears as a deletion plus an insertion, and comments are not carried into the redline (accept/reject all keeps them)."
           },
           {
             "q": "How big can the documents be?",
@@ -3376,13 +3377,13 @@
       "description": "Convert PPTX, DOCX, XLSX and ODF documents to PDF or PNG with LibreOffice, including speaker notes.",
       "port": 47135,
       "kind": "docker",
-      "engine": "LibreOffice headless",
-      "engine_reason": "LibreOffice is the only free engine with faithful PPTX/DOCX/XLSX rendering; too large to bundle per OS, so it ships as a container.",
+      "engine": "LibreOffice headless + Poppler",
+      "engine_reason": "LibreOffice renders real DOCX/PPTX/XLSX and ODF with bundled fonts; Poppler rasterizes every PDF page. The isolated Docker image keeps this large engine consistent across hosts. Requires Landlock ABI3+ in the Linux kernel; external links/macros/active content are rejected.",
       "private_repo": "chayprabs/office-converter",
-      "version": null,
+      "version": "1.0.0",
       "status": "planned",
       "assets": {},
-      "release_notes": "",
+      "release_notes": "Six Office/ODF formats (DOCX, PPTX, XLSX, ODT, ODP, ODS) to PDF or a ZIP of PNG pages, presentation speaker notes, local UI/CLI/API, per-job Landlock+seccomp sandbox, offline fonts.",
       "registries": {
         "brew": false,
         "scoop": false,
@@ -3411,8 +3412,34 @@
         "expect": "%PDF"
       },
       "page": {
-        "howto": [],
-        "faqs": []
+        "howto": [
+          "Install and start Docker using Linux containers. The Docker Linux kernel needs Landlock ABI 3+ (Linux 6.2+).",
+          "After the image is public, install Office Converter, launch it and choose one DOCX, PPTX, XLSX, ODT, ODP or ODS file up to 10 MiB.",
+          "Choose PDF or PNG pages (ZIP). For a presentation, choose slides, slides and notes, or notes only.",
+          "Convert, inspect the PDF or first PNG page, then download. The CLI and /api/convert API provide the same conversion."
+        ],
+        "faqs": [
+          {
+            "q": "Does this need Microsoft Office or an internet connection?",
+            "a": "No. LibreOffice, Poppler and fonts are inside the image. Docker needs internet for the initial pull and updates; conversion runs offline."
+          },
+          {
+            "q": "Which documents and limits are supported?",
+            "a": "DOCX, PPTX, XLSX, ODT, ODP and ODS up to 10 MiB, 100 rendered pages and 32 MiB output. PNG pages fit within 1600 pixels. Two conversions can run at once with a 90-second deadline."
+          },
+          {
+            "q": "Can I export PowerPoint speaker notes?",
+            "a": "PPTX and ODP can export slides only, slides plus notes pages, or notes pages only. Both PDF and PNG output support these modes."
+          },
+          {
+            "q": "Why is a document with hyperlinks or macros rejected?",
+            "a": "External links (including ordinary hyperlinks), scripts, macros, embedded executable objects, external spreadsheet formulas and encrypted documents are deliberately rejected. Remove links or active content before conversion."
+          },
+          {
+            "q": "Will the result exactly match Microsoft Office?",
+            "a": "Rendering uses LibreOffice with DejaVu, Liberation and Noto fonts. Unavailable fonts are substituted, so some pagination and graphics can differ from Microsoft Office."
+          }
+        ]
       }
     },
     {
@@ -3426,36 +3453,36 @@
       "engine": "EPUBCheck 5.4.0 + jlink'd Temurin 21 runtime + own repair pass",
       "engine_reason": "EPUBCheck is the W3C's official EPUB conformance checker; a trimmed bundled Java runtime means no Java install.",
       "private_repo": "chayprabs/epub-validator",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.0/epub-validator-1.0.0-linux-arm64.zip",
-          "sha256": "c8619f7787b7e123291771354097e94f54c6c4f0f126ee23ce330b172f782eee",
-          "size_bytes": 84715504
+          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.1/epub-validator-1.0.1-linux-arm64.zip",
+          "sha256": "e6347c2bd96c8faf3ba3032dd09b1a8810c56625c6d05a8d017e2e46f1a67894",
+          "size_bytes": 84746959
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.0/epub-validator-1.0.0-linux-x64.zip",
-          "sha256": "6d397298cbc681c8a58c61e4993b369841632fa167721ea89867569abba27af8",
-          "size_bytes": 85574808
+          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.1/epub-validator-1.0.1-linux-x64.zip",
+          "sha256": "688da5a063f7258adb7f4122dc54677af98b26546750b85515e8b29af2aadccd",
+          "size_bytes": 85609779
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.0/epub-validator-1.0.0-macos-arm64.zip",
-          "sha256": "d1a6886abaf8c7231469f2f189163c7479610764623775e242a44a0bb6ef084f",
-          "size_bytes": 81595024
+          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.1/epub-validator-1.0.1-macos-arm64.zip",
+          "sha256": "a094c37892d211c7445a85c686149edd3898af3d0a06a2262299b35e53fa19f9",
+          "size_bytes": 81628350
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.0/epub-validator-1.0.0-macos-x64.zip",
-          "sha256": "16e75490e7724ad1ff34357f28595a3460bf59cdea75cc815c4172f9a629b4ac",
-          "size_bytes": 82967789
+          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.1/epub-validator-1.0.1-macos-x64.zip",
+          "sha256": "06fb0ee7ddd5c5e90adf520af5da57a571bc75fec23fa4e689fb80f94faf993d",
+          "size_bytes": 83000047
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.0/epub-validator-1.0.0-windows-x64.zip",
-          "sha256": "d68b3b29790d7f00b2f2569ac1dad75c3f4ef142afc1e9685e515d6def1a7dc1",
-          "size_bytes": 82234334
+          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.1/epub-validator-1.0.1-windows-x64.zip",
+          "sha256": "aa73bf75b6f51998042b9dc2fa048cd12e094f981d4eaa0de969781e0f58aad2",
+          "size_bytes": 82268525
         }
       },
-      "release_notes": "First release: EPUBCheck 5.4.0 validation (profiles, 11 message languages, accessibility metadata summary) and a conservative, fully listed repair pass with before/after re-validation; batch checks, JSON/HTML reports, CLI.",
+      "release_notes": "Repair never changes declared-entity documents, expands self-closing metadata/manifest, refuses books without them cleanly, matches hrefs like EPUBCheck and never keeps a repair that adds errors; repaired downloads stay for their full 30 minutes. Gated on EPUBCheck's 394 test fixtures.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -3500,7 +3527,7 @@
           },
           {
             "q": "What does Repair change?",
-            "a": "Only packaging problems that cannot change your book's content: mimetype order and compression, manifest media types and unlisted files, missing identifiers and modification dates, a missing navigation document or NCX, and stray & or HTML entities in XHTML. Everything else is flagged for a manual fix, and the original is never modified."
+            "a": "Only packaging problems that cannot change your book's content: mimetype order and compression, manifest media types and unlisted files, missing identifiers and modification dates, a missing navigation document or NCX, and stray & or HTML entities in XHTML. Everything else is flagged for a manual fix, and the original is never modified. A repair that would leave more EPUBCheck errors than the original is never kept."
           },
           {
             "q": "Does anything leave my computer?",
