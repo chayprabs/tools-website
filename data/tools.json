@@ -704,36 +704,36 @@
       "engine": "Go + excelize",
       "engine_reason": "excelize is the most complete pure-Go .xlsx writer (styles, tables, conditional formats, charts, streaming): one static binary, no Office or runtime needed.",
       "private_repo": "chayprabs/json-to-excel",
-      "version": "1.0.2",
+      "version": "1.0.5",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.2/json-to-excel-1.0.2-linux-arm64.zip",
-          "sha256": "bc91692e839afa52c335a90f41a2b02ff905591f6ec749fb34f3eb75d22049d3",
-          "size_bytes": 4625379
+          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.5/json-to-excel-1.0.5-linux-arm64.zip",
+          "sha256": "bcee0282f4b6f104cc7f00ade13281cc39543824f9a7ac67f6f0b64d4721b464",
+          "size_bytes": 4651173
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.2/json-to-excel-1.0.2-linux-x64.zip",
-          "sha256": "65a21a62820c034d3fbeeec85ad9abb44089d0d2ae71bcfef2a9508b52c96bd0",
-          "size_bytes": 5073811
+          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.5/json-to-excel-1.0.5-linux-x64.zip",
+          "sha256": "c607f4cbcd262ee6f72adf485656f1019b9f71a7edab5d39805db7153f8b8c03",
+          "size_bytes": 5103775
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.2/json-to-excel-1.0.2-macos-arm64.zip",
-          "sha256": "270e2c014cd7c16729739a642b249d8fc5341d7f535039dff926511aa07bb119",
-          "size_bytes": 4796737
+          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.5/json-to-excel-1.0.5-macos-arm64.zip",
+          "sha256": "f14fbad5c4dfe41dac6bc5065b899ec8dd028a99842890056196e4a7a7087dc9",
+          "size_bytes": 4827708
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.2/json-to-excel-1.0.2-macos-x64.zip",
-          "sha256": "6fb0ad4d59e3cfe78800fb814eed2ffbd1f299014de11229f7cd0a854444ffb2",
-          "size_bytes": 5155578
+          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.5/json-to-excel-1.0.5-macos-x64.zip",
+          "sha256": "06658bf2fadbfc8e813378bc24b24e729d3f0390b184a22bb419cfa63b54543f",
+          "size_bytes": 5184129
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.2/json-to-excel-1.0.2-windows-x64.zip",
-          "sha256": "f3e3d74eba310bc37818be0c51735602c7dff12efab376d39170dbbcb5555af4",
-          "size_bytes": 5200684
+          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.5/json-to-excel-1.0.5-windows-x64.zip",
+          "sha256": "651090cf22da531818228b8293804999e4e1503131f3b0264294ca7ca6c7b633",
+          "size_bytes": 5233238
         }
       },
-      "release_notes": "- Table names must be unique across the workbook (ignoring case); duplicates are rejected, and unnamed tables get generated names that avoid yours. - A table with \"header\": false is an error (Excel tables need a header row) instead of being dropped silently. - Row counts for spec sheets without a header are correct. - In an object of arrays, empty arrays are skipped with a warning instead of failing the whole input.",
+      "release_notes": "- Conditional-format formulas (including time_period) on multi-area ranges are anchored at the leftmost, then topmost area, as Excel and LibreOffice evaluate them. - Whole columns (C:C) and rows (2:2) are accepted as rule ranges. - Spec sheets of array rows without columns preview with column letters and the right row count.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -910,36 +910,36 @@
       "engine": "Go + yq (mikefarah) + RFC 6902 JSON Patch",
       "engine_reason": "yq is the de-facto YAML query tool, preserves comments, and handles JSON/XML/TOML/INI as a Go library.",
       "private_repo": "chayprabs/yaml-json-query",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.2/yaml-json-query-1.0.2-windows-x64.zip",
-          "sha256": "8af2e6d5ed19c67dc8f5adabba16f6dac9038f877113803efb7b48d28a988da0",
-          "size_bytes": 6956790
+          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.3/yaml-json-query-1.0.3-windows-x64.zip",
+          "sha256": "91f567e9b1c40f6ab16238c91d21cfa39d8840f06b5f6d629d0edc0bd79bc00a",
+          "size_bytes": 6963230
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.2/yaml-json-query-1.0.2-macos-arm64.zip",
-          "sha256": "e08bec8f5155add24f73c5dd33fd517ad8fca0bd26dcb87a5735e168dc742278",
-          "size_bytes": 6330717
+          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.3/yaml-json-query-1.0.3-macos-arm64.zip",
+          "sha256": "510fca459c47ed2dcb5c1b1f03b62221dc5bcfc0dd82d9e493aa92a5cb955d3a",
+          "size_bytes": 6333454
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.2/yaml-json-query-1.0.2-macos-x64.zip",
-          "sha256": "0c5e934a2f5e314d4e5cb3c2fc676617ba1a8c50f851dc4561dbb95bfebe7f89",
-          "size_bytes": 6854499
+          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.3/yaml-json-query-1.0.3-macos-x64.zip",
+          "sha256": "2f9818512825f6ddc9ca0371765a5d07abea57dcf61fdf2b72de68de0978f222",
+          "size_bytes": 6859683
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.2/yaml-json-query-1.0.2-linux-x64.zip",
-          "sha256": "0321689ae948d74e63b65a5a9a532d7a25aa56f96f17d255aecf63a40f4283fb",
-          "size_bytes": 6772478
+          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.3/yaml-json-query-1.0.3-linux-x64.zip",
+          "sha256": "587526e0b97d42ad7795afd57db8b09d5aa0a5d52eb7095f1d6904c1bca14629",
+          "size_bytes": 6776454
         },
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.2/yaml-json-query-1.0.2-linux-arm64.zip",
-          "sha256": "8fc1244f2c295075247e84e0d6a6c47c5df14394237bfbd7239f0f6af4b3f505",
-          "size_bytes": 6126498
+          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.3/yaml-json-query-1.0.3-linux-arm64.zip",
+          "sha256": "3d47a794e5cc3e1a31611b56f70238e18f49521c28ebb827a27db7be8774b676",
+          "size_bytes": 6131552
         }
       },
-      "release_notes": "Large-input and robustness fixes: the UI/API upload limit is now 16 MB, which reliably fits the 2 GB worker (measured peak heap: 1.0 GB for 16 MB of dense JSON, 1.1 GB for 16 MB of Kubernetes YAML); bigger inputs get a clear \"input too large\" message. Workers stop when the request is cancelled, when the tool exits, or at their own deadline, and at most two run at once. JSON: nesting deeper than 10000 levels is a clean error, duplicate keys keep the last value, a UTF-8 BOM is accepted. YAML numbers like 0b101, 017, .inf and integers beyond 64 bits convert to JSON/TOML correctly or fail with a clear message. UI: Ctrl+Enter no longer starts a second run while one is in progress.",
+      "release_notes": "Multi-document YAML expressions run per document (linear time). YAML output memory is bounded, so 16 MB of typical JSON converts to YAML in the UI. TOML +nan/-nan input works; inf/NaN are written as .inf/.nan in YAML; floats beyond 64 bits are a clear error for TOML. Oversized uploads get HTTP 413, busy workers HTTP 503. --in-place writes atomically.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -1009,36 +1009,36 @@
       "engine": "Go + oasdiff",
       "engine_reason": "oasdiff has the most complete OpenAPI breaking-change rule set and is a Go library.",
       "private_repo": "chayprabs/openapi-diff",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.2/openapi-diff-1.0.2-linux-arm64.zip",
-          "sha256": "1751114e5d82e83dddda205b7bb34da2ab48a1f8ed243bc0af1e7ae42e5091d5",
-          "size_bytes": 5006508
+          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.3/openapi-diff-1.0.3-linux-arm64.zip",
+          "sha256": "e83d6dccd6db4d1d64884bc326af22b3ca606b57f707c4cea9a6b3047f5863e3",
+          "size_bytes": 5057703
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.2/openapi-diff-1.0.2-linux-x64.zip",
-          "sha256": "8a32f930ea23c19f4971285c4ab090d66f1f7428960977a480d4915ae230806c",
-          "size_bytes": 5539309
+          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.3/openapi-diff-1.0.3-linux-x64.zip",
+          "sha256": "ffd04dc68f4a7aab6e2721cd3cf697ee0357c146acda4040e3afb0342012eec2",
+          "size_bytes": 5593814
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.2/openapi-diff-1.0.2-macos-arm64.zip",
-          "sha256": "42997626c423e791d4c018dbc0f35e563d9e00fc254cfb31721e21f095b2ad08",
-          "size_bytes": 5211548
+          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.3/openapi-diff-1.0.3-macos-arm64.zip",
+          "sha256": "9e7b2ffc8d77a1452fd602e374910ff5d78d92269dccbda447ed191d31f20a1f",
+          "size_bytes": 5264496
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.2/openapi-diff-1.0.2-macos-x64.zip",
-          "sha256": "2930c4cb7eab9087be1775eef0396c5ee9692b4577c7a2f12a6736d965d65e4d",
-          "size_bytes": 5632695
+          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.3/openapi-diff-1.0.3-macos-x64.zip",
+          "sha256": "59361976ab04bbe6128dcd3f29cf3c880086a255339b428d9c8a3760871407d1",
+          "size_bytes": 5685135
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.2/openapi-diff-1.0.2-windows-x64.zip",
-          "sha256": "ce2f9bc17a58cfa1b038f31a2cf36137a97e9dc9a568da5b7084309820261c6d",
-          "size_bytes": 5681071
+          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.3/openapi-diff-1.0.3-windows-x64.zip",
+          "sha256": "0a921f206e26b768ce062afd553083a8071b26155b7ca0739ed2bb88333c482f",
+          "size_bytes": 5740067
         }
       },
-      "release_notes": "Large diffs stay responsive: capped summary in the page, full Markdown/JSON downloaded from the local server; at most 2 comparisons at once (503 when busy); the worker exits with the server.",
+      "release_notes": "Reports kept per comparison and never evicted while running or fresh (fixes 422 on parallel comparisons); stale temp folders swept at startup, reports removed on exit, 30-minute expiry enforced every minute; smaller page summary; 413 delivered to Connection: close clients; pasted specs up to 64 MB, up to 5000 files per side; oasdiff 1.34.0.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -3281,36 +3281,36 @@
       "engine": ".NET 10 self-contained + Clippit (Open-XML-PowerTools) WmlComparer",
       "engine_reason": "WmlComparer writes genuine Word tracked changes (w:ins/w:del) at word level, including tables, footnotes and text boxes; accepting the redline gives the revised text and rejecting it gives the original (127/127 test pairs).",
       "private_repo": "chayprabs/docx-compare",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.1/docx-compare-1.0.1-linux-arm64.zip",
-          "sha256": "30a7bf227fb85a2736adbb316f28fa073ab74a2405603c648cf4ff84ea57933d",
-          "size_bytes": 14971639
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.2/docx-compare-1.0.2-linux-arm64.zip",
+          "sha256": "c06363e03ad514f80f169cd053f63ab9b445013ba137869f397cc4c6583c3c18",
+          "size_bytes": 14977452
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.1/docx-compare-1.0.1-linux-x64.zip",
-          "sha256": "2dddc62b7b1282c7e541e26418049329f48bc20c6693ccd92ba1e1ec57d42386",
-          "size_bytes": 15317573
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.2/docx-compare-1.0.2-linux-x64.zip",
+          "sha256": "afcc33889c55af5562608b330addb606036f7929598c3e1d4e2a74b60b9eae5a",
+          "size_bytes": 15322881
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.1/docx-compare-1.0.1-macos-arm64.zip",
-          "sha256": "d759f090ac45585dc71ec41d1ae46bf63b21ac5545de5dd2690ebb9d92708cba",
-          "size_bytes": 14642940
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.2/docx-compare-1.0.2-macos-arm64.zip",
+          "sha256": "f3569292255402c9c8a9e1f142d7050edb4ee43ee350410ab7f57aac8e604560",
+          "size_bytes": 14649137
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.1/docx-compare-1.0.1-macos-x64.zip",
-          "sha256": "bb3ee748f8158dc30ea882cd2a571dabf11e3c0c3a3d56899e56d04ce5ee09de",
-          "size_bytes": 15182461
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.2/docx-compare-1.0.2-macos-x64.zip",
+          "sha256": "b4fa421f858d4569653e45d2a299f24ad581bdd0917da177bc2a8586f37296f1",
+          "size_bytes": 15189000
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.1/docx-compare-1.0.1-windows-x64.zip",
-          "sha256": "1191d2c119031a3d17833c99fcb4b4d2b347534e779473057722af48e50afb70",
-          "size_bytes": 15039497
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.2/docx-compare-1.0.2-windows-x64.zip",
+          "sha256": "6669c75fe2e024d51a450de00539ffdda1c1b9d44c40e8e3f47ba9beabd3b289",
+          "size_bytes": 15045289
         }
       },
-      "release_notes": "Headers and footers are compared and redlined (or reported); hyperlinks, bookmarks and page setup are kept in the redline; bodies ending in a table compare; malformed uploads get 400; the accept/reject file can be removed.",
+      "release_notes": "Footnote/endnote links and bookmarks kept; header/footer image, link and field changes and new headers/footers tracked with their images and links; reject-all restores exact link/bookmark ranges.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -3357,7 +3357,7 @@
           },
           {
             "q": "Are headers, footers, comments, formatting changes and moves shown?",
-            "a": "Headers and footers are compared and their changes tracked; one that holds images, links or fields is listed as a warning instead. Hyperlinks and bookmarks are kept. Formatting-only changes are not marked, moved text appears as a deletion plus an insertion, and comments are not carried into the redline (accept/reject all keeps them)."
+            "a": "Headers and footers are compared and their changes tracked, including image, link and field changes; a header/footer whose layout cannot be tracked is listed as a warning. Hyperlinks and bookmarks in the body and notes are kept. Formatting-only changes are not marked, moved text appears as a deletion plus an insertion, and comments are not carried into the redline (accept/reject all keeps them)."
           },
           {
             "q": "How big can the documents be?",
