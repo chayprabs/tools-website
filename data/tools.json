@@ -15,36 +15,36 @@
       "engine": "Go + gabriel-vasile/mimetype + own ZIP/OLE2 container, polyglot and file-name checks",
       "engine_reason": "Pure-Go magic-byte detection for ~200 formats in one static binary: no libmagic, no ONNX runtime (Magika was evaluated and rejected for that reason).",
       "private_repo": "chayprabs/file-type-detector",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "status": "released",
       "assets": {
-        "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.2/file-type-detector-1.0.2-windows-x64.zip",
-          "sha256": "8c2a2f892b9746809560c613aa78520da5b7c00cdb324613d1064c64ce8453ae",
-          "size_bytes": 3280043
-        },
-        "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.2/file-type-detector-1.0.2-macos-arm64.zip",
-          "sha256": "713f369de2f155d80a16768503fb9155a8c44aca03a143f01c42c46b37aca11e",
-          "size_bytes": 2996636
-        },
-        "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.2/file-type-detector-1.0.2-macos-x64.zip",
-          "sha256": "9afa1e3cb73e2ae18c55da80acf56843956f4a7906b450f61ac038d4e8590efc",
-          "size_bytes": 3236438
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.3/file-type-detector-1.0.3-linux-arm64.zip",
+          "sha256": "8163f54f86a917789ffefde4ccaacef23d8505dd3158723634a1941ebf397c2c",
+          "size_bytes": 2908582
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.2/file-type-detector-1.0.2-linux-x64.zip",
-          "sha256": "e699414b5a10ea82afe17d6ca882ab31677e3d591aa49eb66667a1c6a75605bb",
-          "size_bytes": 3204196
+          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.3/file-type-detector-1.0.3-linux-x64.zip",
+          "sha256": "5b6cbd593676229c6b45b6ee70c6bfcf76afc80303bb5df09b4331808e5f8f1c",
+          "size_bytes": 3205252
         },
-        "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.2/file-type-detector-1.0.2-linux-arm64.zip",
-          "sha256": "1e75076b645be2e3d034775d2797aa88cd9772af58cf8654b2a6689717d40f27",
-          "size_bytes": 2907991
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.3/file-type-detector-1.0.3-macos-arm64.zip",
+          "sha256": "82e71e89bb6f2f0c87372acafc511cbe192f57d7d2fa52bc2f2d3ec05d0e587d",
+          "size_bytes": 2998738
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.3/file-type-detector-1.0.3-macos-x64.zip",
+          "sha256": "e0b4fd531940724715f141bc39fbeddd1766905f333cf3407d22bc0630b2a867",
+          "size_bytes": 3237751
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.3/file-type-detector-1.0.3-windows-x64.zip",
+          "sha256": "9f46c95f3d1b0363fda279e14a4bdb3bc0efc172c17f8e5481254806ba115cf4",
+          "size_bytes": 3281115
         }
       },
-      "release_notes": "Detects ISO 9660/UDF, DMG, VHD/VHDX, VMDK and QCOW images; archive entries that run on double-click are warn, risk only when disguised or inside an archive posing as another type; text starting with MZ is text; Unicode whitespace padding caught in double extensions; .winmd accepted; EPUB without a mimetype entry detected.",
+      "release_notes": "Preserve text, JSON and JPEG primary types when PDF headers occur inside content; accept primary PDF headers only at offset zero or after a UTF-8 BOM and line breaks. Report internal PDF signatures as possible-polyglot warnings without claiming validation. Catch U+2800/U+3164 blank padding in loose files and ZIP entries. Refresh shared kit assets, add selected-file removal and clear stale results on changed input.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -81,11 +81,11 @@
         "faqs": [
           {
             "q": "How does it know the real type if the extension is wrong?",
-            "a": "It reads the first bytes of each file (the magic number) and matches them against about 200 known signatures using the mimetype library, then looks inside ZIP and OLE containers. The file name is only used to check for mismatches."
+            "a": "It matches about 200 content signatures with the mimetype library, then inspects ZIP and OLE containers. PDF is the primary type only when its header starts the file, optionally after a UTF-8 BOM and line breaks. An internal PDF header keeps the primary type and gets a possible-polyglot warning; this does not validate a PDF."
           },
           {
             "q": "What counts as a risky file?",
-            "a": "An executable or script named like a document or image, an Office file with VBA macros, an archive that contains executables, a polyglot (for example a PDF that is also a valid ZIP), a double extension like photo.jpg.exe, or a name with a right-to-left override character."
+            "a": "An executable disguised as a document or image, Office VBA macros, disguised runnable archive entries, a polyglot signature, double extensions such as photo.jpg.exe (including invisible padding), or right-to-left override characters. Ordinary runnable archive entries and possible internal PDF headers are warnings; scripts disguised under another extension are warnings too. Signature checks are not a malware scan or full file validation."
           },
           {
             "q": "Can I use it in CI to block uploads?",
