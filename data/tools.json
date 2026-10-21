@@ -910,36 +910,36 @@
       "engine": "Go + yq (mikefarah) + RFC 6902 JSON Patch",
       "engine_reason": "yq is the de-facto YAML query tool, preserves comments, and handles JSON/XML/TOML/INI as a Go library.",
       "private_repo": "chayprabs/yaml-json-query",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "status": "released",
       "assets": {
-        "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.3/yaml-json-query-1.0.3-windows-x64.zip",
-          "sha256": "91f567e9b1c40f6ab16238c91d21cfa39d8840f06b5f6d629d0edc0bd79bc00a",
-          "size_bytes": 6963230
-        },
-        "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.3/yaml-json-query-1.0.3-macos-arm64.zip",
-          "sha256": "510fca459c47ed2dcb5c1b1f03b62221dc5bcfc0dd82d9e493aa92a5cb955d3a",
-          "size_bytes": 6333454
-        },
-        "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.3/yaml-json-query-1.0.3-macos-x64.zip",
-          "sha256": "2f9818512825f6ddc9ca0371765a5d07abea57dcf61fdf2b72de68de0978f222",
-          "size_bytes": 6859683
+        "linux-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.4/yaml-json-query-1.0.4-linux-arm64.zip",
+          "sha256": "446e37b9b8eb07c53c6e36fdf1dfe466c2758a5f4b20d7d72ce22ccd873f3971",
+          "size_bytes": 6136342
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.3/yaml-json-query-1.0.3-linux-x64.zip",
-          "sha256": "587526e0b97d42ad7795afd57db8b09d5aa0a5d52eb7095f1d6904c1bca14629",
-          "size_bytes": 6776454
+          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.4/yaml-json-query-1.0.4-linux-x64.zip",
+          "sha256": "e4cf56d4d2759d23c587ba819870da64290feb824c14feec642ca380c88749b6",
+          "size_bytes": 6781104
         },
-        "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.3/yaml-json-query-1.0.3-linux-arm64.zip",
-          "sha256": "3d47a794e5cc3e1a31611b56f70238e18f49521c28ebb827a27db7be8774b676",
-          "size_bytes": 6131552
+        "macos-arm64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.4/yaml-json-query-1.0.4-macos-arm64.zip",
+          "sha256": "01f4bc968e0f10a1f752acf73be454a1d7197070a963bfb3f4ccc654ec7ad7d8",
+          "size_bytes": 6338106
+        },
+        "macos-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.4/yaml-json-query-1.0.4-macos-x64.zip",
+          "sha256": "005bcc996fc285938eca04c3de0779b511488b367edeb32b2c05b439807191ea",
+          "size_bytes": 6863992
+        },
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/yaml-json-query-v1.0.4/yaml-json-query-1.0.4-windows-x64.zip",
+          "sha256": "7365f92de577d2baf5e800675e9cbe17bad889a94ca9e020dcd876c8c5cbbd87",
+          "size_bytes": 6967323
         }
       },
-      "release_notes": "Multi-document YAML expressions run per document (linear time). YAML output memory is bounded, so 16 MB of typical JSON converts to YAML in the UI. TOML +nan/-nan input works; inf/NaN are written as .inf/.nan in YAML; floats beyond 64 bits are a clear error for TOML. Oversized uploads get HTTP 413, busy workers HTTP 503. --in-place writes atomically.",
+      "release_notes": "Bundles the modified go-yaml NOTICE and full Apache/MIT licence texts. Multipart request errors now report the actual 33 MiB limit and distinguish excessive parts/headers; memory errors include expensive expressions. Current shared runtime and UI kit verified in sync.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -3357,7 +3357,7 @@
           },
           {
             "q": "Are headers, footers, comments, formatting changes and moves shown?",
-            "a": "Headers and footers are compared and their changes tracked, including image, link and field changes; a header/footer whose layout cannot be tracked is listed as a warning. Hyperlinks and bookmarks in the body and notes are kept. Formatting-only changes are not marked, moved text appears as a deletion plus an insertion, and comments are not carried into the redline (accept/reject all keeps them)."
+            "a": "Headers and footers are compared and their changes tracked, including image, link and field changes; unsupported header/footer layouts produce a warning. Body/note hyperlinks and bookmarks are re-anchored where possible; failure produces a warning and can drop all of them. Formatting-only changes are not marked, moved text appears as deletion plus insertion, and comments are not carried into the redline (accept/reject all keeps them). Resolving tracked moves or redlines can change empty paragraphs."
           },
           {
             "q": "How big can the documents be?",
