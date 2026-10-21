@@ -504,36 +504,36 @@
       "engine": "Go + Miller 6.22 (embedded library)",
       "engine_reason": "Miller 6 is pure Go, embeddable, and its verbs (filter, sort, join, reshape) are already well known.",
       "private_repo": "chayprabs/csv-json-transform",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.2/csv-json-transform-1.0.2-linux-arm64.zip",
-          "sha256": "bf51715e58dd94e13379aa203c05fab95ccb4d57a9b190660babf7acba2a71b6",
-          "size_bytes": 5620394
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.3/csv-json-transform-1.0.3-linux-arm64.zip",
+          "sha256": "5defd9404a259f21db3e3f05b460448f18027fa0d60a514a8f55245d74b9d5fd",
+          "size_bytes": 5621010
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.2/csv-json-transform-1.0.2-linux-x64.zip",
-          "sha256": "1e46f27252fe6d7863d14d4db1fdef16fd8b026cb39603da9d62f2295afa3a80",
-          "size_bytes": 6332440
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.3/csv-json-transform-1.0.3-linux-x64.zip",
+          "sha256": "99e96a916b055cb7aec0554ed92cee428fc9bafbf397acacc6f9d2a86b076a6b",
+          "size_bytes": 6332959
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.2/csv-json-transform-1.0.2-macos-arm64.zip",
-          "sha256": "f483c80bf0212af32cf9a8fa2ed02d9c7e08e1e6180cdef5044b2f7fba9b7037",
-          "size_bytes": 5851844
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.3/csv-json-transform-1.0.3-macos-arm64.zip",
+          "sha256": "364b619ce3fa0880a9ebfacd8dda77dba2bf942245b034959475c8c5b654197c",
+          "size_bytes": 5851720
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.2/csv-json-transform-1.0.2-macos-x64.zip",
-          "sha256": "00ae91f05f2d2ec127b47adcb5fe4142262561655c0c383a0459b4787f949e61",
-          "size_bytes": 6435479
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.3/csv-json-transform-1.0.3-macos-x64.zip",
+          "sha256": "50364e04a65a2a7e51b0e7a6c873f7fa06bb6b2e9f075639a6e0501937e399ce",
+          "size_bytes": 6436244
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.2/csv-json-transform-1.0.2-windows-x64.zip",
-          "sha256": "888b8747043991cd56ea704a8c25f548be64a811de95d443f7c408cb49bed47e",
-          "size_bytes": 6498622
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.3/csv-json-transform-1.0.3-windows-x64.zip",
+          "sha256": "82dd63a936b2e8ec69972c441c76cc1465aa3697f2b1330f82777e4a0c0af211",
+          "size_bytes": 6498904
         }
       },
-      "release_notes": "Security fix: verb chain validated with Miller's own parser; all DSL redirects, main flags in put/filter and --prepipe refused in the web UI/API.",
+      "release_notes": "Preserve exact unsafe integers in JSON/JSONL previews, bound HTTP transforms to two concurrent workers with clear 503 overload errors, and consistently default CLI run output to JSON. Includes current UI code-font fixes.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -577,7 +577,7 @@
           },
           {
             "q": "How big can my files be?",
-            "a": "Streaming verbs (convert, filter, cut, put, head) handle files larger than memory: a 200 MB, 7-million-row CSV converted to JSONL in about 10 seconds using about 150 MB. Verbs that need all records at once, such as sort, reshape long-to-wide or percentiles, keep the data in memory (sort on that file used about 4.5 GB)."
+            "a": "Streaming verbs (convert, filter, cut, put, head) handle files larger than memory: a 200 MB, 7-million-row CSV converted to JSONL in about 10 seconds using about 150 MB. Verbs that need all records at once, such as sort, reshape long-to-wide or percentiles, keep the data in memory (sort on that file used about 4.5 GB). The web API runs two transforms at once and returns 503 while both slots are busy; the CLI has no concurrency limit."
           },
           {
             "q": "How do I join two files?",
