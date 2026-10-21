@@ -251,7 +251,8 @@
           "linux"
         ],
         "disk_mb": 150,
-        "docker": false
+        "docker": false,
+        "macos_min": "13"
       },
       "smoke": {
         "path": "/api/diff",
