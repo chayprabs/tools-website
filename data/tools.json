@@ -113,36 +113,36 @@
       "engine": "Go + pdfcpu, plus own image recompression, form flattening and XFDF/FDF import",
       "engine_reason": "pdfcpu is a pure-Go PDF library covering merge, split, pages, rotate, optimize, stamps, AES-256 and AcroForm fill in one static binary; no Ghostscript, qpdf or Java.",
       "private_repo": "chayprabs/pdf-toolkit",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.2/pdf-toolkit-1.0.2-windows-x64.zip",
-          "sha256": "b4998a14869806f80b7ac0b4c5f81cc596e49ee528e85e512461b8a231d7dc43",
-          "size_bytes": 5718101
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.3/pdf-toolkit-1.0.3-windows-x64.zip",
+          "sha256": "05fe071dea2edd51e64ab161c9f30066f6b9931e705ef74c537b60df3a6d0d4e",
+          "size_bytes": 5724933
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.2/pdf-toolkit-1.0.2-macos-arm64.zip",
-          "sha256": "2c160482e8ab0129e1999940ef4570b49ac5bb0185ccc6fe57a483e0c7700a69",
-          "size_bytes": 5161339
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.3/pdf-toolkit-1.0.3-macos-arm64.zip",
+          "sha256": "53ca6f407a12d1b57bfdd03588e16d72b3da51fdaa1abd09890380d6ed760ae4",
+          "size_bytes": 5171236
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.2/pdf-toolkit-1.0.2-macos-x64.zip",
-          "sha256": "ceddedfd5b15b5893a0da9f2e49173ae2b6f205d88665f338bee5263c12b6c19",
-          "size_bytes": 5645319
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.3/pdf-toolkit-1.0.3-macos-x64.zip",
+          "sha256": "f98484cd1f38cec6493738cd7de343fcc1ffe6972cad03c4a24e6506f8d21aee",
+          "size_bytes": 5652480
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.2/pdf-toolkit-1.0.2-linux-x64.zip",
-          "sha256": "e0e7c4e9abb23f84d6b7f87647d4a9178c4e9a6a9bc37d584c0fe3d7e7c8f084",
-          "size_bytes": 5584783
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.3/pdf-toolkit-1.0.3-linux-x64.zip",
+          "sha256": "47bc3494d79e7948f8523c84c9004750ecf0c6ed0d00a6f26cc2192471fe92dd",
+          "size_bytes": 5594117
         },
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.2/pdf-toolkit-1.0.2-linux-arm64.zip",
-          "sha256": "5037a3b410ad22dbdfe6925e532fd71cc58a81575a4de66d179b352df0bc08fe",
-          "size_bytes": 5004648
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.3/pdf-toolkit-1.0.3-linux-arm64.zip",
+          "sha256": "2146255e946ef1805ca9c06154b64574ab3744edad1b55c2ccdff285330da344",
+          "size_bytes": 5009243
         }
       },
-      "release_notes": "Fixes clipped Latin form appearances in short LibreOffice widgets; rich-text plain-value fallback and per-cell comb appearances; exact numeric JSON values; ordinary indirect uncompressed FDF; immediate stale UI result/field clearing, async response cancellation/guards, and encrypted-form password retry. Adds independent rendered-ink and comb-geometry regressions. Existing worker isolation and documented non-WinAnsi flattening limits remain.",
+      "release_notes": "Multiline text fields word-wrap inside the field (auto-size shrinks to fit), flatten keeps stored appearances that already show the value, plain FDF error messages, startup sweep of stale job folders, ligatures off in code text, pdfcpu v0.16.3 security update.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -811,36 +811,36 @@
       "engine": "Go: streaming xlsx reader + Myers row/column alignment; excelize for the annotated workbook",
       "engine_reason": "A streaming reader shows every value exactly as stored (comparison uses the stored double, like Excel) and handles a million cells in seconds; Myers O(ND) alignment, with per-column alignment when a column changed in every row, finds inserted and deleted rows and columns; excelize writes B back with the changes highlighted.",
       "private_repo": "chayprabs/excel-diff",
-      "version": "1.0.2",
+      "version": "1.0.4",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.2/excel-diff-1.0.2-linux-arm64.zip",
-          "sha256": "5671bbbcc430978ba6d2d8bc43274ca722bd1a439f74b7b8fb2510420425e33e",
-          "size_bytes": 4483477
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.4/excel-diff-1.0.4-linux-arm64.zip",
+          "sha256": "e023bf986f22ff0a9c9b77f9e493367ab444b09f8508ec54fcb2e55b0ee33c9e",
+          "size_bytes": 4493765
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.2/excel-diff-1.0.2-linux-x64.zip",
-          "sha256": "f4ad67b70a7a12fa731b5f4b3ab9a3c79f07c36bde93e629e7bde00138379730",
-          "size_bytes": 4911767
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.4/excel-diff-1.0.4-linux-x64.zip",
+          "sha256": "2c2b342ced1f8cefd436a585437c2a78c778437d001c9ab4879f60f8b39908b9",
+          "size_bytes": 4923433
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.2/excel-diff-1.0.2-macos-arm64.zip",
-          "sha256": "a4efaff3a925d092a7ad56a886f06c01be4389246b0efcb0890afe04a3a3f992",
-          "size_bytes": 4649196
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.4/excel-diff-1.0.4-macos-arm64.zip",
+          "sha256": "7bd23fefd34fa1cd17ee43237ba27d36931897bd0925791bfff51268f4923d0e",
+          "size_bytes": 4662187
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.2/excel-diff-1.0.2-macos-x64.zip",
-          "sha256": "8f13a62756cfe32a55a4bfe23612311a3962e2e18db5e34c8f2cb2cccf7beee3",
-          "size_bytes": 4988654
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.4/excel-diff-1.0.4-macos-x64.zip",
+          "sha256": "25f25ff62f2f48f45f6c2dfda24660dba2f96a453cf47e823446a7ce38b826da",
+          "size_bytes": 5002583
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.2/excel-diff-1.0.2-windows-x64.zip",
-          "sha256": "992909ba181c8661f923967e6459ada1ed2daf2565c699020bac9c55395857ce",
-          "size_bytes": 5037676
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.4/excel-diff-1.0.4-windows-x64.zip",
+          "sha256": "5ffb96038573d12dd94d0efbcf8ff4617e017b7a04d769c7087cff22b9802bd9",
+          "size_bytes": 5052024
         }
       },
-      "release_notes": "- Rows align when one column changed in every row plus inserted rows (correct, under a second); large blocks are paired by position.\n- Annotated workbook works without a stylesheet and with openpyxl/pandas colours; a failed -o leaves no partial file.\n- Less re-save noise (default validation attributes, empty inline strings, built-in formats, quoted sheet names in names).\n- Date-system changes have their own label; one file argument exits 2.",
+      "release_notes": "- Many scattered row inserts or deletions align exactly even when a column changed in every row.\n- Positional fallbacks are flagged: \"approximate\": true with a reason in JSON, a CLI warning and a UI banner suggesting key columns.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -2386,36 +2386,36 @@
       "engine": "Native Go subtitle readers + ffmpeg/ffprobe 9.0.2",
       "engine_reason": "Go preserves millisecond timings and raw ASS/WebVTT payloads for timing edits; pinned ffmpeg handles container tracks and libass burn-in as a separate process.",
       "private_repo": "chayprabs/subtitle-converter",
-      "version": "1.0.2",
+      "version": "1.0.5",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.2/subtitle-converter-1.0.2-linux-arm64.zip",
-          "sha256": "a9b7cb2d25d364e2c2480600512fd8161728a6904ebff3955be47e5eb909c481",
-          "size_bytes": 78744546
+          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.5/subtitle-converter-1.0.5-linux-arm64.zip",
+          "sha256": "0eea67b27b269e1f5c098b20ff9d0ecf456ceaed331e9fda460e76523558c5be",
+          "size_bytes": 78747157
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.2/subtitle-converter-1.0.2-linux-x64.zip",
-          "sha256": "ae6edbc44bcc0e80ce407b706c6d6ecfaa989fec4f1af0f5d7e57dd552ecbd7b",
-          "size_bytes": 87583866
+          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.5/subtitle-converter-1.0.5-linux-x64.zip",
+          "sha256": "c10a23a0ab8b99a497e9a44cee67c08f395fffb0e511fec3120c37678d872301",
+          "size_bytes": 87586773
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.2/subtitle-converter-1.0.2-macos-arm64.zip",
-          "sha256": "8abe26949b4ef70453247e3316d0ad0ab0d35e4123ae9c0d9cc4d91958d251e6",
-          "size_bytes": 63175124
+          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.5/subtitle-converter-1.0.5-macos-arm64.zip",
+          "sha256": "b561318cf47d7dea1d85795248bf77dec70d4325c8ede08f5096c7f6c7786588",
+          "size_bytes": 63181286
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.2/subtitle-converter-1.0.2-macos-x64.zip",
-          "sha256": "912ad0913d43b19798d32939df27b0c4c67573a355fa50899ef83b4c2990f2a7",
-          "size_bytes": 73231744
+          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.5/subtitle-converter-1.0.5-macos-x64.zip",
+          "sha256": "8e75659c0282198878aa2c14549126b64895e8356b0a485cc10169e1922ef54a",
+          "size_bytes": 73234109
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.2/subtitle-converter-1.0.2-windows-x64.zip",
-          "sha256": "7550dfdc08a849116fe9eb0e26e2ce915d947fd397091fd8bc6cac7c887e8652",
-          "size_bytes": 81488062
+          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.5/subtitle-converter-1.0.5-windows-x64.zip",
+          "sha256": "764cd9d5638c22eec4ff254554e86b6a91b40a5bda7d668cf64295f4fbf8f238",
+          "size_bytes": 81491200
         }
       },
-      "release_notes": "Fixes: burn --override-style on ASS files positions top/middle/bottom and sizes text in video pixels; numeric arrow dialogue kept as text; TMPlayer named as unsupported; Baltic windows-1257 detected, more UI encodings, short Western text stays windows-1252; web output limit measures the text.",
+      "release_notes": "Fixes: Latin code-page detection scores letters only (symbols like £ º ¿ keep windows-1252; short Polish still windows-1250); any malformed --> timing line is skipped with a warning instead of merging into the previous cue.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -3082,36 +3082,36 @@
       "engine": "Asciidoctor.js 4.1.1 + downdoc 1.1 + highlight.js 11.12 + MathJax 3.2",
       "engine_reason": "Asciidoctor.js is the official JavaScript Asciidoctor; reference comparisons match after removing the default Google Fonts import. SAFE mode confines conversion to the project. Local images, highlighting, icons and math are embedded; remote media URLs are retained with an export warning. downdoc (by Asciidoctor's lead) produces Markdown after Asciidoctor resolves includes.",
       "private_repo": "chayprabs/asciidoc-converter",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.2/asciidoc-converter-1.0.2-linux-arm64.zip",
-          "sha256": "c3bb7fcaf1ce47eac95e1afb95f12646e866718c61c23c3c8758af02e9c09da6",
-          "size_bytes": 44459793
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.3/asciidoc-converter-1.0.3-linux-arm64.zip",
+          "sha256": "35eaba19522977279c2563cb3b908f9a1146f92692efe6dfc965e24f067b9959",
+          "size_bytes": 44459881
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.2/asciidoc-converter-1.0.2-linux-x64.zip",
-          "sha256": "a48bc74bcd231aa4b6c1efc2d5af7437ffe931da0a4a8bd67b0aee8f8bf12573",
-          "size_bytes": 44144668
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.3/asciidoc-converter-1.0.3-linux-x64.zip",
+          "sha256": "6b48909eb70755e819c0e59af2990559a5fdc9b32d5fa9155962e0640af2b0b8",
+          "size_bytes": 44144731
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.2/asciidoc-converter-1.0.2-macos-arm64.zip",
-          "sha256": "28f972b16305672670bf4177daf1964686c703ac557dd9ee2b2fc526ad0d7a91",
-          "size_bytes": 33346896
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.3/asciidoc-converter-1.0.3-macos-arm64.zip",
+          "sha256": "6a6a1c9a6d358df8ff032471b754a9f17bbbd7bcd215d4ec97e8256fe833c612",
+          "size_bytes": 33346969
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.2/asciidoc-converter-1.0.2-macos-x64.zip",
-          "sha256": "b15785091437e42387d11009f9e61ad29198dcac19e565961018909cb9a01942",
-          "size_bytes": 35174386
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.3/asciidoc-converter-1.0.3-macos-x64.zip",
+          "sha256": "cc37062e42895d36d2de562e85bc34133712cf94eb2e67662ffdd2ed4fb3b37b",
+          "size_bytes": 35174435
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.2/asciidoc-converter-1.0.2-windows-x64.zip",
-          "sha256": "7afeac203900604449c0d085ef1b027f54ad844eb28b06276ba97611326ae742",
-          "size_bytes": 46999911
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.3/asciidoc-converter-1.0.3-windows-x64.zip",
+          "sha256": "bae25685f23e6fa752b549b7b61d0728f890880249d7e00bfa50dbc311e1974b",
+          "size_bytes": 46999931
         }
       },
-      "release_notes": "The CLI no longer rewrites document text when the document folder path is short (Q:\\docs, /work): {docdir} and {docfile} are relative before conversion and only diagnostics have absolute project paths removed. Opening an included file from a diagnostic keeps the preview on the main document.",
+      "release_notes": "include::{docdir}/... inside included files resolves again (Asciidoctor keeps its real docdir; only the server temp path is hidden where printed). With a zip project, opening an included file from a diagnostic keeps converting the main document. DocBook hyperlinks no longer trigger the remote-media warning, and a Google Fonts @import written in a listing block is kept.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -3149,7 +3149,7 @@
         "faqs": [
           {
             "q": "Is the HTML the same as Asciidoctor's?",
-            "a": "Yes. It is Asciidoctor.js 4.1.1 (equivalent to Asciidoctor 2.0.26); 527 HTML5 and DocBook comparisons across 265 real documents match after removing the default Google Fonts import. Local images, the default stylesheet, highlight.js colours, Font Awesome icons and math are embedded. Remote media and favicon URLs remain with a warning: opening the export may load them; the preview blocks them."
+            "a": "Yes. It is Asciidoctor.js 4.1.1 (equivalent to Asciidoctor 2.0.26); 527 HTML5 and DocBook comparisons across 267 real documents match after removing the default Google Fonts import. Local images, the default stylesheet, highlight.js colours, Font Awesome icons and math are embedded. Remote media and favicon URLs remain with a warning: opening the export may load them; the preview blocks them."
           },
           {
             "q": "Can a document read files outside my project or reach the network?",
@@ -3281,36 +3281,36 @@
       "engine": ".NET 10 self-contained + Clippit (Open-XML-PowerTools) WmlComparer",
       "engine_reason": "WmlComparer writes genuine Word tracked changes (w:ins/w:del) at word level, including tables, footnotes and text boxes; accepting the redline gives the revised text and rejecting it gives the original (127/127 test pairs).",
       "private_repo": "chayprabs/docx-compare",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.2/docx-compare-1.0.2-linux-arm64.zip",
-          "sha256": "c06363e03ad514f80f169cd053f63ab9b445013ba137869f397cc4c6583c3c18",
-          "size_bytes": 14977452
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.3/docx-compare-1.0.3-linux-arm64.zip",
+          "sha256": "32ffe80b89a1cd773683334af444ef05f9ba20db7b361ca6f1ea2068066df29c",
+          "size_bytes": 14982837
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.2/docx-compare-1.0.2-linux-x64.zip",
-          "sha256": "afcc33889c55af5562608b330addb606036f7929598c3e1d4e2a74b60b9eae5a",
-          "size_bytes": 15322881
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.3/docx-compare-1.0.3-linux-x64.zip",
+          "sha256": "b305d5ffdf08208be80037c9094622df5ccd636ac830e231108bddd19d86a57e",
+          "size_bytes": 15328587
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.2/docx-compare-1.0.2-macos-arm64.zip",
-          "sha256": "f3569292255402c9c8a9e1f142d7050edb4ee43ee350410ab7f57aac8e604560",
-          "size_bytes": 14649137
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.3/docx-compare-1.0.3-macos-arm64.zip",
+          "sha256": "a5406ef53726e033b58bd31534155411c632ab876d023be06296476e2d3e0a34",
+          "size_bytes": 14654908
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.2/docx-compare-1.0.2-macos-x64.zip",
-          "sha256": "b4fa421f858d4569653e45d2a299f24ad581bdd0917da177bc2a8586f37296f1",
-          "size_bytes": 15189000
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.3/docx-compare-1.0.3-macos-x64.zip",
+          "sha256": "f25a1bcd2dedb1bab76056909f3abc245d2c6a136a5d905c47dfed42f66969e8",
+          "size_bytes": 15193752
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.2/docx-compare-1.0.2-windows-x64.zip",
-          "sha256": "6669c75fe2e024d51a450de00539ffdda1c1b9d44c40e8e3f47ba9beabd3b289",
-          "size_bytes": 15045289
+          "url": "https://github.com/chayprabs/localtools/releases/download/docx-compare-v1.0.3/docx-compare-1.0.3-windows-x64.zip",
+          "sha256": "546601df0163ed00e1544fe51fa49c7f89602723a4a63e303ae35d5479351773",
+          "size_bytes": 15050937
         }
       },
-      "release_notes": "Footnote/endnote links and bookmarks kept; header/footer image, link and field changes and new headers/footers tracked with their images and links; reject-all restores exact link/bookmark ranges.",
+      "release_notes": "Multi-section documents keep sections and headers/footers; accept/reject handle tracked moves and altChunk; exact reject ranges for bookmarks ending after their paragraph; 413 for oversized uploads; no false header/footer changes; one-line CLI errors.",
       "registries": {
         "brew": true,
         "scoop": true,
