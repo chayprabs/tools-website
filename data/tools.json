@@ -1141,7 +1141,7 @@
         "brew": true,
         "scoop": true,
         "winget": true,
-        "npm": null,
+        "npm": "localtools-graphql-diff",
         "pypi": null,
         "ghcr": null
       },
@@ -2619,7 +2619,7 @@
         "brew": true,
         "scoop": true,
         "winget": true,
-        "npm": null,
+        "npm": "localtools-svg-optimizer",
         "pypi": null,
         "ghcr": null
       },
@@ -2720,7 +2720,7 @@
         "brew": true,
         "scoop": true,
         "winget": true,
-        "npm": null,
+        "npm": "localtools-og-image-generator",
         "pypi": null,
         "ghcr": null
       },
@@ -3116,7 +3116,7 @@
         "brew": true,
         "scoop": true,
         "winget": true,
-        "npm": null,
+        "npm": "localtools-asciidoc-converter",
         "pypi": null,
         "ghcr": null
       },
@@ -3215,7 +3215,7 @@
         "brew": true,
         "scoop": true,
         "winget": true,
-        "npm": null,
+        "npm": "localtools-latex-to-svg",
         "pypi": null,
         "ghcr": null
       },
@@ -3381,10 +3381,10 @@
       "engine": "LibreOffice 25.2.3 (Debian 4:25.2.3-2+deb13u8) + Poppler 25.03.0 (25.03.0-5+deb13u4)",
       "engine_reason": "LibreOffice renders real DOCX/PPTX/XLSX and ODF with bundled fonts; Poppler rasterizes every PDF page. Both base image manifests and Debian snapshot 20261020T000000Z are pinned for fixed dependency inputs. The isolated Docker image keeps this large engine consistent across hosts. Requires Landlock ABI3+ in the Linux kernel; external links/macros/active content are rejected. Pin updates require a new tested patch.",
       "private_repo": "chayprabs/office-converter",
-      "version": "1.0.1",
-      "status": "planned",
+      "version": "1.0.2",
+      "status": "released",
       "assets": {},
-      "release_notes": "1.0.1 pins both previously tested base-image digests and signed Debian snapshot 20261020T000000Z, LibreOffice 4:25.2.3-2+deb13u8 and Poppler 25.03.0-5+deb13u4; syncs bounded Host/Origin upload rejection draining. Private image ghcr.io/chayprabs/localtools-office-converter:1.0.1 (also latest), digest sha256:5f69d9aec41b53e4d82a2167f9c205ed598e3f7efebd127f8e45faa8e097b840. Source fb520f840aa6eb8fac7b51bcbb9cd2a8cf993142. Linux CI/publish https://github.com/chayprabs/office-converter/actions/runs/39732820965 passed 3 Go tests, 15 Python tests, 105 shipping-image assertions (six real formats and exact LibreOffice reference pixels), 4 headless UI runs under installed wrapper constraints. Remains unlisted/planned while GHCR is private; anonymous install, public clean-install and media capture await package visibility change and independent review.",
+      "release_notes": "1.0.2 adds Debian trixie fonts-noto-cjk (Noto Sans/Serif CJK SC/TC/JP/KR): 1.0.1 rendered Chinese, Japanese and Korean text as missing-glyph boxes. Everything else unchanged (same pinned bases, Debian snapshot 20261020T000000Z, LibreOffice 4:25.2.3-2+deb13u8, Poppler 25.03.0-5+deb13u4, sandbox and container hardening). New CI regression converts DOCX/PPTX with zh/ja/ko/ar/he/hi/th/ru/el text to PDF and PNG and asserts embedded Noto CJK/Devanagari/Thai fonts. Public image ghcr.io/chayprabs/localtools-office-converter:1.0.2 (also latest), digest sha256:84e7235b7a592ededdf855604c67ea6af2d7d73536eb494cf761d023287f97b6 (+76 MB compressed vs 1.0.1). Source d0050b340c214573d52a30f5247dc2c53012b99b; CI/publish https://github.com/chayprabs/office-converter/actions/runs/39800321645.",
       "registries": {
         "brew": false,
         "scoop": false,
@@ -3399,7 +3399,7 @@
           "macos",
           "linux"
         ],
-        "disk_mb": 1200,
+        "disk_mb": 1500,
         "docker": true
       },
       "smoke": {
@@ -3415,7 +3415,7 @@
       "page": {
         "howto": [
           "Install and start Docker using Linux containers. The Docker Linux kernel needs Landlock ABI 3+ (Linux 6.2+).",
-          "After the image is public, install Office Converter, launch it and choose one DOCX, PPTX, XLSX, ODT, ODP or ODS file up to 10 MiB.",
+          "Install Office Converter, launch it and choose one DOCX, PPTX, XLSX, ODT, ODP or ODS file up to 10 MiB.",
           "Choose PDF or PNG pages (ZIP). For a presentation, choose slides, slides and notes, or notes only.",
           "Convert, inspect the PDF or first PNG page, then download. The CLI and /api/convert API provide the same conversion."
         ],
@@ -3438,7 +3438,7 @@
           },
           {
             "q": "Will the result exactly match Microsoft Office?",
-            "a": "Rendering uses LibreOffice with DejaVu, Liberation and Noto fonts. Unavailable fonts are substituted, so some pagination and graphics can differ from Microsoft Office."
+            "a": "Rendering uses LibreOffice with DejaVu, Liberation, Noto and Noto CJK fonts. Unavailable fonts are substituted, so some pagination and graphics can differ from Microsoft Office."
           }
         ]
       }
