@@ -15,36 +15,36 @@
       "engine": "Go + gabriel-vasile/mimetype + own ZIP/OLE2 container, polyglot and file-name checks",
       "engine_reason": "Pure-Go magic-byte detection for ~200 formats in one static binary: no libmagic, no ONNX runtime (Magika was evaluated and rejected for that reason).",
       "private_repo": "chayprabs/file-type-detector",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.3/file-type-detector-1.0.3-linux-arm64.zip",
-          "sha256": "8163f54f86a917789ffefde4ccaacef23d8505dd3158723634a1941ebf397c2c",
-          "size_bytes": 2908582
+          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.4/file-type-detector-1.0.4-linux-arm64.zip",
+          "sha256": "059ae1ab88a6002a73d4aad6134b800916320c1ec139b54ccdd3670683252d95",
+          "size_bytes": 3006549
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.3/file-type-detector-1.0.3-linux-x64.zip",
-          "sha256": "5b6cbd593676229c6b45b6ee70c6bfcf76afc80303bb5df09b4331808e5f8f1c",
-          "size_bytes": 3205252
+          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.4/file-type-detector-1.0.4-linux-x64.zip",
+          "sha256": "e08d40ab188da67a8f5fd7a8d735422b0f93b008cc5ee8f2885bbab76380d8a1",
+          "size_bytes": 3313099
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.3/file-type-detector-1.0.3-macos-arm64.zip",
-          "sha256": "82e71e89bb6f2f0c87372acafc511cbe192f57d7d2fa52bc2f2d3ec05d0e587d",
-          "size_bytes": 2998738
+          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.4/file-type-detector-1.0.4-macos-arm64.zip",
+          "sha256": "cffce5fe13a653ee170375b2ac25f9abc2ae4281fe573580c881136fca28690b",
+          "size_bytes": 3097789
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.3/file-type-detector-1.0.3-macos-x64.zip",
-          "sha256": "e0b4fd531940724715f141bc39fbeddd1766905f333cf3407d22bc0630b2a867",
-          "size_bytes": 3237751
+          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.4/file-type-detector-1.0.4-macos-x64.zip",
+          "sha256": "284f5b34053ba7c8c71bd6be86a4fb3c5b72e27b70715122fc9081734bc2f96d",
+          "size_bytes": 3346083
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.3/file-type-detector-1.0.3-windows-x64.zip",
-          "sha256": "9f46c95f3d1b0363fda279e14a4bdb3bc0efc172c17f8e5481254806ba115cf4",
-          "size_bytes": 3281115
+          "url": "https://github.com/chayprabs/localtools/releases/download/file-type-detector-v1.0.4/file-type-detector-1.0.4-windows-x64.zip",
+          "sha256": "15a40ea307e187f7b0c18fe76a8ddcbc1d2ef8b229a9470f8bd7a1720c170e6b",
+          "size_bytes": 3389956
         }
       },
-      "release_notes": "Preserve text, JSON and JPEG primary types when PDF headers occur inside content; accept primary PDF headers only at offset zero or after a UTF-8 BOM and line breaks. Report internal PDF signatures as possible-polyglot warnings without claiming validation. Catch U+2800/U+3164 blank padding in loose files and ZIP entries. Refresh shared kit assets, add selected-file removal and clear stale results on changed input.",
+      "release_notes": "Minor sweep: every invisible padding character class (Unicode White_Space, default-ignorable, format characters such as U+FFA0, U+115F, U+180E, U+00AD, U+034F) now triggers double-extension/padded-name findings in files and archive entries. PDF polyglots are reported (risk) only when a versioned %PDF-x.y header in the first 1 KiB is matched by a PDF trailer at the end; text that merely quotes %PDF- gets no finding. PDFs with leading spaces/tabs are typed as PDF. File list: aligned size column and a Clear all button beyond 50 files. Runtime and kit refreshed.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -113,36 +113,36 @@
       "engine": "Go + pdfcpu, plus own image recompression, form flattening and XFDF/FDF import",
       "engine_reason": "pdfcpu is a pure-Go PDF library covering merge, split, pages, rotate, optimize, stamps, AES-256 and AcroForm fill in one static binary; no Ghostscript, qpdf or Java.",
       "private_repo": "chayprabs/pdf-toolkit",
-      "version": "1.0.3",
+      "version": "1.0.7",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.3/pdf-toolkit-1.0.3-windows-x64.zip",
-          "sha256": "05fe071dea2edd51e64ab161c9f30066f6b9931e705ef74c537b60df3a6d0d4e",
-          "size_bytes": 5724933
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.7/pdf-toolkit-1.0.7-windows-x64.zip",
+          "sha256": "7f4a0dc0c54eb6770616d5f27026ca9082cafc12654b8e0e2e3e35dc69c97401",
+          "size_bytes": 5738839
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.3/pdf-toolkit-1.0.3-macos-arm64.zip",
-          "sha256": "53ca6f407a12d1b57bfdd03588e16d72b3da51fdaa1abd09890380d6ed760ae4",
-          "size_bytes": 5171236
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.7/pdf-toolkit-1.0.7-macos-arm64.zip",
+          "sha256": "4fe23843042662569c08337c5801cf224ed2144f2ad16b8a8370214b0171a9a1",
+          "size_bytes": 5180008
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.3/pdf-toolkit-1.0.3-macos-x64.zip",
-          "sha256": "f98484cd1f38cec6493738cd7de343fcc1ffe6972cad03c4a24e6506f8d21aee",
-          "size_bytes": 5652480
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.7/pdf-toolkit-1.0.7-macos-x64.zip",
+          "sha256": "20d7ac83cad8d3562876435678de9f22b39330d7ebc622ac7203dae979652265",
+          "size_bytes": 5665709
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.3/pdf-toolkit-1.0.3-linux-x64.zip",
-          "sha256": "47bc3494d79e7948f8523c84c9004750ecf0c6ed0d00a6f26cc2192471fe92dd",
-          "size_bytes": 5594117
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.7/pdf-toolkit-1.0.7-linux-x64.zip",
+          "sha256": "4e0664442d6b43124eaf48f6595e2283c2d08e029562aaf314c7bb01c68d41a6",
+          "size_bytes": 5604413
         },
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.3/pdf-toolkit-1.0.3-linux-arm64.zip",
-          "sha256": "2146255e946ef1805ca9c06154b64574ab3744edad1b55c2ccdff285330da344",
-          "size_bytes": 5009243
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-toolkit-v1.0.7/pdf-toolkit-1.0.7-linux-arm64.zip",
+          "sha256": "40cdffa731992d203731aa2490d7140e057905f40bdca1767670d888a29f2a0e",
+          "size_bytes": 5021584
         }
       },
-      "release_notes": "Multiline text fields word-wrap inside the field (auto-size shrinks to fit), flatten keeps stored appearances that already show the value, plain FDF error messages, startup sweep of stale job folders, ligatures off in code text, pdfcpu v0.16.3 security update.",
+      "release_notes": "Flatten bakes what a viewer shows: unchanged fields keep their stored appearance (including Acrobat number/percent/SSN/date formats); format-script fields are never redrawn raw (left fillable with a warning); combos and lists draw option display text.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -211,31 +211,31 @@
       "engine": "Python + PDFium (pypdfium2 5.14) render/text/structure + Pillow pixel diff + difflib word diff",
       "engine_reason": "PDFium renders pages exactly like Chrome and gives text with character boxes; Pillow compares pixels in C and difflib diffs words, so no numpy is needed.",
       "private_repo": "chayprabs/pdf-diff",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-diff-v1.0.1/pdf-diff-1.0.1-linux-x64.zip",
-          "sha256": "8a0aebca7e09544bb15bbcdd8ade1430fb5e248a97d1a717a2ab70c266c31886",
-          "size_bytes": 43216504
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-diff-v1.0.2/pdf-diff-1.0.2-linux-x64.zip",
+          "sha256": "34c249219a7f3df0822d3b88df1571ccf3fdd2887e22d39be656bf3fc3f29893",
+          "size_bytes": 43217044
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-diff-v1.0.1/pdf-diff-1.0.1-macos-arm64.zip",
-          "sha256": "d9831ca812bad2f39cad847923b67c53affb31e7f406269ec7a64be61ab1e469",
-          "size_bytes": 29790066
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-diff-v1.0.2/pdf-diff-1.0.2-macos-arm64.zip",
+          "sha256": "4b173bcc9245415339dbb8cf98ec1f2fd019e8432e597abde5e7cc03d36e8eed",
+          "size_bytes": 29790607
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-diff-v1.0.1/pdf-diff-1.0.1-macos-x64.zip",
-          "sha256": "cc01bab375ada0f54f2e07ae917528282be69055db6166daafe06f331ed6f95e",
-          "size_bytes": 30325687
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-diff-v1.0.2/pdf-diff-1.0.2-macos-x64.zip",
+          "sha256": "736de9c2972d32f9828f08b3d2d7470a398f5595a7ae3f6301c5d3b9cedcef03",
+          "size_bytes": 30326227
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-diff-v1.0.1/pdf-diff-1.0.1-windows-x64.zip",
-          "sha256": "6903dc60fe50764089b73f435afb6fd28a39e13be0fd0c4941a59948cbbf665d",
-          "size_bytes": 25189184
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-diff-v1.0.2/pdf-diff-1.0.2-windows-x64.zip",
+          "sha256": "c6844832fd659289b0fee898696ffab323a882d30baa571b5c6dc2f7d0bd0787",
+          "size_bytes": 25189726
         }
       },
-      "release_notes": "PDFium 8076 (pypdfium2 5.14.0) replaces PDFium 6462, which had later memory-safety CVEs. Scanned PDFs with inserted or removed pages now pair quickly: each thumbnail is rendered once and unchanged pages anchor the pairing. Visual diff is faster. The render budget is now the measured 100 megapixels per PDF. Damaged pages and unusable page sizes get clear errors, out-of-memory is reported as the memory budget, and the word-change list shows operators without ligatures.",
+      "release_notes": "Structure mode ignores font subset tags, so re-subset fonts are no longer reported as changes; macOS 13 minimum and slow-page timeout documented.",
       "registries": {
         "brew": false,
         "scoop": false,
@@ -308,31 +308,31 @@
       "engine": "Python + PDFium (pypdfium2 5.14) text/fonts/links/paths/images + own layout analysis and pdfplumber-derived ruled-table finder",
       "engine_reason": "PDFium parses 10-40x faster than pdfminer and repairs broken PDFs; docling needs PyTorch and model weights (gigabytes), too heavy for an offline portable tool.",
       "private_repo": "chayprabs/pdf-to-markdown",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "status": "released",
       "assets": {
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.2/pdf-to-markdown-1.0.2-linux-x64.zip",
-          "sha256": "591589133604227a73f5176ec04ed7452673dc4ca6e2c25b8c4ec351177eb233",
-          "size_bytes": 43230192
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.3/pdf-to-markdown-1.0.3-linux-x64.zip",
+          "sha256": "e5c58c9538360eec34518fdfda7560c53b7fedff836f7bf19d56bc790278f6fb",
+          "size_bytes": 43231012
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.2/pdf-to-markdown-1.0.2-macos-arm64.zip",
-          "sha256": "0d0105a34706e14ba44c98b2ece00874cf6773ebe8d0fe718d15758ff1e5e762",
-          "size_bytes": 29803753
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.3/pdf-to-markdown-1.0.3-macos-arm64.zip",
+          "sha256": "e49e664016d58aa29125eda5b6ab19acd43e9f7842d4b57ef9c4d48ae8b13414",
+          "size_bytes": 29804574
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.2/pdf-to-markdown-1.0.2-macos-x64.zip",
-          "sha256": "d974830bbc49f48b76b22222b4288c8ebeb75045a21d244224176ee4a0f6fe0c",
-          "size_bytes": 30339375
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.3/pdf-to-markdown-1.0.3-macos-x64.zip",
+          "sha256": "a0c17ed0c5e1717989b3274ebcb8b55c410267c0d78e497d3fec8a243d4d2485",
+          "size_bytes": 30340197
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.2/pdf-to-markdown-1.0.2-windows-x64.zip",
-          "sha256": "0020d536fb8167098ff03c7abd2ea131bb0729a9b92c540bdb662059ffec9568",
-          "size_bytes": 25202787
+          "url": "https://github.com/chayprabs/localtools/releases/download/pdf-to-markdown-v1.0.3/pdf-to-markdown-1.0.3-windows-x64.zip",
+          "sha256": "53149c70503a0af62489d0bfad2e83629db94becd970c055109b9aae3e744a70",
+          "size_bytes": 25203604
         }
       },
-      "release_notes": "Repeated headers and footers are removed again whatever their font size (1.0.1 kept large ones and turned them into headings), while headings at page tops that differ by number (\"Exercise 1\"..\"Exercise 4\") and body sentences that repeat with different numbers are kept; the summary now lists examples of removed lines. The token estimate is conservative for Chinese, Japanese, Korean and other non-ASCII text and for name lists (never below OpenAI cl100k on the tested corpus). Markdown characters in PDF text are escaped, URLs wrapped across lines are joined, adjacent footnotes stay separate, tall table row-label cells are split per row, and sideways margin text no longer interrupts a paragraph continued on the next page. Requires macOS 13+.",
+      "release_notes": "Keep the first repeated slide title, table caption or form line and preserve bold chapter labels. Escape literal square brackets, fence code-like monospaced listings, join URLs wrapped after their scheme and improve token estimates for garbled fonts. Remove sideways running footers and join hyphenated small-print footnotes across pages. Distinct image dimensions and color modes no longer collide when pixel bytes match. Verified on 17 real/generated documents, including cl100k chunk bounds. Requires macOS 13+.",
       "registries": {
         "brew": false,
         "scoop": false,
@@ -403,36 +403,36 @@
       "engine": "DuckDB 1.5.6 (official CLI, bundled) + log parsers (nginx/Apache, syslog RFC 3164/5424)",
       "engine_reason": "DuckDB queries CSV/Parquet/JSON in place, in parallel and out of core: a 1 GB CSV aggregates in about 1-2 s. The official CLI is bundled with the excel and sqlite extensions, so it works offline on every OS without cgo.",
       "private_repo": "chayprabs/csv-sql-query",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/csv-sql-query-v1.0.3/csv-sql-query-1.0.3-windows-x64.zip",
-          "sha256": "a55d10bf39b779a02df06ae624309c3397e71d3aee8ae26919584701dd08aa9e",
-          "size_bytes": 33885739
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-sql-query-v1.0.4/csv-sql-query-1.0.4-windows-x64.zip",
+          "sha256": "cd8a5e011abbfd21b32b399f5a23edc65285e3641c8395e5303ca8b9b5f95230",
+          "size_bytes": 33887764
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/csv-sql-query-v1.0.3/csv-sql-query-1.0.3-macos-arm64.zip",
-          "sha256": "04d0c4408ff7feaf4b9bbe48c30db0f1c9822334869ec8c8b09f63282108e3d2",
-          "size_bytes": 31632792
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-sql-query-v1.0.4/csv-sql-query-1.0.4-macos-arm64.zip",
+          "sha256": "37f80d1d8cd2f36ba0baf45585a8352c6503e986a94b77063cbdc7b49df19228",
+          "size_bytes": 31633809
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/csv-sql-query-v1.0.3/csv-sql-query-1.0.3-macos-x64.zip",
-          "sha256": "7121bf7d786b7e568338e37c2c134b50d3295ebf4563a3290d5b619359fb8b6e",
-          "size_bytes": 34906247
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-sql-query-v1.0.4/csv-sql-query-1.0.4-macos-x64.zip",
+          "sha256": "0212b1ed991337c9e5e9c21e60a9fb4b3e1a2d90c6d5f6f7a30a9c9f49f0b619",
+          "size_bytes": 34907547
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/csv-sql-query-v1.0.3/csv-sql-query-1.0.3-linux-x64.zip",
-          "sha256": "089f484378c91063121722e4a600291870434bdcc6ec291d07ea2ae6e72cd180",
-          "size_bytes": 41723118
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-sql-query-v1.0.4/csv-sql-query-1.0.4-linux-x64.zip",
+          "sha256": "2f7a826fee9653cbd55aaa147ed618d1fbd2e7e2179e652a8d80bbe19eca6a2f",
+          "size_bytes": 41724471
         },
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/csv-sql-query-v1.0.3/csv-sql-query-1.0.3-linux-arm64.zip",
-          "sha256": "cf69fe633e627b58215c3cc98b112b39d60f9b279408726ebdf1ee2ec0cb891d",
-          "size_bytes": 37708821
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-sql-query-v1.0.4/csv-sql-query-1.0.4-linux-arm64.zip",
+          "sha256": "85fa1371d195f230027ac8bc4f6965c81dbedd5fdbccbccccb80b2453fc41488",
+          "size_bytes": 37709519
         }
       },
-      "release_notes": "Fix: after a one-page result, paging a larger result could stop at rows 201-400.",
+      "release_notes": "Clear stale query results, downloads and pager controls before new queries/explains; synchronize shared kit and bounded guard rejection. Nested large integers remain quoted in JSON previews as documented; downloads preserve exact numbers.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -504,36 +504,36 @@
       "engine": "Go + Miller 6.22 (embedded library)",
       "engine_reason": "Miller 6 is pure Go, embeddable, and its verbs (filter, sort, join, reshape) are already well known.",
       "private_repo": "chayprabs/csv-json-transform",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.3/csv-json-transform-1.0.3-linux-arm64.zip",
-          "sha256": "5defd9404a259f21db3e3f05b460448f18027fa0d60a514a8f55245d74b9d5fd",
-          "size_bytes": 5621010
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.4/csv-json-transform-1.0.4-linux-arm64.zip",
+          "sha256": "edd9290cdf2d88d504baefdce7d1224685880c6f2efa0b5c2875b16f0c1db7c7",
+          "size_bytes": 5623244
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.3/csv-json-transform-1.0.3-linux-x64.zip",
-          "sha256": "99e96a916b055cb7aec0554ed92cee428fc9bafbf397acacc6f9d2a86b076a6b",
-          "size_bytes": 6332959
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.4/csv-json-transform-1.0.4-linux-x64.zip",
+          "sha256": "6ae1618c8f36686f88a2197e8755b6b904f9aa0b31f3036948dd7c722fb8b0c1",
+          "size_bytes": 6334327
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.3/csv-json-transform-1.0.3-macos-arm64.zip",
-          "sha256": "364b619ce3fa0880a9ebfacd8dda77dba2bf942245b034959475c8c5b654197c",
-          "size_bytes": 5851720
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.4/csv-json-transform-1.0.4-macos-arm64.zip",
+          "sha256": "7d31ed23183637951fe375cd1ff1fb86c2f2962b55d6749f24bce908e32a365b",
+          "size_bytes": 5853525
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.3/csv-json-transform-1.0.3-macos-x64.zip",
-          "sha256": "50364e04a65a2a7e51b0e7a6c873f7fa06bb6b2e9f075639a6e0501937e399ce",
-          "size_bytes": 6436244
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.4/csv-json-transform-1.0.4-macos-x64.zip",
+          "sha256": "244665ce739adc314075717b52100c9045661292b7ac1a604b5c0b2d0a2c0c5e",
+          "size_bytes": 6437836
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.3/csv-json-transform-1.0.3-windows-x64.zip",
-          "sha256": "82dd63a936b2e8ec69972c441c76cc1465aa3697f2b1330f82777e4a0c0af211",
-          "size_bytes": 6498904
+          "url": "https://github.com/chayprabs/localtools/releases/download/csv-json-transform-v1.0.4/csv-json-transform-1.0.4-windows-x64.zip",
+          "sha256": "8aed563df9891996e2995b1dc75cf475f4cac166455c94c2feef5d077ccfc087",
+          "size_bytes": 6501367
         }
       },
-      "release_notes": "Preserve exact unsafe integers in JSON/JSONL previews, bound HTTP transforms to two concurrent workers with clear 503 overload errors, and consistently default CLI run output to JSON. Includes current UI code-font fixes.",
+      "release_notes": "Bound upload admission and rejection; report missing Miller verb arguments promptly with human errors; keep worker lifeline separate from data stdin.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -605,36 +605,36 @@
       "engine": "DuckDB 1.5.6 (official CLI, bundled): SUMMARIZE plus exact SQL counts, histograms, patterns and drift",
       "engine_reason": "DuckDB reads CSV, JSON and Parquet natively with full-file type inference and profiles millions of rows in seconds. The official CLI runs as a sandboxed sidecar, so the tool works offline on every OS without cgo.",
       "private_repo": "chayprabs/dataset-profiler",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/dataset-profiler-v1.0.2/dataset-profiler-1.0.2-windows-x64.zip",
-          "sha256": "8da232df484a628292a3e911e9d9e9073fff33812d5e3a8d624bbf0e70ecbb59",
-          "size_bytes": 17495623
+          "url": "https://github.com/chayprabs/localtools/releases/download/dataset-profiler-v1.0.3/dataset-profiler-1.0.3-windows-x64.zip",
+          "sha256": "f94b2578227f28af387abaed66ebb8b89b966d3e54e118d42ffbcf933a2b0431",
+          "size_bytes": 17497239
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/dataset-profiler-v1.0.2/dataset-profiler-1.0.2-macos-arm64.zip",
-          "sha256": "f17d01745beb376f19c4bab25309c9bfc51f55ad9224a9ef35a92964426b3aaf",
-          "size_bytes": 21344260
+          "url": "https://github.com/chayprabs/localtools/releases/download/dataset-profiler-v1.0.3/dataset-profiler-1.0.3-macos-arm64.zip",
+          "sha256": "6bf44d8340f586b153f39748c3b4d814dd63c2a247931e4e75ab6ec8a129c055",
+          "size_bytes": 21345004
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/dataset-profiler-v1.0.2/dataset-profiler-1.0.2-macos-x64.zip",
-          "sha256": "38b2aff53b9acdfda2cab01ea84559ee73d3da9da0cfe063ccb92af82842262f",
-          "size_bytes": 23374386
+          "url": "https://github.com/chayprabs/localtools/releases/download/dataset-profiler-v1.0.3/dataset-profiler-1.0.3-macos-x64.zip",
+          "sha256": "0a268df34fa235ee1d22cb665990a7f2aed027699d4adf386c6dbe2e348f0f3f",
+          "size_bytes": 23375086
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/dataset-profiler-v1.0.2/dataset-profiler-1.0.2-linux-x64.zip",
-          "sha256": "3d07176af72b666845f80043b2a39d413fd196659c2fe85897c12d2770bc21a8",
-          "size_bytes": 25861361
+          "url": "https://github.com/chayprabs/localtools/releases/download/dataset-profiler-v1.0.3/dataset-profiler-1.0.3-linux-x64.zip",
+          "sha256": "4601928170ebeb1223f94be7891767bc5ab85481b29870e5a76708f8fd09e795",
+          "size_bytes": 25862442
         },
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/dataset-profiler-v1.0.2/dataset-profiler-1.0.2-linux-arm64.zip",
-          "sha256": "152df16de32a6e1056724e32e14cb074497dce75d00af8c5f482b1dfc9bc2c3a",
-          "size_bytes": 23562751
+          "url": "https://github.com/chayprabs/localtools/releases/download/dataset-profiler-v1.0.3/dataset-profiler-1.0.3-linux-arm64.zip",
+          "sha256": "d02b699c44f991b47f7cabfd8afda7ff5f153abbfa3a32e9be0c7991aea034aa",
+          "size_bytes": 23564245
         }
       },
-      "release_notes": "Fixes: big-integer CSV columns use DuckDB header names (BOM, padded, duplicate and case-colliding headers work); approximate quantiles stay within min/max; Markdown/HTML exports include NaN/Inf counts; faster on wide files.",
+      "release_notes": "Maintenance: shared UI kit refreshed (font ligatures off on every element, so operators like >= and != show as typed) and runtime refreshed (uploads are drained before early rejections, so Connection: close clients get the JSON error). No behaviour change in profiling.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -704,36 +704,36 @@
       "engine": "Go + excelize",
       "engine_reason": "excelize is the most complete pure-Go .xlsx writer (styles, tables, conditional formats, charts, streaming): one static binary, no Office or runtime needed.",
       "private_repo": "chayprabs/json-to-excel",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.5/json-to-excel-1.0.5-linux-arm64.zip",
-          "sha256": "bcee0282f4b6f104cc7f00ade13281cc39543824f9a7ac67f6f0b64d4721b464",
-          "size_bytes": 4651173
+          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.6/json-to-excel-1.0.6-linux-arm64.zip",
+          "sha256": "9a7722615d06812abe883244db6eae506826bc0d0275b2c87f70d8cdd7f8da0e",
+          "size_bytes": 4651720
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.5/json-to-excel-1.0.5-linux-x64.zip",
-          "sha256": "c607f4cbcd262ee6f72adf485656f1019b9f71a7edab5d39805db7153f8b8c03",
-          "size_bytes": 5103775
+          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.6/json-to-excel-1.0.6-linux-x64.zip",
+          "sha256": "fdeb71ad3b0d374b2ee2d230aa758717e54adef6765c8a392d7bcba87077a897",
+          "size_bytes": 5104353
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.5/json-to-excel-1.0.5-macos-arm64.zip",
-          "sha256": "f14fbad5c4dfe41dac6bc5065b899ec8dd028a99842890056196e4a7a7087dc9",
-          "size_bytes": 4827708
+          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.6/json-to-excel-1.0.6-macos-arm64.zip",
+          "sha256": "a460d6a82173e990a93b769dbf66a18c588be3b0aa7be560c38cc2d401be71f2",
+          "size_bytes": 4828079
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.5/json-to-excel-1.0.5-macos-x64.zip",
-          "sha256": "06658bf2fadbfc8e813378bc24b24e729d3f0390b184a22bb419cfa63b54543f",
-          "size_bytes": 5184129
+          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.6/json-to-excel-1.0.6-macos-x64.zip",
+          "sha256": "b8a3b43be6d448b3f92e203a5d140d716bf676b3d6145dad7fd75d59a65da278",
+          "size_bytes": 5185236
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.5/json-to-excel-1.0.5-windows-x64.zip",
-          "sha256": "651090cf22da531818228b8293804999e4e1503131f3b0264294ca7ca6c7b633",
-          "size_bytes": 5233238
+          "url": "https://github.com/chayprabs/localtools/releases/download/json-to-excel-v1.0.6/json-to-excel-1.0.6-windows-x64.zip",
+          "sha256": "81b0861b121d1e34289974079f9ee76d0381f43e05a4a8e090a79e222e141bd3",
+          "size_bytes": 5234935
         }
       },
-      "release_notes": "- Conditional-format formulas (including time_period) on multi-area ranges are anchored at the leftmost, then topmost area, as Excel and LibreOffice evaluate them. - Whole columns (C:C) and rows (2:2) are accepted as rule ranges. - Spec sheets of array rows without columns preview with column letters and the right row count.",
+      "release_notes": "Minor sweep: spec-mode numeric types keep integers with more than 15 digits exact (written as text with a warning) instead of rounding them; merged ranges are capped at 10,000 per sheet with a clear error (excelize's overlap check is quadratic). SPEC.md documents both and notes that type-error paths omit array indices (line/column locate the item). Runtime refreshed.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -811,36 +811,36 @@
       "engine": "Go: streaming xlsx reader + Myers row/column alignment; excelize for the annotated workbook",
       "engine_reason": "A streaming reader shows every value exactly as stored (comparison uses the stored double, like Excel) and handles a million cells in seconds; Myers O(ND) alignment, with per-column alignment when a column changed in every row, finds inserted and deleted rows and columns; excelize writes B back with the changes highlighted.",
       "private_repo": "chayprabs/excel-diff",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.4/excel-diff-1.0.4-linux-arm64.zip",
-          "sha256": "e023bf986f22ff0a9c9b77f9e493367ab444b09f8508ec54fcb2e55b0ee33c9e",
-          "size_bytes": 4493765
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.5/excel-diff-1.0.5-linux-arm64.zip",
+          "sha256": "2f6cbb6091be927cba3beb299d1cfae485561768ed7557c188308126f2932a38",
+          "size_bytes": 4497204
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.4/excel-diff-1.0.4-linux-x64.zip",
-          "sha256": "2c2b342ced1f8cefd436a585437c2a78c778437d001c9ab4879f60f8b39908b9",
-          "size_bytes": 4923433
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.5/excel-diff-1.0.5-linux-x64.zip",
+          "sha256": "5097309024e79760097a88638ee071d91e9d3301b7b60b7bc18d12fee2ae2b52",
+          "size_bytes": 4927317
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.4/excel-diff-1.0.4-macos-arm64.zip",
-          "sha256": "7bd23fefd34fa1cd17ee43237ba27d36931897bd0925791bfff51268f4923d0e",
-          "size_bytes": 4662187
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.5/excel-diff-1.0.5-macos-arm64.zip",
+          "sha256": "e906d90fdb6137e0f97ae540459f75fafb75621fe8acf4a198c83b639b17d62f",
+          "size_bytes": 4664654
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.4/excel-diff-1.0.4-macos-x64.zip",
-          "sha256": "25f25ff62f2f48f45f6c2dfda24660dba2f96a453cf47e823446a7ce38b826da",
-          "size_bytes": 5002583
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.5/excel-diff-1.0.5-macos-x64.zip",
+          "sha256": "0f4c7658f6e2fa44ea3751e85beebb06d2187a43ae57e962494f0ff91b2f58ba",
+          "size_bytes": 5003829
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.4/excel-diff-1.0.4-windows-x64.zip",
-          "sha256": "5ffb96038573d12dd94d0efbcf8ff4617e017b7a04d769c7087cff22b9802bd9",
-          "size_bytes": 5052024
+          "url": "https://github.com/chayprabs/localtools/releases/download/excel-diff-v1.0.5/excel-diff-1.0.5-windows-x64.zip",
+          "sha256": "fcf9dd93d439e0f11e24fd2ce8604e5618daaefab0f88bb0fd88e76afa72bf67",
+          "size_bytes": 5056044
         }
       },
-      "release_notes": "- Many scattered row inserts or deletions align exactly even when a column changed in every row.\n- Positional fallbacks are flagged: \"approximate\": true with a reason in JSON, a CLI warning and a UI banner suggesting key columns.",
+      "release_notes": "Minor sweep: when several columns are equally filled, row alignment checks the most distinct columns first, so Y/N flag columns placed before an ID column no longer mis-pair an inserted row. README documents that a deleted row directly next to an inserted row is shown as one modified row (use --key when row identity matters). Runtime refreshed.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -1009,36 +1009,36 @@
       "engine": "Go + oasdiff",
       "engine_reason": "oasdiff has the most complete OpenAPI breaking-change rule set and is a Go library.",
       "private_repo": "chayprabs/openapi-diff",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.3/openapi-diff-1.0.3-linux-arm64.zip",
-          "sha256": "e83d6dccd6db4d1d64884bc326af22b3ca606b57f707c4cea9a6b3047f5863e3",
-          "size_bytes": 5057703
+          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.4/openapi-diff-1.0.4-linux-arm64.zip",
+          "sha256": "a7f0b2cdd62692b73f30ba8f94c2e93b0d27480609df7fc088761239c9b7d9a9",
+          "size_bytes": 5058654
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.3/openapi-diff-1.0.3-linux-x64.zip",
-          "sha256": "ffd04dc68f4a7aab6e2721cd3cf697ee0357c146acda4040e3afb0342012eec2",
-          "size_bytes": 5593814
+          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.4/openapi-diff-1.0.4-linux-x64.zip",
+          "sha256": "8773e1012dd64de328b1a5b14012fb153c0ca019aa40fd98343874d9467eb6ef",
+          "size_bytes": 5595837
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.3/openapi-diff-1.0.3-macos-arm64.zip",
-          "sha256": "9e7b2ffc8d77a1452fd602e374910ff5d78d92269dccbda447ed191d31f20a1f",
-          "size_bytes": 5264496
+          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.4/openapi-diff-1.0.4-macos-arm64.zip",
+          "sha256": "2c9888a4e8000612e1a01c1af7696902c8281ff3cb02f025e672fe40411df09f",
+          "size_bytes": 5265866
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.3/openapi-diff-1.0.3-macos-x64.zip",
-          "sha256": "59361976ab04bbe6128dcd3f29cf3c880086a255339b428d9c8a3760871407d1",
-          "size_bytes": 5685135
+          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.4/openapi-diff-1.0.4-macos-x64.zip",
+          "sha256": "52689de016e96f4ee138ab3f72b9bce4e7abcc7d1b6c24d8d83797f605074729",
+          "size_bytes": 5687141
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.3/openapi-diff-1.0.3-windows-x64.zip",
-          "sha256": "0a921f206e26b768ce062afd553083a8071b26155b7ca0739ed2bb88333c482f",
-          "size_bytes": 5740067
+          "url": "https://github.com/chayprabs/localtools/releases/download/openapi-diff-v1.0.4/openapi-diff-1.0.4-windows-x64.zip",
+          "sha256": "a1147aa0dddc1e3722588760c52800739733fc9ef570519f1fd619c06a88ae03",
+          "size_bytes": 5741909
         }
       },
-      "release_notes": "Reports kept per comparison and never evicted while running or fresh (fixes 422 on parallel comparisons); stale temp folders swept at startup, reports removed on exit, 30-minute expiry enforced every minute; smaller page summary; 413 delivered to Connection: close clients; pasted specs up to 64 MB, up to 5000 files per side; oasdiff 1.34.0.",
+      "release_notes": "Minor sweep: 5,000 files per side now really work (multipart header limit raised); a reports folder removed by another instance's startup sweep is recreated instead of failing with 503; $ref errors show the path relative to the upload, never the server temp path; PUT/PATCH/DELETE on /api/diff answer JSON 405; a failed comparison clears the previous result and disables downloads; long property paths wrap at phone width; message patterns are compiled once per rule; --help describes the summary + report_id API. README documents the practical size for very large specs and the Ctrl+C temp cleanup.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -1107,36 +1107,36 @@
       "engine": "@graphql-inspector/core 8 + graphql-js 16 (+ @graphql-tools/schema merge)",
       "engine_reason": "GraphQL Inspector is the reference breaking/dangerous/safe detector; schemas are loaded and merged exactly like its CLI, so change lists are identical (tested on GitHub, GitLab, Shopify, SWAPI schemas).",
       "private_repo": "chayprabs/graphql-diff",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/graphql-diff-v1.0.1/graphql-diff-1.0.1-windows-x64.zip",
-          "sha256": "ea1d54388759498da4cddd1d8a6af1c4d006971eea88272cfb07209b9726c49f",
-          "size_bytes": 39761754
+          "url": "https://github.com/chayprabs/localtools/releases/download/graphql-diff-v1.0.2/graphql-diff-1.0.2-windows-x64.zip",
+          "sha256": "5292d9dff32d7dbd71ed47b5ee918eb97e39a9da4556407e9968c581e5d19d44",
+          "size_bytes": 45817768
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/graphql-diff-v1.0.1/graphql-diff-1.0.1-macos-arm64.zip",
-          "sha256": "fc2ddb00ac14709ec77144557380baeb3a0452ceb61e96a4cbcf92741ab9a415",
-          "size_bytes": 24917436
+          "url": "https://github.com/chayprabs/localtools/releases/download/graphql-diff-v1.0.2/graphql-diff-1.0.2-macos-arm64.zip",
+          "sha256": "efaac7ad985043dc57c8ebe3dbe0181f4d1d31f227f8e889a93a44a4868b81da",
+          "size_bytes": 32132791
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/graphql-diff-v1.0.1/graphql-diff-1.0.1-macos-x64.zip",
-          "sha256": "bb1215e001bed813f3945fe31772181be4d80ac65f08a830a2c9f87e3eafe707",
-          "size_bytes": 27186938
+          "url": "https://github.com/chayprabs/localtools/releases/download/graphql-diff-v1.0.2/graphql-diff-1.0.2-macos-x64.zip",
+          "sha256": "a109a64601b07fa96e641289e98b8c8df621cc47a41ba7f876d99c14c11b0617",
+          "size_bytes": 33989851
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/graphql-diff-v1.0.1/graphql-diff-1.0.1-linux-x64.zip",
-          "sha256": "43f579e930223d736d0dcdc49876c47f308f96e60bad34623484b0cf6515ae66",
-          "size_bytes": 37058545
+          "url": "https://github.com/chayprabs/localtools/releases/download/graphql-diff-v1.0.2/graphql-diff-1.0.2-linux-x64.zip",
+          "sha256": "8a3e7c88d61bb070133b774256b287c9dbd09eec973e7d308c467ac7b54aae4a",
+          "size_bytes": 42960521
         },
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/graphql-diff-v1.0.1/graphql-diff-1.0.1-linux-arm64.zip",
-          "sha256": "5a2a8789a7ae55a9d1994a9306f390c395ecdf5a9cbf1805056c95ae2f78c8be",
-          "size_bytes": 37186284
+          "url": "https://github.com/chayprabs/localtools/releases/download/graphql-diff-v1.0.2/graphql-diff-1.0.2-linux-arm64.zip",
+          "sha256": "160ec1d2b5f25397b80528360f5ca51b2a4911ac9b73ab8f70c8c403081a8de5",
+          "size_bytes": 43277095
         }
       },
-      "release_notes": "Option rules run before simplifyChanges like the CLI (ignore descriptions no longer hides breaking changes); executables keep file:line:col on SDL errors; workers stop with the server or at their deadline; closing the page stops its job; unknown fragments mark only that file invalid; 150k types / 50k changes in ~15 s; per-file remove.",
+      "release_notes": "Deep schemas that load but cannot be compared name both files; missing files after options report 'no such file'; larger remove buttons on phones; ligatures off in all code text; uploads drained before 403.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -1304,33 +1304,33 @@
       "engine": "Go + kube-score library + pod security checks",
       "engine_reason": "kube-score (Go, MIT) checks single objects and cross-object relationships; localtools adds a documented subset of versioned Pod Security Standards checks, API removals and duplicate detection.",
       "private_repo": "chayprabs/k8s-manifest-checker",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.1/k8s-manifest-checker-1.0.1-windows-x64.zip",
-          "sha256": "135ef4edeb3ba747680922009045f0cc004c3404c7ea9b4d013bc4af41447994",
-          "size_bytes": 8212053
+          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.2/k8s-manifest-checker-1.0.2-windows-x64.zip",
+          "sha256": "ce254de4afcc9b68c8d7b192ca5d0995f25d11e9c91a572d67e849f6b3145089",
+          "size_bytes": 8213325
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.1/k8s-manifest-checker-1.0.1-macos-arm64.zip",
-          "sha256": "f9c0ebeae2b632ab90bc38e9b7c96dac9a6aa1d5d1bdebb5980ff29446afbbd2",
-          "size_bytes": 7382218
+          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.2/k8s-manifest-checker-1.0.2-macos-arm64.zip",
+          "sha256": "1e173d98770d230493804174f013e0de1bd315b13812d5c231b767163302fe60",
+          "size_bytes": 7383356
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.1/k8s-manifest-checker-1.0.1-macos-x64.zip",
-          "sha256": "bf137f7a23649be927849515068d6b119f78024cac1656ebf7d76abdce8a7545",
-          "size_bytes": 8105078
+          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.2/k8s-manifest-checker-1.0.2-macos-x64.zip",
+          "sha256": "a9f50aaa5c1b70bd4afab1f6d107db24997539c2e976feac8fab96ec494b85ee",
+          "size_bytes": 8108112
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.1/k8s-manifest-checker-1.0.1-linux-x64.zip",
-          "sha256": "52ed5e48afa89d8f607984ed8d34fb794fac325f3c53b06df975d73b0cd7d3ec",
-          "size_bytes": 8004767
+          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.2/k8s-manifest-checker-1.0.2-linux-x64.zip",
+          "sha256": "e82ef17b1b28b3126fa66425d6cf0ac41f73e11934096a4ebe02d7231d25fee1",
+          "size_bytes": 8005325
         },
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.1/k8s-manifest-checker-1.0.1-linux-arm64.zip",
-          "sha256": "76b443f7675393a834e4cccad99a5cdec2664dff6492c71391421549ef93ad97",
-          "size_bytes": 7104806
+          "url": "https://github.com/chayprabs/localtools/releases/download/k8s-manifest-checker-v1.0.2/k8s-manifest-checker-1.0.2-linux-arm64.zip",
+          "sha256": "96ab88f0549706c6328efc24b53d9189aac1f170b284fd651d961bd0cf879a92",
+          "size_bytes": 7106020
         }
       },
       "release_notes": "Fix nested-zip memory growth and enforce 16 MiB report limits for every format; add a 2,000-container limit, baseline/restricted capability allowlists, host ports, sysctls, SELinux, procMount and AppArmor checks; decode UTF-16, normalize pod boolean spellings, improve field/archive errors and remove duplicate API findings and kit demo pages.",
@@ -1405,33 +1405,33 @@
       "engine": "Go + hashicorp/terraform-json",
       "engine_reason": "terraform-json is HashiCorp's typed Go model of terraform show -json output; decoded with json.Number so values stay exact. OpenTofu emits the same format.",
       "private_repo": "chayprabs/terraform-plan-viewer",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.2/terraform-plan-viewer-1.0.2-linux-arm64.zip",
-          "sha256": "40a5e233485d20b9a08f5b18cb3d11aa47f985339a2f8b3a2789aee89eaec64f",
-          "size_bytes": 2976584
+          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.3/terraform-plan-viewer-1.0.3-linux-arm64.zip",
+          "sha256": "dddb61851abf3a000e0485c7b72e87b54ec4e16ba7d82c371a20eabc39920056",
+          "size_bytes": 2979918
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.2/terraform-plan-viewer-1.0.2-linux-x64.zip",
-          "sha256": "a74f17a0a1a7246f26851d76b7eb65218a4ae4029f54c0260b0e4393f7a2af08",
-          "size_bytes": 3279035
+          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.3/terraform-plan-viewer-1.0.3-linux-x64.zip",
+          "sha256": "ac002bdfd61863e75c4b983ed83550ed0f055171301c704a1dc7c5d023550c44",
+          "size_bytes": 3282366
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.2/terraform-plan-viewer-1.0.2-macos-arm64.zip",
-          "sha256": "1acee41c20a129274c44953790aa5b5fc9af15bea4a748a50d8b105b4d47783b",
-          "size_bytes": 3065785
+          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.3/terraform-plan-viewer-1.0.3-macos-arm64.zip",
+          "sha256": "6f9be3d1d28460564b5029c00523689ed7702b41e256057805697bbec5ec7e87",
+          "size_bytes": 3068977
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.2/terraform-plan-viewer-1.0.2-macos-x64.zip",
-          "sha256": "a5d0c75b8cc64c630e86cc58747b5d2c9fe08ec9c4f4fcd2283b60ee4b22e754",
-          "size_bytes": 3307885
+          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.3/terraform-plan-viewer-1.0.3-macos-x64.zip",
+          "sha256": "2c1c1c713e834c015c4ad377747b071c9efeb39a0220205d5814a7e2b605da1a",
+          "size_bytes": 3310186
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.2/terraform-plan-viewer-1.0.2-windows-x64.zip",
-          "sha256": "5c0c888266dcf13d66ec722081e75f363a5b4a16ed1fe7565f9066c71cbc2351",
-          "size_bytes": 3351644
+          "url": "https://github.com/chayprabs/localtools/releases/download/terraform-plan-viewer-v1.0.3/terraform-plan-viewer-1.0.3-windows-x64.zip",
+          "sha256": "6be2a6b7c64583cd244e7058dedadb626321581919a81344a00a2579382d8bf9",
+          "size_bytes": 3355236
         }
       },
       "release_notes": "The sensitive-equality guard no longer hides ordinary values: only marked strings of 8+ bytes (any length within the same resource), never bools, numbers or short strings; hidden values are labelled (matches a sensitive value). Import IDs and check messages pass through the guard. Untraced blast radii past the graph limit say unknown.",
@@ -1504,31 +1504,31 @@
       "engine": "BSD-2 postgast 0.2.0 / libpg_query PostgreSQL 18.4",
       "engine_reason": "postgast calls the real libpg_query parser, so lock and rewrite rules follow a typed PostgreSQL AST instead of regex splits. The abandoned GPL pglast scaffold is not bundled. PyPI has postgast wheels for Windows x64, Linux x64 and macOS ARM64. A plain Intel macOS PyPI install is unavailable: upstream has no Intel wheel, and its published source archive lacks build headers. Use the self-contained Intel Mac ZIP, or the bundled MacIntel postgast wheel with Python 3.13: `pipx install localtools-postgres-migration-checker --python python3.13 --pip-args=\"--find-links https://github.com/chayprabs/localtools/releases/download/postgres-migration-checker-v1.0.0/postgast-0.2.0-cp313-cp313-macosx_10_13_x86_64.whl\"`. That wheel is built unmodified from the upstream v0.2.0 Git tag.",
       "private_repo": "chayprabs/postgres-migration-checker",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/postgres-migration-checker-v1.0.3/postgres-migration-checker-1.0.3-windows-x64.zip",
-          "sha256": "e9ee839ef08bc25124e6bee232dace1f7dcc234da28769e3714141da29a806da",
-          "size_bytes": 15376173
+          "url": "https://github.com/chayprabs/localtools/releases/download/postgres-migration-checker-v1.0.4/postgres-migration-checker-1.0.4-windows-x64.zip",
+          "sha256": "dc6deaaba44e95fba4c927c81338fe9bffe3f20daeda30202813f36bf28401f6",
+          "size_bytes": 15377609
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/postgres-migration-checker-v1.0.3/postgres-migration-checker-1.0.3-macos-arm64.zip",
-          "sha256": "d832f761c5935022c7ab6a7315b7aa4881c1f8286b68a2f27219175eed7ce047",
-          "size_bytes": 22455962
+          "url": "https://github.com/chayprabs/localtools/releases/download/postgres-migration-checker-v1.0.4/postgres-migration-checker-1.0.4-macos-arm64.zip",
+          "sha256": "c8a89bafc68ceb45d3beee1ef59a2e92dfe7ff11cbc7016ba60c4d731a21b95e",
+          "size_bytes": 22457398
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/postgres-migration-checker-v1.0.3/postgres-migration-checker-1.0.3-macos-x64.zip",
-          "sha256": "72269ee9eb1a6c949ca0bec0f3aea05a3435f4646d18523ca8505944a1ac3c24",
-          "size_bytes": 22208220
+          "url": "https://github.com/chayprabs/localtools/releases/download/postgres-migration-checker-v1.0.4/postgres-migration-checker-1.0.4-macos-x64.zip",
+          "sha256": "c05f270d9586cc90ed9d11d2a698e5669d24e7ccbb340d78337de1f72bac1ca1",
+          "size_bytes": 22209658
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/postgres-migration-checker-v1.0.3/postgres-migration-checker-1.0.3-linux-x64.zip",
-          "sha256": "f9ff4e24748807e554656f5327bc7fa07a562154294ae7db7b233fa9c25f281e",
-          "size_bytes": 36360603
+          "url": "https://github.com/chayprabs/localtools/releases/download/postgres-migration-checker-v1.0.4/postgres-migration-checker-1.0.4-linux-x64.zip",
+          "sha256": "a33df52e0e0283993bb490317f3e39daf79327f2f5f481e0db02af4f86034bbb",
+          "size_bytes": 36362039
         }
       },
-      "release_notes": "CREATE TABLE IF NOT EXISTS no longer hides later heavy DDL on a table that may already exist. ALTER TYPE follows the full binary-coercible cast set (text to varchar, xml to text, int4/oid, wider precision); timestamp to timestamptz is flagged as UTC-only. SET (user_catalog_table) takes ACCESS EXCLUSIVE. Flyway files with only non-transactional statements run without a transaction. Placeholder snippets are commented out. UI: unclipped transaction select, padded results.",
+      "release_notes": "No false rewrite findings for timestamp/time to precision 6, dropped interval field restrictions or array element relabels (varchar[] to text[]); browser disconnects no longer print a traceback; reproducible Intel macOS build.",
       "registries": {
         "brew": false,
         "scoop": false,
@@ -1597,31 +1597,31 @@
       "engine": "sqlfluff 4 (+ sqlfluffrs) and sqlglot",
       "engine_reason": "sqlfluff is the most complete open-source SQL linter with real auto-fix across dialects; sqlglot adds dialect-to-dialect transpiling, which sqlfluff cannot do.",
       "private_repo": "chayprabs/sql-formatter",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.1/sql-formatter-1.0.1-windows-x64.zip",
-          "sha256": "ff2f711a9a99fd9269d7fcf47ed5c797778c026f9b9b19d5e7fdb7cb1cd05714",
-          "size_bytes": 24063501
+          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.2/sql-formatter-1.0.2-windows-x64.zip",
+          "sha256": "1de3b779ea302de8c844bdf3d2cb293deea809d8fb7b42dd248feee480819d84",
+          "size_bytes": 24072617
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.1/sql-formatter-1.0.1-macos-arm64.zip",
-          "sha256": "19e47c0917ec8cc030f864c66ab464ea844ded08bacda954d798c401304ac2f1",
-          "size_bytes": 31698704
+          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.2/sql-formatter-1.0.2-macos-arm64.zip",
+          "sha256": "74939aad4cfd3bf78f09cd6d6251a839c4d7c98089125193546508eb393d50ff",
+          "size_bytes": 31707821
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.1/sql-formatter-1.0.1-macos-x64.zip",
-          "sha256": "29ed158d5f8782cad270aebb2b775b1438669f8a0bef76406f56794f105a85ae",
-          "size_bytes": 30772133
+          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.2/sql-formatter-1.0.2-macos-x64.zip",
+          "sha256": "268ce7ee70abafda295935447bf299e4ae4abb09d21932983cbbf806cca660f6",
+          "size_bytes": 30781243
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.1/sql-formatter-1.0.1-linux-x64.zip",
-          "sha256": "ff67a7ae4615517106e64cf3fcbf2c74569778ea6ea6d2060924b57b9aeb8c93",
-          "size_bytes": 43864874
+          "url": "https://github.com/chayprabs/localtools/releases/download/sql-formatter-v1.0.2/sql-formatter-1.0.2-linux-x64.zip",
+          "sha256": "ede7f81581a4aeab76425a10b245b09d57c0bc42f5311d44ba510ebef7cca162",
+          "size_bytes": 43873988
         }
       },
-      "release_notes": "1.0.1: a cancelled run no longer blocks the next one, so the latest SQL is what gets linted, fixed or transpiled. Unsupported placeholders and unknown rules error clearly, in-place writes stay atomic, diffs apply without a final newline, and the Raw templater plus non-ligature code font are in the release.",
+      "release_notes": "1.0.2: read-only in-place fixes leave no temp file and name your file in the error; template/config errors return 400 without temp paths; the templater label fits at 1280 px; host/origin rejections drain the request first.",
       "registries": {
         "brew": false,
         "scoop": false,
@@ -1691,36 +1691,36 @@
       "engine": "Own grok compiler on Go RE2 + official Logstash pattern sets (ECS v1 and legacy)",
       "engine_reason": "Embeds the unmodified logstash-patterns-core files, so field names match Logstash 8; RE2 is linear-time, so no pattern can hang. Existing Go grok libraries ship their own rewritten legacy-only pattern copies.",
       "private_repo": "chayprabs/grok-debugger",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/grok-debugger-v1.0.2/grok-debugger-1.0.2-linux-arm64.zip",
-          "sha256": "144ce071cfe7f7ea2bace51c57aa60ce9a5ed44077f38145b6bdfd840fda8793",
-          "size_bytes": 2967248
+          "url": "https://github.com/chayprabs/localtools/releases/download/grok-debugger-v1.0.3/grok-debugger-1.0.3-linux-arm64.zip",
+          "sha256": "907352f83282afd807d814d5bc1aa224ac90d49cfd37fe57fb51f91abae7b6d6",
+          "size_bytes": 2968712
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/grok-debugger-v1.0.2/grok-debugger-1.0.2-linux-x64.zip",
-          "sha256": "ae38d8e69ea65044c2cbb95bf8843ebcb3fa76de04271f67b96f95c463f8387f",
-          "size_bytes": 3267159
+          "url": "https://github.com/chayprabs/localtools/releases/download/grok-debugger-v1.0.3/grok-debugger-1.0.3-linux-x64.zip",
+          "sha256": "6e1b801180a4d0f6a99382a2f6221fc7aefe0fd6d9102ea49e008017ebb0c5c1",
+          "size_bytes": 3268811
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/grok-debugger-v1.0.2/grok-debugger-1.0.2-macos-arm64.zip",
-          "sha256": "57ee6cbfb00281adb1d39771138fe04a1964336aa8e7e55a974d7fa3e89185a2",
-          "size_bytes": 3056859
+          "url": "https://github.com/chayprabs/localtools/releases/download/grok-debugger-v1.0.3/grok-debugger-1.0.3-macos-arm64.zip",
+          "sha256": "6d428ccebf04e2ee492003f6b072fe0712ed52557bb50120952f116581df4e47",
+          "size_bytes": 3059379
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/grok-debugger-v1.0.2/grok-debugger-1.0.2-macos-x64.zip",
-          "sha256": "edf1b47a0de1256f15dc48d0a8a99549e4ab0165dff5d06b76960fe33cd68dd5",
-          "size_bytes": 3297309
+          "url": "https://github.com/chayprabs/localtools/releases/download/grok-debugger-v1.0.3/grok-debugger-1.0.3-macos-x64.zip",
+          "sha256": "55320365d4dc2c00651345666f7ff6a5cf773f26b65ba71dc7d9c5920be0c02e",
+          "size_bytes": 3299701
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/grok-debugger-v1.0.2/grok-debugger-1.0.2-windows-x64.zip",
-          "sha256": "99b672d8e980019d2a6f7d3790af6cee67e782bad5ce9974c6c7bc60a96a44b6",
-          "size_bytes": 3346556
+          "url": "https://github.com/chayprabs/localtools/releases/download/grok-debugger-v1.0.3/grok-debugger-1.0.3-windows-x64.zip",
+          "sha256": "4b1de1acd1651cb6e0a724a1d53bc8eb89cc7584b9ab87179ae6d62bd16d44a0",
+          "size_bytes": 3348297
         }
       },
-      "release_notes": "Match, Suggest and Export share isolated workers, compilation limits, deadlines and cancellation. Uploads are removable and newer pasted input wins; table columns include every row and repeated capture values. Dark legends and API errors are corrected; zips include upstream pattern licenses.",
+      "release_notes": "Long literal runs in patterns and custom definitions now compile in linear time, so oversized definitions hit the documented 1 MB regex cap immediately instead of timing out; Suggest stays fast on very long lines. UI code text renders without ligatures; runtime host/origin rejection drains uploads first.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -1790,31 +1790,31 @@
       "engine": "jc + TextFSM/ntc-templates",
       "engine_reason": "jc 1.26.0 parses 243 OS commands; TextFSM 2.1.0 with ntc-templates 9.3.0 adds 969 indexed network-device templates. Both are pinned in the portable CPython zip and run offline, with no command execution.",
       "private_repo": "chayprabs/cli-output-to-json",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/cli-output-to-json-v1.0.1/cli-output-to-json-1.0.1-windows-x64.zip",
-          "sha256": "a1bf9d432f71e3d8147914dcf7b801c56fcfa3504d44597e32b42684a538e415",
-          "size_bytes": 16758681
+          "url": "https://github.com/chayprabs/localtools/releases/download/cli-output-to-json-v1.0.2/cli-output-to-json-1.0.2-windows-x64.zip",
+          "sha256": "6ba49450f0283636d0fa9459db20ec9812b5f218f2845403789f25ace307d0e9",
+          "size_bytes": 16759096
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/cli-output-to-json-v1.0.1/cli-output-to-json-1.0.1-macos-arm64.zip",
-          "sha256": "d471961e22f7c728b5b592abc47cd5966bd4f7c5d8e9dd47dd1de26bd3d6a0d0",
-          "size_bytes": 23944856
+          "url": "https://github.com/chayprabs/localtools/releases/download/cli-output-to-json-v1.0.2/cli-output-to-json-1.0.2-macos-arm64.zip",
+          "sha256": "9652a19bd732961bac6a11f5764ed2031f0a685edcd6cc3a10cc382d8180b2ce",
+          "size_bytes": 23945272
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/cli-output-to-json-v1.0.1/cli-output-to-json-1.0.1-macos-x64.zip",
-          "sha256": "a677d299755a135c6de1464148589655e3a91ebc3f3555c0e07d320a70f77a24",
-          "size_bytes": 23674459
+          "url": "https://github.com/chayprabs/localtools/releases/download/cli-output-to-json-v1.0.2/cli-output-to-json-1.0.2-macos-x64.zip",
+          "sha256": "e90ca9492c59734cfcc5d8d9f427110942176e0c49bbd967d4ed770971413f47",
+          "size_bytes": 23674875
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/cli-output-to-json-v1.0.1/cli-output-to-json-1.0.1-linux-x64.zip",
-          "sha256": "d0029614e9fa7fa8135a227387f552f7708d2446d14601c559b6d4350ccb658e",
-          "size_bytes": 34846755
+          "url": "https://github.com/chayprabs/localtools/releases/download/cli-output-to-json-v1.0.2/cli-output-to-json-1.0.2-linux-x64.zip",
+          "sha256": "24072f52b6d5ab14bee5cf74d9091c4012a3873307227ae8ddaba256caa4255b",
+          "size_bytes": 34847171
         }
       },
-      "release_notes": "macOS parses again. Setting the 768 MiB address-space cap raised on macOS and the worker exited before writing a result, so POST /api/parse returned 422. That call is ignored when the OS refuses it. Linux still applies the cap.",
+      "release_notes": "Suggestion buttons wrap on narrow screens instead of widening the page; font ligatures are off for all user text and code; rejected uploads are drained before the reply.",
       "registries": {
         "brew": false,
         "scoop": false,
@@ -1884,36 +1884,36 @@
       "engine": "Go + cascadia + x/net/html",
       "engine_reason": "Cascadia selectors over the x/net/html HTML5 parser provide CSS matching, entity decoding and browser-style HTML repair in one pure-Go executable; no browser runtime or goquery dependency is needed.",
       "private_repo": "chayprabs/html-extractor",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/html-extractor-v1.0.2/html-extractor-1.0.2-windows-x64.zip",
-          "sha256": "6b17f7c4ce5a4c8ff8ecd97ab595fa94a921c16d069546e2089e78faf61fc989",
-          "size_bytes": 3773020
+          "url": "https://github.com/chayprabs/localtools/releases/download/html-extractor-v1.0.3/html-extractor-1.0.3-windows-x64.zip",
+          "sha256": "9f468ebb4835748a66704a782f8e23baecf485eb09148058dc5b34e97c292f55",
+          "size_bytes": 3774206
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/html-extractor-v1.0.2/html-extractor-1.0.2-macos-arm64.zip",
-          "sha256": "892213a0a5054a50138fabe81095209c92b224a58d5286ce1ce340fa87cc56d6",
-          "size_bytes": 3484971
+          "url": "https://github.com/chayprabs/localtools/releases/download/html-extractor-v1.0.3/html-extractor-1.0.3-macos-arm64.zip",
+          "sha256": "5b4ac5263730ec563c99077d0d686445d8034c848f2e04a5b2407dd0e5ed754d",
+          "size_bytes": 3486602
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/html-extractor-v1.0.2/html-extractor-1.0.2-macos-x64.zip",
-          "sha256": "037211ef638a8e0d6f8f0e71a41f95101940b827217c3d8d674e0ee94f42b1c9",
-          "size_bytes": 3729206
+          "url": "https://github.com/chayprabs/localtools/releases/download/html-extractor-v1.0.3/html-extractor-1.0.3-macos-x64.zip",
+          "sha256": "faacea0f641a1be6171495076033ede1a954c8c9d0fa8827e5d5ae5494486057",
+          "size_bytes": 3730072
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/html-extractor-v1.0.2/html-extractor-1.0.2-linux-x64.zip",
-          "sha256": "ef7bef3a7a841f66c54869363559abe65a560bee2103420c98ac874dd383693e",
-          "size_bytes": 3697340
+          "url": "https://github.com/chayprabs/localtools/releases/download/html-extractor-v1.0.3/html-extractor-1.0.3-linux-x64.zip",
+          "sha256": "cdc75e5b9032c7b279b762b2307b23900142363614728735dcc4daf7a85a460b",
+          "size_bytes": 3698738
         },
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/html-extractor-v1.0.2/html-extractor-1.0.2-linux-arm64.zip",
-          "sha256": "bd2673ab765796aef4cba27d1cdf8479c07843adef44e1ecf12c8c24feb9435a",
-          "size_bytes": 3388997
+          "url": "https://github.com/chayprabs/localtools/releases/download/html-extractor-v1.0.3/html-extractor-1.0.3-linux-arm64.zip",
+          "sha256": "3d8f93905564ed6c43eca37d8c26d1aef6c05c4e42de46dea9d86ed5c2866671",
+          "size_bytes": 3389547
         }
       },
-      "release_notes": "Blank meta charset values are ignored instead of failing the page; internal failures report as internal errors; attribute flags without a space parse; case-insensitive enumerated attribute values apply only to HTML elements, as in Chromium.",
+      "release_notes": "Selectors with :not() around case-insensitive enumerated attributes (type, method, rel, dir, ...) now match exactly like Chromium instead of returning extra rows. UI code text renders without ligatures; runtime host/origin rejection drains uploads first.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -1993,36 +1993,36 @@
       "engine": "Go crypto/tls + crypto/x509 + miekg/dns, Mozilla roots from golang.org/x/crypto/x509roots",
       "engine_reason": "Go's TLS stack and verifier give real handshakes and chain checks without OpenSSL; miekg/dns sets DO/AD/CD bits for DNSSEC; the Go team's CCADB-generated Mozilla bundle keeps distrust-after constraints.",
       "private_repo": "chayprabs/ssl-checker",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/ssl-checker-v1.0.1/ssl-checker-1.0.1-linux-arm64.zip",
-          "sha256": "268ed5e3044bef0de70f7b13a6a7205f052e56350801cfaec896e40d8c5fd231",
-          "size_bytes": 3151314
+          "url": "https://github.com/chayprabs/localtools/releases/download/ssl-checker-v1.0.2/ssl-checker-1.0.2-linux-arm64.zip",
+          "sha256": "f9997f861bb4a79a8474e08ab4bd102b03388c5b44635ee4dcaeb765c83fd95c",
+          "size_bytes": 3153045
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/ssl-checker-v1.0.1/ssl-checker-1.0.1-linux-x64.zip",
-          "sha256": "0a6ce4b6612763f716c740f1bc02744aad320e122b062c7dc33f8549905eb9cb",
-          "size_bytes": 3464815
+          "url": "https://github.com/chayprabs/localtools/releases/download/ssl-checker-v1.0.2/ssl-checker-1.0.2-linux-x64.zip",
+          "sha256": "50cc8f71f352271e13fb30892908faae2fce913da8dd6d201c21c1894bb8cda9",
+          "size_bytes": 3466346
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/ssl-checker-v1.0.1/ssl-checker-1.0.1-macos-arm64.zip",
-          "sha256": "04456aa6d66a9a8fda77ee8a401f080a3505ffad17ff56035fd68c9ad0b44db5",
-          "size_bytes": 3244679
+          "url": "https://github.com/chayprabs/localtools/releases/download/ssl-checker-v1.0.2/ssl-checker-1.0.2-macos-arm64.zip",
+          "sha256": "be53304f2eae875505a57ae7ca3b4a6f9090dfdde1e6b242c609900b7de331aa",
+          "size_bytes": 3246454
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/ssl-checker-v1.0.1/ssl-checker-1.0.1-macos-x64.zip",
-          "sha256": "3e48cb69b142992721d67541133eae471ce11439c509dd525aeab51323ccec89",
-          "size_bytes": 3495695
+          "url": "https://github.com/chayprabs/localtools/releases/download/ssl-checker-v1.0.2/ssl-checker-1.0.2-macos-x64.zip",
+          "sha256": "bc204613cb8ae98e024eed4916211ab379c2718b211700f91e4224a1621c416e",
+          "size_bytes": 3496806
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/ssl-checker-v1.0.1/ssl-checker-1.0.1-windows-x64.zip",
-          "sha256": "edceec6bcc3165d40581908efc8297e508382fe3ee94b31ec75709d386cf0c43",
-          "size_bytes": 3555744
+          "url": "https://github.com/chayprabs/localtools/releases/download/ssl-checker-v1.0.2/ssl-checker-1.0.2-windows-x64.zip",
+          "sha256": "18e54e23d5a9b1df7e9413d7be10bec6eac59a47689e161d473bcfb18ad308eb",
+          "size_bytes": 3557835
         }
       },
-      "release_notes": "Weak ciphers are probed with raw ClientHellos per class (NULL/export, RC4, 3DES, RSA key exchange, CBC), matching what servers really accept; CBC and RSA key exchange are informational. DNS lookup failures and NXDOMAIN are reported as such, errors are one human line, oversized/JSON API bodies get 413/415, inspect accepts flags after the file, UI spacing fixed.",
+      "release_notes": "Weak-cipher probes stop as soon as the client disconnects, retry a dropped connection once, and still report accepted suites (e.g. RC4-only servers) when the main handshake fails. Oversized form or certificate input returns 413. Long cipher names wrap on narrow screens; code text renders without ligatures.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -2092,36 +2092,36 @@
       "engine": "Go + mholt/archives (bodgit/sevenzip, nwaples/rardecode)",
       "engine_reason": "Pure Go: one static binary reads zip/tar/7z/rar and every compression layer through one streaming API, with direct zip offsets for overlap-bomb detection; no cgo libarchive or bundled 7-Zip.",
       "private_repo": "chayprabs/archive-inspector",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/archive-inspector-v1.0.1/archive-inspector-1.0.1-windows-x64.zip",
-          "sha256": "1b7eec4cca9c7ed92e85948dd946f186a6c4cac2b004c4db16f97948f21e828b",
-          "size_bytes": 4387925
+          "url": "https://github.com/chayprabs/localtools/releases/download/archive-inspector-v1.0.2/archive-inspector-1.0.2-windows-x64.zip",
+          "sha256": "26806b55e200f9f8c19386b1712ec69c3379e25c3a5294af7b2aa1c76eebb4b6",
+          "size_bytes": 4389403
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/archive-inspector-v1.0.1/archive-inspector-1.0.1-macos-arm64.zip",
-          "sha256": "51114d8b7dd53df918f729f1081b897a0afde6709fb450005f1847283a69c821",
-          "size_bytes": 4032097
+          "url": "https://github.com/chayprabs/localtools/releases/download/archive-inspector-v1.0.2/archive-inspector-1.0.2-macos-arm64.zip",
+          "sha256": "207bf9736dafbd66ed0cc870034771beabb56335283f37b4041d3139d246bf22",
+          "size_bytes": 4034179
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/archive-inspector-v1.0.1/archive-inspector-1.0.1-macos-x64.zip",
-          "sha256": "0ec244964d58ff6e5661bd5ea10d52dab6437b38f06e1b510b8f8fe5ba4ed535",
-          "size_bytes": 4345430
+          "url": "https://github.com/chayprabs/localtools/releases/download/archive-inspector-v1.0.2/archive-inspector-1.0.2-macos-x64.zip",
+          "sha256": "e0a9bbcd2b987e3304843cae0e3626169eeb44745a7ddb52f63138ce1b3bd753",
+          "size_bytes": 4346915
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/archive-inspector-v1.0.1/archive-inspector-1.0.1-linux-x64.zip",
-          "sha256": "abb2d05a0d00a677e60b1faa67b60ed837900f96450258dd35490362b8624963",
-          "size_bytes": 4293141
+          "url": "https://github.com/chayprabs/localtools/releases/download/archive-inspector-v1.0.2/archive-inspector-1.0.2-linux-x64.zip",
+          "sha256": "429be05469a907f07a75fd8703b6fa5e1429024aac461ed50674fb9c4532057f",
+          "size_bytes": 4293881
         },
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/archive-inspector-v1.0.1/archive-inspector-1.0.1-linux-arm64.zip",
-          "sha256": "64d52876764ef66c2a04795560d16e5c60a6bca626924bad33831dd14006f1ae",
-          "size_bytes": 3904110
+          "url": "https://github.com/chayprabs/localtools/releases/download/archive-inspector-v1.0.2/archive-inspector-1.0.2-linux-arm64.zip",
+          "sha256": "d0a7884cce01ed2da526ee24429329f82929354383059a05ff4fb9392ad2f2a5",
+          "size_bytes": 3907004
         }
       },
-      "release_notes": "Review fixes: linear name checks on very deep paths, CP437 zip names and index-based entry addressing, stricter Windows-safe extraction (invalid characters, NUL .txt, CONIN$, COM¹), mixed-script-only homoglyph warnings, self-extracting zips, nameless/empty 7z, empty files rejected, DOS zip times without a zone.",
+      "release_notes": "Safe extract no longer refuses ordinary names such as com12.txt or lpt123.log (only COM1-9/LPT1-9 are devices). Overlong names in nested archives keep their archive path and each gets its own finding. Zip entries with an unset MS-DOS date show no time instead of 1979-11-30. Code text renders without ligatures.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -2192,33 +2192,33 @@
       "engine": "ffmpeg + ffprobe 9.0.2 (bundled: BtbN gpl-shared on Windows/Linux, Martin Riedl static builds on macOS)",
       "engine_reason": "ffmpeg decodes practically every codec and container, seeks frame-accurately and tone-maps HDR with zscale; it runs as a killable child process, so the tool works offline on every OS with no system install.",
       "private_repo": "chayprabs/video-thumbnail-generator",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/video-thumbnail-generator-v1.0.0/video-thumbnail-generator-1.0.0-linux-arm64.zip",
-          "sha256": "a89620e8b4c69dfaa23a638fe5246b64d3a9cfca4728d752fd365653f9597c8c",
-          "size_bytes": 78328111
+          "url": "https://github.com/chayprabs/localtools/releases/download/video-thumbnail-generator-v1.0.1/video-thumbnail-generator-1.0.1-linux-arm64.zip",
+          "sha256": "ae100b89fe297675d731b700d1e43de4aa89bd50d29840338565170f603e7913",
+          "size_bytes": 78328733
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/video-thumbnail-generator-v1.0.0/video-thumbnail-generator-1.0.0-linux-x64.zip",
-          "sha256": "6c78ede0412da6dc3081915d1bc337586f30417412b812d673c7d74ef975ff12",
-          "size_bytes": 87170253
+          "url": "https://github.com/chayprabs/localtools/releases/download/video-thumbnail-generator-v1.0.1/video-thumbnail-generator-1.0.1-linux-x64.zip",
+          "sha256": "e3cd2d3a1046f6a67723d6384a053b655a05d26b2e952c7039f9d42e1d8bb44c",
+          "size_bytes": 87171811
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/video-thumbnail-generator-v1.0.0/video-thumbnail-generator-1.0.0-macos-arm64.zip",
-          "sha256": "ec9583c84e223315bbde762a4b8e3da19039e710154a1cba0562c624b4b335d8",
-          "size_bytes": 62750996
+          "url": "https://github.com/chayprabs/localtools/releases/download/video-thumbnail-generator-v1.0.1/video-thumbnail-generator-1.0.1-macos-arm64.zip",
+          "sha256": "c559e2fb753a5c758b5c9e4f9dc2fabc4d1236c59fdb0c90dde7d017b9e9bb9a",
+          "size_bytes": 62753702
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/video-thumbnail-generator-v1.0.0/video-thumbnail-generator-1.0.0-macos-x64.zip",
-          "sha256": "35fb9e099a5938a9f8c9fdc9c8489a8d5926b8b7fb9f3c89de2f1f289b64de8f",
-          "size_bytes": 72816973
+          "url": "https://github.com/chayprabs/localtools/releases/download/video-thumbnail-generator-v1.0.1/video-thumbnail-generator-1.0.1-macos-x64.zip",
+          "sha256": "94ac7edc8a182b8f232f55844f944b34db42697d186d4c56836d4bcb45dcc2c5",
+          "size_bytes": 72818698
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/video-thumbnail-generator-v1.0.0/video-thumbnail-generator-1.0.0-windows-x64.zip",
-          "sha256": "ecfda1194dc19feb8e892026c10c55dd0e7cfd62d453d339c5bfb381e7e973e1",
-          "size_bytes": 81082098
+          "url": "https://github.com/chayprabs/localtools/releases/download/video-thumbnail-generator-v1.0.1/video-thumbnail-generator-1.0.1-windows-x64.zip",
+          "sha256": "1d579d152de3d6636952c8c12d56888138b10c5f40b7ff150262786f8ba6df56",
+          "size_bytes": 81083976
         }
       },
       "release_notes": "First release: frames at a timestamp with a scrubbing preview, evenly spaced frames, scene-change picks, contact sheets and animated GIF/WebP previews, with an ffprobe info panel. HDR tone mapping, rotation and deinterlacing applied. Bundles unmodified ffmpeg 9.0.2 (GPL); its sources are attached to the release.",
@@ -2293,28 +2293,28 @@
       "engine": "ffmpeg + ffprobe 9.0.2, EBU R128 ebur128 + two-pass loudnorm (bundled)",
       "engine_reason": "ffmpeg supplies real EBU R128 measurement and two-pass loudnorm with a true-peak limiter; SHA256-pinned sidecars run offline as killable children on every supported OS.",
       "private_repo": "chayprabs/loudness-normalizer",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.1/loudness-normalizer-1.0.1-linux-x64.zip",
-          "sha256": "9d729f9463a6fdf0656d8104f0c6a82a6a13dc6b472c5e9275151041da438eb4",
-          "size_bytes": 86905039
+          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.2/loudness-normalizer-1.0.2-linux-x64.zip",
+          "sha256": "f3a7eae38ae3d9f0b886caa11b39b198c2fdc012c51818a3784e1964273b251b",
+          "size_bytes": 86906717
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.1/loudness-normalizer-1.0.1-macos-arm64.zip",
-          "sha256": "b017c358d26d7ebbec205ea35673123935137b572e780567799669216c8581e4",
-          "size_bytes": 62499395
+          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.2/loudness-normalizer-1.0.2-macos-arm64.zip",
+          "sha256": "0c40fb2096371d96b34efcfc366a38df11e7cb185a5d5fc8d37f68c7296f5565",
+          "size_bytes": 62500845
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.1/loudness-normalizer-1.0.1-macos-x64.zip",
-          "sha256": "1273563e4c8732a2983e97055baf2bd9c22cf27c774eed6a6540806cf3947029",
-          "size_bytes": 72549594
+          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.2/loudness-normalizer-1.0.2-macos-x64.zip",
+          "sha256": "27ba71ccb4a97dd444db73bcd279dc3c557b0dc11aa54ba0f63c6d88df4fe9e8",
+          "size_bytes": 72551503
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.1/loudness-normalizer-1.0.1-windows-x64.zip",
-          "sha256": "b82f788799231ea28594b64d5c47f2f17113f46025d5d58fe8f80e935683e62c",
-          "size_bytes": 80808168
+          "url": "https://github.com/chayprabs/localtools/releases/download/loudness-normalizer-v1.0.2/loudness-normalizer-1.0.2-windows-x64.zip",
+          "sha256": "9c246223fa7e652ef6f3fde2d64d4dc3edfeeb63443ad48eaa7b3334315d76b6",
+          "size_bytes": 80811175
         }
       },
       "release_notes": "Fix quiet-audio true/sample-peak precision and cap peak-mode gain at +60 dB. Remeasure up to three encodes, use a final oversampled limiter for transient overshoot, and retain the best attempt. Web deadlines scale with duration; CLI has no time limit. Keep narrow-screen file values/actions visible. Document the conservative EBU case 16 engine limit and only shipped architectures.",
@@ -2386,36 +2386,36 @@
       "engine": "Native Go subtitle readers + ffmpeg/ffprobe 9.0.2",
       "engine_reason": "Go preserves millisecond timings and raw ASS/WebVTT payloads for timing edits; pinned ffmpeg handles container tracks and libass burn-in as a separate process.",
       "private_repo": "chayprabs/subtitle-converter",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.5/subtitle-converter-1.0.5-linux-arm64.zip",
-          "sha256": "0eea67b27b269e1f5c098b20ff9d0ecf456ceaed331e9fda460e76523558c5be",
-          "size_bytes": 78747157
+          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.6/subtitle-converter-1.0.6-linux-arm64.zip",
+          "sha256": "aadef55a37d52a3dcaf6471ec4a62a60215620240b9b3025ca43175994c6ba3a",
+          "size_bytes": 78747762
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.5/subtitle-converter-1.0.5-linux-x64.zip",
-          "sha256": "c10a23a0ab8b99a497e9a44cee67c08f395fffb0e511fec3120c37678d872301",
-          "size_bytes": 87586773
+          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.6/subtitle-converter-1.0.6-linux-x64.zip",
+          "sha256": "b7fc4c4888a3d12d4665b8a70276c4a999ba3a15a47f85ae0c8fe1c18d554713",
+          "size_bytes": 87586826
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.5/subtitle-converter-1.0.5-macos-arm64.zip",
-          "sha256": "b561318cf47d7dea1d85795248bf77dec70d4325c8ede08f5096c7f6c7786588",
-          "size_bytes": 63181286
+          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.6/subtitle-converter-1.0.6-macos-arm64.zip",
+          "sha256": "7676990064009c06a247d958962692115cfcea52a60b6f2eb0fe232de91e4260",
+          "size_bytes": 63181302
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.5/subtitle-converter-1.0.5-macos-x64.zip",
-          "sha256": "8e75659c0282198878aa2c14549126b64895e8356b0a485cc10169e1922ef54a",
-          "size_bytes": 73234109
+          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.6/subtitle-converter-1.0.6-macos-x64.zip",
+          "sha256": "28a0e7dbb81982c47907e7c767bbb4fae1fe0bd5d2b1ae0323d47738b7fddb49",
+          "size_bytes": 73234144
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.5/subtitle-converter-1.0.5-windows-x64.zip",
-          "sha256": "764cd9d5638c22eec4ff254554e86b6a91b40a5bda7d668cf64295f4fbf8f238",
-          "size_bytes": 81491200
+          "url": "https://github.com/chayprabs/localtools/releases/download/subtitle-converter-v1.0.6/subtitle-converter-1.0.6-windows-x64.zip",
+          "sha256": "a46f2264c44b47822ae25b1e9a17331389627e0542d39a9eb749f4895e541dff",
+          "size_bytes": 81491541
         }
       },
-      "release_notes": "Fixes: Latin code-page detection scores letters only (symbols like £ º ¿ keep windows-1252; short Polish still windows-1250); any malformed --> timing line is skipped with a warning instead of merging into the previous cue.",
+      "release_notes": "Minor sweep: Latin code-page ties stay windows-1252 again, so Western text whose accents also read as Czech/Slovak letters in windows-1250 (Italian \"Sì, è così\", Dutch \"hè\", Catalan \"Què\", Danish \"så\", English \"Naïve\") is no longer decoded as windows-1250; short Polish text still detects windows-1250 because French no longer scores æ. 68/68 saved language cases and the real windows-1250/1251 sample files decode as before. Runtime refreshed.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -2486,36 +2486,36 @@
       "engine": "Go + bundled ExifTool 13.59 (Unix requires Perl 5)",
       "engine_reason": "Mature EXIF/GPS/IPTC/XMP/ICC parsers; tested raster formats, verified cleaned outputs, unmodified portable Windows bundle. macOS/Linux require Perl 5 on PATH.",
       "private_repo": "chayprabs/exif-remover",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/exif-remover-v1.0.3/exif-remover-1.0.3-linux-arm64.zip",
-          "sha256": "a7fbb37b1b2ec24b525e19643ded3e2461900c53e3740569e73d7de83cf1be59",
-          "size_bytes": 8795167
+          "url": "https://github.com/chayprabs/localtools/releases/download/exif-remover-v1.0.4/exif-remover-1.0.4-linux-arm64.zip",
+          "sha256": "89226f21c9fb966ff5f4696fcb49093fff850f1b9de6fa19e8e7409efaeb78a0",
+          "size_bytes": 8797706
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/exif-remover-v1.0.3/exif-remover-1.0.3-linux-x64.zip",
-          "sha256": "1bde92ec7cff11e00b2d713cd61e8167966a20dfb04b9e53b4831b37ca6219e5",
-          "size_bytes": 9091554
+          "url": "https://github.com/chayprabs/localtools/releases/download/exif-remover-v1.0.4/exif-remover-1.0.4-linux-x64.zip",
+          "sha256": "451a6478e459b0e2a779e034dde0bc12915e8b3c8c3d442e910209c43a3a9cf9",
+          "size_bytes": 9093911
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/exif-remover-v1.0.3/exif-remover-1.0.3-macos-arm64.zip",
-          "sha256": "b2984779f612f2ab757b9c647d1cf44b7c5d3d68b2a5b3016e709c431ba08dec",
-          "size_bytes": 8883664
+          "url": "https://github.com/chayprabs/localtools/releases/download/exif-remover-v1.0.4/exif-remover-1.0.4-macos-arm64.zip",
+          "sha256": "e86908ac985f98c5bd57759ab0290fe1d2a06b9487db5035ab4b78f8dadb7402",
+          "size_bytes": 8886532
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/exif-remover-v1.0.3/exif-remover-1.0.3-macos-x64.zip",
-          "sha256": "eb8a28f3945e3a2792b4e5712e3844dcdc7672768048e7ce3621dd9fc9860171",
-          "size_bytes": 9126428
+          "url": "https://github.com/chayprabs/localtools/releases/download/exif-remover-v1.0.4/exif-remover-1.0.4-macos-x64.zip",
+          "sha256": "f90d87ce7d8287709a978c732e4ca26f5355cc2c5478a58318546788114bef25",
+          "size_bytes": 9128781
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/exif-remover-v1.0.3/exif-remover-1.0.3-windows-x64.zip",
-          "sha256": "7ee17260a71af495be59252619b7eb61506645e78c128b59105bb045a6afff41",
-          "size_bytes": 14569691
+          "url": "https://github.com/chayprabs/localtools/releases/download/exif-remover-v1.0.4/exif-remover-1.0.4-windows-x64.zip",
+          "sha256": "d6b48f5c807344a96394c863ce18566f6052107dce10c755ad8b935c1cd86235",
+          "size_bytes": 14572007
         }
       },
-      "release_notes": "Multi-page TIFF: private and unknown tags removed on every page; warnings deduplicated and capped; per-file report read from the ZIP (no oversized headers); mismatched extensions cleaned as the detected type. Batch image metadata inspection/removal, originals untouched, orientation/color preservation option. JPEG, PNG, TIFF and WebP. 16 files; 32 MiB each; 64 MiB total. Unix requires Perl 5 on PATH. Not a forensic anonymization guarantee.",
+      "release_notes": "Fixes: unknown private PNG chunks that ExifTool cannot read are now removed when ancillary (unknown critical chunks are kept and warned, since removing them would break the image). The CLI now checks the detected-type output name for collisions before writing. Runtime re-synced (403 rejections drain the body). ExifTool 13.59 unchanged (source attached); Windows bundles Strawberry Perl, macOS/Linux need Perl 5.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -2585,36 +2585,36 @@
       "engine": "SVGO 4.1 + allowlist sanitizer (SVGO plugin) + resvg (wasm) for PNG",
       "engine_reason": "SVGO is the standard SVG optimizer; resvg-wasm renders PNG accurately without a browser on every OS/arch from one artifact; the sanitizer is a strict allowlist tested against 30 XSS payloads in a live browser.",
       "private_repo": "chayprabs/svg-optimizer",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/svg-optimizer-v1.0.3/svg-optimizer-1.0.3-windows-x64.zip",
-          "sha256": "254f5dd6b5e436e598ad364eaff0765e5653202f494f3f86edc4648d32481c93",
-          "size_bytes": 41148668
+          "url": "https://github.com/chayprabs/localtools/releases/download/svg-optimizer-v1.0.4/svg-optimizer-1.0.4-windows-x64.zip",
+          "sha256": "4c188044b173cbb0edbd87347d3e1c7af186069fadde2da5a33cb20f461eb5ba",
+          "size_bytes": 47202910
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/svg-optimizer-v1.0.3/svg-optimizer-1.0.3-macos-arm64.zip",
-          "sha256": "83249d359aefdf9a8841ddb3954bb7b45a134335cfbb35c7958d4b10565f9bbe",
-          "size_bytes": 26330217
+          "url": "https://github.com/chayprabs/localtools/releases/download/svg-optimizer-v1.0.4/svg-optimizer-1.0.4-macos-arm64.zip",
+          "sha256": "58956128ee1bdb9024b3dc0123d6fa52f8c95eaeec573a801f852a2f79d7c244",
+          "size_bytes": 33546002
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/svg-optimizer-v1.0.3/svg-optimizer-1.0.3-macos-x64.zip",
-          "sha256": "5c082a0e8db79c3441311c285bffbc770dee85e3cd4eeab33a127cecfe6e5e7d",
-          "size_bytes": 28574190
+          "url": "https://github.com/chayprabs/localtools/releases/download/svg-optimizer-v1.0.4/svg-optimizer-1.0.4-macos-x64.zip",
+          "sha256": "2648d30f9bacad7d3953ba7fd8c952118f9a63aa2d582eaccc88730edcabfc02",
+          "size_bytes": 35375017
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/svg-optimizer-v1.0.3/svg-optimizer-1.0.3-linux-x64.zip",
-          "sha256": "4fa8cf3aa4afcf41a339c6bd51f53db61e3a30f88b595c02967d29a835669c9e",
-          "size_bytes": 38444278
+          "url": "https://github.com/chayprabs/localtools/releases/download/svg-optimizer-v1.0.4/svg-optimizer-1.0.4-linux-x64.zip",
+          "sha256": "b582ed39b40dbf47cdd16a8c0f8de48902ad21b46fa13a361a68fcd3d44e1350",
+          "size_bytes": 44345433
         },
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/svg-optimizer-v1.0.3/svg-optimizer-1.0.3-linux-arm64.zip",
-          "sha256": "cbb6a549b431d0049e25d685ba1fe19869bc02ab1bbb403b73dbfc7f86d7614b",
-          "size_bytes": 38572960
+          "url": "https://github.com/chayprabs/localtools/releases/download/svg-optimizer-v1.0.4/svg-optimizer-1.0.4-linux-arm64.zip",
+          "sha256": "cb2981b4056736c2d495420de7e4ae492c09371f51067c7bb03dfd8da16ba5e7",
+          "size_bytes": 44661650
         }
       },
-      "release_notes": "Security: a <style> sheet that fails the check is dropped whole and the final output is sanitized again; only xlink:/xml: prefixes; SMIL may not animate href/style/on*/base. Safe keeps empty elements with ids. Results table fits phone screens.",
+      "release_notes": "Ligatures off in all text; uploads drained before 403; exact big integers in JSON replies.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -2686,36 +2686,36 @@
       "engine": "satori 0.62 + resvg-wasm 2.6 + shiki 4 (Oniguruma)",
       "engine_reason": "satori lays out HTML/CSS (flex, grid, stylesheets, HarfBuzz shaping) as SVG without a browser; resvg rasterizes it identically on every OS; shiki gives editor-grade code highlighting. All wasm, fonts and emoji are embedded, so nothing is fetched.",
       "private_repo": "chayprabs/og-image-generator",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.2/og-image-generator-1.0.2-linux-arm64.zip",
-          "sha256": "93f5b24a507befe4e283a4175e5ebb99abaa0a5f06aa807f2267755ccb66194c",
-          "size_bytes": 58666627
+          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.3/og-image-generator-1.0.3-linux-arm64.zip",
+          "sha256": "fb8641d5e2b3af14ccf1429861c8b9285b1a490c4483ac5a42df4c2164ab4221",
+          "size_bytes": 58666809
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.2/og-image-generator-1.0.2-linux-x64.zip",
-          "sha256": "e6a89762215e57fec2fb37478d48e91b9b761976eaa04e9ed89827ea299ebeab",
-          "size_bytes": 58349729
+          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.3/og-image-generator-1.0.3-linux-x64.zip",
+          "sha256": "61b52c4b063fad207757727d283936242b852da22c4933389f273b22c0326018",
+          "size_bytes": 58350127
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.2/og-image-generator-1.0.2-macos-arm64.zip",
-          "sha256": "15791f3a0209f20de04341fe511ed6d7cd8403bd66c3194678f5c1503a69302a",
-          "size_bytes": 47857388
+          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.3/og-image-generator-1.0.3-macos-arm64.zip",
+          "sha256": "09934003f5bad1d4a9cabfd5ca6afe0cae9057c94eaa9b7821f05d358c8f292d",
+          "size_bytes": 47857765
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.2/og-image-generator-1.0.2-macos-x64.zip",
-          "sha256": "df1ee3651ecbc3b186d0537367ff8e27238d55e3513a72a6d75cbb8b8b556457",
-          "size_bytes": 49378015
+          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.3/og-image-generator-1.0.3-macos-x64.zip",
+          "sha256": "989b074e209f81eb4f93f7669015810cb923329d6f2c2c237ef500914c9fe376",
+          "size_bytes": 49378322
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.2/og-image-generator-1.0.2-windows-x64.zip",
-          "sha256": "195f01a30ee324f312cc0a8323efea88d3701f51370f5c1dbd71f6c8da644c5c",
-          "size_bytes": 61206797
+          "url": "https://github.com/chayprabs/localtools/releases/download/og-image-generator-v1.0.3/og-image-generator-1.0.3-windows-x64.zip",
+          "sha256": "e0f136229d674c6aca7ed0dfb64587d9f93dce1854b39a72ac60934475754aa4",
+          "size_bytes": 61207161
         }
       },
-      "release_notes": "Drain rejected uploads before replying so Connection: close clients receive complete JSON 413/503. Resolve image bytes after template expansion, retaining real 10 MiB/25 MP limits. Validate inline WebP dimensions before decoding, including hidden VP8X bitstreams; cache conversion and compress PNG faster. Include libwebp's BSD-3-Clause copyright/license and clarify server-only deadlines.",
+      "release_notes": "Exact byte counts in the image size error; unclosed-element errors hint at a nested element of the same name; uploads drained before 403.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -2787,31 +2787,31 @@
       "engine": "fontTools (pyftsubset, varLib.instancer, WOFF2)",
       "engine_reason": "fontTools is the reference font library; pyftsubset and instancer are what font engineers use.",
       "private_repo": "chayprabs/font-subsetter",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
-        "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/font-subsetter-v1.0.1/font-subsetter-1.0.1-windows-x64.zip",
-          "sha256": "aa09faae774a7870df3c4a928b3864a89711b59a4c6d63e2a97c49ceeca1ae66",
-          "size_bytes": 16735887
+        "linux-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/font-subsetter-v1.0.2/font-subsetter-1.0.2-linux-x64.zip",
+          "sha256": "49add2306450c5811cbd9a1380fe471c10428dd5b405e57b06df0ba0f918d402",
+          "size_bytes": 38781962
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/font-subsetter-v1.0.1/font-subsetter-1.0.1-macos-arm64.zip",
-          "sha256": "16bf1a1e3fc5d1bdfb391665345c07aa68c6ff380f79d05c0fddf1b3a1f42676",
-          "size_bytes": 25018551
+          "url": "https://github.com/chayprabs/localtools/releases/download/font-subsetter-v1.0.2/font-subsetter-1.0.2-macos-arm64.zip",
+          "sha256": "76b331a2e95bdc2995c736206260c6a1005e1c717f61ac203db178bb95d1130e",
+          "size_bytes": 25019399
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/font-subsetter-v1.0.1/font-subsetter-1.0.1-macos-x64.zip",
-          "sha256": "c84d69d865f497491e705ba1a95040d67fbd8fa5d019411f127459af6fc9f7f8",
-          "size_bytes": 23795906
+          "url": "https://github.com/chayprabs/localtools/releases/download/font-subsetter-v1.0.2/font-subsetter-1.0.2-macos-x64.zip",
+          "sha256": "3794ec11e60ed1152438cc1c7269b0fb9f5435a4c894d72aaec1b3bcd02f0ffd",
+          "size_bytes": 23796753
         },
-        "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/font-subsetter-v1.0.1/font-subsetter-1.0.1-linux-x64.zip",
-          "sha256": "baaee090883fcab741fbb2b91776d5fc6c24cd6b0a5f1a6fc58a33788b2ddbd3",
-          "size_bytes": 38781114
+        "windows-x64": {
+          "url": "https://github.com/chayprabs/localtools/releases/download/font-subsetter-v1.0.2/font-subsetter-1.0.2-windows-x64.zip",
+          "sha256": "1c84d04d7307416f41889ac87827c36e5f5df3fa84326035f5bbd50a35e39bfa",
+          "size_bytes": 16736737
         }
       },
-      "release_notes": "Fixes the macOS/Linux launcher when started through the ~/.localtools/bin shim, and update on macOS/Linux.",
+      "release_notes": "Report the complete missing-character count while limiting examples to 500. Reject Unicode values above U+10FFFF and axis pins/ranges outside the font bounds. Give duplicate uploads distinct numbered output names with matching CSS links. Emit correct oblique angle ranges for variable slant fonts, return JSON errors for unsupported HTTP methods, and include the current shared UI fixes.",
       "registries": {
         "brew": false,
         "scoop": false,
@@ -2883,36 +2883,36 @@
       "engine": "Pandoc 3.12.1 + Typst 0.15.1 (bundled)",
       "engine_reason": "Official Pandoc binaries preserve document structure across formats; Typst creates offline PDFs without a TeX distribution.",
       "private_repo": "chayprabs/pandoc-gui",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pandoc-gui-v1.0.2/pandoc-gui-1.0.2-linux-arm64.zip",
-          "sha256": "2301ebdcab522899b34beeb406b0417780e51c5af098270c78895f90c0264a8d",
-          "size_bytes": 66345340
+          "url": "https://github.com/chayprabs/localtools/releases/download/pandoc-gui-v1.0.3/pandoc-gui-1.0.3-linux-arm64.zip",
+          "sha256": "4f60d8ccf630d9a5b157be62ac8d7f26bebf6f28a0915a15e70488b82650b681",
+          "size_bytes": 66346064
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pandoc-gui-v1.0.2/pandoc-gui-1.0.2-linux-x64.zip",
-          "sha256": "54404ad51991cda6e68073d7e33ebc16e04e4074a00da71e5e5c782f43009187",
-          "size_bytes": 64831770
+          "url": "https://github.com/chayprabs/localtools/releases/download/pandoc-gui-v1.0.3/pandoc-gui-1.0.3-linux-x64.zip",
+          "sha256": "e29e71ee840c367753fe982157059d054aa4d107cd6ed896015ed8d2d023038a",
+          "size_bytes": 64832821
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pandoc-gui-v1.0.2/pandoc-gui-1.0.2-macos-arm64.zip",
-          "sha256": "932f6e45a67ccd95b0a588d7be3f981a838573e51e6a3d249f52cd4b334be52f",
-          "size_bytes": 68612117
+          "url": "https://github.com/chayprabs/localtools/releases/download/pandoc-gui-v1.0.3/pandoc-gui-1.0.3-macos-arm64.zip",
+          "sha256": "fc0d7fd221824f7124bf90cad34ddf23df856021f66f2b8f6ff68e0153cba11d",
+          "size_bytes": 68612552
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pandoc-gui-v1.0.2/pandoc-gui-1.0.2-macos-x64.zip",
-          "sha256": "931a02e8866b92563a24c13a7ce2b202d6a194e1982703f7e866bf3f20f264d9",
-          "size_bytes": 53376101
+          "url": "https://github.com/chayprabs/localtools/releases/download/pandoc-gui-v1.0.3/pandoc-gui-1.0.3-macos-x64.zip",
+          "sha256": "5c570520d57a1491bbbdef6df1cb5555469d15d59a63601b3a3a265cc9eb86e6",
+          "size_bytes": 53376540
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/pandoc-gui-v1.0.2/pandoc-gui-1.0.2-windows-x64.zip",
-          "sha256": "44126491f7f1ab1f7f3282191ed59d72146e74751ed29fc589a1f78f00f17316",
-          "size_bytes": 69561155
+          "url": "https://github.com/chayprabs/localtools/releases/download/pandoc-gui-v1.0.3/pandoc-gui-1.0.3-windows-x64.zip",
+          "sha256": "93366acfbd60cb218e6969da30fd9f44cf68b0231d94fb2c35cfa985318c638e",
+          "size_bytes": 69561934
         }
       },
-      "release_notes": "Round-2 fixes: citations always use an explicit job-folder style (uploaded CSL or bundled Chicago author-date); document csl/citation-style/citation-abbreviations/bibliography metadata ignored; dependent CSL parents matched by id among uploaded/bundled styles only, never fetched; text writers keep RST titles/docinfo (output matches pandoc defaults); --csl repeatable.",
+      "release_notes": "Minor fixes: a .zip with exactly 2000 files is accepted; refused uploads are drained (bounded) before the JSON error so send-all/chunked clients get it instead of a reset. Bundles unmodified Pandoc 3.12.1 (source attached) and Typst 0.15.1.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -2983,36 +2983,36 @@
       "engine": "typst (bundled official binary)",
       "engine_reason": "The official typst binary compiles in milliseconds and needs nothing else.",
       "private_repo": "chayprabs/typst-editor",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.1/typst-editor-1.0.1-windows-x64.zip",
-          "sha256": "7a7c457fee6d342876b092b95f0d83a4ca3eb0be43217963bfb2ae3c88d94618",
-          "size_bytes": 27036098
+          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.2/typst-editor-1.0.2-windows-x64.zip",
+          "sha256": "3ef8683dd18e0f80c3c952e3740e981369aa54198de99d040a17b08f7f9e3351",
+          "size_bytes": 27036326
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.1/typst-editor-1.0.1-macos-arm64.zip",
-          "sha256": "db7269dc4fbbfae54379d632ac6cc4cacd237aec905a04e6c350ee6c1608e239",
-          "size_bytes": 25417600
+          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.2/typst-editor-1.0.2-macos-arm64.zip",
+          "sha256": "6cf95242f480fb0d0457b6f3cf5e443414b15e4067b53cfe03b3b475f1ac0e20",
+          "size_bytes": 25417230
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.1/typst-editor-1.0.1-macos-x64.zip",
-          "sha256": "768a8519dafc07594540fed7c7a2175850a4a241ee1678ffd94a8a47d865cc5a",
-          "size_bytes": 26431434
+          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.2/typst-editor-1.0.2-macos-x64.zip",
+          "sha256": "2c5eb091549fbb3cc7b2a33b5075e18c9cde363ce48c8a4d9e1fdf45fb6417e7",
+          "size_bytes": 26431336
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.1/typst-editor-1.0.1-linux-x64.zip",
-          "sha256": "500fc620df5bbd2c5166aa38f51cc5fec7073041184bd3acb7ae4d5520e98e31",
-          "size_bytes": 28998924
+          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.2/typst-editor-1.0.2-linux-x64.zip",
+          "sha256": "bdd5aeec5d1a9e135c659b960420aa61e51ccaadded76c7d18abd79ae952b9a3",
+          "size_bytes": 28998980
         },
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.1/typst-editor-1.0.1-linux-arm64.zip",
-          "sha256": "e666ea19226b268c12697ee8f1daa11844f710c072b76e1db6797e16bf87f02f",
-          "size_bytes": 27632305
+          "url": "https://github.com/chayprabs/localtools/releases/download/typst-editor-v1.0.2/typst-editor-1.0.2-linux-arm64.zip",
+          "sha256": "cae9539017d15087a9b6de1e65982ea9184ce71ba784a9649e9f39206872df29",
+          "size_bytes": 27632051
         }
       },
-      "release_notes": "Preserve exact binary, Latin-1 and BOM bytes through preview and project ZIPs; keep binary files across reloads, migrate saved projects, confirm template replacement with Undo, and ship embedded font licenses.",
+      "release_notes": "Early rejections (two compiles already running, invalid paths, size limit) now read the upload first (up to the 68 MiB request cap, 10 s) and then send the JSON error, so the browser shows the message instead of 'Failed to fetch'. Runtime re-synced. Built with official Typst 0.15.1.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -3082,36 +3082,36 @@
       "engine": "Asciidoctor.js 4.1.1 + downdoc 1.1 + highlight.js 11.12 + MathJax 3.2",
       "engine_reason": "Asciidoctor.js is the official JavaScript Asciidoctor; reference comparisons match after removing the default Google Fonts import. SAFE mode confines conversion to the project. Local images, highlighting, icons and math are embedded; remote media URLs are retained with an export warning. downdoc (by Asciidoctor's lead) produces Markdown after Asciidoctor resolves includes.",
       "private_repo": "chayprabs/asciidoc-converter",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.3/asciidoc-converter-1.0.3-linux-arm64.zip",
-          "sha256": "35eaba19522977279c2563cb3b908f9a1146f92692efe6dfc965e24f067b9959",
-          "size_bytes": 44459881
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.4/asciidoc-converter-1.0.4-linux-arm64.zip",
+          "sha256": "37d7f9050582e6b988dc462ce0a49e09a8b88af8502cbb34057e90ad96704c85",
+          "size_bytes": 44460042
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.3/asciidoc-converter-1.0.3-linux-x64.zip",
-          "sha256": "6b48909eb70755e819c0e59af2990559a5fdc9b32d5fa9155962e0640af2b0b8",
-          "size_bytes": 44144731
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.4/asciidoc-converter-1.0.4-linux-x64.zip",
+          "sha256": "7516d0c1b774f70b932ca5e144d1aee976d639647dea417335a8f246ac947725",
+          "size_bytes": 44144898
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.3/asciidoc-converter-1.0.3-macos-arm64.zip",
-          "sha256": "6a6a1c9a6d358df8ff032471b754a9f17bbbd7bcd215d4ec97e8256fe833c612",
-          "size_bytes": 33346969
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.4/asciidoc-converter-1.0.4-macos-arm64.zip",
+          "sha256": "c0d69eb6dcae7129da4ef17028d86fe2713b7808e06958afccfc6902ccc29313",
+          "size_bytes": 33347138
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.3/asciidoc-converter-1.0.3-macos-x64.zip",
-          "sha256": "cc37062e42895d36d2de562e85bc34133712cf94eb2e67662ffdd2ed4fb3b37b",
-          "size_bytes": 35174435
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.4/asciidoc-converter-1.0.4-macos-x64.zip",
+          "sha256": "b90a89abcea6c03a7eeb042a5b01d95eb331124f602995c0ebb8d9efa5226f61",
+          "size_bytes": 35174609
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.3/asciidoc-converter-1.0.3-windows-x64.zip",
-          "sha256": "bae25685f23e6fa752b549b7b61d0728f890880249d7e00bfa50dbc311e1974b",
-          "size_bytes": 46999931
+          "url": "https://github.com/chayprabs/localtools/releases/download/asciidoc-converter-v1.0.4/asciidoc-converter-1.0.4-windows-x64.zip",
+          "sha256": "ab31a016e092ea90e4815414b73804e501792bcdb68d2d7b9c3b784a8819e9fd",
+          "size_bytes": 47000156
         }
       },
-      "release_notes": "include::{docdir}/... inside included files resolves again (Asciidoctor keeps its real docdir; only the server temp path is hidden where printed). With a zip project, opening an included file from a diagnostic keeps converting the main document. DocBook hyperlinks no longer trigger the remote-media warning, and a Google Fonts @import written in a listing block is kept.",
+      "release_notes": "Uploads drained before 403 so Connection: close clients get the JSON error.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -3181,36 +3181,36 @@
       "engine": "MathJax 4.1.3 (TeX/MathML/AsciiMath -> SVG/MathML) + Speech Rule Engine 5 + resvg-wasm 2.6",
       "engine_reason": "MathJax is the reference renderer of TeX math on the web; its lite DOM, font ranges and named entities are bundled offline. Supported equations match stock MathJax with documented standalone post-processing and Safe filtering. SRE provides optional speech; resvg rasterizes PNGs across OSes.",
       "private_repo": "chayprabs/latex-to-svg",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "status": "released",
       "assets": {
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.2/latex-to-svg-1.0.2-windows-x64.zip",
-          "sha256": "6e10a3d6ae02dde59146ccbe9a067e2481504138aa59aec950a8fa7c92962b21",
-          "size_bytes": 51070621
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.3/latex-to-svg-1.0.3-windows-x64.zip",
+          "sha256": "0b9673ec7e5b9859cbe28667a56f4f3a04ceb0017517a87948877ac1d241f116",
+          "size_bytes": 51070837
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.2/latex-to-svg-1.0.2-macos-arm64.zip",
-          "sha256": "81e729e22377bd04993c5c0b382be3e15fa475424cade0ff8583041d5478e8cc",
-          "size_bytes": 37512346
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.3/latex-to-svg-1.0.3-macos-arm64.zip",
+          "sha256": "fa6662cd3b94ef2121831402428334e96bb235bbb8346de430f19924ae3d7af6",
+          "size_bytes": 37512624
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.2/latex-to-svg-1.0.2-macos-x64.zip",
-          "sha256": "8383d8750d21e1ec9c71feb236c29e42ba63c618cee47aa40713be3fe0dfd697",
-          "size_bytes": 39241958
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.3/latex-to-svg-1.0.3-macos-x64.zip",
+          "sha256": "c6289b18da89e3382a20abf9b7aad2d7e9df1733f88cd14b1dade1a8c00f2b16",
+          "size_bytes": 39242192
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.2/latex-to-svg-1.0.2-linux-x64.zip",
-          "sha256": "f1dee7d9ef13c6ead70838a3c28f9bd20eca47c542056d43cbe0103472e91c6c",
-          "size_bytes": 48213723
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.3/latex-to-svg-1.0.3-linux-x64.zip",
+          "sha256": "b7d42d148f6c03b5dfa1f4d9df2678f50d67c80ddb167d4c200ba44ad777d800",
+          "size_bytes": 48214013
         },
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.2/latex-to-svg-1.0.2-linux-arm64.zip",
-          "sha256": "77b87fdb47657f0c718bbabc505dd443b3d6b1a1bf316b61ad9f439eda689fa8",
-          "size_bytes": 48530076
+          "url": "https://github.com/chayprabs/localtools/releases/download/latex-to-svg-v1.0.3/latex-to-svg-1.0.3-linux-arm64.zip",
+          "sha256": "e2f0453a84ea96e8c819ccaf366722a266196696b4fd9ffe44dd9a815ae7420c",
+          "size_bytes": 48530212
         }
       },
-      "release_notes": "Warm workers no longer hang after switching input type or glyph mode (every font range is set up for every MathJax document). .tex batches follow LaTeX rules by extension, Markdown by .md or markers. Colour attributes accept colour tokens only; MathJax internal errors become human messages; \\newcommand* accepted.",
+      "release_notes": "MathML 1 color/background attributes drawn; flat-chain time limit documented; uploads drained before 403.",
       "registries": {
         "brew": true,
         "scoop": true,
@@ -3454,36 +3454,36 @@
       "engine": "EPUBCheck 5.4.0 + jlink'd Temurin 21 runtime + own repair pass",
       "engine_reason": "EPUBCheck is the W3C's official EPUB conformance checker; a trimmed bundled Java runtime means no Java install.",
       "private_repo": "chayprabs/epub-validator",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "status": "released",
       "assets": {
         "linux-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.1/epub-validator-1.0.1-linux-arm64.zip",
-          "sha256": "e6347c2bd96c8faf3ba3032dd09b1a8810c56625c6d05a8d017e2e46f1a67894",
-          "size_bytes": 84746959
+          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.2/epub-validator-1.0.2-linux-arm64.zip",
+          "sha256": "3fc30dc397ac594d5f89cfab1d8256f1e635c38aabbbeb79e8183480c2da8670",
+          "size_bytes": 84747372
         },
         "linux-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.1/epub-validator-1.0.1-linux-x64.zip",
-          "sha256": "688da5a063f7258adb7f4122dc54677af98b26546750b85515e8b29af2aadccd",
-          "size_bytes": 85609779
+          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.2/epub-validator-1.0.2-linux-x64.zip",
+          "sha256": "398cbd183d3361daa26813c68c190a42864c03d9c0faed4519f6fa15327b94b4",
+          "size_bytes": 85610073
         },
         "macos-arm64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.1/epub-validator-1.0.1-macos-arm64.zip",
-          "sha256": "a094c37892d211c7445a85c686149edd3898af3d0a06a2262299b35e53fa19f9",
-          "size_bytes": 81628350
+          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.2/epub-validator-1.0.2-macos-arm64.zip",
+          "sha256": "cdd56d52e00375b9463ad62ea40a2bf47e0cba985b0f1f55b769f7d7071ae9eb",
+          "size_bytes": 81628755
         },
         "macos-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.1/epub-validator-1.0.1-macos-x64.zip",
-          "sha256": "06fb0ee7ddd5c5e90adf520af5da57a571bc75fec23fa4e689fb80f94faf993d",
-          "size_bytes": 83000047
+          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.2/epub-validator-1.0.2-macos-x64.zip",
+          "sha256": "31aff129995abdda083bc1e5956f7d4a6245e92273bf9ce2793364b6b6de763d",
+          "size_bytes": 83000677
         },
         "windows-x64": {
-          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.1/epub-validator-1.0.1-windows-x64.zip",
-          "sha256": "aa73bf75b6f51998042b9dc2fa048cd12e094f981d4eaa0de969781e0f58aad2",
-          "size_bytes": 82268525
+          "url": "https://github.com/chayprabs/localtools/releases/download/epub-validator-v1.0.2/epub-validator-1.0.2-windows-x64.zip",
+          "sha256": "0e85ec0cbfd25305aaf6cc0602662da7811bc7cb760002f535d3206b5f40b737",
+          "size_bytes": 82269285
         }
       },
-      "release_notes": "Repair never changes declared-entity documents, expands self-closing metadata/manifest, refuses books without them cleanly, matches hrefs like EPUBCheck and never keeps a repair that adds errors; repaired downloads stay for their full 30 minutes. Gated on EPUBCheck's 394 test fixtures.",
+      "release_notes": "Repair: a package document with both <metadata/> and <manifest/> self-closing now gets both expanded (new manifest items land inside <manifest>). Runtime re-synced. EPUBCheck 5.4.0 on jlink'd Temurin 21.0.12.1+1 unchanged; Java sandbox policy unchanged. Java runtime source: https://github.com/adoptium/jdk21u/tree/jdk-21.0.12.1+1",
       "registries": {
         "brew": true,
         "scoop": true,
